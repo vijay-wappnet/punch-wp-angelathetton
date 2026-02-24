@@ -1,0 +1,172 @@
+@use "fonts";
+@use "variables" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+*:focus-visible {
+  outline: none;
+}
+
+html {
+  line-height: 1.5rem;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.5rem;
+  font-family: inherit;
+  // font-family: $fonts-niveau-grotesk-regular;
+  color: $black-off-color;
+  background-color: $white-color;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1 {
+  font-size: 60px;
+  font-family: inherit;
+  // font-family: $fonts-niveau-grotesk-medium;
+  @media (max-width: $screen-md-min) {
+    font-size: 50px;
+  }
+}
+
+h2 {
+  font-size: 50px;
+  font-family: inherit;
+  // font-family: $fonts-niveau-grotesk-medium;
+  @media (max-width: $screen-md-min) {
+    font-size: 42px;
+  }
+}
+
+h3 {
+  font-size: 32px;
+  font-family: inherit;
+  // font-family: $fonts-niveau-grotesk-regular;
+  @media (max-width: $screen-md-min) {
+    font-size: 32px;
+  }
+}
+
+h4 {
+  font-size: 24px;
+  font-family: inherit;
+  // font-family: $fonts-niveau-grotesk-regular;
+  @media (max-width: $screen-md-min) {
+    font-size: 24px;
+  }
+}
+
+h5 {
+  font-size: 22px;
+  font-family: inherit;
+  // font-family: $fonts-niveau-grotesk-regular;
+  @media (max-width: $screen-md-min) {
+    font-size: 22px;
+  }
+}
+
+h6 {
+  font-size: 18px;
+  font-family: inherit;
+  // font-family: $fonts-niveau-grotesk-regular;
+  @media (max-width: $screen-md-min) {
+    font-size: 18px;
+  }
+}
+
+p {
+  font-family: inherit;
+  // font-family: $fonts-niveau-grotesk-regular;
+  font-size: 18px;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  line-height: 1.5rem;
+
+  @media (max-width: $screen-md-min) {
+    font-size: 22px;
+  }
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+pre {
+  font-family: inherit;
+  // font-family: $fonts-niveau-grotesk-regular;
+  font-size: 1em;
+  line-height: 1.5rem;
+}
+
+a {
+  background-color: transparent;
+  line-height: 1.5rem;
+  color: $black-off-color;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: $black-off-color;
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: block;
+  }
+}
+
+.bg_black_off {
+  background-color: $black-off-color;
+}
+.bg_brown {
+  background-color: $brown-color;
+}
+
+.bg_brown_light {
+  background-color: $brown-light-color;
+}
+
+.bg_white_off {
+  background-color: $white-off-color;
+}
+
+.bg_white {
+  background-color: $white-color;
+}
+
+/*.mobile-d-block {
+  display: none;
+
+  @media (max-width: $screen-lg-min) {
+    display: flex;
+  }
+}
+
+.desktop-d-block {
+  display: flex !important;
+
+  @media (max-width: $screen-lg-min) {
+    display: none !important;
+  }
+}*/
+

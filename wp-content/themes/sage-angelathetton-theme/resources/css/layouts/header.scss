@@ -1,0 +1,245 @@
+// Header layout and behaviour
+// ==========================
+
+$header-height: 80px;
+$overlay-bg: #f5f2ec;
+$header-transparent: rgba(255, 255, 255, 0.15);
+$header-scrolled-bg: #fff;
+$header-border: rgba(0, 0, 0, 0.05);
+$brown: #6e4b35;
+
+body.no-scroll {
+  overflow: hidden !important;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $header-height;
+  background: $header-transparent;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid $header-border;
+  transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+  z-index: 1000;
+
+  &.header-scrolled {
+    background: $header-scrolled-bg;
+    backdrop-filter: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  }
+
+  .header-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 1rem;
+  }
+
+  .menu-toggle {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .hamburger {
+      display: inline-block;
+      width: 24px;
+      height: 18px;
+      position: relative;
+
+      .bar {
+        display: block;
+        height: 2px;
+        background: currentColor;
+        margin: 4px 0;
+        transition: transform 0.3s ease;
+      }
+    }
+  }
+
+  .logo-wrapper {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    .brand {
+      display: inline-block;
+      text-decoration: none;
+    }
+  }
+
+  .header-top-nav {
+    .nav {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+  }
+}
+
+// Fullscreen overlay menu
+.fullscreen-menu {
+  position: fixed;
+  inset: 0;
+  background: $overlay-bg;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .fullscreen-logo {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .brand {
+      text-decoration: none;
+    }
+  }
+
+  .fullscreen-nav {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2rem;
+
+    .fullscreen-menu-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background-color: red;
+
+      .menu-item {
+        margin-bottom: 1.5rem;
+        position: relative;
+
+        > a {
+          font-size: 2rem;
+          text-decoration: none;
+          color: inherit;
+        }
+
+        &.menu-item-has-children {
+          .submenu-toggle {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+          }
+
+          &.open {
+            .submenu-toggle .icon {
+              transform: rotate(45deg);
+            }
+
+            > .sub-menu {
+              max-height: 1000px;
+            }
+          }
+
+          > .sub-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 1.5rem;
+
+            .menu-item > a {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+
+      a {
+        display: inline-block;
+        width: 100%;
+        padding: 0.5rem 0;
+      }
+    }
+  }
+
+  .menu-footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: $brown;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+
+    .btn {
+      flex: 1 1 0;
+      text-align: center;
+      color: #fff;
+      border: 1px solid #fff;
+      background: transparent;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      display: inline-block;
+
+      &.reserve-table,
+      &.reserve-room {
+        /* additional customization if needed */
+      }
+    }
+  }
+}
+
+// Mobile tweaks
+@media (max-width: 768px) {
+  .site-header .header-top-nav {
+    display: none;
+  }
+
+  .fullscreen-menu .fullscreen-nav {
+    padding-left: 1rem;
+  }
+
+  .fullscreen-menu .fullscreen-menu-list .menu-item > a {
+    font-size: 1.75rem;
+    padding: 1rem 0;
+  }
+}

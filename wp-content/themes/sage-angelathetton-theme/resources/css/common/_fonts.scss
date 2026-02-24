@@ -1,0 +1,46 @@
+$fonts-niveau-grotesk-regular: "niveau-grotesk-regular";
+$fonts-niveau-grotesk-medium: "niveau-grotesk-medium";
+$fonts-niveau-grotesk-bold: "niveau-grotesk-bold";
+$fonts-dyslexie: "dyslexie";
+
+/* Nudica Fonts */
+@font-face {
+  font-family: $fonts-niveau-grotesk-regular;
+  src:
+    url("../../fonts/niveau-grotesk-regular.woff2") format("woff2"),
+    url("../../fonts/niveau-grotesk-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $fonts-niveau-grotesk-medium;
+  src:
+    url("../../fonts/niveau-grotesk-medium.woff2") format("woff2"),
+    url("../../fonts/niveau-grotesk-medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: $fonts-niveau-grotesk-bold;
+  src:
+    url("../../fonts/niveau-grotesk-bold.woff2") format("woff2"),
+    url("../../fonts/niveau-grotesk-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Dyslexie Fonts */
+@font-face {
+  font-family: $fonts-dyslexie;
+  src:
+    url("../../fonts/Dyslexie-Regular.woff2") format("woff2"),
+    url("../../fonts/Dyslexie-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
