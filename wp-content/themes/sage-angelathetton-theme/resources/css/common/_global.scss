@@ -1,4 +1,4 @@
-@use "fonts";
+@use "fonts" as *;
 @use "variables" as *;
 
 *,
@@ -21,8 +21,7 @@ body {
   margin: 0;
   font-size: 18px;
   line-height: 1.5rem;
-  font-family: inherit;
-  // font-family: $fonts-niveau-grotesk-regular;
+  font-family: $fonts-helvetica-lt-pro;
   color: $black-off-color;
   background-color: $white-color;
   outline: none;
@@ -35,8 +34,7 @@ img {
 
 h1 {
   font-size: 60px;
-  font-family: inherit;
-  // font-family: $fonts-niveau-grotesk-medium;
+  font-family: $fonts-niveau-grotesk-small-caps;
   @media (max-width: $screen-md-min) {
     font-size: 50px;
   }
@@ -44,8 +42,7 @@ h1 {
 
 h2 {
   font-size: 50px;
-  font-family: inherit;
-  // font-family: $fonts-niveau-grotesk-medium;
+  font-family: $fonts-niveau-grotesk-small-caps;
   @media (max-width: $screen-md-min) {
     font-size: 42px;
   }
@@ -53,8 +50,7 @@ h2 {
 
 h3 {
   font-size: 32px;
-  font-family: inherit;
-  // font-family: $fonts-niveau-grotesk-regular;
+  font-family: $fonts-niveau-grotesk-small-caps;
   @media (max-width: $screen-md-min) {
     font-size: 32px;
   }
@@ -62,8 +58,7 @@ h3 {
 
 h4 {
   font-size: 24px;
-  font-family: inherit;
-  // font-family: $fonts-niveau-grotesk-regular;
+  font-family: $fonts-niveau-grotesk-small-caps;
   @media (max-width: $screen-md-min) {
     font-size: 24px;
   }
@@ -71,8 +66,7 @@ h4 {
 
 h5 {
   font-size: 22px;
-  font-family: inherit;
-  // font-family: $fonts-niveau-grotesk-regular;
+  font-family: $fonts-niveau-grotesk-small-caps;
   @media (max-width: $screen-md-min) {
     font-size: 22px;
   }
@@ -80,17 +74,15 @@ h5 {
 
 h6 {
   font-size: 18px;
-  font-family: inherit;
-  // font-family: $fonts-niveau-grotesk-regular;
+  font-family: $fonts-niveau-grotesk-small-caps;
   @media (max-width: $screen-md-min) {
     font-size: 18px;
   }
 }
 
 p {
-  font-family: inherit;
-  // font-family: $fonts-niveau-grotesk-regular;
   font-size: 18px;
+  font-family: $fonts-niveau-grotesk-small-caps;
   margin-top: 0;
   margin-bottom: 0.5rem;
   line-height: 1.5rem;
@@ -153,6 +145,111 @@ ul {
 .bg_white {
   background-color: $white-color;
 }
+
+// ----------- Star button components list
+.btn{
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.shiny-btn{
+  background-color: $white-color;
+  color: $black-off-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: $black-off-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+  }
+}
+
+.shiny-btn{
+  background-color: $white-color;
+  color: $black-off-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: $black-off-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+  }
+}
+.shiny-trans-btn{
+  background-color: transparent;
+  color: $black-off-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: $black-off-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+  }
+}
+.shiny-reverse-btn{
+  background-color: $black-off-color;
+  color: $white-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: $white-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $black-off-color;
+  }
+}
+.shiny-reverse-trans-btn{
+  background-color: $white-color;
+  color: $black-off-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: transparent;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+  }
+}
+
+
+
+.btn-shine {
+  position: relative;
+  display: inline-block;
+  padding: 16px 40px;
+  background: #000;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+.btn-shine span {
+  position: relative;
+  z-index: 2;
+}
+.btn-shine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(25deg);
+  transition: left 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  z-index: 1;
+}
+
+/* Hover → left to right */
+.btn-shine:hover::before {
+  left: 130%;
+}
+
+// ----------- End button components list
 
 /*.mobile-d-block {
   display: none;

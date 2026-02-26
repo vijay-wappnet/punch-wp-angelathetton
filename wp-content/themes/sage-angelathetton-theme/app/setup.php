@@ -77,7 +77,6 @@ add_action('after_setup_theme', function () {
     register_nav_menus([
         'primary_navigation' => __('Header Primary Navigation', 'sage'),
         'header_top_navigation' => __('Header Top Navigation', 'sage'),
-        //'fullscreen_navigation' => __('Fullscreen Navigation', 'sage'),
         'footer_main_navigation' => __('Footer Main Navigation', 'sage'),
         'footer_bottom_navigation' => __('Footer Bottom Navigation', 'sage')
     ]);
@@ -156,6 +155,20 @@ add_action('widgets_init', function () {
         'id' => 'sidebar-footer',
     ] + $config);
 });
+
+
+/**
+ * Enqueue Typekit on the frontend only.
+ *
+ * @return void
+ */
+add_action('wp_enqueue_scripts', function () {
+    if (is_admin()) {
+        return;
+    }
+
+    wp_enqueue_style('typekit', 'https://use.typekit.net/kaw6ygr.css', [], null);
+}, 5);
 
 
 require_once __DIR__ . '/custom-function.php';

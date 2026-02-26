@@ -1,11 +1,11 @@
 @use "bootstrap/scss/bootstrap";
 
 // Import our variables
-@use "common/variables";
+@use "common/variables" as *;
 
 /** Import theme styles */
-@use "common/global";
-@use "common/fonts";
+@use "common/global" as *;
+@use "common/fonts" as *;
 @use "components/buttons";
 @use "components/comments";
 @use "components/forms";
@@ -14,8 +14,16 @@
 
 @use "layouts/header";
 // @use "layouts/sidebar";
-// @use "layouts/footer";
+@use "layouts/footer";
 // @use "layouts/pages";
 // @use "layouts/posts";
 // @use "layouts/tinymce";
 // @use "responsive/responsive";
+
+.fonts-niveau-grotesk{
+  font-family: $fonts-niveau-grotesk-small-caps;
+}
+
+.fonts-helvetica-lt-pro{
+  font-family: $fonts-helvetica-lt-pro;
+}

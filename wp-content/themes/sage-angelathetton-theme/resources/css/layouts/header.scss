@@ -1,12 +1,7 @@
-// Header layout and behaviour
-// ==========================
+@use "../common/variables" as *;
 
-$header-height: 80px;
-$overlay-bg: #f5f2ec;
+$header-height: 122px;
 $header-transparent: rgba(255, 255, 255, 0.15);
-$header-scrolled-bg: #fff;
-$header-border: rgba(0, 0, 0, 0.05);
-$brown: #6e4b35;
 
 body.no-scroll {
   overflow: hidden !important;
@@ -21,12 +16,12 @@ body.no-scroll {
   background: $header-transparent;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid $header-border;
+  border-bottom: 1px solid $white-color;
   transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
   z-index: 1000;
 
   &.header-scrolled {
-    background: $header-scrolled-bg;
+    background: $white-color;
     backdrop-filter: none;
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
   }
@@ -98,7 +93,7 @@ body.no-scroll {
 .fullscreen-menu {
   position: fixed;
   inset: 0;
-  background: $overlay-bg;
+  background: $white-off-color;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease;
@@ -109,10 +104,12 @@ body.no-scroll {
   &.is-open {
     opacity: 1;
     visibility: visible;
+    height: 100vh;
   }
 
   .close-btn {
     position: absolute;
+    z-index: 999;
     top: 1rem;
     left: 1rem;
     background: none;
@@ -121,108 +118,119 @@ body.no-scroll {
     cursor: pointer;
   }
 
-  .fullscreen-logo {
-    position: absolute;
-    top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-
-    .brand {
-      text-decoration: none;
-    }
-  }
-
   .fullscreen-nav {
-    flex: 1 1 auto;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 2rem;
 
-    .fullscreen-menu-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      background-color: red;
+    .menu-left {
+      height: 100vh;
+      flex: 0 0 20%;
+      transition: .3s;
+      background: #e9e4dc;
+      position: relative;
+      overflow: hidden;
+      padding: 60px;
 
-      .menu-item {
-        margin-bottom: 1.5rem;
-        position: relative;
+      .fullscreen-menu-list {
+        list-style: none;
+        margin: 0;
+        padding: 60px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        transition: transform 0.4s ease, opacity 0.3s ease;
+        transform: translateX(0);
 
-        > a {
-          font-size: 2rem;
-          text-decoration: none;
-          color: inherit;
+        .menu-item {
+          margin-bottom: 1.5rem;
+          > a {
+            font-size: 32px;
+            text-decoration: none;
+            color: inherit;
+          }
         }
 
-        &.menu-item-has-children {
-          .submenu-toggle {
-            position: absolute;
-            right: 0;
-            top: 0;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-          }
+        a {
+          display: inline-block;
+          width: 100%;
+          padding: 0.5rem 0;
+        }
 
-          &.open {
-            .submenu-toggle .icon {
-              transform: rotate(45deg);
-            }
-
-            > .sub-menu {
-              max-height: 1000px;
-            }
-          }
-
-          > .sub-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            padding-left: 1.5rem;
-
-            .menu-item > a {
-              font-size: 1.5rem;
-            }
-          }
+        .menu-back {
+          font-size: 1.25rem;
+          margin-bottom: 2rem;
+          cursor: pointer;
+          display: inline-block;
         }
       }
 
-      a {
-        display: inline-block;
+      .sub-menu{
+        list-style: none;
+        margin: 0;
+        padding: 60px;
+        position: absolute;
+        top: 0;
+        left: 100%;
         width: 100%;
-        padding: 0.5rem 0;
+        transition: transform 0.4s ease, opacity 0.3s ease;
+        transform: translateX(100%);
+        opacity: 1;
+      }
+
+      .menu-panel-active {
+        transform: translateX(0) !important;
+        opacity: 1 !important;
+      }
+
+      .menu-panel-hidden {
+        transform: translateX(-100%) !important;
+        opacity: 1 !important;
+      }
+
+    }
+
+    .menu-right {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+
+      img {
+        position: fixed;
+    width: 100%;
+
+    height: 100vh;
+
+        object-fit: cover;
+        display: block;
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        -o-transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        -webkit-transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        -moz-transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       }
     }
   }
 
   .menu-footer {
-    position: relative;
-    bottom: 0;
-    left: 0;
+    background-color: $brown-color;
+    position: absolute;
     width: 100%;
-    background: $brown;
-    padding: 1rem;
+    bottom: 0;
     display: flex;
-    gap: 1rem;
     justify-content: center;
+    padding-top: 28px;
+    padding-bottom: 28px;
+    gap: 50px;
 
-    .btn {
-      flex: 1 1 0;
-      text-align: center;
-      color: #fff;
-      border: 1px solid #fff;
-      background: transparent;
-      padding: 0.75rem 1rem;
-      text-decoration: none;
-      display: inline-block;
-
-      &.reserve-table,
-      &.reserve-room {
-        /* additional customization if needed */
+    .hfsm-btn{
+      color: $white-color;
+      border: 1px solid;
+      border-color: #957567;
+      border-radius: 0;
+      padding: 0.75rem 8rem;
+      &:hover {
+        background-color: $white-color;
+        border-color: $white-color;
+        color: $black-off-color;
       }
     }
   }
@@ -235,7 +243,13 @@ body.no-scroll {
   }
 
   .fullscreen-menu .fullscreen-nav {
+    flex-direction: column;
     padding-left: 1rem;
+  }
+
+  .fullscreen-menu .menu-right {
+    order: -1;
+    margin-bottom: 2rem;
   }
 
   .fullscreen-menu .fullscreen-menu-list .menu-item > a {
