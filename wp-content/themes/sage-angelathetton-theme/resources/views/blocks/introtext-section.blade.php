@@ -1,0 +1,37 @@
+<div class="intro-section" @if($bg_color) style="background-color: {{ esc_attr($bg_color) }};" @endif>
+    {{-- Heading --}}
+    @if($heading_text)
+        <{{ $heading_level }} class="intro-section__heading">
+            {{ $heading_text }}
+        </{{ $heading_level }}>
+    @endif
+
+    {{-- Content/Body --}}
+    @if($content)
+        <div class="intro-section__content">
+            {!! wp_kses_post($content) !!}
+        </div>
+    @endif
+
+    {{-- Buttons from Repeater --}}
+    @if(count($buttons) > 0)
+        <div class="intro-section__buttons">
+            @foreach($buttons as $button)
+                @php
+                    $link = $button['button_link'] ?? [];
+                    $url = is_array($link) ? ($link['url'] ?? '#') : $link;
+                    $link_title = is_array($link) ? ($link['title'] ?? 'Button') : 'Button';
+                    $button_aria = $button['aria_label'] ?? '';
+                    $event_label = $button['button_google_event_label'] ?? '';
+                @endphp
+
+                <a href="{{ esc_url($url) }}"
+                   class="intro-section__button"
+                   @if($button_aria)aria-label="{{ esc_attr($button_aria) }}"@endif
+                   @if($event_label)data-event-label="{{ esc_attr($event_label) }}"@endif>
+                    {{ esc_html($link_title) }}
+                </a>
+            @endforeach
+        </div>
+    @endif
+</div>
