@@ -69,5 +69,22 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+        // Register the Slider With Multiple Box Section Block
+        acf_register_block_type([
+            'name'            => 'slider-with-multiple-box-section',
+            'title'           => __('Slider With Multiple Box Section', 'sage'),
+            'description'     => __('A slider section with multiple boxes', 'sage'),
+            'render_callback' => ['App\Blocks\SliderWithMultipleBoxSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'columns',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
     }
 });
