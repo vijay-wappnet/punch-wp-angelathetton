@@ -51,5 +51,23 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+
+        // Register the Two Columns Image With CTA Section Block
+        acf_register_block_type([
+            'name'            => 'two-columns-image-with-cta-section',
+            'title'           => __('Two Columns Image With CTA Section', 'sage'),
+            'description'     => __('A two column section with images, content, and call-to-action buttons', 'sage'),
+            'render_callback' => ['App\Blocks\TwoColumnsImageWithCtaSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'columns',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
     }
 });
