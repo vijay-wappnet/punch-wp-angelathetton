@@ -1,0 +1,119 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+
+// ----------- Star button components list
+.btn{
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 18px;
+  line-height: 25px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-border-radius: 0;   // For Safari and older WebKit browsers
+  -moz-border-radius: 0;      // For Firefox
+  border-radius: 0;           // Standard syntax
+}
+
+.black-trans-btn{
+  background-color: $black-off-color;
+  color: $white-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: transparent;;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $black-off-color;
+  }
+}
+.trans-black-btn{
+  background-color: transparent;
+  color: $black-off-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: $black-off-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+  }
+}
+
+.shiny-btn{
+  background-color: $white-color;
+  color: $black-off-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: $black-off-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+  }
+}
+.shiny-trans-btn{
+  background-color: transparent;
+  color: $black-off-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: $black-off-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+  }
+}
+.shiny-reverse-btn{
+  background-color: $black-off-color;
+  color: $white-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: $white-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $black-off-color;
+  }
+}
+.shiny-reverse-trans-btn{
+  background-color: $white-color;
+  color: $black-off-color;
+  border: 1px solid rgba(43, 46, 52, 0.2);
+  &:hover {
+    background-color: transparent;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+  }
+}
+
+
+
+.btn-shine {
+  position: relative;
+  display: inline-block;
+  padding: 16px 40px;
+  background: #000;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+.btn-shine span {
+  position: relative;
+  z-index: 2;
+}
+.btn-shine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(25deg);
+  transition: left 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+  z-index: 1;
+}
+
+/* Hover → left to right */
+.btn-shine:hover::before {
+  left: 130%;
+}

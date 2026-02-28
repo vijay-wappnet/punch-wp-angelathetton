@@ -1,0 +1,33 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+@use "../components/buttons" as *;
+
+.intro-section{
+  padding: 60px 0;
+    h1,h2{
+      &.intro-section__heading{
+        font-family: $fonts-niveau-grotesk-small-caps;
+        font-weight: $font-weight-500;
+        margin-bottom: 25px;
+      }
+    }
+
+    h3,h4,h5,h6{
+      &.intro-section__heading{
+        font-family: $fonts-niveau;
+        font-weight: $font-weight-300;
+        font-style: $font-style-normal;
+        margin-bottom: 25px;
+      }
+    }
+    .intro-section__content{
+      font-family: $fonts-niveau;
+      font-weight: $font-weight-300;
+      font-style: $font-style-normal;
+      margin-bottom: 25px;
+      @media (max-width: $screen-md-min) {
+        font-size: 22px;
+        margin-bottom: 35px;
+      }
+    }
+}

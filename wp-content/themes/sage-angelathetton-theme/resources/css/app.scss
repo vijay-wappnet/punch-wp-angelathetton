@@ -20,10 +20,14 @@
 // @use "layouts/tinymce";
 // @use "responsive/responsive";
 
-.fonts-niveau-grotesk{
+/** Import Blocks styles */
+@use "blocks/introtext-section";
+@use "blocks/video-banner-section";
+
+/*.fonts-niveau-grotesk{
   font-family: $fonts-niveau-grotesk-small-caps;
 }
 
 .fonts-helvetica-lt-pro{
   font-family: $fonts-helvetica-lt-pro;
-}
+}*/
