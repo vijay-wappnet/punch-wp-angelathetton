@@ -86,5 +86,23 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+
+        // Register the Full Width Banner Image Section Block
+        acf_register_block_type([
+            'name'            => 'full-width-banner-image-section',
+            'title'           => __('Full Width Banner Image Section', 'sage'),
+            'description'     => __('A full-width banner image section with customizable background color', 'sage'),
+            'render_callback' => ['App\Blocks\FullWidthBannerImageSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
     }
 });

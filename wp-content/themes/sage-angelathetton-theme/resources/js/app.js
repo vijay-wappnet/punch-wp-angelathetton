@@ -7,6 +7,8 @@ import.meta.glob([
    BLOCK SCRIPTS
 ========================================== */
 import './blocks/video-banner-scroll.js';
+import './blocks/slider-with-multiple-box-section.js';
+
 
 /* ==========================================
    HEADER + FULLSCREEN MENU BEHAVIOUR
