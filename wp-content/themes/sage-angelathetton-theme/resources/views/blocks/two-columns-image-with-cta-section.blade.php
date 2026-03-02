@@ -1,13 +1,12 @@
 <div class="two-columns-image-with-cta-section" @if($section_bg) style="background-color: {{ esc_attr($section_bg) }};" @endif>
-  <div class="container-fluid p-0">
-    <div class="div-row two-columns-image-with-cta-section__wrapper">
+    <div class="tciwcs__wrapper">
       @forelse($columns as $column)
-        <div class="div-col-12 div-col-md-6 two-columns-image-with-cta-section__column">
+        <div class="tciwcs__column">
 
           {{-- Main Image in full-width container --}}
           @if(!empty($column['image']))
-            <div class="container-fluid p-0">
-              <div class="two-columns-image-with-cta-section__image">
+
+              <div class="tciwcs__image">
                 @php
                   $image_id = is_array($column['image']) ? $column['image']['ID'] : $column['image'];
                   $image_url = wp_get_attachment_image_url($image_id, 'full');
@@ -19,7 +18,7 @@
 
                 {{-- Icon (Optional) --}}
                 @if(!empty($column['image_icon']))
-                  <div class="two-columns-image-with-cta-section__icon">
+                  <div class="tciwcs__icon">
                     @php
                       $icon_id = is_array($column['image_icon']) ? $column['image_icon']['ID'] : $column['image_icon'];
                       $icon_url = wp_get_attachment_image_url($icon_id, 'full');
@@ -32,15 +31,12 @@
                 @endif
 
               </div>
-            </div>
+
           @endif
 
           {{-- Content Area in standard container --}}
-          <div class="container">
-            <div class="two-columns-image-with-cta-section__content">
 
-
-
+          <div class="tciwcs__content">
             {{-- Heading --}}
             @if($column['heading_text'])
               @php
@@ -49,11 +45,11 @@
               @endphp
 
               @if($is_paragraph)
-                <p class="two-columns-image-with-cta-section__heading">
+                <p class="tciwcs__heading">
                   {{ $column['heading_text'] }}
                 </p>
               @else
-                <{{ $heading_tag }} class="two-columns-image-with-cta-section__heading">
+                <{{ $heading_tag }} class="tciwcs__heading">
                   {{ $column['heading_text'] }}
                 </{{ $heading_tag }}>
               @endif
@@ -61,14 +57,14 @@
 
             {{-- Description --}}
             @if($column['description'])
-              <div class="two-columns-image-with-cta-section__description">
+              <div class="tciwcs__description">
                 {!! wp_kses_post($column['description']) !!}
               </div>
             @endif
 
             {{-- Buttons --}}
             @if(count($column['buttons']) > 0)
-              <div class="two-columns-image-with-cta-section__buttons">
+              <div class="tciwcs__buttons">
                 @foreach($column['buttons'] as $button)
                   @php
                     $link = $button['button_link'] ?? [];
@@ -92,14 +88,13 @@
               </div>
             @endif
 
-            </div>
           </div>
         </div>
       @empty
-        <div class="col-12">
+        <div class="tciwcs__content-placeholder">
           <p>{{ __('No content added yet.', 'sage') }}</p>
         </div>
       @endforelse
     </div>
-  </div>
+
 </div>

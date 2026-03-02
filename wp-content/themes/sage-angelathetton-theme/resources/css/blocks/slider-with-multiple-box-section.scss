@@ -23,27 +23,39 @@
     align-items: center;
     justify-content: center;
     min-height: 600px;
+    height: 60vh;
     overflow: hidden;
     &:hover .smb-item__overlay {
       background: $brown-light-color-1;
     }
+    &:hover .smb-item__heading{
+      color: $black-off-color;
+    }
     &:hover .smb-item__hover-content {
       opacity: 1;
       transform: translateY(0);
-      pointer-events: auto;      
+      pointer-events: auto;
     }
     @media (max-width: $screen-md-min) {
-      min-height: 600px;
-    }
-
-    @media (max-width: $screen-mobile-min) {
-      min-height: 600px;
+      min-height: 500px;
     }
     .smb-item__hover-content {
       opacity: 0;
       transform: translateY(20px);
       transition: all 0.4s ease;
       pointer-events: none;
+      @media (max-width: $screen-md-min) {
+        opacity: 1;
+        .smb-item__subheading,
+        .smb-item__description{
+          display: none;
+        }
+        .swmbs-btn{
+          background-color: transparent;
+          color: $white-color;
+          border-color: $white-color;
+        }
+      }
     }
   }
 
@@ -64,7 +76,6 @@
     top: 0;
     left: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
     background: transparent;
     z-index: 2;
@@ -75,15 +86,20 @@
     text-align: center;
     color: $white-color;
     max-width: 500px;
-    padding: 0 30px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 
     @media (max-width: $screen-md-min) {
-      padding: 0 15px;
+      padding: 30px 15px;
       max-width: 90%;
     }
 
     .smb-item__heading-wrap {
       text-align: center;
+      width: 100%;
     }
 
   }
@@ -98,7 +114,6 @@
     letter-spacing: 1.5px;
 
     @media (max-width: $screen-md-min) {
-      font-size: 14px;
       margin-bottom: 10px;
     }
   }
@@ -106,23 +121,11 @@
   .smb-item__heading {
     font-family: $fonts-niveau-grotesk-small-caps;
     font-weight: $font-weight-300;
-    color: $black-off-color;
+    color: $white-color;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 1.2;
-
-    @media (max-width: $screen-lg-min) {
-      font-size: 40px;
-    }
-
-    @media (max-width: $screen-md-min) {
-      font-size: 32px;
-      margin-bottom: 15px;
-    }
-
-    @media (max-width: $screen-mobile-min) {
-      font-size: 24px;
-    }
+    border-bottom: 1px solid;
   }
 
   .smb-item__description {
@@ -167,9 +170,9 @@
     &:hover,
     &:focus,
     &:active {
-      background-color: transparent;
+      background-color: $white-color;
       color: $black-off-color;
-      border-color: $black-off-color;
+      border-color: $white-color;
     }
   }
 
@@ -195,7 +198,7 @@
   // Navigation arrows
   .slick-prev,
   .slick-next {
-    position: absolute;    
+    position: absolute;
     bottom: -40px;
     width: auto;
     height: auto;
@@ -239,7 +242,7 @@
     @media (max-width: $screen-md-min) {
       margin-left: 25px;
     }
-  }  
+  }
 
   // Disabled states
   .slick-disabled {

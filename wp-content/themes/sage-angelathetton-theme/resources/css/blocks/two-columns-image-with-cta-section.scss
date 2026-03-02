@@ -5,43 +5,69 @@
 .two-columns-image-with-cta-section {
   padding: 0;
 
-  .two-columns-image-with-cta-section__wrapper {
+  .tciwcs__wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0;
     align-items: stretch;
 
-    @media (max-width: $screen-md-min-767) {
+    @media (max-width: $screen-md-min) {
       grid-template-columns: 1fr;
       gap: 40px;
     }
   }
 
-  .two-columns-image-with-cta-section__column {
+  .tciwcs__column {
     display: flex;
     flex-direction: column;
     height: 100%;
+    &:first-child{
+       .tciwcs__content {
+        width: 100%;
+        max-width: 80%;
+        margin-left: auto;
+        padding: 30px 15px 0 15px;
 
-    > .container {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      padding-left: 0;
-      padding-right: 0;
-      width: 100%;
+        @media (max-width: $screen-md-min) {
+          max-width: 100%;
+          padding: 30px 15px 0 15px;
+        }
+      }
+      .tciwcs__image {
+        @media (max-width: $screen-md-min) {
+          padding: 60px 8px 0px 8px;
+        }
+      }
+    }
+     &:last-child{
+      .tciwcs__content {
+        width: 100%;
+        max-width: 80%;
+        margin-right: auto;
+        padding: 30px 15px 0 15px;
 
-      @media (min-width: 768px) {
-        padding-left: var(--bs-gutter-x, 1.5rem);
-        padding-right: var(--bs-gutter-x, 1.5rem);
+        @media (max-width: $screen-md-min) {
+          max-width: 100%;
+          padding: 30px 15px 0 15px;
+        }
+      }
+      .tciwcs__image {
+        @media (max-width: $screen-md-min) {
+          padding: 20px 8px 0px 8px;
+        }
       }
     }
   }
 
-  .two-columns-image-with-cta-section__image {
+  .tciwcs__image {
     width: 100%;
     overflow: hidden;
     position: relative;
     aspect-ratio: 16 / 12;
+
+    @media (max-width: $screen-md-min) {
+      overflow: visible;
+    }
 
     img {
       width: 100%;
@@ -49,41 +75,48 @@
       display: block;
       object-fit: cover;
     }
-    .two-columns-image-with-cta-section__icon {
+    .tciwcs__icon {
       margin-bottom: 20px;
       position: absolute;
       z-index: 99;
       top: 32px;
       right: 32px;
+      @media (max-width: $screen-md-min) {
+        top: 16px;
+        right: 16px;
+      }
 
       img {
         width: auto;
         height: auto;
         max-width: 60px;
         display: block;
+        @media (max-width: $screen-md-min) {
+          max-width: 50px;
+          padding-top: 50px;
+        }
       }
     }
 
   }
-  .two-columns-image-with-cta-section__content {
+  .tciwcs__content {
     display: flex;
     flex-direction: column;
     flex: 1;
     width: 100%;
-    padding: 30px 0;
 
-    @media (max-width: $screen-md-min-767) {
+    @media (max-width: $screen-md-min) {
       padding: 25px 0;
     }
   }
 
 
 
-  .two-columns-image-with-cta-section__heading {
+  .tciwcs__heading {
     margin-bottom: 15px;
     margin-top: 0;
 
-    &.two-columns-image-with-cta-section__heading {
+    &.tciwcs__heading {
       h1,
       h2 {
         font-family: $fonts-niveau-grotesk-small-caps;
@@ -108,12 +141,12 @@
       }
     }
 
-    @media (max-width: $screen-md-min-767) {
+    @media (max-width: $screen-md-min) {
       margin-bottom: 12px;
     }
   }
 
-  .two-columns-image-with-cta-section__description {
+  .tciwcs__description {
     font-family: $fonts-helvetica-lt-pro;
     font-size: 18px;
     line-height: 25px;
@@ -129,13 +162,13 @@
       }
     }
 
-    @media (max-width: $screen-md-min-767) {
+    @media (max-width: $screen-md-min) {
       font-size: 18px;
       margin-bottom: 25px;
     }
   }
 
-  .two-columns-image-with-cta-section__buttons {
+  .tciwcs__buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -156,13 +189,13 @@
         text-decoration: none;
       }
 
-      @media (max-width: $screen-md-min-767) {
+      @media (max-width: $screen-md-min) {
         font-size: 16px;
         padding: 0.65rem 1.25rem;
       }
     }
 
-    @media (max-width: $screen-md-min-767) {
+    @media (max-width: $screen-md-min) {
       gap: 12px;
     }
   }

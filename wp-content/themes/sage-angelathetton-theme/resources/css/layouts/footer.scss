@@ -151,12 +151,17 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 9999;
 
     .footer-bottom-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 10px 15px;
+      @media (max-width: $screen-md-min) {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
     .roses {
       img {
