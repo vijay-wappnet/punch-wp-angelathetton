@@ -34,11 +34,11 @@ class SliderWithMultipleBoxSection
                 $sub_heading_text = $slide['sub_heading_text'] ?? '';
                 $description = $slide['description'] ?? '';
                 $image = $slide['image'] ?? [];
-                $buttons = $slide['buttons'] ?? [];
+                $button = $slide['button'] ?? [];
 
                 // Validate buttons structure
-                if (!is_array($buttons)) {
-                    $buttons = [];
+                if (!is_array($button)) {
+                    $button = [];
                 }
 
                 $processed_slides[] = [
@@ -48,7 +48,7 @@ class SliderWithMultipleBoxSection
                     'sub_heading_text'  => $sub_heading_text,
                     'description'       => $description,
                     'image'             => $image,
-                    'buttons'           => $buttons,
+                    'button'           => $button,
                 ];
             }
         }

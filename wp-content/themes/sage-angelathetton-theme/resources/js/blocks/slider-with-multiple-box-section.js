@@ -1,4 +1,7 @@
 import jQuery from 'jquery';
+import leftArrow from '../../images/left_arrow.svg';
+import rightArrow from '../../images/right-arrow.svg';
+
 import '@accessible360/accessible-slick';
 
 // Polyfill for jQuery.type() removed in jQuery 4.0
@@ -37,11 +40,13 @@ export default function SliderWithMultipleBoxSection() {
     // Initialize slider with accessible-slick
     try {
       jQuery(slider).slick({
-        slidesToShow: 4,
+        slidesToShow: 3,
         slidesToScroll: 1,
         centerMode: true,
-        centerPadding: '0px',
+        centerPadding: '12.5%',
         arrows: true,
+        prevArrow: `<div class="slick-prev"><img src="${leftArrow}" alt="Previous slide"></div>`,
+        nextArrow: `<div class="slick-next"><img src="${rightArrow}" alt="Next slide"></div>`,
         dots: false,
         infinite: true,
         speed: 500,
@@ -58,7 +63,7 @@ export default function SliderWithMultipleBoxSection() {
               slidesToShow: 2,
               slidesToScroll: 1,
               centerMode: true,
-              centerPadding: '0px',
+              centerPadding: '25%',
               infinite: true,
               arrows: true,
               dots: false,
@@ -70,7 +75,7 @@ export default function SliderWithMultipleBoxSection() {
               slidesToShow: 2,
               slidesToScroll: 1,
               centerMode: true,
-              centerPadding: '0px',
+              centerPadding: '25%',
               infinite: true,
               arrows: true,
               dots: false,

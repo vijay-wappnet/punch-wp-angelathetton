@@ -16,52 +16,61 @@
           {{-- Overlay Content --}}
           <div class="smb-item__overlay">
             <div class="smb-item__content">
-              {{-- Sub Heading --}}
-              @if($slide['sub_heading_text'])
-                <{{ $slide['sub_heading_level'] }} class="smb-item__subheading">
-                  {{ $slide['sub_heading_text'] }}
-                </{{ $slide['sub_heading_level'] }}>
-              @endif
 
-              {{-- Main Heading --}}
+              {{-- Main Heading --}} {{-- Always visible heading --}}
               @if($slide['heading_text'])
-                <{{ $slide['heading_level'] }} class="smb-item__heading">
-                  {{ $slide['heading_text'] }}
-                </{{ $slide['heading_level'] }}>
-              @endif
-
-              {{-- Description --}}
-              @if($slide['description'])
-                <p class="smb-item__description">
-                  {{ $slide['description'] }}
-                </p>
-              @endif
-
-              {{-- Buttons --}}
-              @if(count($slide['buttons']) > 0)
-                <div class="smb-item__buttons">
-                  @foreach($slide['buttons'] as $button)
-                    @php
-                      $link = $button['button_link'] ?? [];
-                      $url = is_array($link) ? ($link['url'] ?? '#') : $link;
-                      $link_title = is_array($link) ? ($link['title'] ?? 'Button') : 'Button';
-                      $target = is_array($link) ? ($link['target'] ?? '') : '';
-                      $button_aria = $button['aria_label'] ?? '';
-                      $event_label = $button['button_google_event_label'] ?? '';
-                      $button_class = $button['button_class'] ?? '';
-                    @endphp
-
-                    <a href="{{ esc_url($url) }}"
-                      class="btn smb-item__button {{ esc_attr($button_class) }}"
-                      @if($target)target="{{ esc_attr($target) }}"@endif
-                      @if($button_aria)aria-label="{{ esc_attr($button_aria) }}"@endif
-                      @if($event_label)data-event-label="{{ esc_attr($event_label) }}"@endif>
-                      {{ esc_html($link_title) }}
-                    </a>
-                  @endforeach
+                <div class="smb-item__heading-wrap">
+                  <{{ $slide['heading_level'] }} class="smb-item__heading">
+                    {{ $slide['heading_text'] }}
+                  </{{ $slide['heading_level'] }}>
                 </div>
               @endif
-            </div>
+
+
+              {{-- Hover / Active content --}}
+              <div class="smb-item__hover-content">
+                  {{-- Sub Heading --}}
+                  @if($slide['sub_heading_text'])
+                    <{{ $slide['sub_heading_level'] }} class="smb-item__subheading">
+                      {{ $slide['sub_heading_text'] }}
+                    </{{ $slide['sub_heading_level'] }}>
+                  @endif
+
+                  {{-- Description --}}
+                  @if($slide['description'])
+                    <p class="smb-item__description">
+                      {{ $slide['description'] }}
+                    </p>
+                  @endif
+
+                  {{-- Buttons --}}
+
+                    <div class="smb-item__buttons">
+                      @foreach($slide['button'] as $button)
+                        @php
+                          $link = $button['button_link'] ?? [];
+                          $url = is_array($link) ? ($link['url'] ?? '#') : $link;
+                          $link_title = is_array($link) ? ($link['title'] ?? 'Button') : 'Button';
+                          $target = is_array($link) ? ($link['target'] ?? '') : '';
+                          $button_aria = $button['aria_label'] ?? '';
+                          $event_label = $button['button_google_event_label'] ?? '';
+                          $button_class = $button['button_class'] ?? '';
+                        @endphp
+
+                        <a href="{{ esc_url($url) }}"
+                          class="btn swmbs-btn {{ esc_attr($button_class) }}"
+                          @if($target)target="{{ esc_attr($target) }}"@endif
+                          @if($button_aria)aria-label="{{ esc_attr($button_aria) }}"@endif
+                          @if($event_label)data-event-label="{{ esc_attr($event_label) }}"@endif>
+                          {{ esc_html($link_title) }}
+                        </a>
+                      @endforeach
+                    </div>
+
+                </div>
+
+              </div>
+
           </div>
         </div>
       @empty
