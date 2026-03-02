@@ -1,4 +1,21 @@
-import Slick from 'accessible-slick';
+import jQuery from 'jquery';
+import '@accessible360/accessible-slick';
+
+// Polyfill for jQuery.type() removed in jQuery 4.0
+if (typeof jQuery.type === 'undefined') {
+  jQuery.type = function(obj) {
+    if (obj == null) {
+      return obj + '';
+    }
+    const class2type = {};
+    'Boolean Number String Function Array Date RegExp Object Error Symbol'.split(' ').forEach(name => {
+      class2type['[object ' + name + ']'] = name.toLowerCase();
+    });
+    return typeof obj === 'object' || typeof obj === 'function' ?
+      class2type[Object.prototype.toString.call(obj)] || 'object' :
+      typeof obj;
+  };
+}
 
 /**
  * Initialize Slider With Multiple Box Section block
@@ -19,7 +36,7 @@ export default function SliderWithMultipleBoxSection() {
 
     // Initialize slider with accessible-slick
     try {
-      $(slider).slick({
+      jQuery(slider).slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         centerMode: true,
@@ -91,7 +108,7 @@ if (window.acf) {
     const sliders = document.querySelectorAll('.slider-with-multiple-box-section .smb-item__slider.slick-initialized');
     sliders.forEach((slider) => {
       try {
-        $(slider).slick('unslick');
+        jQuery(slider).slick('unslick');
       } catch (error) {
         // Silently fail if slick isn't initialized
       }

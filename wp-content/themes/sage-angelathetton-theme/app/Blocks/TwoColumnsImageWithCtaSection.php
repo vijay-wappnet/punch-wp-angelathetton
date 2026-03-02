@@ -48,6 +48,7 @@ class TwoColumnsImageWithCtaSection
         echo view('blocks.two-columns-image-with-cta-section', [
             'columns'     => $columns,
             'section_bg'  => $section_bg,
+            'is_preview'  => $is_preview,
         ]);
     }
 }

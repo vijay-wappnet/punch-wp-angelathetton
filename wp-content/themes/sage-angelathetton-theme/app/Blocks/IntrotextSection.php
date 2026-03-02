@@ -44,6 +44,7 @@ class IntrotextSection
             'bg_color'         => $bg_color,
             'buttons'          => $buttons,
             'use_dynamic_heading' => $use_dynamic_heading,
+            'is_preview'       => $is_preview,
         ]);
     }
 }
