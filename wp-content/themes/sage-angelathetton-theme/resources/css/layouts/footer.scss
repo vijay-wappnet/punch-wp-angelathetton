@@ -58,7 +58,7 @@
   }
 
   .footer-main {
-    padding: 44px 0;
+    padding: 44px 0 85px 0;
 
     .footer-logo {
       .footer-logo-link{
@@ -148,6 +148,9 @@
 
   .footer-bottom {
     background: $brown-light-color-1;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 
     .footer-bottom-inner {
       display: flex;

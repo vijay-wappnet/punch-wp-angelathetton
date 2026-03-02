@@ -3,7 +3,6 @@
 @use "../components/buttons" as *;
 
 .slider-with-multiple-box-section {
-  padding: 60px 0;
   background-color: $white-color;
 
   .smb-item__wrapper {
@@ -20,15 +19,15 @@
     display: flex !important;
     align-items: center;
     justify-content: center;
-    min-height: 500px;
+    min-height: 600px;
     overflow: hidden;
 
     @media (max-width: $screen-md-min) {
-      min-height: 400px;
+      min-height: 600px;
     }
 
     @media (max-width: $screen-mobile-min) {
-      min-height: 350px;
+      min-height: 600px;
     }
   }
 

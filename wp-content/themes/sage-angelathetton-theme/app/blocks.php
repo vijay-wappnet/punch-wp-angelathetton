@@ -104,5 +104,23 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+
+        // Register the Banner Image Section Block
+        acf_register_block_type([
+            'name'            => 'banner-image-section',
+            'title'           => __('Banner Image Section Parallax', 'sage'),
+            'description'     => __('A full-width banner image section with parallax effect', 'sage'),
+            'render_callback' => ['App\Blocks\BannerImageSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
     }
 });

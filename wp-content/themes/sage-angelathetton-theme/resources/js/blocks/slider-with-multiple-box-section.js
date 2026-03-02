@@ -37,7 +37,7 @@ export default function SliderWithMultipleBoxSection() {
     // Initialize slider with accessible-slick
     try {
       jQuery(slider).slick({
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         centerMode: true,
         centerPadding: '0px',
@@ -67,19 +67,7 @@ export default function SliderWithMultipleBoxSection() {
           {
             breakpoint: 768,
             settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              centerMode: true,
-              centerPadding: '0px',
-              infinite: true,
-              arrows: true,
-              dots: false,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
+              slidesToShow: 2,
               slidesToScroll: 1,
               centerMode: true,
               centerPadding: '0px',
