@@ -123,12 +123,12 @@ add_action('init', function () {
             ],
         ]);
 
-        // Register the Media Content Section Block
+        // Register the Left Right Media Content Section Block
         acf_register_block_type([
-            'name'            => 'media-content-section',
-            'title'           => __('Media Content Section', 'sage'),
-            'description'     => __('A two-column section with media and content, supporting layout toggle', 'sage'),
-            'render_callback' => ['App\Blocks\MediaContentSection', 'render'],
+            'name'            => 'left-right-media-content-section',
+            'title'           => __('Left Right Media Content Section', 'sage'),
+            'description'     => __('A Left and Right section with media and content, supporting layout toggle', 'sage'),
+            'render_callback' => ['App\Blocks\LeftRightMediaContentSection', 'render'],
             'category'        => 'common',
             'icon'            => 'columns',
             'mode'            => 'preview',
@@ -147,6 +147,24 @@ add_action('init', function () {
             'title'           => __('Two Columns Image CTA With Mobile Slider Section', 'sage'),
             'description'     => __('A two column section with images, content, and call-to-action buttons, optimized for mobile slider', 'sage'),
             'render_callback' => ['App\Blocks\TwoColumnsImageCtaWithMobileSliderSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'columns',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
+        // Register the Top Bottom Media Content Section Block
+        acf_register_block_type([
+            'name'            => 'top-bottom-media-content-section',
+            'title'           => __('Top Bottom Media Content Section', 'sage'),
+            'description'     => __('A top and bottom section with media and content, supporting layout toggle', 'sage'),
+            'render_callback' => ['App\Blocks\TopBottomMediaContentSection', 'render'],
             'category'        => 'common',
             'icon'            => 'columns',
             'mode'            => 'preview',

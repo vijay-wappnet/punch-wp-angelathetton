@@ -1,9 +1,12 @@
-<div class="media-content-section" @if($backgroundStyle) style="{{ $backgroundStyle }}" @endif>
+@if(!empty($responsiveCss))
+<style>{{ $responsiveCss }}</style>
+@endif
+<div id="{{ $blockId }}" class="left-right-media-content-section" @if(!empty($backgroundStyle)) style="{{ $backgroundStyle }}" @endif>
   <div class="container">
     <div class="row align-items-center mcs-row">
       {{-- Image Column --}}
       <div class="col-12 col-lg-6 @if(!$showLeftImage) order-lg-2 @endif">
-        <div class="media-content-section__image">
+        <div class="left-right-media-content-section__image">
           @if($mediaImage)
             @php
               $image_id = is_array($mediaImage) ? $mediaImage['ID'] : $mediaImage;
@@ -14,7 +17,7 @@
               <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy">
             @endif
           @else
-            <div class="media-content-section__image--placeholder">
+            <div class="left-right-media-content-section__image--placeholder">
               <p>{{ __('No image selected', 'sage') }}</p>
             </div>
           @endif
@@ -23,24 +26,24 @@
 
       {{-- Content Column --}}
       <div class="col-12 col-lg-6 @if(!$showLeftImage) order-lg-1 @endif">
-        <div class="media-content-section__content">
+        <div class="left-right-media-content-section__content">
           {{-- Heading --}}
           @if($title)
-            <{{ $headingLevel }} class="media-content-section__title">
+            <{{ $headingLevel }} class="left-right-media-content-section__title">
                 {{ $title }}
             </{{ $headingLevel }}>
         @endif
 
           {{-- Body Content --}}
           @if($contentText)
-            <div class="media-content-section__body">
+            <div class="left-right-media-content-section__body">
               {!! wp_kses_post($contentText) !!}
             </div>
           @endif
 
           {{-- Buttons from Repeater --}}
           @if(is_array($buttons) && count($buttons) > 0)
-            <div class="media-content-section__buttons">
+            <div class="left-right-media-content-section__buttons">
               @foreach($buttons as $button)
                 @php
                   $link = $button['button_link'] ?? [];

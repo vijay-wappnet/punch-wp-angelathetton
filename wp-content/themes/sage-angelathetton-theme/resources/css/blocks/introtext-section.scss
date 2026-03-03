@@ -3,7 +3,6 @@
 @use "../components/buttons" as *;
 
 .intro-section{
-  padding: 60px 0;
     h1,h2{
       &.intro-section__heading{
         font-family: $fonts-niveau-grotesk-small-caps;
