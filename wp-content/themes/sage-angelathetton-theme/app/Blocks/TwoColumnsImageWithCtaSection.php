@@ -18,7 +18,12 @@ class TwoColumnsImageWithCtaSection
         // Get field values using ACF
         $image_contents_cta = get_field('image_contents_cta') ?? [];
         $section_bg = get_field('section_bg') ?? '';
-
+        $margin = get_field('margin');
+        $padding = get_field('padding');
+        // Generate unique block ID
+        $blockId = 'tciccs-' . ($block['id'] ?? uniqid());
+        // Generate responsive CSS for margin and padding
+        $responsiveCss = custom_acf_dimensions($margin, $padding, $blockId);
         // Validate repeater structure
         if (!is_array($image_contents_cta)) {
             $image_contents_cta = [];
@@ -46,6 +51,8 @@ class TwoColumnsImageWithCtaSection
 
         // Render the Blade template with data using view helper
         echo view('blocks.two-columns-image-with-cta-section', [
+            'blockId'      => $blockId,
+            'responsiveCss' => $responsiveCss,
             'columns'     => $columns,
             'section_bg'  => $section_bg,
             'is_preview'  => $is_preview,

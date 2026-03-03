@@ -2,7 +2,10 @@
 use Illuminate\Support\Facades\Vite;
 @endphp
 
-<div class="video-banner-section" @if($section_bg) style="--overlay-color: {{ esc_attr($section_bg) }};" @endif>
+@if(!empty($responsiveCss))
+<style>{{ $responsiveCss }}</style>
+@endif
+<div id="{{ $blockId }}" class="video-banner-section" @if($section_bg) style="--overlay-color: {{ esc_attr($section_bg) }};" @endif>
 
   <div class="video-banner-section__media">
     @if($video_file)

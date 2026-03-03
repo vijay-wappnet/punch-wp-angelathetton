@@ -18,6 +18,14 @@ class SliderWithMultipleBoxSection
         // Get field values using ACF
         $slider_contents = get_field('slider_contents_cta');
         $section_bg = get_field('section_bg');
+        $margin = get_field('margin');
+        $padding = get_field('padding');
+
+        // Generate unique block ID
+        $blockId = 'swmbs-' . ($block['id'] ?? uniqid());
+
+        // Generate responsive CSS for margin and padding
+        $responsiveCss = custom_acf_dimensions($margin, $padding, $blockId);
 
         // Validate slider contents structure
         if (!is_array($slider_contents)) {
@@ -55,9 +63,11 @@ class SliderWithMultipleBoxSection
 
         // Render the Blade template with data using view helper
         echo view('blocks.slider-with-multiple-box-section', [
-            'slides'      => $processed_slides,
-            'section_bg'  => $section_bg,
-            'is_preview'  => $is_preview,
+            'blockId'       => $blockId,
+            'responsiveCss' => $responsiveCss,
+            'slides'        => $processed_slides,
+            'section_bg'    => $section_bg,
+            'is_preview'    => $is_preview,
         ]);
     }
 }

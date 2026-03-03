@@ -1,4 +1,8 @@
-<div class="two-columns-image-with-cta-section" @if($section_bg) style="background-color: {{ esc_attr($section_bg) }};" @endif>
+@if(!empty($responsiveCss))
+<style>{{ $responsiveCss }}</style>
+@endif
+
+<div id="{{ esc_attr($blockId) }}" class="two-columns-image-with-cta-section" @if($section_bg) style="background-color: {{ esc_attr($section_bg) }};" @endif>
     <div class="tciwcs__wrapper">
       @forelse($columns as $column)
         <div class="tciwcs__column">

@@ -22,6 +22,14 @@ class IntrotextSection
         $content = get_field('content');
         $bg_color = get_field('intro_section_bg');
         $buttons = get_field('intro_section_button');
+        $margin = get_field('margin');
+        $padding = get_field('padding');
+
+        // Generate unique block ID
+        $blockId = 'its-' . ($block['id'] ?? uniqid());
+
+        // Generate responsive CSS for margin and padding
+        $responsiveCss = custom_acf_dimensions($margin, $padding, $blockId);
 
         // Validate button structure
         if (!is_array($buttons)) {
@@ -38,6 +46,8 @@ class IntrotextSection
 
         // Render the Blade template with data using view helper
         echo view('blocks.introtext-section', [
+            'blockId'          => $blockId,
+            'responsiveCss'    => $responsiveCss,
             'heading_text'     => $heading_text,
             'heading_level'    => $heading_level,
             'content'          => $content,

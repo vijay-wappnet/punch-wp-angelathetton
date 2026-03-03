@@ -21,6 +21,14 @@ class VideoBannerSection
         $video_image = get_field('video_image');
         $video_file = get_field('video_file');
         $section_bg = get_field('section_bg');
+        $margin = get_field('margin');
+        $padding = get_field('padding');
+
+        // Generate unique block ID
+        $blockId = 'vbs-' . ($block['id'] ?? uniqid());
+
+        // Generate responsive CSS for margin and padding
+        $responsiveCss = custom_acf_dimensions($margin, $padding, $blockId);
 
         // Ensure video_file is properly formatted
         if (is_array($video_file) && isset($video_file['url'])) {
@@ -38,6 +46,8 @@ class VideoBannerSection
 
         // Render the Blade template with data using view helper
         echo view('blocks.video-banner-section', [
+            'blockId'       => $blockId,
+            'responsiveCss' => $responsiveCss,
             'heading_text'  => $heading_text,
             'heading_level' => $heading_level,
             'video_image'   => $video_image,

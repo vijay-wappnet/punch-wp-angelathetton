@@ -1,4 +1,7 @@
-<div class="intro-section" @if($bg_color) style="background-color: {{ esc_attr($bg_color) }};" @endif>
+@if(!empty($responsiveCss))
+<style>{{ $responsiveCss }}</style>
+@endif
+<div id="{{ $blockId }}" class="intro-section" @if($bg_color) style="background-color: {{ esc_attr($bg_color) }};" @endif>
 
   <div class="container">
     <div class="row">

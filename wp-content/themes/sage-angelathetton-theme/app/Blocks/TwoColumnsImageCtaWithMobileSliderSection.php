@@ -20,7 +20,15 @@ class TwoColumnsImageCtaWithMobileSliderSection
         $main_heading_level = get_field('main_heading_level') ?: 'h2';
         $image_contents_cta = get_field('image_contents_cta') ?? [];
         $section_bg = get_field('section_bg') ?? '';
+        $margin = get_field('margin');
+        $padding = get_field('padding');
 
+        // Generate unique block ID
+        $blockId = 'tcicwmss-' . ($block['id'] ?? uniqid());
+
+        // Generate responsive CSS for margin and padding
+        $responsiveCss = custom_acf_dimensions($margin, $padding, $blockId);
+        
         // Validate repeater structure
         if (!is_array($image_contents_cta)) {
             $image_contents_cta = [];
@@ -47,11 +55,13 @@ class TwoColumnsImageCtaWithMobileSliderSection
 
         // Render the Blade template with data using view helper
         echo view('blocks.two-columns-image-cta-with-mobile-slider-section', [
+            'blockId'            => $blockId,
+            'responsiveCss'      => $responsiveCss,
             'main_title_heading' => $main_title_heading,
             'main_heading_level' => $main_heading_level,
-            'columns'     => $columns,
-            'section_bg'  => $section_bg,
-            'is_preview'  => $is_preview,
+            'columns'            => $columns,
+            'section_bg'         => $section_bg,
+            'is_preview'         => $is_preview,
         ]);
     }
 }

@@ -60,3 +60,67 @@ function allow_svg_upload($mimes) {
     return $mimes;
 }
 add_filter('upload_mimes', 'allow_svg_upload');
+
+/**
+ * Generate responsive CSS for ACF dimension fields (margin/padding)
+ *
+ * @param array $margin The margin field values with desktop, tablet, mobile breakpoints
+ * @param array $padding The padding field values with desktop, tablet, mobile breakpoints
+ * @param string $blockId The unique block ID for CSS selector
+ * @return string The generated responsive CSS
+ */
+function custom_acf_dimensions($margin, $padding, $blockId) {
+    // Helper function to format dimension values
+    $formatDimension = function($values) {
+        if (!is_array($values)) return '';
+        $unit = $values['unit'] ?? 'px';
+        $top = $values['top'] !== '' ? $values['top'] : null;
+        $right = $values['right'] !== '' ? $values['right'] : null;
+        $bottom = $values['bottom'] !== '' ? $values['bottom'] : null;
+        $left = $values['left'] !== '' ? $values['left'] : null;
+        // Only return if at least one value is set
+        if ($top === null && $right === null && $bottom === null && $left === null) return '';
+        return ($top ?? 0) . $unit . ' ' . ($right ?? 0) . $unit . ' ' . ($bottom ?? 0) . $unit . ' ' . ($left ?? 0) . $unit;
+    };
+
+    // Desktop styles (default)
+    $desktopMargin = is_array($margin) && isset($margin['desktop']) ? $formatDimension($margin['desktop']) : '';
+    $desktopPadding = is_array($padding) && isset($padding['desktop']) ? $formatDimension($padding['desktop']) : '';
+
+    // Tablet styles (max-width: 991px)
+    $tabletMargin = is_array($margin) && isset($margin['tablet']) ? $formatDimension($margin['tablet']) : '';
+    $tabletPadding = is_array($padding) && isset($padding['tablet']) ? $formatDimension($padding['tablet']) : '';
+
+    // Mobile styles (max-width: 767px)
+    $mobileMargin = is_array($margin) && isset($margin['mobile']) ? $formatDimension($margin['mobile']) : '';
+    $mobilePadding = is_array($padding) && isset($padding['mobile']) ? $formatDimension($padding['mobile']) : '';
+
+    // Build CSS string with media queries
+    $responsiveCss = '';
+
+    // Desktop (base styles)
+    $desktopRules = [];
+    if (!empty($desktopMargin)) $desktopRules[] = 'margin: ' . $desktopMargin;
+    if (!empty($desktopPadding)) $desktopRules[] = 'padding: ' . $desktopPadding;
+    if (!empty($desktopRules)) {
+        $responsiveCss .= '#' . $blockId . ' { ' . implode('; ', $desktopRules) . '; }';
+    }
+
+    // Tablet
+    $tabletRules = [];
+    if (!empty($tabletMargin)) $tabletRules[] = 'margin: ' . $tabletMargin;
+    if (!empty($tabletPadding)) $tabletRules[] = 'padding: ' . $tabletPadding;
+    if (!empty($tabletRules)) {
+        $responsiveCss .= ' @media (max-width: 991px) { #' . $blockId . ' { ' . implode('; ', $tabletRules) . '; } }';
+    }
+
+    // Mobile
+    $mobileRules = [];
+    if (!empty($mobileMargin)) $mobileRules[] = 'margin: ' . $mobileMargin;
+    if (!empty($mobilePadding)) $mobileRules[] = 'padding: ' . $mobilePadding;
+    if (!empty($mobileRules)) {
+        $responsiveCss .= ' @media (max-width: 767px) { #' . $blockId . ' { ' . implode('; ', $mobileRules) . '; } }';
+    }
+
+    return $responsiveCss;
+}

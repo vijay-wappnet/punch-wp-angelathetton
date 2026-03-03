@@ -1,4 +1,7 @@
-<div class="two-columns-image-cta-with-mobile-slider-section" @if($section_bg) style="background-color: {{ esc_attr($section_bg) }};" @endif>
+@if(!empty($responsiveCss))
+<style>{{ $responsiveCss }}</style>
+@endif
+<div id="{{ $blockId }}" class="two-columns-image-cta-with-mobile-slider-section" @if($section_bg) style="background-color: {{ esc_attr($section_bg) }};" @endif>
     <div class="tcicwmss__wrapper">
       @forelse($columns as $column)
         <div class="tcicwmss__column">
