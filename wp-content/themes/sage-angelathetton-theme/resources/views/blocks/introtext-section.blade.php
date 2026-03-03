@@ -5,7 +5,7 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-12 col-md-12">
+      <div class="col-12 col-md-12 intro-section__content-wrapper" style="text-align: {{ esc_attr($content_alignment) }};">
 
         {{-- Heading --}}
         @if($heading_text)

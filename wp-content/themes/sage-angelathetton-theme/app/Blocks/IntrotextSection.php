@@ -24,6 +24,7 @@ class IntrotextSection
         $buttons = get_field('intro_section_button');
         $margin = get_field('margin');
         $padding = get_field('padding');
+        $content_alignment = get_field('content_alignment') ?: 'left';
 
         // Generate unique block ID
         $blockId = 'its-' . ($block['id'] ?? uniqid());
@@ -54,6 +55,7 @@ class IntrotextSection
             'bg_color'         => $bg_color,
             'buttons'          => $buttons,
             'use_dynamic_heading' => $use_dynamic_heading,
+            'content_alignment' => $content_alignment,
             'is_preview'       => $is_preview,
         ]);
     }
