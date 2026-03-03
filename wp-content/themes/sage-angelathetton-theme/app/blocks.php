@@ -140,5 +140,23 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+
+        // Register the Two Columns Image CTA With Mobile Slider Section Block
+        acf_register_block_type([
+            'name'            => 'two-columns-image-cta-with-mobile-slider-section',
+            'title'           => __('Two Columns Image CTA With Mobile Slider Section', 'sage'),
+            'description'     => __('A two column section with images, content, and call-to-action buttons, optimized for mobile slider', 'sage'),
+            'render_callback' => ['App\Blocks\TwoColumnsImageCtaWithMobileSliderSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'columns',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
     }
 });
