@@ -176,5 +176,23 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+
+        // Register the Menu Items Section Block
+        acf_register_block_type([
+            'name'            => 'menu-items-section',
+            'title'           => __('Menu Items Section', 'sage'),
+            'description'     => __('A section displaying menu items with the content and buttons, supporting layout', 'sage'),
+            'render_callback' => ['App\Blocks\MenuItemsSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'columns',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
     }
 });

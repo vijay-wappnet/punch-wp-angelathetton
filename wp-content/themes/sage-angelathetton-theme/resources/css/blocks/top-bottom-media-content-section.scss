@@ -1,0 +1,31 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+@use "../components/buttons" as *;
+
+.top-bottom-media-content-section{
+  .tbmc__content{
+    .tbmc__title{
+      margin-bottom: 25px;
+    }
+    .tbmc__description{
+      margin-bottom: 25px;
+    }
+  }
+  .tbmc__media{
+    img{
+      width: 100%;
+    }
+    &--top{
+      margin-bottom: 60px;
+      @media (max-width: $screen-md-min) {
+        margin-bottom: 40px;
+      }
+    }
+    &--bottom{
+      margin-top: 60px;
+      @media (max-width: $screen-md-min) {
+        margin-top: 40px;
+      }
+    }
+  }
+}
