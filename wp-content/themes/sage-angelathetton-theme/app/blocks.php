@@ -122,5 +122,23 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+
+        // Register the Media Content Section Block
+        acf_register_block_type([
+            'name'            => 'media-content-section',
+            'title'           => __('Media Content Section', 'sage'),
+            'description'     => __('A two-column section with media and content, supporting layout toggle', 'sage'),
+            'render_callback' => ['App\Blocks\MediaContentSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'columns',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
     }
 });
