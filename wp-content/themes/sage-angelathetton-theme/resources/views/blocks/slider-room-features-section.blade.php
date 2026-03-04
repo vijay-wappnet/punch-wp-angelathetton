@@ -3,8 +3,8 @@
 @endif
 <div id="{{ $block_id }}" class="slider-room-features-section" style="background-color: {{ $background_color }};">
     <div class="container">
-        <div class="slider-room-fs__wrapper row">
-            <div class="slider-room-fs__slider col-12 col-md-8">
+        <div class="slider-room-fs__wrapper">
+            <div class="slider-room-fs__slider">
                 @if ($slider_images)
                     <div class="slider-room-fs__slider-wrapper">
                         @foreach ($slider_images as $slide)
@@ -15,7 +15,7 @@
                     </div>
                 @endif
             </div>
-            <div class="slider-room-fs__content col-12 col-md-4">
+            <div class="slider-room-fs__content">
                 @if ($heading_text)
                     <<?= $heading_level ?> class="slider-room-fs__heading">{{ $heading_text }}</<?= $heading_level ?>>
                 @endif
