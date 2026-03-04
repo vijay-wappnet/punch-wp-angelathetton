@@ -194,5 +194,23 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+
+        // Register the Slider Room Features Section Block
+        acf_register_block_type([
+            'name'            => 'slider-room-features-section',
+            'title'           => __('Slider Room Features Section', 'sage'),
+            'description'     => __('A section displaying Slider images with the title, content and buttons, supporting layout', 'sage'),
+            'render_callback' => ['App\Blocks\SliderRoomFeaturesSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'columns',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
     }
 });
