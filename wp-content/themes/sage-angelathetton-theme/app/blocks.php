@@ -212,5 +212,60 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+
+        // Register the Container Width Banner Image Section Block
+        acf_register_block_type([
+            'name'            => 'container-width-banner-image-section',
+            'title'           => __('Container Width Banner Image Section', 'sage'),
+            'description'     => __('A container width banner image section with customizable background color', 'sage'),
+            'render_callback' => ['App\Blocks\ContainerWidthBannerImageSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
+        // Register the Container Width Two Column Image Section Block
+        acf_register_block_type([
+            'name'            => 'container-width-two-column-image-section',
+            'title'           => __('Container Width Two Column Image Section', 'sage'),
+            'description'     => __('A container width two column image section with customizable background color', 'sage'),
+            'render_callback' => ['App\Blocks\ContainerWidthTwoColumnImageSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
+         // Register the Introtext With Right CTA Section Block
+        acf_register_block_type([
+            'name'            => 'introtext-with-right-cta-section',
+            'title'           => __('Introtext With Right CTA Section', 'sage'),
+            'description'     => __('A section with intro text and a right-aligned call to action', 'sage'),
+            'render_callback' => ['App\Blocks\IntrotextWithRightCTASection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
     }
 });

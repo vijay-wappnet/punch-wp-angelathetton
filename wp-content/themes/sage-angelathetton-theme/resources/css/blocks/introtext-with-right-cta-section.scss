@@ -1,0 +1,64 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+@use "../components/buttons" as *;
+
+.introtext-with-right-cta-section {
+  h1, h2 {
+    &.introtext-with-right-cta-section__heading {
+      font-family: $fonts-niveau-grotesk-small-caps;
+      font-weight: $font-weight-500;
+      margin-bottom: 25px;
+    }
+  }
+
+  h3, h4, h5, h6 {
+    &.introtext-with-right-cta-section__heading {
+      font-family: $fonts-niveau;
+      font-weight: $font-weight-300;
+      font-style: $font-style-normal;
+      margin-bottom: 25px;
+    }
+  }
+
+  .introtext-with-right-cta-section__content {
+    font-family: $fonts-niveau;
+    font-weight: $font-weight-300;
+    font-style: $font-style-normal;
+    margin-bottom: 0;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 22px;
+      margin-bottom: 25px;
+    }
+
+    p{
+      font-size: 32px;
+      font-family: $fonts-niveau;
+      line-height: 38px;
+      @media (max-width: $screen-md-min) {
+        font-size: 32px;
+      }
+    }
+
+    ul {
+      padding-left: 30px;
+      margin-bottom: 20px;
+
+      li {
+        display: list-item;
+      }
+    }
+
+    strong, b {
+      font-weight: $font-weight-700;
+    }
+  }
+
+  .introtext-with-right-cta-section__button-wrapper {
+    text-align: right;
+
+    @media (max-width: $screen-md-min) {
+      text-align: left;
+    }
+  }
+}
