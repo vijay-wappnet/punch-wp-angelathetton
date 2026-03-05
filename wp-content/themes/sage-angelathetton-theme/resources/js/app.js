@@ -9,6 +9,7 @@ import.meta.glob([
 import './blocks/video-banner-scroll.js';
 import './blocks/slider-with-multiple-box-section.js';
 import './blocks/slider-room-features-section.js';
+import './blocks/two-columns-image-cta-with-mobile-slider-section.js';
 
 /* ==========================================
    HEADER + FULLSCREEN MENU BEHAVIOUR

@@ -5,6 +5,14 @@
 .two-columns-image-cta-with-mobile-slider-section {
   padding: 0;
 
+  .tcicwmss__main-heading-wrapper{
+    display: none;
+    @media (max-width: $screen-md-min) {
+      display: block;
+      padding-top: 40px;
+    }
+  }
+
   .tcicwmss__wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -53,7 +61,7 @@
       }
       .tcicwmss__image {
         @media (max-width: $screen-md-min) {
-          padding: 20px 8px 0px 8px;
+          padding: 10px 8px 0px 8px;
         }
       }
     }
@@ -183,6 +191,121 @@
 
     @media (max-width: $screen-md-min) {
       gap: 12px;
+    }
+  }
+
+  // Mobile Slider Styles (when slick is initialized)
+  .tcicwmss__wrapper.slick-initialized {
+    display: block;
+
+    .slick-list {
+      overflow: hidden;
+    }
+
+    .slick-track {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .slick-slide {
+      height: auto;
+
+      > div {
+        height: 100%;
+      }
+    }
+
+    .tcicwmss__column {
+      height: 100%;
+
+      .tcicwmss__content {
+        max-width: 100%;
+        padding: 25px 15px;
+      }
+
+    }
+
+    // Slick arrows
+    .slick-prev,
+    .slick-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      padding: 0;
+      outline: none;
+
+      img {
+        width: 24px;
+        height: auto;
+        display: block;
+      }
+
+      &:hover,
+      &:focus {
+        opacity: 0.7;
+      }
+    }
+
+    .slick-prev {
+      left: 10px;
+    }
+
+    .slick-next {
+      right: 10px;
+    }
+  }
+
+  // Slide Counter
+  .tcicwmss__slide-counter {
+    display: none;
+
+    @media (max-width: $screen-md-min) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 0 30px;
+      font-family: $fonts-helvetica-lt-pro;
+      font-size: 14px;
+      color: $black-off-color;
+    }
+
+    .tcicwmss__counter-arrows {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tcicwmss__counter-arrow {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      img {
+        width: 30px;
+        height: auto;
+        display: block;
+      }
+    }
+
+    .tcicwmss__counter-current,
+    .tcicwmss__counter-total {
+      font-weight: $font-weight-400;
     }
   }
 }

@@ -2,7 +2,24 @@
 <style>{{ $responsiveCss }}</style>
 @endif
 <div id="{{ $blockId }}" class="two-columns-image-cta-with-mobile-slider-section" @if($section_bg) style="background-color: {{ esc_attr($section_bg) }};" @endif>
+
+    {{-- Main Title Heading --}}
+    @if($main_title_heading)
+    <div class="container tcicwmss__main-heading-wrapper">
+      <div class="row">
+        <div class="col-12">
+          <div class="tcicwmss__main-heading-title">
+            <{{ $main_heading_level }} class="main-title-heading">
+                {{ $main_title_heading }}
+            </{{ $main_heading_level }}>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endif
+
     <div class="tcicwmss__wrapper">
+
       @forelse($columns as $column)
         <div class="tcicwmss__column">
 
