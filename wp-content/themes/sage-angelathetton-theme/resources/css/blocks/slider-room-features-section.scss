@@ -106,6 +106,9 @@
       display: flex;
       background: $white-color;
       padding: 0 15px;
+      @media (max-width: $screen-sm-min) {
+        padding: 0;
+      }
     }
 
     .slick-prev,
@@ -120,11 +123,17 @@
       align-items: center;
       justify-content: center;
       padding: 0;
-
+      @media (max-width: $screen-sm-min) {
+        width: 70px;
+      }
       img {
         width: 50px;
         height: auto;
+        @media (max-width: $screen-sm-min) {
+          width: 30px;
+        }
       }
+
 
       &:hover {
         opacity: 0.7;
@@ -142,8 +151,14 @@
     height: 500px;
     overflow: hidden;
 
+    @media (max-width: $screen-lg-min) {
+      height: 400px;
+    }
     @media (max-width: $screen-md-min) {
-      height: 350px;
+      height: 320px;
+    }
+    @media (max-width: $screen-sm-min) {
+      height: 250px;
     }
   }
 
@@ -162,6 +177,7 @@
 
     @media (max-width: $screen-md-min) {
       flex: 0 0 100%;
+      width: 100%;
       max-width: 100%;
       padding-left: 0;
     }

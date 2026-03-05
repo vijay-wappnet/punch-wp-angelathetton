@@ -175,23 +175,10 @@
     margin-top: auto;
 
     a.btn {
-      flex: 0 0 auto;
-      padding: 0.75rem 1.5rem;
-      font-size: 18px;
-      line-height: 25px;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      border-radius: 0;
       transition: all 0.3s ease;
 
       &:hover {
         text-decoration: none;
-      }
-
-      @media (max-width: $screen-md-min) {
-        font-size: 16px;
-        padding: 0.65rem 1.25rem;
       }
     }
 

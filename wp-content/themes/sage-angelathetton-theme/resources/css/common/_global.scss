@@ -70,7 +70,6 @@ h4 {
 
 h5 {
   font-size: 22px;
-  //font-family: $fonts-niveau-grotesk-small-caps;
   font-family: $fonts-niveau;
   line-height: 25px;
   @media (max-width: $screen-md-min) {
@@ -80,7 +79,6 @@ h5 {
 
 h6 {
   font-size: 18px;
-  //font-family: $fonts-niveau-grotesk-small-caps;
   font-family: $fonts-niveau;
   line-height: 25px;
   @media (max-width: $screen-md-min) {
@@ -153,22 +151,3 @@ ul {
 .bg_white {
   background-color: $white-color;
 }
-
-// ----------- End button components list
-
-/*.mobile-d-block {
-  display: none;
-
-  @media (max-width: $screen-lg-min) {
-    display: flex;
-  }
-}
-
-.desktop-d-block {
-  display: flex !important;
-
-  @media (max-width: $screen-lg-min) {
-    display: none !important;
-  }
-}*/
-

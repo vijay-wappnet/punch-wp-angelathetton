@@ -1,5 +1,6 @@
 <div class="page-header">
   {{-- IGNORE --}} {{-- this is the ID of the fonts demo page, remove this condition when not needed --}}
+  {{--  --}}
   @if(get_the_ID() == 184)
     <div class="test-bg" style="background-color: #EFE3D2; padding: 50px;">
       ======================== niveau-grotesk-small-caps Fonts demo =======================

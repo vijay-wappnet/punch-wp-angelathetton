@@ -154,18 +154,11 @@
   }
 
   .swmbs-btn {
-    padding: 12px 32px;
-    font-size: 16px;
     color: $black-off-color;
     background-color: transparent;
     border: 1px solid $black-off-color;
     text-decoration: none;
     transition: all 0.3s ease;
-
-    @media (max-width: $screen-md-min) {
-      padding: 10px 25px;
-      font-size: 14px;
-    }
 
     &:hover,
     &:focus,
