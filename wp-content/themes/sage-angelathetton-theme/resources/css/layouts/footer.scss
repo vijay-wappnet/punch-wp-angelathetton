@@ -144,6 +144,148 @@
         }
       }
     }
+    @media (max-width: $screen-lg-min) {
+      padding: 30px 0 130px;
+
+      .row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-logo {
+        text-align: center;
+        margin-bottom: 25px;
+
+        .footer-logo-link {
+          display: inline-block;
+        }
+      }
+
+      .footer-contact {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+
+        ul, .footer-social-icon-box {
+          display: contents;
+        }
+
+        // Location item — centered with icon + text stacked
+        li.fc-location-item {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-bottom: 15px;
+
+          a, span {
+            display: flex;
+            flex-direction: column;
+            align-items: center !important;
+            gap: 10px;
+            text-align: center;
+          }
+
+          .icon {
+            width: 28px;
+            height: 28px;
+          }
+        }
+
+        // Phone & email — hide text, show only icons in a row
+        li.fc-items:not(.fc-location-item) {
+          display: inline-flex;
+          margin-bottom: 0;
+
+          a, span {
+            display: flex;
+            gap: 0;
+          }
+
+          div {
+            display: none; // hide text on mobile, show icon only
+          }
+
+          .icon {
+            width: 28px;
+            height: 28px;
+          }
+        }
+
+        a {
+          display: inline-flex;
+        }
+
+        .footer-social-icon {
+          width: 28px;
+          height: 28px;
+        }
+      }
+
+      .footer-links {
+        width: 100%;
+        padding: 15px 0;
+        margin-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.15);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+
+        // Sitemap toggle — visible on mobile
+        .footer-sitemap-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          cursor: pointer;
+          user-select: none;
+
+          span {
+            font-size: 22px;
+          }
+
+          .sitemap-chevron {
+            transition: transform 0.3s ease;
+            width: 22px;
+          }
+
+          &.is-open .sitemap-chevron {
+            transform: rotate(180deg);
+          }
+        }
+
+        // Sitemap content — hidden by default on mobile
+        .footer-sitemap-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.35s ease;
+
+          &.is-open {
+            max-height: 600px;
+          }
+        }
+
+        .footer-main-menu {
+          text-align: center;
+          grid-template-columns: 1fr;
+          padding: 15px 0;
+        }
+      }
+    }
+
+    // ── Desktop overrides (992px and above) ──
+    @media (min-width: $screen-lg-min) {
+      .footer-links {
+        .footer-sitemap-toggle {
+          display: none;
+        }
+
+        .footer-sitemap-content {
+          max-height: none;
+          overflow: visible;
+        }
+      }
+    }
   }
 
   .footer-bottom {
@@ -151,7 +293,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    z-index: 9999;
+    z-index: 99;
 
     .footer-bottom-inner {
       display: flex;
