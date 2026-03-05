@@ -17,24 +17,60 @@ export default function SliderRoomFeaturesSection() {
         }
 
         try {
+            const sliderContainer = jQuery(slider).closest('.slider-room-fs__slider');
+
+            // Create arrows wrapper
+            const arrowsWrapper = jQuery('<div class="slider-room-fs__arrows-wrapper"></div>');
+            sliderContainer.append(arrowsWrapper);
+
             jQuery(slider).slick({
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                adaptiveHeight: true,
+                adaptiveHeight: false,
                 infinite: true,
                 arrows: true,
-                prevArrow: `<div class="slick-prev"><img src="${leftArrow}" alt="Previous slide"></div>`,
-                nextArrow: `<div class="slick-next"><img src="${rightArrow}" alt="Next slide"></div>`,
+                prevArrow: `<button class="slick-prev" type="button"><img src="${leftArrow}" alt="Previous slide"></button>`,
+                nextArrow: `<button class="slick-next" type="button"><img src="${rightArrow}" alt="Next slide"></button>`,
                 dots: true,
                 autoplay: false,
                 swipe: true,
                 touch: true,
                 draggable: true,
                 accessibility: true,
+                appendDots: sliderContainer,
+                appendArrows: arrowsWrapper,
             });
         } catch (error) {
             console.error('Error initializing slider:', error);
         }
+    });
+
+    // Initialize feature dropdown toggles
+    initFeatureDropdowns();
+}
+
+/**
+ * Initialize feature dropdown toggle functionality
+ */
+function initFeatureDropdowns() {
+    const featureTitles = document.querySelectorAll('.slider-room-fs__feature-title');
+
+    featureTitles.forEach((title) => {
+        // Skip if already initialized
+        if (title.dataset.initialized === 'true') {
+            return;
+        }
+
+        title.dataset.initialized = 'true';
+
+        title.addEventListener('click', () => {
+            const features = title.nextElementSibling;
+
+            if (features && features.classList.contains('slider-room-fs__features')) {
+                title.classList.toggle('is-open');
+                features.classList.toggle('is-open');
+            }
+        });
     });
 }
 

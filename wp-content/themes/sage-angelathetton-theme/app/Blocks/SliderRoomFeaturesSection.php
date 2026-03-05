@@ -16,11 +16,11 @@ class SliderRoomFeaturesSection
         $margin = get_field('margin');
         $padding = get_field('padding');
 
-        $block_id = 'slider-room-fs-' . ($block['id'] ?? uniqid());
-        $responsive_css = custom_acf_dimensions($margin, $padding, $block_id);
+        $blockId = 'slider-room-fs-' . ($block['id'] ?? uniqid());
+        $responsiveCss = custom_acf_dimensions($margin, $padding, $blockId);
 
         echo view('blocks.slider-room-features-section', [
-            'block_id' => $block_id,
+            'blockId' => $blockId,
             'slider_images' => $slider_images,
             'heading_text' => $heading_text,
             'heading_level' => $heading_level,
@@ -28,7 +28,7 @@ class SliderRoomFeaturesSection
             'feature_contents' => $feature_contents,
             'button' => $button,
             'background_color' => $background_color,
-            'responsive_css' => $responsive_css,
+            'responsiveCss' => $responsiveCss,
             'is_preview' => $is_preview,
         ]);
     }
