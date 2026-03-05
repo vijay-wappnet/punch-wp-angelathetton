@@ -9,6 +9,7 @@ import.meta.glob([
 import './blocks/video-banner-scroll.js';
 import './blocks/slider-with-multiple-box-section.js';
 import './blocks/slider-room-features-section.js';
+// import './blocks/two-columns-image-cta-with-mobile-slider-section.js';
 
 /* ==========================================
    HEADER + FULLSCREEN MENU BEHAVIOUR
@@ -78,7 +79,7 @@ function openMenu() {
   lockBodyScroll();
 
   focusableElements = fullscreenMenu.querySelectorAll(
-    'a, button, input, [tabindex]:not([tabindex="-1"])'
+    'a, button, input, [tabindex]:not([tabindex="-1"])',
   );
 
   firstFocusable = focusableElements[0];
@@ -122,6 +123,15 @@ function handleEsc(e) {
    PANEL NAVIGATION SYSTEM
 ========================================== */
 
+const MOBILE_BREAKPOINT = 992;
+
+let currentSubMenuParentImage = null;
+let isInSubMenu = false;
+
+function isMobileView() {
+  return window.innerWidth < MOBILE_BREAKPOINT;
+}
+
 function initPanelNavigation() {
   if (!fullscreenMenu) return;
 
@@ -129,10 +139,8 @@ function initPanelNavigation() {
 
   fullscreenMenu
     .querySelectorAll('.menu-item-has-children > a')
-    .forEach(link => {
-
+    .forEach((link) => {
       link.addEventListener('click', function (e) {
-
         const parentLi = this.parentElement;
         const childMenu = parentLi.querySelector(':scope > .sub-menu');
 
@@ -140,6 +148,13 @@ function initPanelNavigation() {
 
         e.preventDefault();
 
+        /* ── mobile: toggle submenu inline ── */
+        if (isMobileView()) {
+          parentLi.classList.toggle('mobile-submenu-open');
+          return;
+        }
+
+        /* ── desktop: panel-slide navigation ── */
         const currentPanel = this.closest('ul');
 
         currentPanel.classList.add('menu-panel-hidden');
@@ -152,14 +167,14 @@ function initPanelNavigation() {
         const parentImage = parentLi.getAttribute('data-menu-image');
         if (previewImage && parentImage) {
           previewImage.src = parentImage;
+          currentSubMenuParentImage = parentImage;
+          isInSubMenu = true;
         }
       });
-
     });
 }
 
 function insertBackButton(panel, previousPanel) {
-
   if (panel.querySelector('.menu-back')) return;
 
   const backBtn = document.createElement('div');
@@ -169,9 +184,15 @@ function insertBackButton(panel, previousPanel) {
   panel.prepend(backBtn);
 
   backBtn.addEventListener('click', function () {
-
     panel.classList.remove('menu-panel-active');
     previousPanel.classList.remove('menu-panel-hidden');
+
+    // Reset submenu state and restore previous image
+    isInSubMenu = false;
+    const previewImage = document.getElementById('menu-preview-image');
+    if (previewImage && currentSubMenuParentImage) {
+      previewImage.src = currentSubMenuParentImage;
+    }
 
     setTimeout(() => {
       backBtn.remove();
@@ -185,7 +206,7 @@ function resetMenuPanels() {
   const panels = fullscreenMenu.querySelectorAll('.sub-menu');
   const rootMenu = fullscreenMenu.querySelector('.fullscreen-menu-list');
 
-  panels.forEach(panel => {
+  panels.forEach((panel) => {
     panel.classList.remove('menu-panel-active');
   });
 
@@ -193,7 +214,16 @@ function resetMenuPanels() {
     rootMenu.classList.remove('menu-panel-hidden');
   }
 
-  fullscreenMenu.querySelectorAll('.menu-back').forEach(btn => btn.remove());
+  fullscreenMenu.querySelectorAll('.menu-back').forEach((btn) => btn.remove());
+
+  // Reset mobile submenu toggles
+  fullscreenMenu
+    .querySelectorAll('.mobile-submenu-open')
+    .forEach((li) => li.classList.remove('mobile-submenu-open'));
+
+  // Reset submenu state
+  isInSubMenu = false;
+  currentSubMenuParentImage = null;
 }
 
 /* ==========================================
@@ -207,10 +237,15 @@ function initImageHover() {
   if (!previewImage) return;
 
   const defaultImageSrc = previewImage.src;
-  const items = fullscreenMenu.querySelectorAll('.menu-left .menu-item');
+  // Only select root-level menu items, not submenu items
+  const items = fullscreenMenu.querySelectorAll(
+    '.fullscreen-menu-list > .menu-item',
+  );
 
   const fadeToImage = (newSrc) => {
     if (!newSrc || previewImage.src === newSrc) return;
+    // Don't change image if we're inside a submenu
+    if (isInSubMenu) return;
 
     previewImage.style.opacity = 0;
 
@@ -220,14 +255,15 @@ function initImageHover() {
     }, 300); // half of transition time
   };
 
-  items.forEach(li => {
-
+  items.forEach((li) => {
     const changeImage = () => {
       const imgUrl = li.getAttribute('data-menu-image');
       fadeToImage(imgUrl ? imgUrl : defaultImageSrc);
     };
 
     const resetImage = () => {
+      // Don't reset if we're inside a submenu
+      if (isInSubMenu) return;
       fadeToImage(defaultImageSrc);
     };
 
@@ -243,7 +279,6 @@ function initImageHover() {
 ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-
   updateScrollState();
   window.addEventListener('scroll', updateScrollState);
 
@@ -256,6 +291,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.addEventListener('keydown', handleEsc);
+
+  // Footer sitemap toggle (mobile)
+  const sitemapToggle = document.querySelector('.footer-sitemap-toggle');
+  const sitemapContent = document.querySelector('.footer-sitemap-content');
+  if (sitemapToggle && sitemapContent) {
+    sitemapToggle.addEventListener('click', () => {
+      sitemapToggle.classList.toggle('is-open');
+      sitemapContent.classList.toggle('is-open');
+    });
+  }
 
   initPanelNavigation();
   initImageHover();
