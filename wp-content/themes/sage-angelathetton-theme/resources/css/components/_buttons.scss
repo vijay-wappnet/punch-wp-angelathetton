@@ -10,29 +10,84 @@
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  -webkit-border-radius: 0;   // For Safari and older WebKit browsers
-  -moz-border-radius: 0;      // For Firefox
-  border-radius: 0;           // Standard syntax
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
 }
 
 .black-trans-btn{
   background-color: $black-off-color;
   color: $white-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
+  overflow: hidden; // for aimated shine effect
+  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  position: relative; // for aimated shine effect
+
   &:hover {
     background-color: transparent;;
     border: 1px solid rgba(14, 14, 15, 0.2);
     color: $black-off-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+  &:after{
+    // for aimated shine effect
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+      -115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 35%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.25) 65%,
+      transparent 100%
+    );
+    transform: skewX(20deg);
+    transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
   }
 }
+
 .trans-black-btn{
   background-color: transparent;
   color: $black-off-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
+  overflow: hidden; // for aimated shine effect
+  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  position: relative; // for aimated shine effect
+
   &:hover {
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+  &:after{
+    // for aimated shine effect
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+      -115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 35%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.25) 65%,
+      transparent 100%
+    );
+    transform: skewX(20deg);
+    transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
   }
 }
 
@@ -40,80 +95,189 @@
   background-color: $white-color;
   color: $black-off-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
+  overflow: hidden; // for aimated shine effect
+  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  position: relative; // for aimated shine effect
+  display: inline-block; // for aimated shine effect
   &:hover {
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+  &:after{
+    // for aimated shine effect
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+      -115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 35%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.25) 65%,
+      transparent 100%
+    );
+    transform: skewX(20deg);
+    transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
   }
 }
 .shiny-trans-btn{
   background-color: transparent;
   color: $black-off-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
+  overflow: hidden; // for aimated shine effect
+  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  position: relative; // for aimated shine effect
   &:hover {
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+  &:after{
+    // for aimated shine effect
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+      -115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 35%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.25) 65%,
+      transparent 100%
+    );
+    transform: skewX(20deg);
+    transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
   }
 }
 .shiny-reverse-btn{
   background-color: $black-off-color;
   color: $white-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
+  overflow: hidden; // for aimated shine effect
+  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  position: relative; // for aimated shine effect
   &:hover {
     background-color: $white-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $black-off-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+  &:after{
+    // for aimated shine effect
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+      -115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 35%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.25) 65%,
+      transparent 100%
+    );
+    transform: skewX(20deg);
+    transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
   }
 }
 .shiny-reverse-trans-btn{
   background-color: $white-color;
   color: $black-off-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
+  overflow: hidden; // for aimated shine effect
+  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  position: relative; // for aimated shine effect
   &:hover {
     background-color: transparent;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+  &:after{
+    // for aimated shine effect
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+      -115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 35%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.25) 65%,
+      transparent 100%
+    );
+    transform: skewX(20deg);
+    transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
   }
 }
 
 
 
-.btn-shine {
+.btn-animated {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+
   position: relative;
   display: inline-block;
-  padding: 16px 40px;
+  overflow: hidden;
+  transition: color 0.5s ease, background 0.5s ease;
+
+}
+
+.btn-animated:hover {
   background: #000;
   color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-decoration: none;
-  overflow: hidden;
-  border: 1px solid #000;
 }
-.btn-shine span {
-  position: relative;
-  z-index: 2;
-}
-.btn-shine::before {
+
+.btn-animated::after {
   content: "";
   position: absolute;
   top: 0;
-  left: -75%;
-  width: 50%;
+  left: -130%;
+  width: 80%;
   height: 100%;
   background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0) 100%
+    -115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 35%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0.25) 65%,
+    transparent 100%
   );
-  transform: skewX(25deg);
-  transition: left 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
-  z-index: 1;
+  transform: skewX(20deg);
+  transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
 }
 
-/* Hover → left to right */
-.btn-shine:hover::before {
-  left: 130%;
+.btn-animated:hover::after {
+  left: 140%;
 }
+
+

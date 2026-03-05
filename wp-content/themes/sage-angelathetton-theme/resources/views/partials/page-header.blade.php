@@ -20,8 +20,11 @@
       <h6 class="fonts-helvetica-lt-pro">{!! $title !!} H6 Angel at Hetton helvetica-lt-pro</h6>
 
       ======================== button Componets List  demo =======================
-      <a href="" class="btn black-trasn-btn">Simple -- black-trasn-btn</a>
+
       <br><br>
+      <a href="" class="btn black-trans-btn">Simple -- black-trasn-btn</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
       <a href="" class="btn trans-black-btn">Simple Transparent -- trans-black-btn</a>
 
       <br><br>
@@ -34,9 +37,7 @@
       <a href="" class="btn shiny-reverse-trans-btn">Shiny Reverse Transparent -- shiny-reverse-trans-btn</a>
       <br><br>
 
-
-      <a href="#" class="btn-animated">Reserve a Table</a>
-      <a href="#" class="btn-shine"><span>Reserve a Table</span></a>
+      <a href="#" class="btn btn-animated">Reserve a Table</a>
       <br><br>
     </div>
   @endif
