@@ -123,7 +123,7 @@ body.no-scroll {
 
     .menu-left {
       height: 100vh;
-      flex: 0 0 20%;
+      flex: 0 0 30%;
       transition: .3s;
       background: #e9e4dc;
       position: relative;
@@ -246,24 +246,109 @@ body.no-scroll {
   }
 }
 
-// Mobile tweaks
-@media (max-width: 768px) {
+// Mobile tweaks (below $screen-lg-min)
+@media (max-width: #{$screen-lg-min - 1}) {
+
+  /* ── header bar ── */
   .site-header .header-top-nav {
     display: none;
   }
 
-  .fullscreen-menu .fullscreen-nav {
-    flex-direction: column;
-    padding-left: 1rem;
-  }
+  /* ── fullscreen overlay ── */
+  .fullscreen-menu {
 
-  .fullscreen-menu .menu-right {
-    order: -1;
-    margin-bottom: 2rem;
-  }
+    .fullscreen-nav {
+      flex-direction: column;
 
-  .fullscreen-menu .fullscreen-menu-list .menu-item > a {
-    font-size: 1.75rem;
-    padding: 1rem 0;
+      /* hide right-side image panel */
+      .menu-right {
+        display: none;
+      }
+
+      /* full-width centred menu */
+      .menu-left {
+        flex: 1;
+        width: 100%;
+        padding: 60px 20px;
+        text-align: center;
+        overflow-y: auto;
+
+        .fullscreen-menu-list {
+          position: relative;
+          padding: 40px 0;
+
+          /* parent menu items */
+          > .menu-item {
+            border-top: 1px solid #2B2E34;
+            padding-top: 12px;
+            margin-bottom: 12px;
+
+            > a {
+              font-size: 24px;
+              padding: 0;
+            }
+          }
+
+          /* general links */
+          a {
+            display: inline-block;
+            width: 100%;
+          }
+
+          /* submenu – flows inline below parent (hidden by default) */
+          .sub-menu {
+            position: relative;
+            left: auto;
+            top: auto;
+            width: 100%;
+            padding: 0;
+            transform: none !important;
+            opacity: 1 !important;
+            display: none;
+
+            li {
+              margin-bottom: 0;
+
+              a {
+                font-size: 18px;
+                padding: 0.35rem 0;
+              }
+            }
+          }
+
+          /* shown when JS toggles class on parent li */
+          .mobile-submenu-open > .sub-menu {
+            display: block;
+          }
+
+          /* hide back button on mobile */
+          .menu-back {
+            display: none;
+          }
+
+          /* neutralise panel-slide transforms on mobile */
+          .menu-panel-hidden {
+            transform: none !important;
+            opacity: 1 !important;
+          }
+
+          .menu-panel-active {
+            transform: none !important;
+            opacity: 1 !important;
+          }
+        }
+      }
+    }
+
+    /* bottom buttons – stack on smaller screens */
+    .menu-footer {
+      gap: 20px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      .hfsm-btn {
+        padding: 0.75rem 1rem;
+      }
+    }
   }
 }
