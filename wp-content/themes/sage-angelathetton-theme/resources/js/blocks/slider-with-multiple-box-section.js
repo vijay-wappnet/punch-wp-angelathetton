@@ -45,8 +45,8 @@ export default function SliderWithMultipleBoxSection() {
         centerMode: true,
         centerPadding: '12.5%',
         arrows: true,
-        prevArrow: `<div class="slick-prev"><img src="${leftArrow}" alt="Previous slide"></div>`,
-        nextArrow: `<div class="slick-next"><img src="${rightArrow}" alt="Next slide"></div>`,
+        prevArrow: `<button type="button" class="slick-prev" aria-label="Previous slide"><img src="${leftArrow}" alt=""></button>`,
+        nextArrow: `<button type="button" class="slick-next" aria-label="Next slide"><img src="${rightArrow}" alt=""></button>`,
         dots: false,
         infinite: true,
         speed: 500,
@@ -54,8 +54,6 @@ export default function SliderWithMultipleBoxSection() {
         swipe: true,
         touch: true,
         draggable: true,
-        accessibility: true,
-        focusOnSelect: true,
         responsive: [
           {
             breakpoint: 1024,

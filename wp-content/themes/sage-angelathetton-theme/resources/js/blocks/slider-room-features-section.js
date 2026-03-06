@@ -36,7 +36,6 @@ export default function SliderRoomFeaturesSection() {
                 swipe: true,
                 touch: true,
                 draggable: true,
-                accessibility: true,
                 appendDots: sliderContainer,
                 appendArrows: arrowsWrapper,
             });
@@ -63,12 +62,29 @@ function initFeatureDropdowns() {
 
         title.dataset.initialized = 'true';
 
-        title.addEventListener('click', () => {
+        // Make it keyboard focusable
+        title.setAttribute('tabindex', '0');
+        title.setAttribute('role', 'button');
+        title.setAttribute('aria-expanded', 'false');
+
+        const toggleFeature = () => {
             const features = title.nextElementSibling;
 
             if (features && features.classList.contains('slider-room-fs__features')) {
-                title.classList.toggle('is-open');
+                const isOpen = title.classList.toggle('is-open');
                 features.classList.toggle('is-open');
+                title.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            }
+        };
+
+        // Click handler
+        title.addEventListener('click', toggleFeature);
+
+        // Keyboard handler (Enter and Space)
+        title.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleFeature();
             }
         });
     });

@@ -296,10 +296,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // Footer sitemap toggle (mobile)
   const sitemapToggle = document.querySelector('.footer-sitemap-toggle');
   const sitemapContent = document.querySelector('.footer-sitemap-content');
+  
   if (sitemapToggle && sitemapContent) {
-    sitemapToggle.addEventListener('click', () => {
-      sitemapToggle.classList.toggle('is-open');
+    // Make it keyboard focusable
+    sitemapToggle.setAttribute('tabindex', '0');
+    sitemapToggle.setAttribute('role', 'button');
+    sitemapToggle.setAttribute('aria-expanded', 'false');
+
+    const toggleSitemap = () => {
+      const isOpen = sitemapToggle.classList.toggle('is-open');
       sitemapContent.classList.toggle('is-open');
+      sitemapToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+
+    // Click handler
+    sitemapToggle.addEventListener('click', toggleSitemap);
+
+    // Keyboard handler (Enter and Space)
+    sitemapToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleSitemap();
+      }
     });
   }
 

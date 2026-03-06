@@ -3,6 +3,22 @@
 @use "../components/buttons" as *;
 
 .introtext-with-right-cta-section {
+  
+  .border-top-initialize{
+    width: 98%;
+    display: block;
+    border-top: 1px solid rgba(43, 46, 52, .2);
+    margin: 0 auto;
+    padding-bottom: 40px;
+    @media (max-width: $screen-md-min) {
+      width: 94%;
+    }
+    @media (max-width: $screen-mobile-min) {
+      width: 94%;
+      padding-bottom: 20px
+    }
+  }
+
   h1, h2 {
     &.introtext-with-right-cta-section__heading {
       font-family: $fonts-niveau-grotesk-small-caps;

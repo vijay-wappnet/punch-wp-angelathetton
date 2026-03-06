@@ -10,25 +10,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
   arrows.forEach((arrow) => {
     arrow.addEventListener('click', handleArrowClick);
-    arrow.addEventListener('keypress', handleArrowKeypress);
+    arrow.addEventListener('keydown', handleArrowKeypress);
   });
 
   function handleArrowClick(e) {
     e.preventDefault();
-    scrollToNextSection(this);
+    scrollToNextSection(e.currentTarget);
   }
 
   function handleArrowKeypress(e) {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      scrollToNextSection(this);
+      scrollToNextSection(e.currentTarget);
     }
   }
 
   function scrollToNextSection(arrowElement) {
     const section = arrowElement.closest('.video-banner-section');
     if (section) {
-      const nextElement = section.nextElementSibling;
+      // Find next sibling that is an actual section (skip style tags, scripts, etc.)
+      let nextElement = section.nextElementSibling;
+      while (nextElement && (nextElement.tagName === 'STYLE' || nextElement.tagName === 'SCRIPT')) {
+        nextElement = nextElement.nextElementSibling;
+      }
+      
       if (nextElement) {
         nextElement.scrollIntoView({ behavior: 'smooth' });
       } else {

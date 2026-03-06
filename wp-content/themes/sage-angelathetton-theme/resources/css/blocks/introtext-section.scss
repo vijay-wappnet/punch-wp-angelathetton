@@ -20,7 +20,7 @@
       }
     }
     .intro-section__content{
-      font-family: $fonts-niveau;
+      font-family: $fonts-helvetica-lt-pro;
       font-weight: $font-weight-300;
       font-style: $font-style-normal;
       margin-bottom: 25px;
@@ -34,6 +34,7 @@
         margin-bottom: 20px;
         li{
           display: list-item;
+          padding-bottom: 5px;
         }
       }
       strong,b{

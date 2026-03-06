@@ -25,32 +25,53 @@
     min-height: 600px;
     height: 60vh;
     overflow: hidden;
-    &:hover .smb-item__overlay {
-      background: $brown-light-color-1;
+    outline: none; // Remove default outline, custom focus styles applied below
+
+    // Unified hover and focus states for accessibility
+    &:hover,
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+      .smb-item__overlay {
+        background: $brown-light-color-1;
+      }
+
+      .smb-item__heading {
+        color: $black-off-color;
+      }
+
+      .smb-item__hover-content {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
     }
-    &:hover .smb-item__heading{
-      color: $black-off-color;
+
+    // Visible focus indicator for keyboard navigation
+    &:focus-visible {
+      outline: 2px solid $black-off-color;
+      outline-offset: -2px;
     }
-    &:hover .smb-item__hover-content {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
+
     @media (max-width: $screen-md-min) {
       min-height: 500px;
     }
+
     .smb-item__hover-content {
       opacity: 0;
       transform: translateY(20px);
       transition: all 0.4s ease;
       pointer-events: none;
+
       @media (max-width: $screen-md-min) {
         opacity: 1;
+
         .smb-item__subheading,
-        .smb-item__description{
+        .smb-item__description {
           display: none;
         }
-        .swmbs-btn{
+
+        .swmbs-btn {
           background-color: transparent;
           color: $white-color;
           border-color: $white-color;
@@ -220,6 +241,7 @@
     width: auto;
     height: auto;
     background: transparent;
+    border: none;
     color: $black-off-color;
     font-size: 24px;
     cursor: pointer;
@@ -236,9 +258,15 @@
       font-size: 24px;
     }
 
+    // Hover and focus states
     &:hover,
-    &:focus {
+    &:focus,
+    &:focus-visible {
       transform: translateY(-3px);
+    }
+
+    &:focus-visible {
+      opacity: 0.6;
     }
   }
 

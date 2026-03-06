@@ -4,6 +4,7 @@
 
 .two-columns-image-cta-with-mobile-slider-section {
   padding: 0;
+  position: relative;
 
   .tcicwmss__main-heading-wrapper{
     display: none;
@@ -241,7 +242,7 @@
       background: transparent;
       border: none;
       padding: 0;
-      outline: none;
+      transition: opacity 0.3s ease;
 
       img {
         width: 24px;
@@ -250,17 +251,24 @@
       }
 
       &:hover,
-      &:focus {
+      &:focus,
+      &:focus-visible {
         opacity: 0.7;
+      }
+
+      &:focus:not(:focus-visible) {
+        outline: none;
       }
     }
 
     .slick-prev {
       left: 10px;
+      display: none !important;
     }
 
     .slick-next {
       right: 10px;
+      display: none !important;
     }
   }
 
@@ -291,8 +299,11 @@
       justify-content: center;
       padding: 5px;
       transition: opacity 0.3s ease;
+      border-radius: 4px;
 
-      &:hover {
+      &:hover,
+      &:focus,
+      &:focus-visible {
         opacity: 0.6;
       }
 

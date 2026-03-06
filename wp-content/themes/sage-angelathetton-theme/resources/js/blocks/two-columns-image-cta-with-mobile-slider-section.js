@@ -64,8 +64,6 @@ export default function TwoColumnsImageCtaWithMobileSliderSection() {
           swipe: true,
           touch: true,
           draggable: true,
-          accessibility: true,
-          focusOnSelect: true,
         });
 
         // Create slide counter element
@@ -98,25 +96,37 @@ export default function TwoColumnsImageCtaWithMobileSliderSection() {
       if (counterElement) {
         counterElement.innerHTML = `
           <span class="tcicwmss__counter-arrows">
-            <span class="tcicwmss__counter-arrow tcicwmss__counter-arrow--left">
-              <img src="${leftArrow}" alt="Previous slide">
+            <span class="tcicwmss__counter-arrow tcicwmss__counter-arrow--left" role="button" tabindex="0" aria-label="Previous slide">
+              <img src="${leftArrow}" alt="">
             </span>
             <span class="tcicwmss__counter-current">${current}</span> / <span class="tcicwmss__counter-total">${total}</span>
-            <span class="tcicwmss__counter-arrow tcicwmss__counter-arrow--right">
-              <img src="${rightArrow}" alt="Next slide">
+            <span class="tcicwmss__counter-arrow tcicwmss__counter-arrow--right" role="button" tabindex="0" aria-label="Next slide">
+              <img src="${rightArrow}" alt="">
             </span>
           </span>
         `;
 
-        // Add click events to counter arrows
+        // Add click and keyboard events to counter arrows
         const leftBtn = counterElement.querySelector('.tcicwmss__counter-arrow--left');
         const rightBtn = counterElement.querySelector('.tcicwmss__counter-arrow--right');
 
         if (leftBtn) {
           leftBtn.onclick = () => jQuery(sliderElement).slick('slickPrev');
+          leftBtn.onkeydown = (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              jQuery(sliderElement).slick('slickPrev');
+            }
+          };
         }
         if (rightBtn) {
           rightBtn.onclick = () => jQuery(sliderElement).slick('slickNext');
+          rightBtn.onkeydown = (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              jQuery(sliderElement).slick('slickNext');
+            }
+          };
         }
       }
     }

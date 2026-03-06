@@ -170,13 +170,12 @@
 
   // Description
   &__description {
-    font-size: 16px;
+    font-size: 18px;
     color: $black-off-color;
     margin: 0 0 25px;
     line-height: 1.5;
 
-    @media (max-width: $screen-md-min) {
-      font-size: 14px;
+    @media (max-width: $screen-md-min) {      
       margin-bottom: 20px;
     }
   }
@@ -198,7 +197,7 @@
   // Label
   &__label {
     display: block;
-    font-size: 14px;
+    font-size: 18px;
     color: $black-off-color;
     margin-bottom: 8px;
     font-weight: 400;
@@ -208,7 +207,7 @@
   &__input {
     width: 100%;
     padding: 12px 15px;
-    font-size: 16px;
+    font-size: 18px;
     border: 1px solid #ccc;
     background: $white-off-color;
     color: $back-color;
@@ -225,7 +224,7 @@
 
     @media (max-width: $screen-md-min) {
       padding: 10px 12px;
-      font-size: 14px;
+      font-size: 18px;
     }
   }
 

@@ -235,6 +235,17 @@
           a, span {
             display: flex;
             gap: 0;
+            transition: all 0.3s ease;
+
+            &:hover {
+              transform: translateY(-3px);
+            }
+            &:focus {
+              transform: translateY(-3px);
+            }
+            &:active {
+              transform: translateY(-3px);
+            }
           }
 
           div {
@@ -273,6 +284,11 @@
           cursor: pointer;
           user-select: none;
 
+          &:hover,
+          &:focus,
+          &:focus-visible {
+            opacity: 0.7;
+          }
           span {
             font-size: 22px;
           }

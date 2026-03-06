@@ -41,7 +41,7 @@ class IntrotextSection
         if ($use_dynamic_heading) {
             $post_title = get_the_title();
             if ($post_title) {
-                $heading_text = $post_title;
+                $heading_text = html_entity_decode($post_title, ENT_QUOTES, 'UTF-8');
             }
         }
 

@@ -5,6 +5,9 @@
 
   <div class="container">
     <div class="row align-items-center">
+      
+      <div class="col-12 border-top-initialize"></div>
+
       <div class="col-12 {{ $button ? 'col-md-10' : 'col-md-12' }} introtext-with-right-cta-section__content-wrapper" style="text-align: {{ esc_attr($content_alignment) }};">
 
         {{-- Heading --}}
