@@ -1,7 +1,10 @@
 @if(!empty($responsiveCss))
 <style>{{ $responsiveCss }}</style>
 @endif
-<div id="{{ $blockId }}" class="slider-room-features-section" style="background-color: {{ $background_color }};">
+<div id="{{ $blockId }}" class="slider-room-features-section" 
+     data-left-arrow="{{ Vite::asset('resources/images/left_arrow.svg') }}"
+     data-right-arrow="{{ Vite::asset('resources/images/right-arrow.svg') }}"
+     style="background-color: {{ $background_color }};">
     <div class="container">
         <div class="slider-room-fs__wrapper">
             <div class="slider-room-fs__slider">

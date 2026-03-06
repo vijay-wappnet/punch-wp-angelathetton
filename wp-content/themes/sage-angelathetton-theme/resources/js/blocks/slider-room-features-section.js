@@ -1,6 +1,4 @@
 import jQuery from 'jquery';
-import leftArrow from '../../images/left_arrow.svg';
-import rightArrow from '../../images/right-arrow.svg';
 
 import '@accessible360/accessible-slick';
 
@@ -15,6 +13,11 @@ export default function SliderRoomFeaturesSection() {
         if (slider.classList.contains('slick-initialized')) {
             return;
         }
+
+        // Get arrow images from data attributes
+        const section = slider.closest('.slider-room-features-section');
+        const leftArrow = section?.dataset.leftArrow || '';
+        const rightArrow = section?.dataset.rightArrow || '';
 
         try {
             const sliderContainer = jQuery(slider).closest('.slider-room-fs__slider');

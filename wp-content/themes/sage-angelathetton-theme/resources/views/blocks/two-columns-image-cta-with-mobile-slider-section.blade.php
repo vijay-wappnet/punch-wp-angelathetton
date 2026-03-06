@@ -1,7 +1,10 @@
 @if(!empty($responsiveCss))
 <style>{{ $responsiveCss }}</style>
 @endif
-<div id="{{ $blockId }}" class="two-columns-image-cta-with-mobile-slider-section" @if($section_bg) style="background-color: {{ esc_attr($section_bg) }};" @endif>
+<div id="{{ $blockId }}" class="two-columns-image-cta-with-mobile-slider-section" 
+     data-left-arrow="{{ Vite::asset('resources/images/left_arrow.svg') }}"
+     data-right-arrow="{{ Vite::asset('resources/images/right-arrow.svg') }}"
+     @if($section_bg) style="background-color: {{ esc_attr($section_bg) }};" @endif>
 
     {{-- Main Title Heading --}}
     @if($main_title_heading)

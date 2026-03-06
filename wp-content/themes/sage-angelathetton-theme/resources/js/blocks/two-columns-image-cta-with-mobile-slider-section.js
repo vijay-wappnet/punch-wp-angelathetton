@@ -1,6 +1,4 @@
 import jQuery from 'jquery';
-import leftArrow from '../../images/left_arrow.svg';
-import rightArrow from '../../images/right-arrow.svg';
 
 import '@accessible360/accessible-slick';
 
@@ -39,6 +37,10 @@ export default function TwoColumnsImageCtaWithMobileSliderSection() {
     if (!slider) {
       return;
     }
+
+    // Get arrow images from data attributes
+    const leftArrow = section.dataset.leftArrow || '';
+    const rightArrow = section.dataset.rightArrow || '';
 
     /**
      * Initialize the slider with slide counter
