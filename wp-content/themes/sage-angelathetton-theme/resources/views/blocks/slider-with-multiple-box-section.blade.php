@@ -1,7 +1,10 @@
 @if(!empty($responsiveCss))
 <style>{{ $responsiveCss }}</style>
 @endif
-<div id="{{ $blockId }}" class="slider-with-multiple-box-section" @if($section_bg) style="background-color: {{ esc_attr($section_bg) }};" @endif>
+<div id="{{ $blockId }}" class="slider-with-multiple-box-section" 
+     data-left-arrow="{{ Vite::asset('resources/images/left_arrow.svg') }}"
+     data-right-arrow="{{ Vite::asset('resources/images/right-arrow.svg') }}"
+     @if($section_bg) style="background-color: {{ esc_attr($section_bg) }};" @endif>
   <div class="smb-item__wrapper">
     <div class="smb-item__slider">
       @forelse($slides as $slide)

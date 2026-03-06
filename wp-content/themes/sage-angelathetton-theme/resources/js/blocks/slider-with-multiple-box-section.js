@@ -1,6 +1,4 @@
 import jQuery from 'jquery';
-import leftArrow from '../../images/left_arrow.svg';
-import rightArrow from '../../images/right-arrow.svg';
 
 import '@accessible360/accessible-slick';
 
@@ -36,6 +34,11 @@ export default function SliderWithMultipleBoxSection() {
     if (slider.classList.contains('slick-initialized')) {
       return;
     }
+
+    // Get arrow images from data attributes
+    const section = slider.closest('.slider-with-multiple-box-section');
+    const leftArrow = section?.dataset.leftArrow || '';
+    const rightArrow = section?.dataset.rightArrow || '';
 
     // Initialize slider with accessible-slick
     try {
