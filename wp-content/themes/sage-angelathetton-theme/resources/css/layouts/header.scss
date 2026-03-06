@@ -107,15 +107,39 @@ body.no-scroll {
     height: 100vh;
   }
 
-  .close-btn {
-    position: absolute;
-    z-index: 999;
-    top: 1rem;
-    left: 1rem;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
+  // Menu header with logo and close button
+  .menu-header {
+    display: none;
+    flex-shrink: 0;
+    padding: 1rem;
+    background: $white-off-color;
+    border-bottom: 1px solid #e0e0e0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      position: relative;
+      z-index: auto;
+      top: auto;
+      left: auto;
+      flex-shrink: 0;
+    }
+
+    .menu-header-logo {
+      flex: 1;
+      text-align: center;
+
+      img {
+        max-width: 80px;
+        height: auto;
+        display: inline-block;
+      }
+    }
   }
 
   .fullscreen-nav {
@@ -254,11 +278,20 @@ body.no-scroll {
     display: none;
   }
 
-  /* ── fullscreen overlay ── */
+  /* ── fullscreen overlay on mobile ── */
   .fullscreen-menu {
+
+    // Show mobile header
+    .menu-header {
+      display: flex;
+      gap: 0;
+    }
 
     .fullscreen-nav {
       flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
 
       /* hide right-side image panel */
       .menu-right {
@@ -269,13 +302,15 @@ body.no-scroll {
       .menu-left {
         flex: 1;
         width: 100%;
-        padding: 60px 20px;
+        padding: 20px 20px 150px 20px;
         text-align: center;
         overflow-y: auto;
+        overflow-x: hidden;
+        min-height: 0;
 
         .fullscreen-menu-list {
           position: relative;
-          padding: 40px 0;
+          padding: 0;
 
           /* parent menu items */
           > .menu-item {
@@ -345,9 +380,41 @@ body.no-scroll {
       gap: 20px;
       padding-top: 20px;
       padding-bottom: 20px;
+      flex-shrink: 0;
 
       .hfsm-btn {
         padding: 0.75rem 1rem;
+      }
+    }
+  }
+}
+
+// Desktop tweaks (lg-width and above)
+@media (min-width: #{$screen-lg-min}) {
+  .fullscreen-menu {
+    // Reposition menu-header for desktop (show close button at top-left)
+    .menu-header {
+      display: flex;
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 999;
+      background: transparent;
+      border: none;
+      padding: 0;
+      flex-direction: row-reverse;
+      justify-content: flex-start;
+      gap: 0;
+
+      .close-btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+      }
+
+      .menu-header-logo {
+        display: none;
       }
     }
   }
