@@ -1,12 +1,9 @@
 <div id="fullscreen-menu" class="fullscreen-menu" aria-hidden="true">
-  <!-- close button -->
-  <button class="close-btn" aria-label="Close menu">
-    <span class="close-icon">&times;</span>
-  </button>
-
   @php
-    // default image menu from nav_menu term (ACF)
+    // logo image from options
+    $header_logo = get_field('header_logo', 'option');
 
+    // default image menu from nav_menu term (ACF)
     $locations = get_nav_menu_locations();
     if (isset($locations['primary_navigation'])) {
         $menu_id = $locations['primary_navigation'];
@@ -17,6 +14,21 @@
 
     $defaultImageUrl = isset($defaultImage['url']) ? $defaultImage['url'] : '';
   @endphp
+
+  <!-- menu header with logo and close button -->
+  <div class="menu-header">
+    <button class="close-btn" aria-label="Close menu">
+      <span class="close-icon">&times;</span>
+    </button>
+
+    @if ($header_logo)
+      <div class="menu-header-logo">
+        <img src="{{ esc_url($header_logo['url']) }}"
+             alt="{{ esc_attr($header_logo['alt']) }}"
+             class="img-fluid">
+      </div>
+    @endif
+  </div>
 
   @if (has_nav_menu('primary_navigation'))
     <nav class="fullscreen-nav" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" role="navigation">
