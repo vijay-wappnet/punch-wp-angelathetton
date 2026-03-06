@@ -1,11 +1,11 @@
 <article @php(post_class('h-entry'))>
-  <header>
+  {{-- <header>
     <h1 class="p-name">
       {!! $title !!}
     </h1>
 
     @include('partials.entry-meta')
-  </header>
+  </header> --}}
 
   <div class="e-content">
     @php(the_content())
@@ -19,5 +19,5 @@
     </footer>
   @endif
 
-  @php(comments_template())
+  {{-- @php(comments_template()) --}}
 </article>

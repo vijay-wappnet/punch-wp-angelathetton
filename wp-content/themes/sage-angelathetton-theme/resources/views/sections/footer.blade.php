@@ -267,8 +267,27 @@ if (!$aria_label) {
                     </nav>
                 @endif
             </div>
-            <div class="newsletter">Sign up to our newsletter</div>
+            @php
+                $newsletter_section = get_field('newsletter_section', 'option');
+            @endphp
+
+            @if ($newsletter_section)
+              @php
+                $newsletter_link_title = $newsletter_section['newsletter_title'] ?? 'Sign up to our newsletter';
+                $newsletter_link_title_mobile = $newsletter_section['newsletter_title_mobile'] ?? 'Newsletter';
+              @endphp
+              <div class="newsletter">
+                <a href="#" class="newsletter-sign-up" aria-label="{{ esc_attr($newsletter_link_title) }}" data-event="Sign Up Newsletter">
+                  <span class="newsletter-title-desktop">{{ esc_html($newsletter_link_title) }}</span>
+                  <span class="newsletter-title-mobile">{{ esc_html($newsletter_link_title_mobile) }}</span>
+                </a>
+              </div>
+            @endif
+
         </div>
     </div>
+
+    {{-- Newsletter Modal Popup --}}
+    @include('partials.newsletter-modal')
 
 </footer>

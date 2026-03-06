@@ -1,0 +1,304 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+@use "../components/buttons" as *;
+
+
+// Newsletter Modal Popup Styles
+.newsletter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.3s, opacity 0.3s ease;
+
+  &.is-open {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s 0s, opacity 0.3s ease;
+  }
+
+  // Overlay
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+
+  // Container
+  &__container {
+    position: relative;
+    background: $white-off-color;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 50px 40px 40px;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    z-index: 1;
+
+    .is-open & {
+      transform: translateY(0);
+    }
+
+    // Two-column layout when image is present (desktop only)
+    &.has-image {
+      @media (min-width: $screen-lg-min) {
+        display: flex;
+        max-width: 900px;
+        padding: 0;
+        overflow: hidden;
+      }
+    }
+
+    @media (max-width: $screen-md-min) {
+      padding: 40px 25px 30px;
+      max-width: 95%;
+    }
+  }
+
+  // Image section (desktop only)
+  &__image {
+    display: none;
+
+    @media (min-width: $screen-lg-min) {
+      display: block;
+      flex: 1;
+      min-width: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  // Close button
+  &__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: $black-off-color;
+    transition: color 0.3s ease;
+    padding: 0;
+    z-index: 2;
+
+    // When image is present, position over image on desktop
+    .has-image & {
+      @media (min-width: $screen-lg-min) {
+        color: $white-color;
+
+        &:hover,
+        &:focus {
+          color: $brown-light-color;
+        }
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $brown-color;
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  // Content
+  &__content {
+    text-align: center;
+
+    // When image is present, content becomes left column
+    .has-image & {
+      @media (min-width: $screen-lg-min) {
+        flex: 1;
+        min-width: 0;
+        padding: 50px 40px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
+
+  // Title
+  &__title {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 15px;
+    color: $black-off-color;
+    line-height: 1.4;
+
+    &--desktop {
+      display: block;
+
+      @media (max-width: $screen-md-min) {
+        display: none;
+      }
+    }
+
+    &--mobile {
+      display: none;
+
+      @media (max-width: $screen-md-min) {
+        display: block;
+      }
+    }
+  }
+
+  // Description
+  &__description {
+    font-size: 16px;
+    color: $black-off-color;
+    margin: 0 0 25px;
+    line-height: 1.5;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+  }
+
+  // Form
+  &__form {
+    text-align: left;
+  }
+
+  // Field
+  &__field {
+    margin-bottom: 20px;
+
+    @media (max-width: $screen-md-min) {
+      margin-bottom: 15px;
+    }
+  }
+
+  // Label
+  &__label {
+    display: block;
+    font-size: 14px;
+    color: $black-off-color;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+
+  // Input
+  &__input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background: $white-off-color;
+    color: $back-color;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $brown-color;
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+
+    @media (max-width: $screen-md-min) {
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+  }
+
+  // Actions
+  &__actions {
+    text-align: center;
+    margin-top: 25px;
+
+    @media (max-width: $screen-md-min) {
+      margin-top: 20px;
+    }
+  }
+
+  // Button
+  .newslettermodal-btn {
+    display: inline-block;
+    text-transform: uppercase;
+    border: 1px solid $black-off-color;
+    background: transparent;
+    color: $black-off-color;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden; // for aimated shine effect
+    transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+    position: relative; // for aimated shine effect
+
+    // &:hover,
+    // &:focus {
+    //   background: $black-off-color;
+    //   color: $white-color;
+    // }
+
+    // &:active {
+    //   background: $brown-color;
+    //   border-color: $brown-color;
+    //   color: $white-color;
+    // }
+    &:hover {
+      background-color: $black-off-color;
+      border: 1px solid rgba(43, 46, 52, 0.2);
+      color: $white-color;
+      &:after{
+        left: 140%; // for aimated shine effect
+      }
+    }
+    &:focus {
+      background-color: $black-off-color;
+      border: 1px solid rgba(43, 46, 52, 0.2);
+      color: $white-color;
+      &:after{
+        left: 140%; // for aimated shine effect
+      }
+    }
+    &:after{
+      // for aimated shine effect
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -130%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(
+        -115deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.25) 35%,
+        rgba(255, 255, 255, 0.7) 50%,
+        rgba(255, 255, 255, 0.25) 65%,
+        transparent 100%
+      );
+      transform: skewX(20deg);
+      transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+  }
+
+}

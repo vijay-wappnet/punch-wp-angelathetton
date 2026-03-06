@@ -16,7 +16,7 @@ if( function_exists ( 'acf_add_options_page' ) ) {
 function add_dynamic_id_to_menu_links($atts, $item, $args, $depth) {
     // Apply only to the 'primary_navigation' menu
     if (in_array('menu-item-has-children', $item->classes)) {
-        $atts['id'] = 'AAAA----menu-item-' . esc_attr($item->ID);
+        $atts['id'] = 'menu-item-' . esc_attr($item->ID);
     }
     return $atts;
 }

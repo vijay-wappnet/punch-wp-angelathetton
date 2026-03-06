@@ -31,6 +31,14 @@
       left: 140%; // for aimated shine effect
     }
   }
+  &:focus {
+    background-color: transparent;;
+    border: 1px solid rgba(14, 14, 15, 0.2);
+    color: $black-off-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
   &:after{
     // for aimated shine effect
     content: "";
@@ -62,6 +70,14 @@
   position: relative; // for aimated shine effect
 
   &:hover {
+    background-color: $black-off-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+  &:focus {
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
@@ -107,6 +123,14 @@
       left: 140%; // for aimated shine effect
     }
   }
+  &:focus {
+    background-color: $black-off-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
   &:after{
     // for aimated shine effect
     content: "";
@@ -136,6 +160,14 @@
   transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
   position: relative; // for aimated shine effect
   &:hover {
+    background-color: $black-off-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+  &:focus {
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
@@ -179,6 +211,14 @@
       left: 140%; // for aimated shine effect
     }
   }
+  &:focus{
+    background-color: $white-color;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $black-off-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
   &:after{
     // for aimated shine effect
     content: "";
@@ -208,6 +248,14 @@
   transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
   position: relative; // for aimated shine effect
   &:hover {
+    background-color: transparent;
+    border: 1px solid rgba(43, 46, 52, 0.2);
+    color: $white-color;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+  &:focus{
     background-color: transparent;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;

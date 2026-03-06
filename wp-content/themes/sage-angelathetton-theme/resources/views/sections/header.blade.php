@@ -64,7 +64,7 @@
 
         @if ($header_logo)
             @if ($link_url)
-                <a href="{{ esc_url($link_url) }}" class="brand logo"
+                <a href="{{ esc_url($link_url) }}" class="brand-logo"
                    aria-label="{{ esc_attr($aria_label) }}"
                    {!! $link_target ? 'target="'.esc_attr($link_target).'"' : '' !!}
                    {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}>
@@ -73,7 +73,7 @@
                          class="img-fluid">
                 </a>
             @else
-                <span class="brand logo" aria-label="{{ esc_attr($aria_label) }}">
+                <span class="brand-logo" aria-label="{{ esc_attr($aria_label) }}">
                     <img src="{{ esc_url($header_logo['url']) }}"
                          alt="{{ esc_attr($header_logo['alt']) }}"
                          class="img-fluid">
@@ -81,7 +81,7 @@
             @endif
         @else
             @if ($link_url)
-                <a href="{{ esc_url($link_url) }}" class="img-fluid" aria-label="{{ esc_attr($aria_label) }}">
+                <a href="{{ esc_url($link_url) }}" class="brand-logo img-fluid" aria-label="{{ esc_attr($aria_label) }}">
                     {!! $siteName !!}
                 </a>
             @else
