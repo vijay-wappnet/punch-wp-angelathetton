@@ -124,3 +124,166 @@ function custom_acf_dimensions($margin, $padding, $blockId) {
 
     return $responsiveCss;
 }
+
+/**
+ * Enqueue Post Listing AJAX Scripts
+ */
+add_action('wp_enqueue_scripts', function() {
+    // Only enqueue if Vite is available
+    if (class_exists('Illuminate\Support\Facades\Vite')) {
+        wp_localize_script('sage/app', 'postListingAjax', [
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce'   => wp_create_nonce('post_listing_ajax_nonce'),
+        ]);
+    }
+});
+
+/**
+ * Add inline script for AJAX URL (fallback)
+ */
+add_action('wp_head', function() {
+    ?>
+    <script>
+        var postListingAjax = {
+            ajaxUrl: '<?php echo esc_url(admin_url('admin-ajax.php')); ?>',
+            nonce: '<?php echo wp_create_nonce('post_listing_ajax_nonce'); ?>'
+        };
+    </script>
+    <?php
+});
+
+/**
+ * AJAX Handler for Load More Posts
+ */
+add_action('wp_ajax_load_more_posts', 'handle_load_more_posts');
+add_action('wp_ajax_nopriv_load_more_posts', 'handle_load_more_posts');
+
+function handle_load_more_posts() {
+    // Verify nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'post_listing_ajax_nonce')) {
+        wp_send_json_error(['message' => 'Invalid security token']);
+        return;
+    }
+
+    // Allowed post types
+    $allowed_post_types = ['post', 'package', 'product'];
+
+    // Get parameters
+    $post_type = isset($_POST['post_type']) ? sanitize_text_field($_POST['post_type']) : 'post';
+
+    // Validate post type against allowed values
+    $post_type = in_array($post_type, $allowed_post_types) ? $post_type : 'post';
+
+    $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 3;
+    $orderby = isset($_POST['orderby']) ? sanitize_text_field($_POST['orderby']) : 'date';
+    $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+
+    // Validate order direction
+    $order = in_array(strtoupper($order), ['ASC', 'DESC']) ? strtoupper($order) : 'DESC';
+
+    // Validate orderby
+    $allowed_orderby = ['date', 'title', 'ID', 'modified', 'rand', 'menu_order'];
+    $orderby = in_array($orderby, $allowed_orderby) ? $orderby : 'date';
+
+    // Query posts
+    $args = [
+        'post_type'      => $post_type,
+        'posts_per_page' => $posts_per_page,
+        'orderby'        => $orderby,
+        'order'          => $order,
+        'paged'          => $paged,
+        'post_status'    => 'publish',
+    ];
+
+    $query = new WP_Query($args);
+
+    if (!$query->have_posts()) {
+        wp_send_json_error(['message' => 'No more posts found']);
+        return;
+    }
+
+    // Build HTML output
+    ob_start();
+
+    while ($query->have_posts()) {
+        $query->the_post();
+        $post_id = get_the_ID();
+        $featured_image = get_the_post_thumbnail_url($post_id, 'large');
+        $post_title = get_the_title();
+        $post_link = get_permalink();
+        $post_description = get_post_listing_description($post_id);
+        ?>
+        <div class="col-lg-4 col-md-6 col-12 post-listing-item">
+            <div class="post-card">
+                <div class="post-card__image">
+                    <?php if ($featured_image) : ?>
+                        <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>">
+                            <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
+                        </a>
+                    <?php else : ?>
+                        <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>">
+                            <div class="post-card__image--placeholder">
+                                <span><?php esc_html_e('No Image', 'sage'); ?></span>
+                            </div>
+                        </a>
+                    <?php endif; ?>
+                </div>
+                <div class="post-card__body">
+                    <h3 class="post-card__title">
+                        <a href="<?php echo esc_url($post_link); ?>"><?php echo esc_html($post_title); ?></a>
+                    </h3>
+                    <?php if ($post_description) : ?>
+                        <p class="post-card__description"><?php echo esc_html($post_description); ?></p>
+                    <?php endif; ?>
+                    <a href="<?php echo esc_url($post_link); ?>" class="btn trans-black-btn post-card__button plwas-btn">
+                        <?php esc_html_e('Discover More', 'sage'); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+    $html = ob_get_clean();
+    wp_reset_postdata();
+
+    wp_send_json_success([
+        'html'      => $html,
+        'max_pages' => $query->max_num_pages,
+    ]);
+}
+
+/**
+ * Get post description for listing
+ *
+ * @param int $post_id The post ID
+ * @return string The post description
+ */
+function get_post_listing_description($post_id) {
+    // First try to get excerpt
+    $excerpt = get_the_excerpt($post_id);
+
+    if (!empty($excerpt) && $excerpt !== '') {
+        return wp_trim_words($excerpt, 20, '...');
+    }
+
+    // If no excerpt, try to get IntrotextSection content from post content
+    $post = get_post($post_id);
+    if ($post && has_blocks($post->post_content)) {
+        $blocks = parse_blocks($post->post_content);
+        foreach ($blocks as $block) {
+            if ($block['blockName'] === 'acf/introtext-section') {
+                // Get the content field from this block
+                if (!empty($block['attrs']['data']['content'])) {
+                    $content = $block['attrs']['data']['content'];
+                    return wp_trim_words(wp_strip_all_tags($content), 20, '...');
+                }
+            }
+        }
+    }
+
+    // Fallback to post content
+    $content = get_the_content(null, false, $post_id);
+    return wp_trim_words(wp_strip_all_tags($content), 20, '...');
+}

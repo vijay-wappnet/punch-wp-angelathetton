@@ -11,6 +11,7 @@ import './blocks/slider-with-multiple-box-section.js';
 import './blocks/slider-room-features-section.js';
 import './blocks/two-columns-image-cta-with-mobile-slider-section.js';
 import './blocks/newsletter-modal.js';
+import './blocks/post-listing-with-ajax-section.js';
 
 /* ==========================================
    HEADER + FULLSCREEN MENU BEHAVIOUR
@@ -296,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Footer sitemap toggle (mobile)
   const sitemapToggle = document.querySelector('.footer-sitemap-toggle');
   const sitemapContent = document.querySelector('.footer-sitemap-content');
-  
+
   if (sitemapToggle && sitemapContent) {
     // Make it keyboard focusable
     sitemapToggle.setAttribute('tabindex', '0');

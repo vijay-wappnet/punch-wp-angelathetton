@@ -285,5 +285,23 @@ add_action('init', function () {
             ],
         ]);
 
+        // Register the Related Post Listing Section Block
+        acf_register_block_type([
+            'name'            => 'related-post-listing-section',
+            'title'           => __('Related Post Listing Section', 'sage'),
+            'description'     => __('A section with related post listing', 'sage'),
+            'render_callback' => ['App\Blocks\RelatedPostListingSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
     }
 });
