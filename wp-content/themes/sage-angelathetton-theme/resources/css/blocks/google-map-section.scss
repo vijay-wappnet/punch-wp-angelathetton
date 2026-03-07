@@ -1,0 +1,63 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+
+.google-map-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gms__wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.gms__map {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 0;
+
+  // Override Bootstrap ratio if needed for custom aspect ratio
+  &.ratio-21x9 {
+    --bs-aspect-ratio: calc(9 / 21 * 100%);
+  }
+
+  @media (max-width: $screen-md-min) {
+    // Taller aspect ratio on mobile for better visibility
+    --bs-aspect-ratio: calc(3 / 4 * 100%);
+  }
+}
+
+.gms__iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(0%);
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: grayscale(0%);
+  }
+}
+
+.gms__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  background-color: $white-off-color;
+  color: $black-off-color;
+  font-size: 16px;
+  text-align: center;
+  padding: 20px;
+
+  p {
+    margin: 0;
+  }
+}

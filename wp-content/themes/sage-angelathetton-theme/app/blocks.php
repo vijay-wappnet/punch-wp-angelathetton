@@ -303,5 +303,23 @@ add_action('init', function () {
             ],
         ]);
 
+        // Register the Google Map Section Block
+        acf_register_block_type([
+            'name'            => 'google-map-section',
+            'title'           => __('Google Map Section', 'sage'),
+            'description'     => __('A section with Google Map integration', 'sage'),
+            'render_callback' => ['App\Blocks\GoogleMapSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
     }
 });
