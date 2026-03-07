@@ -267,7 +267,6 @@ add_action('init', function () {
             ],
         ]);
 
-
         // Register the Post Listing With Ajax Section Section Block
         acf_register_block_type([
             'name'            => 'post-listing-with-ajax-section',
