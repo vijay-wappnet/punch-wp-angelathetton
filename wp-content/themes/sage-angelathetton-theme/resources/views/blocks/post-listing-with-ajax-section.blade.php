@@ -16,7 +16,7 @@
                     @php
                         $post_id = $post->ID;
                         $featured_image = get_the_post_thumbnail_url($post_id, 'large');
-                        $post_title = get_the_title($post_id);
+                        $post_title = html_entity_decode(get_the_title($post_id), ENT_QUOTES, 'UTF-8');
                         $post_link = get_permalink($post_id);
                         $post_description = \App\Blocks\PostListingWithAjaxSection::getPostDescription($post_id);
                     @endphp

@@ -59,6 +59,12 @@
 .rpls__card-image {
   position: relative;
   overflow: hidden;
+  height: 369px;
+  aspect-ratio: 16/10;
+  @media (max-width: $screen-md-min) {
+    height: 333px;
+    aspect-ratio: auto;
+  }
 
   a {
     display: block;

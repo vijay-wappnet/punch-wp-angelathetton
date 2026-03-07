@@ -19,7 +19,7 @@ class RelatedPostListingSection
         $allowedPostTypes = ['post', 'package', 'product'];
 
         // Get field values using ACF
-        $title = get_field('heading_text') ?? '';
+        $title = html_entity_decode(get_field('heading_text') ?? '', ENT_QUOTES, 'UTF-8');
         $headingLevel = get_field('heading_level') ?: 'h2';
         $selectPostType = get_field('select_post_type') ?? 'post';
 
@@ -80,7 +80,7 @@ class RelatedPostListingSection
         echo view('blocks.related-post-listing-section', [
             'block'             => $block,
             'blockId'           => $blockId,
-            'title'             => $title,
+            'title'             => html_entity_decode($title, ENT_QUOTES, 'UTF-8'),
             'headingLevel'      => $headingLevel,
             'backgroundStyle'   => $backgroundStyle,
             'responsiveCss'     => $responsiveCss,

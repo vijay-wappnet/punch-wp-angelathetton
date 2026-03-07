@@ -1,10 +1,10 @@
 @if(!empty($responsiveCss))
 <style>{{ $responsiveCss }}</style>
 @endif
-<div id="{{ $blockId }}" class="slider-room-features-section" 
+<div id="{{ $blockId }}" class="slider-room-features-section"
      data-left-arrow="{{ Vite::asset('resources/images/left_arrow.svg') }}"
      data-right-arrow="{{ Vite::asset('resources/images/right-arrow.svg') }}"
-     style="background-color: {{ $background_color }};">
+     @if(!empty($backgroundStyle)) style="{{ $backgroundStyle }}" @endif>
     <div class="container">
         <div class="slider-room-fs__wrapper">
             <div class="slider-room-fs__slider">
@@ -37,6 +37,14 @@
                     </ul>
                   </div>
                 @endif
+
+                {{-- Content/Body --}}
+                @if($other_content)
+                    <div class="slider-room-fs__othercontent">
+                        {!! wp_kses_post($other_content) !!}
+                    </div>
+                @endif
+
                 @if ($button)
                     <a href="{{ $button['button_link']['url'] }}" class="btn srfs-btn {{ $button['button_class'] }}" aria-label="{{ $button['aria_label'] }}" data-ga-label="{{ $button['button_google_event_label'] }}">
                         {{ $button['button_link']['title'] }}

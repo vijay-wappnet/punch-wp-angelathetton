@@ -38,8 +38,12 @@
 .post-card__image {
   position: relative;
   overflow: hidden;
-  //aspect-ratio: 16/10;
-
+  height: 369px;
+  aspect-ratio: 16/10;
+  @media (max-width: $screen-md-min) {
+    height: 333px;
+    aspect-ratio: auto;
+  }
   a {
     display: block;
     width: 100%;

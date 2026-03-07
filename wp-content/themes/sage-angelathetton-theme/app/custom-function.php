@@ -210,7 +210,7 @@ function handle_load_more_posts() {
         $query->the_post();
         $post_id = get_the_ID();
         $featured_image = get_the_post_thumbnail_url($post_id, 'large');
-        $post_title = get_the_title();
+        $post_title = html_entity_decode(get_the_title(), ENT_QUOTES, 'UTF-8');
         $post_link = get_permalink();
         $post_description = get_post_listing_description($post_id);
         ?>
