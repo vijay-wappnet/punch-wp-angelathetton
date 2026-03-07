@@ -249,12 +249,31 @@ add_action('init', function () {
             ],
         ]);
 
-         // Register the Introtext With Right CTA Section Block
+        // Register the Introtext With Right CTA Section Block
         acf_register_block_type([
             'name'            => 'introtext-with-right-cta-section',
             'title'           => __('Introtext With Right CTA Section', 'sage'),
             'description'     => __('A section with intro text and a right-aligned call to action', 'sage'),
             'render_callback' => ['App\Blocks\IntrotextWithRightCTASection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
+
+        // Register the Post Listing With Ajax Section Section Block
+        acf_register_block_type([
+            'name'            => 'post-listing-with-ajax-section',
+            'title'           => __('Post Listing With Ajax Section', 'sage'),
+            'description'     => __('A section with post listing with ajax', 'sage'),
+            'render_callback' => ['App\Blocks\PostListingWithAjaxSection', 'render'],
             'category'        => 'common',
             'icon'            => 'format-image',
             'mode'            => 'preview',
