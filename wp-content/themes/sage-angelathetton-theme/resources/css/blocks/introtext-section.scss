@@ -36,7 +36,18 @@
           display: list-item;
           padding-bottom: 5px;
         }
+        &.split-ul {
+          margin-top: 40px;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0 20px;
+          @media (max-width: $screen-md-min) {
+            grid-template-columns: 1fr;
+            gap: 0;
+          }
+        }
       }
+
       strong,b{
         font-weight: $font-weight-700;
       }
