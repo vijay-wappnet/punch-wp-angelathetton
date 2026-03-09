@@ -12,6 +12,8 @@ import './blocks/slider-room-features-section.js';
 import './blocks/two-columns-image-cta-with-mobile-slider-section.js';
 import './blocks/newsletter-modal.js';
 import './blocks/post-listing-with-ajax-section.js';
+import './blocks/career-post-listing-section.js';
+import './blocks/faqs-accordion-section.js';
 
 /* ==========================================
    HEADER + FULLSCREEN MENU BEHAVIOUR

@@ -1,0 +1,162 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+
+.career-post-listing-section {
+  .career-list {
+    .career-item {
+      padding: 22px 0;
+      border-bottom: 1px solid #d9d9d9;
+      row-gap: 16px;
+    }
+  }
+
+  .career-title {
+    text-transform: uppercase;
+    color: $black-off-color;
+  }
+
+  .career-meta {
+    font-family: $fonts-niveau;
+    text-transform: uppercase;
+    color: $black-off-color;
+    display: flex;
+    gap: 15px;
+    @media (max-width: $screen-md-min) {
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 15px;
+      span{
+        display: none;
+      }
+    }
+  }
+
+  .career-description {
+    color: $black-off-color;
+  }
+
+  .career-btn {
+    min-width: 160px;
+    border: 1px solid #d9d9d9;
+    @media (max-width: $screen-sm-min) {
+      width: 100%;
+    }
+  }
+
+  .career-pagination {
+    margin-top: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+
+    .prev,
+    .next,
+    .is-disabled {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+    }
+
+    .is-disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .page-count {
+      min-width: 72px;
+      text-align: center;
+      font-size: 16px;
+      color: $black-off-color;
+    }
+  }
+
+  // Load More Button Wrapper (Mobile only)
+  .load-more-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 34px;
+  }
+
+  .load-more-btn {
+    min-width: 160px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid #d9d9d9;
+    width: 100%;
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .btn-loading {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .spinner {
+      animation: rotate 2s linear infinite;
+
+      .path {
+        stroke: currentColor;
+        stroke-linecap: round;
+        animation: dash 1.5s ease-in-out infinite;
+      }
+    }
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  // Career item animation for AJAX loaded items
+  .career-item {
+    &.is-loading {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    &.is-loaded {
+      animation: fadeInUp 0.4s ease forwards;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .no-posts-message {
+    text-align: center;
+    padding: 30px 0;
+  }
+}

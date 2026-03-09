@@ -1,0 +1,141 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+
+.error-404-page {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  //background-color: $black-off-color;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  // Mobile: relative positioning for image-based layout
+  @media (max-width: $screen-md-min-767) {
+    display: block;
+    min-height: auto;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: $screen-md-min-767) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding-bottom: 30px;
+    }
+  }
+
+  // Mobile background image container
+  &__mobile-bg {
+    position: relative;
+    width: 100%;
+    line-height: 0;
+  }
+
+  &__mobile-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  // Content wrapper
+  &__content {
+    position: relative;
+  }
+
+  &__heading {
+    font-family: $fonts-niveau;
+    font-size: 42px;
+    text-transform: uppercase;
+    color: $white-color;
+    @media (max-width: $screen-md-min) {
+      display: none;
+    }
+  }
+
+  &__button-wrapper {
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    @media (max-width: $screen-md-min-767) {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .return-home-btn {
+    font-size: 14px;
+    font-weight: $font-weight-400;
+    text-transform: capitalize;
+    color: $white-color;
+    background-color: transparent;
+    border: 1px solid $white-color;
+    border-radius: 0;
+    text-decoration: none;
+    overflow: hidden; // for aimated shine effect
+    transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+    position: relative; // for aimated shine effect
+    &:hover{
+      background-color: $white-color;
+      color: $black-off-color;
+      &:after{
+        left: 140%; // for aimated shine effect
+      }
+    }
+    &:focus {
+      background-color: $white-color;
+      color: $black-off-color;
+      &:after{
+        left: 140%; // for aimated shine effect
+      }
+    }
+
+    &:focus-visible {
+      background-color: $white-color;
+      color: $black-off-color;
+      &:after{
+        left: 140%; // for aimated shine effect
+      }
+    }
+
+    &:after{
+      // for aimated shine effect
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -130%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(
+        -115deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.25) 35%,
+        rgba(255, 255, 255, 0.7) 50%,
+        rgba(255, 255, 255, 0.25) 65%,
+        transparent 100%
+      );
+      transform: skewX(20deg);
+      transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+
+    @media (max-width: $screen-md-min) {
+      padding: 10px 25px;
+      font-size: 13px;
+    }
+
+    @media (max-width: $screen-sm-min) {
+      padding: 10px 20px;
+      width: 100%;
+      max-width: 200px;
+    }
+  }
+}

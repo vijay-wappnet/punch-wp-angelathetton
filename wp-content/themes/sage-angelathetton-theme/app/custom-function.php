@@ -148,6 +148,10 @@ add_action('wp_head', function() {
             ajaxUrl: '<?php echo esc_url(admin_url('admin-ajax.php')); ?>',
             nonce: '<?php echo wp_create_nonce('post_listing_ajax_nonce'); ?>'
         };
+        var careerListingAjax = {
+            ajaxUrl: '<?php echo esc_url(admin_url('admin-ajax.php')); ?>',
+            nonce: '<?php echo wp_create_nonce('career_listing_ajax_nonce'); ?>'
+        };
     </script>
     <?php
 });
@@ -286,4 +290,107 @@ function get_post_listing_description($post_id) {
     // Fallback to post content
     $content = get_the_content(null, false, $post_id);
     return wp_trim_words(wp_strip_all_tags($content), 20, '...');
+}
+
+/**
+ * AJAX Handler for Load More Career Posts
+ */
+add_action('wp_ajax_load_more_career_posts', 'handle_load_more_career_posts');
+add_action('wp_ajax_nopriv_load_more_career_posts', 'handle_load_more_career_posts');
+
+function handle_load_more_career_posts() {
+    // Verify nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'career_listing_ajax_nonce')) {
+        wp_send_json_error(['message' => 'Invalid security token']);
+        return;
+    }
+
+    // Allowed post types
+    $allowed_post_types = ['career'];
+
+    // Get parameters
+    $post_type = isset($_POST['post_type']) ? sanitize_text_field($_POST['post_type']) : 'career';
+
+    // Validate post type against allowed values
+    $post_type = in_array($post_type, $allowed_post_types) ? $post_type : 'career';
+
+    $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 4;
+    $orderby = isset($_POST['orderby']) ? sanitize_text_field($_POST['orderby']) : 'date';
+    $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+
+    // Validate order direction
+    $order = in_array(strtoupper($order), ['ASC', 'DESC']) ? strtoupper($order) : 'DESC';
+
+    // Validate orderby
+    $allowed_orderby = ['date', 'title', 'ID'];
+    $orderby = in_array($orderby, $allowed_orderby) ? $orderby : 'date';
+
+    // Query posts
+    $args = [
+        'post_type'      => $post_type,
+        'posts_per_page' => $posts_per_page,
+        'orderby'        => $orderby,
+        'order'          => $order,
+        'paged'          => $paged,
+        'post_status'    => 'publish',
+    ];
+
+    $query = new WP_Query($args);
+
+    if (!$query->have_posts()) {
+        wp_send_json_error(['message' => 'No more career posts found']);
+        return;
+    }
+
+    // Get admin email
+    $admin_email = get_option('admin_email');
+    $email = is_email($admin_email) ? sanitize_email($admin_email) : '';
+
+    // Build HTML output
+    ob_start();
+
+    while ($query->have_posts()) {
+        $query->the_post();
+        $post_id = get_the_ID();
+        $post_title = html_entity_decode(get_the_title(), ENT_QUOTES, 'UTF-8');
+        $post_link = get_permalink();
+        $department_type = get_field('department_type', $post_id);
+        $employment_type = get_field('employment_type', $post_id);
+        $post_description = get_field('short_description', $post_id);
+        ?>
+        <div class="career-item row align-items-center">
+            <div class="col-12 col-md-10">
+                <h2 class="career-title"><?php echo esc_html($post_title); ?></h2>
+
+                <h4 class="career-meta">
+                    <div>DEPARTMENT - <?php echo esc_html($department_type ?: 'N/A'); ?> <span>|</span> </div>
+                    <div>EMPLOYMENT - <?php echo esc_html($employment_type ?: 'N/A'); ?> </div>
+                </h4>
+
+                <?php if ($post_description) : ?>
+                    <p class="career-description"><?php echo esc_html($post_description); ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="col-12 col-md-2 text-md-end">
+                <a
+                   href="<?php echo !empty($email) ? 'mailto:' . esc_attr($email) : '#'; ?>"
+                   class="btn trans-black-btn career-btn"
+                   aria-label="<?php echo esc_attr('Get in touch about ' . $post_title); ?>"
+                   data-event-label="Get in touch">
+                    <?php esc_html_e('Get in touch', 'sage'); ?>
+                </a>
+            </div>
+        </div>
+        <?php
+    }
+
+    $html = ob_get_clean();
+    wp_reset_postdata();
+
+    wp_send_json_success([
+        'html'      => $html,
+        'max_pages' => $query->max_num_pages,
+    ]);
 }

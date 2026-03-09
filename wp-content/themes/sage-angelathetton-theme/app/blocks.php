@@ -321,5 +321,41 @@ add_action('init', function () {
             ],
         ]);
 
+        // Register the Career Post Listing Section Block
+        acf_register_block_type([
+            'name'            => 'career-post-listing-section',
+            'title'           => __('Career Post Listing Section', 'sage'),
+            'description'     => __('A section with career post listing', 'sage'),
+            'render_callback' => ['App\Blocks\CareerPostListingSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
+        // Register the FAQs Accordion Section Block
+        acf_register_block_type([
+            'name'            => 'faqs-accordion-section',
+            'title'           => __('FAQs Accordion Section', 'sage'),
+            'description'     => __('A section for the FAQs accordion', 'sage'),
+            'render_callback' => ['App\Blocks\FaqsAccordionSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
     }
 });

@@ -1,0 +1,120 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+
+.faqs-accordion-section {
+  .faqs-accordion {
+    width: 100%;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid #d9d9d9;
+
+    &:first-child {
+      border-top: 1px solid #d9d9d9;
+    }
+
+    &.is-active {
+      .faq-question {
+        .faq-icon {
+          .icon {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .faq-answer {
+        max-height: 500px;
+        opacity: 1;
+        padding: 0 0 20px 0;
+      }
+    }
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 15px;
+
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $black-off-color;
+      outline-offset: 2px;
+    }
+
+    @media (max-width: $screen-md-min) {
+      padding: 15px 0;
+    }
+  }
+
+  .faq-question-text {
+    font-family: $fonts-niveau;
+    font-size: 32px;
+    font-weight: $font-weight-300;
+    line-height: 1.2;
+    color: $black-off-color;
+    flex: 1;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 32px;
+    }
+  }
+
+  .faq-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+
+    .icon {
+      width: 24px;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+    padding: 0;
+  }
+
+  .faq-answer-content {
+    font-family: $fonts-niveau;
+    font-size: 22px;
+    font-weight: $font-weight-400;
+    line-height: 1.2;
+    color: $black-off-color;
+    padding-right: 40px;
+
+    p {
+      margin: 0;
+    }
+
+    @media (max-width: $screen-md-min) {
+      font-size: 18px;
+      padding-right: 30px;
+    }
+  }
+
+  .no-faqs-message {
+    text-align: center;
+    padding: 30px 0;
+    color: $black-off-color;
+    font-style: italic;
+  }
+}

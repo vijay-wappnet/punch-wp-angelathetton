@@ -16,7 +16,7 @@
 @use "layouts/header";
 // @use "layouts/sidebar";
 @use "layouts/footer";
-// @use "layouts/pages";
+@use "layouts/404-page" as *;
 // @use "layouts/posts";
 // @use "layouts/tinymce";
 // @use "responsive/responsive";
@@ -39,6 +39,8 @@
 @use "blocks/post-listing-with-ajax-section";
 @use "blocks/related-post-listing-section";
 @use "blocks/google-map-section";
+@use "blocks/career-post-listing-section";
+@use "blocks/faqs-accordion-section";
 
 /*.fonts-niveau-grotesk{
   font-family: $fonts-niveau-grotesk-small-caps;
