@@ -22,7 +22,7 @@
             $post_description = get_field('short_description', $post_id);
           @endphp
 
-          <div class="career-item row align-items-center">
+          <div class="career-item row">
             <div class="col-12 col-md-10">
               <h2 class="career-title">{{ $post_title }}</h2>
 
