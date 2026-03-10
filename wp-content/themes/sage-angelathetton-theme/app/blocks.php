@@ -357,5 +357,24 @@ add_action('init', function () {
             ],
         ]);
 
+        // Register the Package Details With Images Section Block
+        acf_register_block_type([
+            'name'            => 'package-details-with-images-section',
+            'title'           => __('Package Details With Images Section', 'sage'),
+            'description'     => __('A section for the package details with images', 'sage'),
+            'render_callback' => ['App\Blocks\PackageDetailsWithImagesSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
+
     }
 });

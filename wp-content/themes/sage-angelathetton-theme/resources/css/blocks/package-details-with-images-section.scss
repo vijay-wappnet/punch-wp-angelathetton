@@ -1,0 +1,50 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+@use "../components/buttons" as *;
+
+.package-details-with-images-section {
+  &__main-heading {
+    margin-bottom: 50px;
+
+    @media (max-width: $screen-md-min) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    @media (max-width: $screen-md-min) {
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+  }
+  &__contents {
+    padding-left: 25px;
+    @media (max-width: $screen-md-min) {
+      padding-left: 0;
+    }
+  }
+  &__content-item {
+    &:first-child {
+      border-bottom: 1px solid rgba($black-off-color, 0.2);
+      padding-bottom: 35px;
+      margin-bottom: 35px;
+    }
+  }
+  &__content-title {
+    margin-bottom: 20px;
+  }
+  &__content-description {
+    p{
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__content-button {
+    margin-top: 30px;
+  }
+}

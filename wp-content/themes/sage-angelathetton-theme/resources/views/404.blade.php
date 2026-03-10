@@ -28,7 +28,7 @@
     // Hide desktop background on mobile
     $responsiveBgCss .= '@media (max-width: 767px) { ';
     $responsiveBgCss .= '#' . $sectionId . ' { ';
-    $responsiveBgCss .= 'background-image: none;padding-top:100px; ';
+    $responsiveBgCss .= 'background-image: none;padding-top:50px; ';
     $responsiveBgCss .= '} ';
     $responsiveBgCss .= '} ';
 
