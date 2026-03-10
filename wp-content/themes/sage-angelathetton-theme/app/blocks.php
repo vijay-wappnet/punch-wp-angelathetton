@@ -375,6 +375,23 @@ add_action('init', function () {
             ],
         ]);
 
+        // Register the Contact Details With Image Section Block
+        acf_register_block_type([
+            'name'            => 'contact-details-with-image-section',
+            'title'           => __('Contact Details With Image Section', 'sage'),
+            'description'     => __('A section for the contact details with image', 'sage'),
+            'render_callback' => ['App\Blocks\ContactDetailsWithImageSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
 
     }
 });
