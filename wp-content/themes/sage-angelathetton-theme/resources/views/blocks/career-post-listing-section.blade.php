@@ -5,6 +5,7 @@
 <section id="{{ $blockId }}" class="career-post-listing-section" @if(!empty($backgroundStyle)) style="{{ $backgroundStyle }}" @endif
     data-post-type="{{ esc_attr($selectPostType) }}"
     data-posts-per-page="{{ esc_attr($postsPerPage) }}"
+    data-posts-per-page-mobile="{{ esc_attr($postsPerPageMobile) }}"
     data-orderby="{{ esc_attr($orderby) }}"
     data-order="{{ esc_attr($order) }}"
     data-paged="{{ esc_attr($currentPage) }}"

@@ -2,10 +2,10 @@
 
 namespace App\Blocks;
 
-class BannerImageSection
+class ArticleSingleBannerImageSection
 {
     /**
-     * Render the Banner Image Section block
+     * Render the Article Single Banner Image Section block
      *
      * @param array $block The block settings and attributes
      * @param string $content The block content
@@ -22,13 +22,13 @@ class BannerImageSection
         $padding = get_field('padding');
 
         // Generate unique block ID
-        $blockId = 'bis-' . ($block['id'] ?? uniqid());
+        $blockId = 'asbis-' . ($block['id'] ?? uniqid());
 
         // Generate responsive CSS for margin and padding
         $responsiveCss = custom_acf_dimensions($margin, $padding, $blockId);
 
         // Render the Blade template with data using view helper
-        echo view('blocks.banner-image-section', [
+        echo view('blocks.article-single-banner-image-section', [
             'blockId'       => $blockId,
             'responsiveCss' => $responsiveCss,
             'banner_image'  => $banner_image,

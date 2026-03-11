@@ -1,7 +1,7 @@
 @if(!empty($responsiveCss))
 <style>{{ $responsiveCss }}</style>
 @endif
-<section id="{{ $blockId }}" class="post-listing-with-ajax-section" @if(!empty($backgroundStyle)) style="{{ $backgroundStyle }}" @endif
+<section id="{{ $blockId }}" class="article-post-listing-with-ajax-section" @if(!empty($backgroundStyle)) style="{{ $backgroundStyle }}" @endif
     data-post-type="{{ esc_attr($selectPostType) }}"
     data-posts-per-page="{{ esc_attr($postsPerPage) }}"
     data-posts-per-page-mobile="{{ esc_attr($postsPerPageMobile) }}"
@@ -11,7 +11,7 @@
     data-total-posts="{{ esc_attr($totalPosts) }}">
     <div class="container">
         {{-- Posts Grid --}}
-        <div class="row post-listing-grid">
+        <div class="row article-post-listing-grid">
             @if(!empty($posts))
                 @foreach($posts as $post)
                     @php
@@ -19,31 +19,29 @@
                         $featured_image = get_the_post_thumbnail_url($post_id, 'large');
                         $post_title = html_entity_decode(get_the_title($post_id), ENT_QUOTES, 'UTF-8');
                         $post_link = get_permalink($post_id);
-                        $post_description = \App\Blocks\PostListingWithAjaxSection::getPostDescription($post_id);
+                        $post_date = \App\Blocks\ArticlePostListingWithAjaxSection::getFormattedDate($post_id);
                     @endphp
-                    <div class="col-lg-4 col-md-6 col-12 post-listing-item">
-                        <div class="post-card">
-                            <div class="post-card__image">
+                    <div class="col-lg-4 col-md-6 col-12 article-post-listing-item">
+                        <div class="article-post-card">
+                            <div class="article-post-card__image">
                                 @if($featured_image)
                                     <a href="{{ esc_url($post_link) }}" aria-label="{{ esc_attr($post_title) }}">
                                         <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($post_title) }}" loading="lazy">
                                     </a>
                                 @else
                                     <a href="{{ esc_url($post_link) }}" aria-label="{{ esc_attr($post_title) }}">
-                                        <div class="post-card__image--placeholder">
+                                        <div class="article-post-card__image--placeholder">
                                             <span>{{ __('No Image', 'sage') }}</span>
                                         </div>
                                     </a>
                                 @endif
                             </div>
-                            <div class="post-card__body">
-                                <h3 class="post-card__title">
+                            <div class="article-post-card__body">
+                                <span class="article-post-card__date">{{ $post_date }}</span>
+                                <h3 class="article-post-card__title">
                                     <a href="{{ esc_url($post_link) }}">{{ $post_title }}</a>
                                 </h3>
-                                @if($post_description)
-                                    <p class="post-card__description">{{ $post_description }}</p>
-                                @endif
-                                <a href="{{ esc_url($post_link) }}" class="btn trans-black-btn post-card__button plwas-btn">
+                                <a href="{{ esc_url($post_link) }}" class="btn trans-black-btn article-post-card__button aplwas-btn">
                                     {{ __('Discover More', 'sage') }}
                                 </a>
                             </div>
@@ -65,9 +63,9 @@
                 $eventLabel = $loadMoreButton['button_google_event_label'] ?? '';
                 $buttonClass = $loadMoreButton['button_class'] ?? 'trans-black-btn';
             @endphp
-            <div class="load-more-button-wrapper">
+            <div class="article-load-more-button-wrapper">
                 <button type="button"
-                    class="btn {{ esc_attr($buttonClass) }} load-more-btn"
+                    class="btn {{ esc_attr($buttonClass) }} article-load-more-btn"
                     data-block-id="{{ $blockId }}"
                     @if($ariaLabel)aria-label="{{ esc_attr($ariaLabel) }}"@endif
                     @if($eventLabel)data-event-label="{{ esc_attr($eventLabel) }}"@endif>

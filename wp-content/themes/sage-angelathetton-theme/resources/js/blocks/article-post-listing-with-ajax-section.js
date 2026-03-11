@@ -1,5 +1,5 @@
 /**
- * Post Listing With Ajax Section
+ * Article Post Listing With Ajax Section
  * Handles load more functionality with vanilla JS and fetch API
  */
 
@@ -11,9 +11,9 @@
     return window.innerWidth < 768;
   }
 
-  // Initialize all post listing sections
-  function initPostListingSections() {
-    const sections = document.querySelectorAll('.post-listing-with-ajax-section');
+  // Initialize all article post listing sections
+  function initArticlePostListingSections() {
+    const sections = document.querySelectorAll('.article-post-listing-with-ajax-section');
 
     sections.forEach(section => {
       initSection(section);
@@ -38,7 +38,7 @@
     handleVisibility(section);
     updateLoadMoreButton(section);
 
-    const loadMoreBtn = section.querySelector('.load-more-btn');
+    const loadMoreBtn = section.querySelector('.article-load-more-btn');
 
     if (!loadMoreBtn) return;
 
@@ -51,7 +51,7 @@
   // Handle visibility of posts based on viewport
   function handleVisibility(section) {
     const postsPerPageMobile = parseInt(section.dataset.postsPerPageMobile) || 3;
-    const items = section.querySelectorAll('.post-listing-item');
+    const items = section.querySelectorAll('.article-post-listing-item');
     const isMobile = isMobileViewport();
 
     items.forEach((item, index) => {
@@ -70,7 +70,7 @@
   function updateLoadMoreButton(section) {
     const totalPosts = parseInt(section.dataset.totalPosts) || 0;
     const visibleCount = getVisiblePostsCount(section);
-    const buttonWrapper = section.querySelector('.load-more-button-wrapper');
+    const buttonWrapper = section.querySelector('.article-load-more-button-wrapper');
 
     if (buttonWrapper) {
       if (visibleCount >= totalPosts) {
@@ -84,7 +84,7 @@
 
   // Get count of visible posts
   function getVisiblePostsCount(section) {
-    const items = section.querySelectorAll('.post-listing-item');
+    const items = section.querySelectorAll('.article-post-listing-item');
     let visibleCount = 0;
     items.forEach(item => {
       if (!item.classList.contains('mobile-hidden')) {
@@ -107,7 +107,7 @@
     const totalPosts = parseInt(section.dataset.totalPosts) || 0;
 
     // Check if there are hidden posts to show first (on mobile)
-    const hiddenItems = section.querySelectorAll('.post-listing-item.mobile-hidden');
+    const hiddenItems = section.querySelectorAll('.article-post-listing-item.mobile-hidden');
 
     if (isMobile && hiddenItems.length > 0) {
       // Show next batch of hidden posts
@@ -126,7 +126,7 @@
     }
 
     // Calculate offset based on total items in DOM
-    const allItems = section.querySelectorAll('.post-listing-item');
+    const allItems = section.querySelectorAll('.article-post-listing-item');
     const offset = allItems.length;
 
     // Check if we need to load more
@@ -141,8 +141,8 @@
     try {
       // Prepare form data
       const formData = new FormData();
-      formData.append('action', 'load_more_posts');
-      formData.append('nonce', postListingAjax.nonce);
+      formData.append('action', 'load_more_article_posts');
+      formData.append('nonce', articleListingAjax.nonce);
       formData.append('post_type', postType);
       formData.append('posts_per_page', postsPerPage);
       formData.append('orderby', orderby);
@@ -150,7 +150,7 @@
       formData.append('offset', offset);
 
       // Make AJAX request
-      const response = await fetch(postListingAjax.ajaxUrl, {
+      const response = await fetch(articleListingAjax.ajaxUrl, {
         method: 'POST',
         body: formData,
         credentials: 'same-origin'
@@ -167,7 +167,7 @@
         appendPosts(section, data.data.html);
 
         // Check if there are more posts
-        const newTotalItems = section.querySelectorAll('.post-listing-item').length;
+        const newTotalItems = section.querySelectorAll('.article-post-listing-item').length;
         if (newTotalItems >= totalPosts) {
           hideLoadMoreButton(section);
         }
@@ -176,7 +176,7 @@
         hideLoadMoreButton(section);
       }
     } catch (error) {
-      console.error('Error loading more posts:', error);
+      console.error('Error loading more article posts:', error);
     } finally {
       // Reset button state
       setButtonLoading(button, false);
@@ -201,7 +201,7 @@
 
   // Append new posts to the grid
   function appendPosts(section, html) {
-    const grid = section.querySelector('.post-listing-grid');
+    const grid = section.querySelector('.article-post-listing-grid');
 
     if (!grid) return;
 
@@ -210,7 +210,7 @@
     tempContainer.innerHTML = html;
 
     // Get all new post items
-    const newItems = tempContainer.querySelectorAll('.post-listing-item');
+    const newItems = tempContainer.querySelectorAll('.article-post-listing-item');
 
     // Add loading class initially and mark as ajax-loaded
     newItems.forEach(item => {
@@ -232,7 +232,7 @@
 
   // Hide load more button
   function hideLoadMoreButton(section) {
-    const buttonWrapper = section.querySelector('.load-more-button-wrapper');
+    const buttonWrapper = section.querySelector('.article-load-more-button-wrapper');
 
     if (buttonWrapper) {
       buttonWrapper.style.opacity = '0';
@@ -246,8 +246,8 @@
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPostListingSections);
+    document.addEventListener('DOMContentLoaded', initArticlePostListingSections);
   } else {
-    initPostListingSections();
+    initArticlePostListingSections();
   }
 })();

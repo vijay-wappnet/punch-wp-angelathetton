@@ -152,6 +152,10 @@ add_action('wp_head', function() {
             ajaxUrl: '<?php echo esc_url(admin_url('admin-ajax.php')); ?>',
             nonce: '<?php echo wp_create_nonce('career_listing_ajax_nonce'); ?>'
         };
+        var articleListingAjax = {
+            ajaxUrl: '<?php echo esc_url(admin_url('admin-ajax.php')); ?>',
+            nonce: '<?php echo wp_create_nonce('article_listing_ajax_nonce'); ?>'
+        };
     </script>
     <?php
 });
@@ -178,9 +182,15 @@ function handle_load_more_posts() {
     // Validate post type against allowed values
     $post_type = in_array($post_type, $allowed_post_types) ? $post_type : 'post';
 
-    $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 3;
+    // Use posted value, or fallback to WordPress Reading settings
+    $posts_per_page = isset($_POST['posts_per_page']) && intval($_POST['posts_per_page']) > 0
+        ? intval($_POST['posts_per_page'])
+        : get_option('posts_per_page', 10);
     $orderby = isset($_POST['orderby']) ? sanitize_text_field($_POST['orderby']) : 'date';
     $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
+
+    // Support offset parameter (preferred) or paged for backwards compatibility
+    $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
 
     // Validate order direction
@@ -196,9 +206,15 @@ function handle_load_more_posts() {
         'posts_per_page' => $posts_per_page,
         'orderby'        => $orderby,
         'order'          => $order,
-        'paged'          => $paged,
         'post_status'    => 'publish',
     ];
+
+    // Use offset if provided, otherwise use paged
+    if ($offset > 0) {
+        $args['offset'] = $offset;
+    } else {
+        $args['paged'] = $paged;
+    }
 
     $query = new WP_Query($args);
 
@@ -317,6 +333,9 @@ function handle_load_more_career_posts() {
     $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 4;
     $orderby = isset($_POST['orderby']) ? sanitize_text_field($_POST['orderby']) : 'date';
     $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
+    
+    // Support offset parameter (preferred) or paged for backwards compatibility
+    $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
 
     // Validate order direction
@@ -332,9 +351,15 @@ function handle_load_more_career_posts() {
         'posts_per_page' => $posts_per_page,
         'orderby'        => $orderby,
         'order'          => $order,
-        'paged'          => $paged,
         'post_status'    => 'publish',
     ];
+
+    // Use offset if provided, otherwise use paged
+    if ($offset > 0) {
+        $args['offset'] = $offset;
+    } else {
+        $args['paged'] = $paged;
+    }
 
     $query = new WP_Query($args);
 
@@ -393,4 +418,156 @@ function handle_load_more_career_posts() {
         'html'      => $html,
         'max_pages' => $query->max_num_pages,
     ]);
+}
+
+/**
+ * AJAX Handler for Load More Article Posts
+ */
+add_action('wp_ajax_load_more_article_posts', 'handle_load_more_article_posts');
+add_action('wp_ajax_nopriv_load_more_article_posts', 'handle_load_more_article_posts');
+
+function handle_load_more_article_posts() {
+    // Verify nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'article_listing_ajax_nonce')) {
+        wp_send_json_error(['message' => 'Invalid security token']);
+        return;
+    }
+
+    // Only allow 'post' type for articles
+    $post_type = 'post';
+
+    // Use posted value, or fallback to WordPress Reading settings
+    $posts_per_page = isset($_POST['posts_per_page']) && intval($_POST['posts_per_page']) > 0
+        ? intval($_POST['posts_per_page'])
+        : get_option('posts_per_page', 10);
+    $orderby = isset($_POST['orderby']) ? sanitize_text_field($_POST['orderby']) : 'date';
+    $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
+
+    // Support offset parameter (preferred) or paged for backwards compatibility
+    $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+
+    // Validate order direction
+    $order = in_array(strtoupper($order), ['ASC', 'DESC']) ? strtoupper($order) : 'DESC';
+
+    // Validate orderby
+    $allowed_orderby = ['date', 'title', 'ID'];
+    $orderby = in_array($orderby, $allowed_orderby) ? $orderby : 'date';
+
+    // Query posts
+    $args = [
+        'post_type'      => $post_type,
+        'posts_per_page' => $posts_per_page,
+        'orderby'        => $orderby,
+        'order'          => $order,
+        'post_status'    => 'publish',
+    ];
+
+    // Use offset if provided, otherwise use paged
+    if ($offset > 0) {
+        $args['offset'] = $offset;
+    } else {
+        $args['paged'] = $paged;
+    }
+
+    $query = new WP_Query($args);
+
+    if (!$query->have_posts()) {
+        wp_send_json_error(['message' => 'No more article posts found']);
+        return;
+    }
+
+    // Build HTML output
+    ob_start();
+
+    while ($query->have_posts()) {
+        $query->the_post();
+        $post_id = get_the_ID();
+        $featured_image = get_the_post_thumbnail_url($post_id, 'large');
+        $post_title = html_entity_decode(get_the_title(), ENT_QUOTES, 'UTF-8');
+        $post_link = get_permalink();
+        $post_date = get_the_date('d/m/y', $post_id);
+        ?>
+        <div class="col-lg-4 col-md-6 col-12 article-post-listing-item">
+            <div class="article-post-card">
+                <div class="article-post-card__image">
+                    <?php if ($featured_image) : ?>
+                        <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>">
+                            <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
+                        </a>
+                    <?php else : ?>
+                        <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>">
+                            <div class="article-post-card__image--placeholder">
+                                <span><?php esc_html_e('No Image', 'sage'); ?></span>
+                            </div>
+                        </a>
+                    <?php endif; ?>
+                </div>
+                <div class="article-post-card__body">
+                    <span class="article-post-card__date"><?php echo esc_html($post_date); ?></span>
+                    <h3 class="article-post-card__title">
+                        <a href="<?php echo esc_url($post_link); ?>"><?php echo esc_html($post_title); ?></a>
+                    </h3>
+                    <a href="<?php echo esc_url($post_link); ?>" class="btn trans-black-btn article-post-card__button aplwas-btn">
+                        <?php esc_html_e('Discover More', 'sage'); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+    $html = ob_get_clean();
+    wp_reset_postdata();
+
+    wp_send_json_success([
+        'html'      => $html,
+        'max_pages' => $query->max_num_pages,
+    ]);
+}
+
+/**
+ * Ensure only one post can have is_featured_article = true at a time
+ * When a post is set as featured, automatically unset any other featured posts
+ */
+add_action('acf/save_post', 'handle_single_featured_article', 20);
+
+function handle_single_featured_article($post_id) {
+    // Bail early if this is an autosave or revision
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    // Only run for 'post' post type
+    if (get_post_type($post_id) !== 'post') {
+        return;
+    }
+
+    // Get the is_featured_article value for this post
+    $is_featured = get_field('is_featured_article', $post_id);
+
+    // If this post is being set as featured
+    if ($is_featured) {
+        // Find all other posts that are currently featured
+        $args = [
+            'post_type'      => 'post',
+            'posts_per_page' => -1,
+            'post_status'    => 'any',
+            'post__not_in'   => [$post_id], // Exclude current post
+            'meta_query'     => [
+                [
+                    'key'     => 'is_featured_article',
+                    'value'   => '1',
+                    'compare' => '=',
+                ],
+            ],
+        ];
+
+        $featured_posts = get_posts($args);
+
+        // Unset featured status on all other posts
+        foreach ($featured_posts as $featured_post) {
+            update_field('is_featured_article', false, $featured_post->ID);
+        }
+    }
 }

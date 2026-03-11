@@ -14,6 +14,7 @@ import './blocks/newsletter-modal.js';
 import './blocks/post-listing-with-ajax-section.js';
 import './blocks/career-post-listing-section.js';
 import './blocks/faqs-accordion-section.js';
+import './blocks/article-post-listing-with-ajax-section.js';
 
 /* ==========================================
    HEADER + FULLSCREEN MENU BEHAVIOUR

@@ -6,6 +6,11 @@
 (function() {
   'use strict';
 
+  // Check if current viewport is mobile (below 768px)
+  function isMobileViewport() {
+    return window.innerWidth < 768;
+  }
+
   // Initialize all career listing sections
   function initCareerListingSections() {
     const sections = document.querySelectorAll('.career-post-listing-section');
@@ -13,10 +18,26 @@
     sections.forEach(section => {
       initSection(section);
     });
+
+    // Handle resize for mobile/desktop switching
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function() {
+        sections.forEach(section => {
+          handleVisibility(section);
+          updateLoadMoreButton(section);
+        });
+      }, 250);
+    });
   }
 
   // Initialize a single section
   function initSection(section) {
+    // Handle initial visibility based on viewport
+    handleVisibility(section);
+    updateLoadMoreButton(section);
+
     const loadMoreBtn = section.querySelector('.load-more-btn');
 
     if (!loadMoreBtn) return;
@@ -27,19 +48,92 @@
     });
   }
 
+  // Handle visibility of posts based on viewport
+  function handleVisibility(section) {
+    const postsPerPageMobile = parseInt(section.dataset.postsPerPageMobile) || 4;
+    const items = section.querySelectorAll('.career-item');
+    const isMobile = isMobileViewport();
+
+    items.forEach((item, index) => {
+      // Only hide/show items that were loaded initially (not via AJAX)
+      if (!item.classList.contains('ajax-loaded')) {
+        if (isMobile && index >= postsPerPageMobile) {
+          item.classList.add('mobile-hidden');
+        } else {
+          item.classList.remove('mobile-hidden');
+        }
+      }
+    });
+  }
+
+  // Update load more button visibility
+  function updateLoadMoreButton(section) {
+    const totalPosts = parseInt(section.dataset.totalPosts) || 0;
+    const visibleCount = getVisiblePostsCount(section);
+    const buttonWrapper = section.querySelector('.load-more-button-wrapper');
+
+    if (buttonWrapper) {
+      if (visibleCount >= totalPosts) {
+        buttonWrapper.style.display = 'none';
+      } else {
+        buttonWrapper.style.display = 'flex';
+        buttonWrapper.style.opacity = '1';
+      }
+    }
+  }
+
+  // Get count of visible posts
+  function getVisiblePostsCount(section) {
+    const items = section.querySelectorAll('.career-item');
+    let visibleCount = 0;
+    items.forEach(item => {
+      if (!item.classList.contains('mobile-hidden')) {
+        visibleCount++;
+      }
+    });
+    return visibleCount;
+  }
+
   // Handle load more click
   async function handleLoadMore(section, button) {
     // Get data attributes
     const postType = section.dataset.postType || 'career';
-    const postsPerPage = parseInt(section.dataset.postsPerPage) || 4;
+    const postsPerPageDesktop = parseInt(section.dataset.postsPerPage) || 4;
+    const postsPerPageMobile = parseInt(section.dataset.postsPerPageMobile) || 4;
+    const isMobile = isMobileViewport();
+    const postsPerPage = isMobile ? postsPerPageMobile : postsPerPageDesktop;
     const orderby = section.dataset.orderby || 'date';
     const order = section.dataset.order || 'DESC';
-    const currentPage = parseInt(section.dataset.paged) || 1;
     const totalPosts = parseInt(section.dataset.totalPosts) || 0;
-    const nextPage = currentPage + 1;
 
-    // Calculate if there are more posts after this load
-    const loadedPosts = currentPage * postsPerPage;
+    // Check if there are hidden posts to show first (on mobile)
+    const hiddenItems = section.querySelectorAll('.career-item.mobile-hidden');
+
+    if (isMobile && hiddenItems.length > 0) {
+      // Show next batch of hidden posts
+      let shown = 0;
+      hiddenItems.forEach(item => {
+        if (shown < postsPerPage) {
+          item.classList.remove('mobile-hidden');
+          item.classList.add('is-loaded');
+          shown++;
+        }
+      });
+
+      // Update button visibility
+      updateLoadMoreButton(section);
+      return;
+    }
+
+    // Calculate offset based on total items in DOM
+    const allItems = section.querySelectorAll('.career-item');
+    const offset = allItems.length;
+
+    // Check if we need to load more
+    if (offset >= totalPosts) {
+      hideLoadMoreButton(section);
+      return;
+    }
 
     // Disable button and show loading state
     setButtonLoading(button, true);
@@ -53,7 +147,7 @@
       formData.append('posts_per_page', postsPerPage);
       formData.append('orderby', orderby);
       formData.append('order', order);
-      formData.append('paged', nextPage);
+      formData.append('offset', offset);
 
       // Make AJAX request
       const response = await fetch(careerListingAjax.ajaxUrl, {
@@ -72,13 +166,9 @@
         // Append new posts
         appendPosts(section, data.data.html);
 
-        // Update paged attribute
-        section.dataset.paged = nextPage;
-
         // Check if there are more posts
-        const newLoadedPosts = nextPage * postsPerPage;
-        if (newLoadedPosts >= totalPosts) {
-          // Hide load more button
+        const newTotalItems = section.querySelectorAll('.career-item').length;
+        if (newTotalItems >= totalPosts) {
           hideLoadMoreButton(section);
         }
       } else if (data.data && data.data.message) {
@@ -122,9 +212,10 @@
     // Get all new career items
     const newItems = tempContainer.querySelectorAll('.career-item');
 
-    // Add loading class initially
+    // Add loading class initially and mark as ajax-loaded
     newItems.forEach(item => {
       item.classList.add('is-loading');
+      item.classList.add('ajax-loaded');
     });
 
     // Append each item to the list

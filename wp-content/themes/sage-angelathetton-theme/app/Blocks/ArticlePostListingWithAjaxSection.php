@@ -2,10 +2,10 @@
 
 namespace App\Blocks;
 
-class PostListingWithAjaxSection
+class ArticlePostListingWithAjaxSection
 {
     /**
-     * Render the Post Listing With Ajax Section block
+     * Render the Article Post Listing With Ajax Section block
      *
      * @param array $block The block settings and attributes
      * @param string $content The block content
@@ -15,18 +15,15 @@ class PostListingWithAjaxSection
      */
     public static function render($block, $content = '', $is_preview = false, $post_id = 0)
     {
-        // Allowed post types from ACF Select field
-        $allowedPostTypes = ['post', 'package', 'product'];
-
         // Get field values using ACF
         $selectPostType = get_field('select_post_type') ?? 'post';
 
-        // Validate post type against allowed values
-        $selectPostType = in_array($selectPostType, $allowedPostTypes) ? $selectPostType : 'post';
+        // Validate post type - only allow 'post' for articles
+        $selectPostType = ($selectPostType === 'post') ? 'post' : 'post';
 
         // Use ACF field value, or fallback to WordPress Reading settings
         $postsPerPage = get_field('posts_per_page') ?: get_option('posts_per_page', 10);
-        // Mobile posts per page (fallback to 3 if empty)
+        // Mobile posts per page (fallback to WordPress Reading settings if empty)
         $postsPerPageMobile = get_field('posts_per_page_mobile') ?: get_option('posts_per_page', 10);
         $orderby = get_field('orderby') ?? 'date';
         $order = get_field('order') ?? 'DESC';
@@ -36,7 +33,7 @@ class PostListingWithAjaxSection
         $padding = get_field('padding');
 
         // Generate unique block ID
-        $blockId = 'plwas-' . ($block['id'] ?? uniqid());
+        $blockId = 'aplwas-' . ($block['id'] ?? uniqid());
 
         // Generate responsive CSS for margin and padding
         $responsiveCss = custom_acf_dimensions($margin, $padding, $blockId);
@@ -72,7 +69,7 @@ class PostListingWithAjaxSection
         $hasMorePosts = $totalPosts > intval($postsPerPage);
 
         // Render the Blade template with data
-        echo view('blocks.post-listing-with-ajax-section', [
+        echo view('blocks.article-post-listing-with-ajax-section', [
             'block'             => $block,
             'blockId'           => $blockId,
             'selectPostType'    => $selectPostType,
@@ -125,5 +122,17 @@ class PostListingWithAjaxSection
         // Fallback to post content
         $content = get_the_content(null, false, $post_id);
         return wp_trim_words(wp_strip_all_tags($content), 20, '...');
+    }
+
+    /**
+     * Format post date to DD/MM/YY format
+     *
+     * @param int $post_id The post ID
+     * @return string The formatted date
+     */
+    public static function getFormattedDate($post_id)
+    {
+        $post_date = get_the_date('d/m/y', $post_id);
+        return $post_date;
     }
 }

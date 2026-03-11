@@ -2,13 +2,13 @@
 @use "../common/variables" as *;
 @use "../components/buttons" as *;
 
-.post-listing-with-ajax-section {
+.article-post-listing-with-ajax-section {
   background-size: cover;
   background-position: center;
   background-attachment: scroll;
   background-repeat: no-repeat;
 
-  .post-listing-grid {
+  .article-post-listing-grid {
     gap: 40px 0;
 
     @media (max-width: $screen-lg-min) {
@@ -21,29 +21,27 @@
   }
 }
 
-// Post Card Styles
-.post-card {
+// Article Post Card Styles
+.article-post-card {
   display: flex;
   flex-direction: column;
   height: 100%;
   background-color: $white-color;
   overflow: hidden;
   transition: box-shadow 0.3s ease;
-
-  // &:hover {
-  //   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  // }
 }
 
-.post-card__image {
+.article-post-card__image {
   position: relative;
   overflow: hidden;
   height: 369px;
   aspect-ratio: 16/10;
+
   @media (max-width: $screen-md-min) {
     height: 333px;
     aspect-ratio: auto;
   }
+
   a {
     display: block;
     width: 100%;
@@ -74,7 +72,7 @@
   }
 }
 
-.post-card__body {
+.article-post-card__body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -92,15 +90,29 @@
   }
 }
 
-.post-card__title {
+.article-post-card__date {
+  font-family: $fonts-niveau;
+  font-size: 14px;
+  color: $brown-color;
+  letter-spacing: 0.5px;
+
+  @media (max-width: $screen-md-min) {
+    font-size: 13px;
+  }
+}
+
+.article-post-card__title {
   font-family: $fonts-niveau;
   font-size: 32px;
   color: $black-off-color;
   text-transform: uppercase;
   margin: 0;
+  line-height: 1.2;
+
   @media (max-width: $screen-md-min) {
     font-size: 32px;
   }
+
   a {
     color: $black-off-color;
     text-decoration: none;
@@ -108,18 +120,7 @@
   }
 }
 
-.post-card__description {
-  font-size: 18px;
-  color: $black-off-color;
-  margin: 0;
-  flex-grow: 1;
-
-  @media (max-width: $screen-md-min) {
-    font-size: 22px;
-  }
-}
-
-.post-card__button {
+.article-post-card__button {
   align-self: flex-start;
   margin-top: auto;
 
@@ -129,8 +130,8 @@
   }
 }
 
-// Load More Button Wrapper
-.load-more-button-wrapper {
+// Article Load More Button Wrapper
+.article-load-more-button-wrapper {
   display: flex;
   justify-content: center;
   margin-top: 50px;
@@ -140,7 +141,7 @@
   }
 }
 
-.load-more-btn {
+.article-load-more-btn {
   min-width: 180px;
   display: inline-flex;
   align-items: center;
@@ -160,23 +161,23 @@
 
   // Spinner animation
   .spinner {
-    animation: rotate 1s linear infinite;
+    animation: article-rotate 1s linear infinite;
 
     .path {
       stroke: currentColor;
       stroke-linecap: round;
-      animation: dash 1.5s ease-in-out infinite;
+      animation: article-dash 1.5s ease-in-out infinite;
     }
   }
 }
 
-@keyframes rotate {
+@keyframes article-rotate {
   100% {
     transform: rotate(360deg);
   }
 }
 
-@keyframes dash {
+@keyframes article-dash {
   0% {
     stroke-dasharray: 1, 150;
     stroke-dashoffset: 0;
@@ -192,15 +193,15 @@
 }
 
 // No posts message
-.no-posts-message {
+.article-post-listing-with-ajax-section .no-posts-message {
   text-align: center;
   font-size: 18px;
   color: $black-off-color;
   padding: 40px 0;
 }
 
-// Post listing item animation
-.post-listing-item {
+// Article post listing item animation
+.article-post-listing-item {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -211,7 +212,7 @@
   }
 
   &.is-loaded {
-    animation: postFadeInUp 0.4s ease forwards;
+    animation: articleFadeInUp 0.4s ease forwards;
   }
 
   // Hide posts on mobile that exceed mobile limit
@@ -220,34 +221,7 @@
   }
 }
 
-@keyframes postFadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Post listing item animation
-.post-listing-item {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-
-  &.is-loading {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  &.is-loaded {
-    animation: fadeInUp 0.4s ease forwards;
-  }
-}
-
-@keyframes fadeInUp {
+@keyframes articleFadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);

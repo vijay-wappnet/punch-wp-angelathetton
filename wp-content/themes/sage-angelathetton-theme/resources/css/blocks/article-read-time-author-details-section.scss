@@ -1,0 +1,57 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+
+.article-read-time-author-details-section {
+
+  .border-top-initialize{
+    width: 100%;
+    display: block;
+    border-top: 1px solid rgba(43, 46, 52, .2);
+    margin: 0 auto;
+    padding-bottom: 40px;
+    @media (max-width: $screen-mobile-min) {
+      padding-bottom: 20px
+    }
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: $fonts-niveau;
+    font-weight: $font-weight-300;
+    font-size: 32px;
+    line-height: 38px;
+    color: $black-off-color;
+    @media (max-width: $screen-lg-min) {
+      font-size: 22px;
+      line-height: 30px;
+    }
+    @media (max-width: $screen-md-min) {
+      flex-direction: column;
+      align-items: baseline;
+      gap: 0;
+    }
+  }
+
+  &__separator {
+    opacity: 0.4;
+    @media (max-width: $screen-md-min) {
+      display: none;
+    }
+  }
+
+  &--hide-mobile {
+    @media (max-width: $screen-md-min) {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: $screen-mobile-min) {
+    &__inner {
+      gap: 10px;
+      font-size: 22px;
+      flex-wrap: wrap;
+    }
+  }
+}

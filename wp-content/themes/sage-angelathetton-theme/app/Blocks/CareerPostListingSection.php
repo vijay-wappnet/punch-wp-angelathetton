@@ -16,8 +16,11 @@ class CareerPostListingSection
         $selectPostType = get_field('select_post_type') ?: 'career';
         $selectPostType = in_array($selectPostType, $allowedPostTypes, true) ? $selectPostType : 'career';
 
-        $postsPerPage = (int) (get_field('posts_per_page') ?: 4);
-        $postsPerPage = $postsPerPage > 0 ? $postsPerPage : 4;
+
+        // Use ACF field value, or fallback to WordPress Reading settings
+        $postsPerPage = get_field('posts_per_page') ?: get_option('posts_per_page', 10);
+        // Mobile posts per page (fallback to WordPress Reading settings if empty)
+        $postsPerPageMobile = get_field('posts_per_page_mobile') ?: get_option('posts_per_page', 10);
 
         $orderby = get_field('orderby') ?: 'date';
         $orderby = in_array($orderby, $allowedOrderBy, true) ? $orderby : 'date';
@@ -60,6 +63,7 @@ class CareerPostListingSection
             'blockId'         => $blockId,
             'selectPostType'  => $selectPostType,
             'postsPerPage'    => $postsPerPage,
+            'postsPerPageMobile' => $postsPerPageMobile,
             'orderby'         => $orderby,
             'order'           => $order,
             'backgroundStyle' => $backgroundStyle,

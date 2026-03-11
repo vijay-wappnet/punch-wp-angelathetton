@@ -17,6 +17,11 @@
           width: 96%;
         }
       }
+      &:last-child {
+        &:after {
+          display: none;
+        }
+      }
     }
   }
 
@@ -151,6 +156,11 @@
 
     &.is-loaded {
       animation: fadeInUp 0.4s ease forwards;
+    }
+
+    // Hide posts on mobile that exceed mobile limit
+    &.mobile-hidden {
+      display: none;
     }
   }
 

@@ -393,5 +393,76 @@ add_action('init', function () {
             ],
         ]);
 
+        // Register the Article Single Banner Image Section Block
+        acf_register_block_type([
+            'name'            => 'article-single-banner-image-section',
+            'title'           => __('Article Single Banner Image Section', 'sage'),
+            'description'     => __('An article single banner image section', 'sage'),
+            'render_callback' => ['App\Blocks\ArticleSingleBannerImageSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+        // Register the Article Read Time Author Details Section Block
+        acf_register_block_type([
+            'name'            => 'article-read-time-author-details-section',
+            'title'           => __('Article Read Time Author Details Section', 'sage'),
+            'description'     => __('An article read time author details section', 'sage'),
+            'render_callback' => ['App\Blocks\ArticleReadTimeAuthorDetailsSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
+        // Register the Article Post Listing With Ajax Section Block
+        acf_register_block_type([
+            'name'            => 'article-post-listing-with-ajax-section',
+            'title'           => __('Article Post Listing With Ajax Section', 'sage'),
+            'description'     => __('A section with article post listing with ajax', 'sage'),
+            'render_callback' => ['App\Blocks\ArticlePostListingWithAjaxSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
+        // Register the Featured Article Post Section Block
+        acf_register_block_type([
+            'name'            => 'featured-article-post-section',
+            'title'           => __('Featured Article Post Section', 'sage'),
+            'description'     => __('A section with featured article post', 'sage'),
+            'render_callback' => ['App\Blocks\FeaturedArticlePostSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
     }
 });

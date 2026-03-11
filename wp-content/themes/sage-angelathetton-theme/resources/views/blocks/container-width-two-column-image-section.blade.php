@@ -7,7 +7,15 @@
       @if ($images)
         @foreach ($images as $item)
           @if ($item['image'])
-            <div class="col-12 col-md-6 col-img-wrapper">
+            @php
+              $hideMobileClass = '';
+              if ($loop->first && $hideFirstImageInMobile) {
+                $hideMobileClass = 'hide-mobile';
+              } elseif ($loop->last && $hideSecondImageInMobile) {
+                $hideMobileClass = 'hide-mobile';
+              }
+            @endphp
+            <div class="col-12 col-md-6 col-img-wrapper {{ $hideMobileClass }}">
               <img class="img-fluid two-column-img" src="{{ $item['image']['url'] }}" alt="{{ $item['image']['alt'] }}">
             </div>
           @endif
