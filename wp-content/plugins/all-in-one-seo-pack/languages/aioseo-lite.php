@@ -1,5 +1,5 @@
 <?php
-// phpcs:ignore Generic.Files.LineLength.MaxExceeded
+// phpcs:disable
 /* THIS IS A GENERATED FILE. DO NOT EDIT DIRECTLY. */
 $generated_i18n_strings = [
 	// Reference: /src/vue/standalone/setup-wizard/views/Features.vue:106
@@ -967,7 +967,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/tools/views/RobotsEditor.vue:107
 	__( 'Allow', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:89
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:90
 	__( 'Allows you to specify the maximum number of pages per post type/taxonomy in your llms.txt file.', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/sitemaps/views/RssSitemap.vue:51
@@ -1912,7 +1912,7 @@ $generated_i18n_strings = [
 	// Translators: 1 - The name of the image attribute ("Title", "Alt Tag", "Caption" or "Description").
 	__( 'Click on the tags below to insert variables into your %1$s attribute.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:94
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:95
 	// Reference: /src/vue/pages/social-networks/views/Facebook.vue:101
 	// Reference: /src/vue/pages/social-networks/views/Twitter.vue:89
 	__( 'Click on the tags below to insert variables into your description.', 'all-in-one-seo-pack' ),
@@ -1940,7 +1940,7 @@ $generated_i18n_strings = [
 	__( 'Click on the tags below to insert variables into your template.', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/search-appearance/views/partials/TitleDescription.vue:64
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:92
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:93
 	// Reference: /src/vue/standalone/post-settings/views/General.vue:93
 	__( 'Click on the tags below to insert variables into your title.', 'all-in-one-seo-pack' ),
 
@@ -2221,10 +2221,10 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/search-appearance/views/lite/image-seo/ImageSeo.vue:30
 	__( 'Convert casing of image attributes', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:77
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:78
 	__( 'Convert Posts to Markdown', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:97
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:98
 	// Translators: 1 - "PRO", 2 - "Learn more".
 	__( 'Converting posts to markdown is a %1$s feature. %2$s', 'all-in-one-seo-pack' ),
 
@@ -2622,7 +2622,7 @@ $generated_i18n_strings = [
 
 	// Reference: /src/vue/components/common/core/PostColumn.vue:79
 	// Reference: /src/vue/pages/search-appearance/views/Media.vue:118
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:93
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:94
 	// Reference: /src/vue/pages/social-networks/views/Facebook.vue:99
 	// Reference: /src/vue/pages/social-networks/views/Twitter.vue:87
 	// Reference: /src/vue/standalone/posts-table/TermApp.vue:54
@@ -3012,10 +3012,10 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/standalone/setup-wizard/views/SearchAppearance.vue:80
 	__( 'Enable Email reports?', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:73
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:74
 	__( 'Enable llms-full.txt', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:68
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:69
 	__( 'Enable llms.txt', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/social-networks/views/Facebook.vue:76
@@ -3210,14 +3210,14 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/search-appearance/views/Advanced.vue:91
 	// Reference: /src/vue/pages/sitemaps/views/GeneralSitemap.vue:78
 	// Reference: /src/vue/pages/sitemaps/views/HtmlSitemap.vue:167
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:80
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:81
 	// Reference: /src/vue/standalone/blocks/html-sitemap/vue/SidebarOptions.vue:34
 	__( 'Exclude Posts / Pages', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/search-appearance/views/Advanced.vue:92
 	// Reference: /src/vue/pages/sitemaps/views/GeneralSitemap.vue:79
 	// Reference: /src/vue/pages/sitemaps/views/HtmlSitemap.vue:168
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:81
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:82
 	// Reference: /src/vue/standalone/blocks/html-sitemap/vue/SidebarOptions.vue:35
 	__( 'Exclude Terms', 'all-in-one-seo-pack' ),
 
@@ -3635,11 +3635,11 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/standalone/post-settings/views/partials/ai-content/utils.js:97
 	__( 'Generate a compelling SEO title for your post to improve click-through rates and search engine visibility.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:74
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:75
 	__( 'Generate a detailed llms-full.txt file to help AI engines index all of your site’s content quickly without straining your server’s resources.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:78
-	__( 'Generate a markdown version of your posts when `.md` is appended to their permalink. This provides AI engines with clean version of your pages that can be crawled more quickly.', 'all-in-one-seo-pack' ),
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:79
+	__( 'Generate a markdown version of your posts when <code>.md</code> is appended to their permalink. This provides AI engines with clean version of your pages that can be crawled more quickly.', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/standalone/writing-assistant/views/report/GenerateReport.vue:25
 	__( 'Generate a New Report', 'all-in-one-seo-pack' ),
@@ -3650,7 +3650,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/standalone/post-settings/views/partials/ai-content/utils.js:56
 	__( 'Generate AI-powered images from text prompts to visually enhance your content and capture attention.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:70
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:71
 	__( 'Generate an llms.txt file to help AI engines discover the content on your site more easily.', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/composables/Wizard.js:93
@@ -4544,7 +4544,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/sitemaps/composables/NewsSitemap.js:22
 	// Reference: /src/vue/pages/sitemaps/views/GeneralSitemap.vue:73
 	// Reference: /src/vue/pages/sitemaps/views/HtmlSitemap.vue:151
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:86
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:87
 	// Reference: /src/vue/pages/sitemaps/views/RssSitemap.vue:59
 	// Reference: /src/vue/standalone/blocks/html-sitemap/vue/SidebarOptions.vue:26
 	// Reference: /src/vue/standalone/setup-wizard/views/SearchAppearance.vue:76
@@ -4555,7 +4555,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/settings/views/Advanced.vue:111
 	// Reference: /src/vue/pages/sitemaps/views/GeneralSitemap.vue:75
 	// Reference: /src/vue/pages/sitemaps/views/HtmlSitemap.vue:153
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:87
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:88
 	// Reference: /src/vue/pages/sitemaps/views/RssSitemap.vue:61
 	// Reference: /src/vue/standalone/blocks/html-sitemap/vue/SidebarOptions.vue:27
 	__( 'Include All Taxonomies', 'all-in-one-seo-pack' ),
@@ -5144,14 +5144,14 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/standalone/setup-wizard/views/SearchAppearance.vue:75
 	__( 'Live Site', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:69
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:70
 	__( 'llms.txt', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/sitemaps/router/paths.js:64
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:66
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:67
 	__( 'LLMs.txt', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:79
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:80
 	__( 'LLMs.txt Settings', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/composables/AiContent.js:91
@@ -6092,10 +6092,10 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/standalone/post-settings/views/LinksSideBar.vue:23
 	__( 'Open Link Assistant', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:75
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:76
 	__( 'Open llms-full.txt', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:71
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:72
 	__( 'Open llms.txt', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/sitemaps/composables/NewsSitemap.js:13
@@ -6614,7 +6614,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/sitemaps/composables/NewsSitemap.js:8
 	// Reference: /src/vue/pages/sitemaps/views/GeneralSitemap.vue:67
 	// Reference: /src/vue/pages/sitemaps/views/HtmlSitemap.vue:149
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:82
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:83
 	// Reference: /src/vue/pages/sitemaps/views/RssSitemap.vue:53
 	// Reference: /src/vue/pages/tools/views/partials/ExportContents.vue:78
 	// Reference: /src/vue/standalone/blocks/html-sitemap/vue/SidebarOptions.vue:24
@@ -7487,7 +7487,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/sitemaps/views/RssSitemap.vue:60
 	__( 'Select which Post Types appear in your sitemap.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:84
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:85
 	__( 'Select which Post Types to include in the llms.txt file.', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/settings/views/Advanced.vue:63
@@ -7502,7 +7502,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/search-appearance/views/partials/crawl-cleanup/RssFeeds.vue:76
 	__( 'Select which Taxonomies should include an RSS feed.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:85
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:86
 	__( 'Select which Taxonomies to include in the llms.txt file.', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/settings/views/Advanced.vue:114
@@ -8164,7 +8164,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/tools/views/SystemStatus.vue:40
 	__( 'System Status Info', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/standalone/blocks/table-of-contents/edit.jsx:292
+	// Reference: /src/vue/standalone/blocks/table-of-contents/edit.jsx:308
 	__( 'Table of Contents Settings', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/components/common/core/add-redirection/Index.vue:88
@@ -8188,7 +8188,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/settings/views/lite/Breadcrumbs.vue:49
 	// Reference: /src/vue/pages/sitemaps/views/GeneralSitemap.vue:68
 	// Reference: /src/vue/pages/sitemaps/views/HtmlSitemap.vue:150
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:83
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:84
 	// Reference: /src/vue/pages/sitemaps/views/RssSitemap.vue:54
 	// Reference: /src/vue/pages/tools/views/partials/ExportContents.vue:82
 	// Reference: /src/vue/standalone/blocks/html-sitemap/vue/SidebarOptions.vue:25
@@ -8579,14 +8579,14 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/standalone/setup-wizard/views/LicenseKey.vue:144
 	__( 'The license key provided is invalid. Please use a different key to continue receiving automatic updates.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:103
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:104
 	// Translators: 1 - "PRO", 2 - "Learn more".
 	__( 'The llms-full.txt is a %1$s feature. %2$s', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/settings/views/seo-checklist/info/EnableLlmsTxt.vue:9
 	__( 'The llms.txt file is a standardized way to provide information about your website to AI language models (LLMs) like ChatGPT, Claude, and others. It\'s similar to robots.txt, but specifically designed for AI crawlers.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:67
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:68
 	__( 'The llms.txt is a specialized file designed to help AI engines (such as language models) discover the content on your site more easily. Similar to how XML sitemaps assist search engines, the llms.txt file guides AI crawlers by providing important details about the available site content, improving visibility and discoverability across AI-driven tools.', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/composables/MediaUploader.js:149
@@ -8871,7 +8871,7 @@ $generated_i18n_strings = [
 	// Reference: /src/app/tru-seo/analyzer/analysis/titleLength.js:35
 	__( 'The title is too short.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:91
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:92
 	__( 'The title of the llms.txt file.', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/social-networks/views/Facebook.vue:87
@@ -9199,7 +9199,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/pages/search-statistics/views/partials/PostsTable.vue:214
 	// Reference: /src/vue/pages/seo-analysis/partials/lite/results/SiteAuditAllUrlsTable.vue:60
 	// Reference: /src/vue/pages/settings/views/SeoChecklist.vue:203
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:90
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:91
 	// Reference: /src/vue/pages/social-networks/views/Facebook.vue:95
 	// Reference: /src/vue/standalone/post-settings/views/General.vue:101
 	// Reference: /src/vue/standalone/post-settings/views/partials/general/PageAnalysis.vue:46
@@ -9289,10 +9289,10 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/standalone/post-settings/views/partials/general/focus-keyphrase/FocusKeyphraseInput.vue:28
 	__( 'To use this feature, first add a focus keyword.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:76
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:77
 	__( 'To view the llms-full.txt file, enable the setting, save changes and wait a minute for the file to be generated.', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:72
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:73
 	__( 'To view the llms.txt file, enable the setting, save changes and wait a minute for the file to be generated.', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/components/common/html-sitemap/DisplayInfo.vue:70
@@ -9765,7 +9765,7 @@ $generated_i18n_strings = [
 	// Reference: /src/vue/standalone/local-business-seo/views/BusinessInfo.vue:34
 	__( 'URLs', 'all-in-one-seo-pack' ),
 
-	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:88
+	// Reference: /src/vue/pages/sitemaps/views/LlmsSitemap.vue:89
 	__( 'URLs per Post Type / Taxonomy', 'all-in-one-seo-pack' ),
 
 	// Reference: /src/vue/pages/search-statistics/views/index-status/partials/ObjectsTable.vue:127

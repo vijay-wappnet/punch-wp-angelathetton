@@ -285,7 +285,6 @@ return array(
     'AIOSEO\\Plugin\\Common\\Utils\\Backup' => $baseDir . '/app/Common/Utils/Backup.php',
     'AIOSEO\\Plugin\\Common\\Utils\\Blocks' => $baseDir . '/app/Common/Utils/Blocks.php',
     'AIOSEO\\Plugin\\Common\\Utils\\Cache' => $baseDir . '/app/Common/Utils/Cache.php',
-    'AIOSEO\\Plugin\\Common\\Utils\\CachePrune' => $baseDir . '/app/Common/Utils/CachePrune.php',
     'AIOSEO\\Plugin\\Common\\Utils\\Database' => $baseDir . '/app/Common/Utils/Database.php',
     'AIOSEO\\Plugin\\Common\\Utils\\Features' => $baseDir . '/app/Common/Utils/Features.php',
     'AIOSEO\\Plugin\\Common\\Utils\\Filesystem' => $baseDir . '/app/Common/Utils/Filesystem.php',

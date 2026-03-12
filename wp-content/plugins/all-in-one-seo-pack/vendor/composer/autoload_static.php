@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitaff00111d1db6e058351b5d39ad4d5e8
+class ComposerStaticInitb1a6c6614015ceeede3129d1e86174c5
 {
     public static $prefixLengthsPsr4 = array (
         'L' => 
@@ -318,7 +318,6 @@ class ComposerStaticInitaff00111d1db6e058351b5d39ad4d5e8
         'AIOSEO\\Plugin\\Common\\Utils\\Backup' => __DIR__ . '/../..' . '/app/Common/Utils/Backup.php',
         'AIOSEO\\Plugin\\Common\\Utils\\Blocks' => __DIR__ . '/../..' . '/app/Common/Utils/Blocks.php',
         'AIOSEO\\Plugin\\Common\\Utils\\Cache' => __DIR__ . '/../..' . '/app/Common/Utils/Cache.php',
-        'AIOSEO\\Plugin\\Common\\Utils\\CachePrune' => __DIR__ . '/../..' . '/app/Common/Utils/CachePrune.php',
         'AIOSEO\\Plugin\\Common\\Utils\\Database' => __DIR__ . '/../..' . '/app/Common/Utils/Database.php',
         'AIOSEO\\Plugin\\Common\\Utils\\Features' => __DIR__ . '/../..' . '/app/Common/Utils/Features.php',
         'AIOSEO\\Plugin\\Common\\Utils\\Filesystem' => __DIR__ . '/../..' . '/app/Common/Utils/Filesystem.php',
@@ -381,10 +380,10 @@ class ComposerStaticInitaff00111d1db6e058351b5d39ad4d5e8
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitaff00111d1db6e058351b5d39ad4d5e8::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitaff00111d1db6e058351b5d39ad4d5e8::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitaff00111d1db6e058351b5d39ad4d5e8::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitaff00111d1db6e058351b5d39ad4d5e8::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb1a6c6614015ceeede3129d1e86174c5::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb1a6c6614015ceeede3129d1e86174c5::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitb1a6c6614015ceeede3129d1e86174c5::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitb1a6c6614015ceeede3129d1e86174c5::$classMap;
 
         }, null, ClassLoader::class);
     }
