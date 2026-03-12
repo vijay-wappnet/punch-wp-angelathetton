@@ -70,6 +70,9 @@
     display: block;
     width: 100%;
     height: 100%;
+    &:focus img {
+      transform: scale(1.05);
+    }
   }
 
   img {
@@ -80,6 +83,9 @@
   }
 
   &:hover img {
+    transform: scale(1.05);
+  }
+  &:focus img {
     transform: scale(1.05);
   }
 
@@ -127,6 +133,12 @@
     color: $black-off-color;
     text-decoration: none;
     transition: color 0.3s ease;
+  }
+  a:hover {
+    color: $brown-color;
+  }
+  a:focus {
+    color: $brown-color;
   }
 }
 

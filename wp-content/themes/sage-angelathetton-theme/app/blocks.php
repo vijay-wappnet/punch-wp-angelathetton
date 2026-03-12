@@ -464,5 +464,23 @@ add_action('init', function () {
             ],
         ]);
 
+        // Register the Gallery Grid Filter Section Block
+        acf_register_block_type([
+            'name'            => 'gallery-grid-filter-section',
+            'title'           => __('Gallery Grid Filter Section', 'sage'),
+            'description'     => __('A section with a gallery grid filter', 'sage'),
+            'render_callback' => ['App\Blocks\GalleryGridFilterSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
     }
 });

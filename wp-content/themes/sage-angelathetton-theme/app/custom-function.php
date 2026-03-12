@@ -156,6 +156,10 @@ add_action('wp_head', function() {
             ajaxUrl: '<?php echo esc_url(admin_url('admin-ajax.php')); ?>',
             nonce: '<?php echo wp_create_nonce('article_listing_ajax_nonce'); ?>'
         };
+        var galleryFilterAjax = {
+            ajaxUrl: '<?php echo esc_url(admin_url('admin-ajax.php')); ?>',
+            nonce: '<?php echo wp_create_nonce('gallery_filter_ajax_nonce'); ?>'
+        };
     </script>
     <?php
 });
@@ -570,4 +574,220 @@ function handle_single_featured_article($post_id) {
             update_field('is_featured_article', false, $featured_post->ID);
         }
     }
+}
+
+/**
+ * AJAX Handler for Gallery Grid Filter Section
+ */
+add_action('wp_ajax_gallery_filter', 'handle_gallery_filter');
+add_action('wp_ajax_nopriv_gallery_filter', 'handle_gallery_filter');
+
+function handle_gallery_filter() {
+    // Verify nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'gallery_filter_ajax_nonce')) {
+        wp_send_json_error(['message' => 'Invalid security token']);
+        return;
+    }
+
+    // Get parameters
+    $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
+    $block_id = isset($_POST['block_id']) ? sanitize_text_field($_POST['block_id']) : '';
+
+    // Get gallery images from ACF options or current post
+    // First try to get from the referring post
+    $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+    
+    if (!$post_id) {
+        // Try to get from referer
+        $referer = wp_get_referer();
+        if ($referer) {
+            $post_id = url_to_postid($referer);
+        }
+    }
+
+    // Get gallery images
+    $gallery_images = [];
+    
+    if ($post_id) {
+        // Get all blocks from the post content
+        $post = get_post($post_id);
+        if ($post && has_blocks($post->post_content)) {
+            $blocks = parse_blocks($post->post_content);
+            $gallery_images = find_gallery_images_in_blocks($blocks);
+        }
+    }
+
+    // If no images found from blocks, try getting from ACF field directly
+    if (empty($gallery_images)) {
+        $gallery_images = get_field('gallery_images', $post_id) ?? [];
+    }
+
+    // Filter images by category
+    if ($category !== 'all' && !empty($gallery_images)) {
+        $gallery_images = array_filter($gallery_images, function($item) use ($category) {
+            return isset($item['select_category']) && $item['select_category'] === $category;
+        });
+        $gallery_images = array_values($gallery_images); // Re-index array
+    }
+
+    // Build HTML output
+    ob_start();
+    
+    if (!empty($gallery_images)) {
+        $total_images = count($gallery_images);
+        $image_index = 0;
+        $row_number = 0;
+
+        while ($image_index < $total_images) {
+            $row_type = ($row_number % 2 === 0) ? 'A' : 'B';
+            $row_number++;
+            
+            echo '<div class="gallery-grid-filter-section__row gallery-grid-filter-section__row--type-' . strtolower($row_type) . '">';
+            
+            if ($row_type === 'A') {
+                // Row Type A: Large image on left, 4 small images on right
+                // Large Image
+                if (isset($gallery_images[$image_index])) {
+                    $item = $gallery_images[$image_index];
+                    $image = $item['image'] ?? null;
+                    $item_category = $item['select_category'] ?? 'all';
+                    $image_id = is_array($image) ? ($image['ID'] ?? null) : $image;
+                    $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'large') : '';
+                    $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
+                    $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
+                    $image_index++;
+                    
+                    echo '<div class="gallery-grid-filter-section__large" data-category="' . esc_attr($item_category) . '">';
+                    echo '<div class="gallery-grid-filter-section__item" data-full-image="' . esc_url($image_full) . '">';
+                    if ($image_url) {
+                        echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '" class="gallery-grid-filter-section__image" loading="lazy">';
+                    }
+                    echo '<div class="gallery-grid-filter-section__overlay">';
+                    echo '<img src="' . esc_url(get_theme_file_uri('resources/images/plus_icon.svg')) . '" alt="plus" class="gallery-grid-filter-section__icon">';
+                    echo '</div></div></div>';
+                }
+                
+                // Small Grid (4 images)
+                echo '<div class="gallery-grid-filter-section__small-grid">';
+                for ($i = 0; $i < 4; $i++) {
+                    if (isset($gallery_images[$image_index])) {
+                        $item = $gallery_images[$image_index];
+                        $image = $item['image'] ?? null;
+                        $item_category = $item['select_category'] ?? 'all';
+                        $image_id = is_array($image) ? ($image['ID'] ?? null) : $image;
+                        $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'medium_large') : '';
+                        $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
+                        $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
+                        $image_index++;
+                        
+                        echo '<div class="gallery-grid-filter-section__small-item" data-category="' . esc_attr($item_category) . '">';
+                        echo '<div class="gallery-grid-filter-section__item" data-full-image="' . esc_url($image_full) . '">';
+                        if ($image_url) {
+                            echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '" class="gallery-grid-filter-section__image" loading="lazy">';
+                        }
+                        echo '<div class="gallery-grid-filter-section__overlay">';
+                        echo '<img src="' . esc_url(get_theme_file_uri('resources/images/plus_icon.svg')) . '" alt="plus" class="gallery-grid-filter-section__icon">';
+                        echo '</div></div></div>';
+                    }
+                }
+                echo '</div>';
+                
+            } else {
+                // Row Type B: 4 small images on left, Large image on right
+                // Small Grid (4 images)
+                echo '<div class="gallery-grid-filter-section__small-grid">';
+                for ($i = 0; $i < 4; $i++) {
+                    if (isset($gallery_images[$image_index])) {
+                        $item = $gallery_images[$image_index];
+                        $image = $item['image'] ?? null;
+                        $item_category = $item['select_category'] ?? 'all';
+                        $image_id = is_array($image) ? ($image['ID'] ?? null) : $image;
+                        $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'medium_large') : '';
+                        $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
+                        $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
+                        $image_index++;
+                        
+                        echo '<div class="gallery-grid-filter-section__small-item" data-category="' . esc_attr($item_category) . '">';
+                        echo '<div class="gallery-grid-filter-section__item" data-full-image="' . esc_url($image_full) . '">';
+                        if ($image_url) {
+                            echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '" class="gallery-grid-filter-section__image" loading="lazy">';
+                        }
+                        echo '<div class="gallery-grid-filter-section__overlay">';
+                        echo '<img src="' . esc_url(get_theme_file_uri('resources/images/plus_icon.svg')) . '" alt="plus" class="gallery-grid-filter-section__icon">';
+                        echo '</div></div></div>';
+                    }
+                }
+                echo '</div>';
+                
+                // Large Image
+                if (isset($gallery_images[$image_index])) {
+                    $item = $gallery_images[$image_index];
+                    $image = $item['image'] ?? null;
+                    $item_category = $item['select_category'] ?? 'all';
+                    $image_id = is_array($image) ? ($image['ID'] ?? null) : $image;
+                    $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'large') : '';
+                    $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
+                    $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
+                    $image_index++;
+                    
+                    echo '<div class="gallery-grid-filter-section__large" data-category="' . esc_attr($item_category) . '">';
+                    echo '<div class="gallery-grid-filter-section__item" data-full-image="' . esc_url($image_full) . '">';
+                    if ($image_url) {
+                        echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($image_alt) . '" class="gallery-grid-filter-section__image" loading="lazy">';
+                    }
+                    echo '<div class="gallery-grid-filter-section__overlay">';
+                    echo '<img src="' . esc_url(get_theme_file_uri('resources/images/plus_icon.svg')) . '" alt="plus" class="gallery-grid-filter-section__icon">';
+                    echo '</div></div></div>';
+                }
+            }
+            
+            echo '</div>';
+        }
+    } else {
+        echo '<div class="gallery-grid-filter-section__no-images">';
+        echo '<p>' . esc_html__('No images found for this category.', 'sage') . '</p>';
+        echo '</div>';
+    }
+
+    $html = ob_get_clean();
+
+    wp_send_json_success([
+        'html'     => $html,
+        'count'    => count($gallery_images),
+        'category' => $category,
+    ]);
+}
+
+/**
+ * Helper function to find gallery images in parsed blocks
+ */
+function find_gallery_images_in_blocks($blocks) {
+    $gallery_images = [];
+    
+    foreach ($blocks as $block) {
+        // Check if this is our gallery block
+        if ($block['blockName'] === 'acf/gallery-grid-filter-section') {
+            // Get the block's ACF fields
+            if (isset($block['attrs']['data'])) {
+                $data = $block['attrs']['data'];
+                // ACF stores repeater data with indexed keys
+                $i = 0;
+                while (isset($data['gallery_images_' . $i . '_image'])) {
+                    $gallery_images[] = [
+                        'image' => $data['gallery_images_' . $i . '_image'],
+                        'select_category' => $data['gallery_images_' . $i . '_select_category'] ?? 'all',
+                    ];
+                    $i++;
+                }
+            }
+        }
+        
+        // Check inner blocks recursively
+        if (!empty($block['innerBlocks'])) {
+            $inner_images = find_gallery_images_in_blocks($block['innerBlocks']);
+            $gallery_images = array_merge($gallery_images, $inner_images);
+        }
+    }
+    
+    return $gallery_images;
 }
