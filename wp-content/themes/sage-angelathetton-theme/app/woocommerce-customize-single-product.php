@@ -73,7 +73,14 @@ function custom_price_with_stock_status() {
     echo '<div class="custom-price-stock-wrapper">';
 
     // Price
-    echo '<span class="custom-price">' . $product->get_price_html() . '</span>';
+    echo '<span class="custom-price">'; 
+    if ($product->is_on_sale()) {
+        echo '<span class="regular-price">' . wc_price($product->get_regular_price()) . '</span>';
+        echo '<span class="sale-price">' . wc_price($product->get_sale_price()) . '</span>';
+    } else {
+        echo apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($product), $cart_item, $cart_item_key);
+    }
+    echo '</span>';
 
     // Stock status
     $availability = $product->get_availability();

@@ -150,8 +150,16 @@
       font-family: $fonts-niveau-grotesk-small-caps;
       font-size: 32px;
       line-height: 38px;
-      font-weight: 300;
+      font-weight: 300;      
+    }
+    .regular-price {
+      text-decoration: line-through;
+      color: rgba($black-off-color, 0.5);
+      margin-right: 8px;     
+    }
+    .sale-price {
       color: $black-off-color;
+      font-weight: 500;
     }
   }
 

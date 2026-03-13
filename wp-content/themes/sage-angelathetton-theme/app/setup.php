@@ -174,3 +174,4 @@ add_action('wp_enqueue_scripts', function () {
 require_once __DIR__ . '/custom-function.php';
 require_once __DIR__ . '/blocks.php';
 require_once __DIR__ . '/woocommerce-customize-single-product.php';
+require_once __DIR__ . '/woocommerce-customize-cart.php';
