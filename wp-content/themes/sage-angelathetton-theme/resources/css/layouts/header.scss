@@ -28,12 +28,12 @@ body.no-scroll {
     .logo-wrapper{
       .brand-logo {
         &:active{
-          -webkit-filter: invert(1) brightness(0);
-          filter: invert(1) brightness(0);
+          //-webkit-filter: invert(1) brightness(0);
+          //filter: invert(1) brightness(0);
         }
         &:focus{
-          -webkit-filter: invert(1) brightness(0);
-          filter: invert(1) brightness(0);
+          //-webkit-filter: invert(1) brightness(0);
+          //filter: invert(1) brightness(0);
         }
       }
     }
@@ -101,12 +101,12 @@ body.no-scroll {
       display: inline-block;
       text-decoration: none;
       &:active{
-        -webkit-filter: invert(1) brightness(2);
-        filter: invert(1) brightness(2);
+        //-webkit-filter: invert(1) brightness(2);
+        //filter: invert(1) brightness(2);
       }
       &:focus{
-        -webkit-filter: invert(1) brightness(2);
-        filter: invert(1) brightness(2);
+        //-webkit-filter: invert(1) brightness(2);
+        //filter: invert(1) brightness(2);
       }
     }
   }
