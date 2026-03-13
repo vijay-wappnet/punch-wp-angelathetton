@@ -1,0 +1,13 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+@use "../components/buttons" as *;
+
+.cart-page-container {
+  padding-top: 120px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: $screen-md-min) {
+    padding-top: 100px;
+  }
+}

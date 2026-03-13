@@ -5,6 +5,60 @@
 .woocommerce{
   .woocommerce-message {
     border-top-color: $brown-color;
+    .button {
+      background-color: $brown-color !important;
+      color: $white-color !important;
+      border: 1px solid $brown-color !important;
+      padding: 12px 30px !important;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      text-transform: none !important;
+      border-radius: 0 !important;
+      cursor: pointer;
+      overflow: hidden; // for aimated shine effect
+      transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+      position: relative; // for aimated shine effect
+
+      &:hover {
+        background-color: $brown-light-color !important;
+        border-color: rgba($brown-light-color, 0.1) !important;
+        border: 1px solid rgba($black-off-color, 0.2) !important;
+        color: $black-off-color !important;
+        &:after{
+          left: 140%; // for aimated shine effect
+        }
+      }
+      &:focus {
+        background-color: $brown-light-color !important;
+        border-color: rgba($brown-light-color, 0.1) !important;
+        border: 1px solid rgba($black-off-color, 0.2) !important;
+        &:after{
+          left: 140%; // for aimated shine effect
+        }
+      }
+
+      &:after{
+        // for aimated shine effect
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -130%;
+        width: 80%;
+        height: 100%;
+        background: linear-gradient(
+          -115deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.25) 35%,
+          rgba(255, 255, 255, 0.7) 50%,
+          rgba(255, 255, 255, 0.25) 65%,
+          transparent 100%
+        );
+        transform: skewX(20deg);
+        transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+        pointer-events: none;
+      }
+
+    }
   }
   .woocommerce-message::before {
     color: $brown-color;
@@ -31,7 +85,10 @@
         margin-bottom: 10px;
 
         &::before{
-          display: none !important;
+          content: none;
+        }
+        &::after{
+          content: none;
         }
         .quantity{
           width: 50%;
@@ -105,7 +162,6 @@
     font-weight: 300;
     color: $black-off-color;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 
     &.in-stock {
       color: $black-off-color;
@@ -124,16 +180,52 @@
   border: 1px solid $brown-color !important;
   padding: 12px 30px !important;
   font-size: 14px !important;
-  font-weight: 400 !important;
+  font-weight: 500 !important;
   text-transform: none !important;
   border-radius: 0 !important;
-  cursor: pointer;
-  transition: all 0.3s ease;
   min-width: 200px;
+  cursor: pointer;
+  overflow: hidden; // for aimated shine effect
+  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  position: relative; // for aimated shine effect
 
   &:hover {
-    background-color: darken($brown-color, 10%) !important;
-    border-color: darken($brown-color, 10%) !important;
+    background-color: $brown-light-color !important;
+    border-color: rgba($brown-light-color, 0.1) !important;
+    border: 1px solid rgba($black-off-color, 0.2) !important;
+    color: $black-off-color !important;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+  &:focus {
+    background-color: $brown-light-color !important;
+    border-color: rgba($brown-light-color, 0.1) !important;
+    border: 1px solid rgba($black-off-color, 0.2) !important;
+    &:after{
+      left: 140%; // for aimated shine effect
+    }
+  }
+
+  &:after{
+    // for aimated shine effect
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+      -115deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 35%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.25) 65%,
+      transparent 100%
+    );
+    transform: skewX(20deg);
+    transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
   }
 }
 
@@ -241,41 +333,18 @@ form.cart {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    border: none;
     cursor: pointer;
     transition: all 0.3s ease;
     min-height: 48px;
+    text-decoration: none;
+    background-color: $black-off-color;
 
-    svg {
+    .icon {
       flex-shrink: 0;
-    }
-  }
-
-  .apple-pay-btn {
-    background-color: #000;
-    color: #fff;
-
-    svg {
-      width: 40px;
-      height: 18px;
-    }
-
-    &:hover {
-      background-color: #333;
-    }
-  }
-
-  .gpay-btn {
-    background-color: #000;
-    color: #fff;
-
-    svg {
-      width: 40px;
-      height: 18px;
-    }
-
-    &:hover {
-      background-color: #333;
+      width: 60px;
+      height: auto;
+      max-height: 50px;
+      object-fit: contain;
     }
   }
 

@@ -1,0 +1,310 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+@use "../components/buttons" as *;
+
+.woo-single-related-products-section {
+  width: 100%;
+
+  // Header Section
+  &__header {
+    margin-bottom: 40px;
+
+    @media (max-width: $screen-md-min) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__title {
+    font-family: $fonts-niveau-grotesk-small-caps;
+    font-weight: $font-weight-500;
+    margin-bottom: 15px;
+    margin-top: 0;
+    text-transform: uppercase;
+
+    @media (max-width: $screen-md-min) {
+      margin-bottom: 10px;
+    }
+  }
+
+  // Heading level specific styles
+  h1#{&}__title,
+  h2#{&}__title {
+    font-family: $fonts-niveau-grotesk-small-caps;
+    font-weight: $font-weight-500;
+  }
+
+  h3#{&}__title,
+  h4#{&}__title,
+  h5#{&}__title,
+  h6#{&}__title {
+    font-family: $fonts-niveau;
+    font-weight: $font-weight-300;
+    font-style: $font-style-normal;
+  }
+
+  p#{&}__title {
+    font-family: $fonts-helvetica-lt-pro;
+    font-weight: $font-weight-300;
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  &__description {
+    font-family: $fonts-helvetica-lt-pro;
+    font-weight: $font-weight-300;
+    font-style: $font-style-normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: $black-off-color;
+    margin-bottom: 0;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 22px;
+    }
+  }
+
+  // Products Grid
+  &__grid {
+    gap: 40px 0;
+
+    @media (max-width: $screen-lg-min) {
+      gap: 40px 0;
+    }
+
+    @media (max-width: $screen-md-min) {
+      gap: 50px 0;
+    }
+  }
+
+  // Product Item
+  &__item {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+
+    &.is-loading {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    &.is-loaded {
+      animation: relatedProductFadeInUp 0.4s ease forwards;
+    }
+
+    // Hide items on mobile that exceed mobile limit
+    &.mobile-hidden {
+      @media (max-width: $screen-md-min) {
+        display: none;
+      }
+    }
+  }
+
+  // Product Card
+  &__card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: $white-color;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  // Product Image
+  &__image {
+    position: relative;
+    overflow: hidden;
+    height: 369px;
+    aspect-ratio: 16/10;
+
+    @media (max-width: $screen-md-min) {
+      height: 333px;
+      aspect-ratio: auto;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      &:focus img {
+        transform: scale(1.05);
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+
+    &:focus img {
+      transform: scale(1.05);
+    }
+
+    &--placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      background-color: $white-off-color;
+      color: $black-off-color;
+      font-size: 14px;
+    }
+  }
+
+  // Product Content
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 30px 0 0 0;
+    gap: 16px;
+
+    @media (max-width: $screen-lg-min) {
+      padding: 20px 0 0 0;
+      gap: 12px;
+    }
+
+    @media (max-width: $screen-md-min) {
+      padding: 16px 0 0 0;
+      gap: 10px;
+    }
+  }
+
+  // Product Card Title
+  &__card-title {
+    font-family: $fonts-niveau;
+    font-size: 24px;
+    color: $black-off-color;
+    text-transform: uppercase;
+    margin: 0;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 32px;
+    }
+
+    a {
+      color: $black-off-color;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: $brown-color;
+    }
+
+    a:focus {
+      color: $brown-color;
+    }
+  }
+
+  // Product Card Description
+  &__card-description {
+    font-size: 18px;
+    color: $black-off-color;
+    margin: 0;
+    flex-grow: 1;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 22px;
+    }
+  }
+
+  // Product Button
+  .wsrps-btn {
+    align-self: flex-start;
+    margin-top: auto;
+
+    @media (max-width: $screen-mobile-min) {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  // Load More Button Wrapper
+  &__load-more-wrapper {
+    display: none;
+    justify-content: center;
+    margin-top: 50px;
+
+    @media (max-width: $screen-md-min) {
+      display: flex;
+      margin-top: 40px;
+    }
+  }
+
+  // Load More Button
+  &__load-more {
+    min-width: 180px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-text {
+      display: inline-block;
+    }
+
+    .btn-loading {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    // Spinner animation
+    .spinner {
+      animation: relatedProductRotate 1s linear infinite;
+
+      .path {
+        stroke: currentColor;
+        stroke-linecap: round;
+        animation: relatedProductDash 1.5s ease-in-out infinite;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes relatedProductFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes relatedProductRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes relatedProductDash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}

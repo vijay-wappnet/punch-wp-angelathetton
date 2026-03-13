@@ -43,14 +43,12 @@ the readme will list any important changes.
     @endphp
 
   </div>
-  
-  <div class="container-fluid single-product-container-fluid" style="background-color: aqua;">
-    <div class="row">
-      <div class="col-12">
-          54444444444444444444444444444444
-      </div>
-    </div>
-  </div>
+
+  {{-- Delivery Section --}}
+  @include('woocommerce.woo-single-product-delivery-section')
+
+  {{-- Related Products Section --}}
+  @include('woocommerce.woo-single-related-products-section')
 
   {{-- End Woocommerce Container --}}
 

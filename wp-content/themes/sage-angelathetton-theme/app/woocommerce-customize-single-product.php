@@ -109,28 +109,50 @@ function custom_quantity_input_args($args, $product) {
 }
 
 /**
- * Add Apple Pay and Google Pay buttons after add to cart
+ * Add custom payment buttons after add to cart (from ACF options)
  */
 add_action('woocommerce_after_add_to_cart_form', 'custom_payment_buttons', 10);
 function custom_payment_buttons() {
-    // Use Vite facade to get processed asset URLs (works in dev and production)
-    try {
-        $apple_pay_icon = Vite::asset('resources/images/apple-pay-icon.svg');
-        $gpay_icon = Vite::asset('resources/images/gpay-icon.svg');
-    } catch (\Exception $e) {
-        // Fallback if assets not in manifest yet - use source files directly
-        $theme_url = get_stylesheet_directory_uri();
-        $apple_pay_icon = $theme_url . '/resources/images/apple-pay-icon.svg';
-        $gpay_icon = $theme_url . '/resources/images/gpay-icon.svg';
+    // Get payment buttons from ACF options page
+    $payment_buttons = get_field('woocommerce_custom_pay_buttons', 'option');
+
+    // Return early if no buttons configured
+    if (empty($payment_buttons) || !is_array($payment_buttons)) {
+        return;
+    }
+
+    // Filter to only show enabled buttons
+    $visible_buttons = array_filter($payment_buttons, function($button) {
+        return !empty($button['woo_pay_show_this_button']);
+    });
+
+    // Return if no visible buttons
+    if (empty($visible_buttons)) {
+        return;
     }
     ?>
     <div class="custom-payment-buttons">
-        <button type="button" class="custom-payment-btn apple-pay-btn trans-black-btn" aria-label="<?php esc_attr_e('Pay with Apple Pay', 'woocommerce'); ?>">
-            <img src="<?php echo esc_url($apple_pay_icon); ?>" alt="Apple Pay" class="icon">
-        </button>
-        <button type="button" class="custom-payment-btn gpay-btn trans-black-btn" aria-label="<?php esc_attr_e('Pay with Google Pay', 'woocommerce'); ?>">
-            <img src="<?php echo esc_url($gpay_icon); ?>" alt="Google Pay" class="icon">
-        </button>
+        <?php foreach ($visible_buttons as $button) :
+            $link = $button['woo_pay_button_link'] ?? [];
+            $url = $link['url'] ?? '#';
+            $link_title = $link['title'] ?? '';
+            $aria_label = $button['woo_pay_aria_label'] ?? $link_title;
+            $event_label = $button['woo_pay_google_event_label'] ?? '';
+            $icon = $button['woo_pay_button_icon'] ?? [];
+            $icon_url = is_array($icon) ? ($icon['url'] ?? '') : $icon;
+            $icon_alt = is_array($icon) ? ($icon['alt'] ?? $aria_label) : $aria_label;
+        ?>
+            <a href="<?php echo esc_url($url); ?>"
+               class="custom-payment-btn trans-black-btn"
+               target="_blank"
+               rel="noopener noreferrer"
+               <?php if ($aria_label) : ?>aria-label="<?php echo esc_attr($aria_label); ?>"<?php endif; ?>
+               <?php if ($event_label) : ?>data-event-label="<?php echo esc_attr($event_label); ?>"<?php endif; ?>>
+                <?php if ($icon_url) : ?>
+                    <img src="<?php echo esc_url($icon_url); ?>" alt="<?php echo esc_attr($icon_alt); ?>" class="icon">
+                <?php endif; ?>
+            </a>
+        <?php endforeach; ?>
     </div>
     <?php
 }

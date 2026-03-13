@@ -1,0 +1,101 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+
+.woo-single-product-delivery-section {
+  width: 100%;
+
+  &__title {
+    font-family: $fonts-niveau-grotesk-small-caps;
+    font-weight: $font-weight-500;
+    margin-bottom: 15px;
+    margin-top: 0;
+    text-transform: uppercase;
+
+    @media (max-width: $screen-md-min) {
+      margin-bottom: 10px;
+    }
+  }
+
+  // Heading level specific styles
+  h1#{&}__title,
+  h2#{&}__title {
+    font-family: $fonts-niveau-grotesk-small-caps;
+    font-weight: $font-weight-500;
+  }
+
+  h3#{&}__title,
+  h4#{&}__title,
+  h5#{&}__title,
+  h6#{&}__title {
+    font-family: $fonts-niveau;
+    font-weight: $font-weight-300;
+    font-style: $font-style-normal;
+  }
+
+  p#{&}__title {
+    font-family: $fonts-helvetica-lt-pro;
+    font-weight: $font-weight-300;
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  &__description {
+    font-family: $fonts-helvetica-lt-pro;
+    font-weight: $font-weight-300;
+    font-style: $font-style-normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: $black-off-color;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 22px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 25px;
+      margin-bottom: 0.5em;
+
+      @media (max-width: $screen-md-min) {
+        font-size: 22px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ul {
+      padding-left: 30px;
+      margin-bottom: 15px;
+
+      li {
+        display: list-item;
+        padding-bottom: 5px;
+        font-size: 18px;
+        line-height: 25px;
+
+        @media (max-width: $screen-md-min) {
+          font-size: 18px;
+        }
+      }
+    }
+
+    strong,
+    b {
+      font-weight: $font-weight-700;
+    }
+
+    a {
+      color: $brown-color;
+      text-decoration: underline;
+
+      &:hover {
+        color: $brown-color;
+      }
+      &:focus {
+        color: $brown-color;
+      }
+    }
+  }
+}

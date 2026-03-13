@@ -49,8 +49,12 @@
 @use "blocks/featured-article-post-section";
 @use "blocks/gallery-grid-filter-section";
 
-/** Import Blocks styles */
-@use "woocommerce/single-product" ;
+/** Import WooCommerce styles */
+@use "woocommerce/single-product";
+@use "woocommerce/woo-single-product-delivery-section";
+@use "woocommerce/woo-single-related-products-section";
+@use "woocommerce/cart-page";
+@use "woocommerce/checkout-page";
 
 /*.fonts-niveau-grotesk{
   font-family: $fonts-niveau-grotesk-small-caps;
