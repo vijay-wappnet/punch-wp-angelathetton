@@ -175,3 +175,4 @@ require_once __DIR__ . '/custom-function.php';
 require_once __DIR__ . '/blocks.php';
 require_once __DIR__ . '/woocommerce-customize-single-product.php';
 require_once __DIR__ . '/woocommerce-customize-cart.php';
+require_once __DIR__ . '/woocommerce-customize-checkout.php';
