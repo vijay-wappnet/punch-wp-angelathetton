@@ -10,4 +10,55 @@
   @media (max-width: $screen-md-min) {
     padding-top: 100px;
   }
+  .woocommerce-breadcrumb{
+    display: none;
+  }
+  
+}
+
+
+// Checkout notices
+.woocommerce-form-coupon-toggle{
+  .woocommerce-info{
+    border-top-color: $brown-color;
+    &:before{
+      color: $brown-color;
+    }
+    &:after{
+      color: $brown-color;
+    }
+    a{
+      color: $brown-color;
+      
+    }
+  }  
+}
+.woocommerce-notices-wrapper {
+  margin-bottom: 20px;
+
+  .woocommerce-message,
+  .woocommerce-error,
+  .woocommerce-info {
+    margin-bottom: 15px;
+    background-color: rgba($brown-color, 0.1);
+    border-left: none;
+    border-top-color: $brown-color;
+    a {
+      color: $brown-color;
+    }
+  }
+  .woocommerce-message{
+    &::before {
+      color: $brown-color;
+    }
+  }
+
+  .woocommerce-error {
+    background-color: rgba(#dc3545, 0.1);
+    border-left-color: #dc3545;
+
+    a {
+      color: #dc3545;
+    }
+  }
 }

@@ -33,8 +33,8 @@
 
           <div class="row cart-layout">
             {{-- Left Column - Basket --}}
-            <div class="col-lg-7 basket-column">
-              <h2 class="basket-title">{{ __('YOUR BASKET', 'woocommerce') }}</h2>
+            <div class="col-lg-7 col-md-12 col-12 basket-column">
+              <h1 class="basket-title">{{ __('YOUR BASKET', 'woocommerce') }}</h1>
 
               @php
                 do_action('woocommerce_before_cart_table');
@@ -80,14 +80,14 @@
                           </h3>
 
                           {{-- Product Price --}}
-                          <div class="cart-item__price">
+                          <h4 class="cart-item__price">
                             @if ($_product->is_on_sale())
                               <span class="regular-price">{!! wc_price($_product->get_regular_price()) !!}</span>
                               <span class="sale-price">{!! wc_price($_product->get_sale_price()) !!}</span>
                             @else
                               {!! apply_filters('woocommerce_cart_item_price', WC()->cart->get_product_price($_product), $cart_item, $cart_item_key) !!}
                             @endif
-                          </div>
+                          </h4>
 
                           {{-- Product Meta --}}
                           @php
@@ -95,6 +95,11 @@
                           @endphp
                         </div>
 
+                        {{-- Remove Item --}}
+                      </div>
+
+                      {{-- Quantity Controls --}}
+                      <div class="cart-item__quantity">
                         {{-- Remove Item --}}
                         <div class="cart-item__remove">
                           {!! apply_filters(
@@ -113,10 +118,6 @@
                             $cart_item_key
                           ) !!}
                         </div>
-                      </div>
-
-                      {{-- Quantity Controls --}}
-                      <div class="cart-item__quantity">
                         @if ($_product->is_sold_individually())
                           @php
                             $min_quantity = 1;
@@ -191,9 +192,9 @@
             </div>
 
             {{-- Right Column - Order Summary --}}
-            <div class="col-lg-5 order-summary-column">
+            <div class="col-lg-5 col-md-12 col-12 order-summary-column">
               <div class="order-summary">
-                <h2 class="order-summary__title">{{ __('ORDER SUMMARY', 'woocommerce') }}</h2>
+                <h3 class="order-summary__title">{{ __('ORDER SUMMARY', 'woocommerce') }}</h3>
 
                 @php
                   do_action('woocommerce_before_cart_totals');

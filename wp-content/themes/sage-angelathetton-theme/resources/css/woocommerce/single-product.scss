@@ -5,6 +5,7 @@
 .woocommerce{
   .woocommerce-message {
     border-top-color: $brown-color;
+    border-left: none;
     .button {
       background-color: $brown-color !important;
       color: $white-color !important;
@@ -79,6 +80,11 @@
       }
     }
     .entry-summary{
+      .stock{
+        &.out-of-stock{
+          display: none !important;
+        }
+      }
       .cart{
         flex-wrap: nowrap;
         gap: 10px;
@@ -100,15 +106,28 @@
           padding-bottom: 17px !important;
           overflow: hidden;
         }
-      }
-      .single_add_to_cart_button{
-
-      }
+      }      
     }
     .product {
       .related.products{
         display: block;
         width: 100%;
+      }
+      .onsale{
+        top: -20px;
+        left: -20px;
+        background-color: $brown-color;
+        color: $white-color;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: 600;
+        z-index: 1;
+
+        @media (max-width: $screen-md-min) {
+          top: -10px;
+          left: -10px;
+          padding: 3px 8px;
+        }
       }
     }
 
@@ -150,12 +169,12 @@
       font-family: $fonts-niveau-grotesk-small-caps;
       font-size: 32px;
       line-height: 38px;
-      font-weight: 300;      
+      font-weight: 300;
     }
     .regular-price {
       text-decoration: line-through;
       color: rgba($black-off-color, 0.5);
-      margin-right: 8px;     
+      margin-right: 8px;
     }
     .sale-price {
       color: $black-off-color;
