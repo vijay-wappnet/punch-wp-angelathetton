@@ -2,7 +2,7 @@
     use Illuminate\Support\Facades\Vite;
 @endphp
 
-<header id="site-header" class="site-header" role="banner"> 
+<header id="site-header" class="site-header" role="banner">
   <div class="header-inner container-fluid">
     <!-- hamburger / menu toggle -->
     <button class="menu-toggle" aria-expanded="false" aria-controls="fullscreen-menu" aria-label="Open menu">
