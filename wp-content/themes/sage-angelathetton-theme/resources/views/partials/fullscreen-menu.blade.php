@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Vite;
+@endphp
+
 <div id="fullscreen-menu" class="fullscreen-menu" aria-hidden="true">
   @php
     // logo image from options
