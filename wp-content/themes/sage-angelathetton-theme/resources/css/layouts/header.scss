@@ -430,6 +430,9 @@ body.no-scroll {
         &:after{
           left: 140%; // for aimated shine effect
         }
+        .hfsm-btn-fullscreen-arrow-icon{
+          filter: invert(1) brightness(0);
+        }
       }
       &:after{
         // for aimated shine effect
