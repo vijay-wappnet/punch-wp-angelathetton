@@ -73,12 +73,12 @@
 
             <div class="checkout-extra-options d-flex align-items-center flex-wrap">
               <label class="checkout-extra-options__item">
-                <input type="checkbox" name="ship_to_different_address" value="1" @checked((bool) $checkout->get_value('ship_to_different_address'))>
+                <input type="checkbox" name="ship_to_different_address" value="1" @checked((bool) $checkout->get_value('ship_to_different_address')) class="custom-checkbox">
                 <span>{{ __('Deliver to a different address', 'woocommerce') }}</span>
               </label>
 
               <label class="checkout-extra-options__item">
-                <input type="checkbox" name="newsletter_subscribe" value="1">
+                <input type="checkbox" name="newsletter_subscribe" value="1" class="custom-checkbox">
                 <span>{{ __('Subscribe to our newsletter', 'sage') }}</span>
               </label>
             </div>
@@ -198,7 +198,7 @@
                       <strong>{{ __('TOTAL', 'woocommerce') }}</strong>
                        @if (wc_tax_enabled() && !WC()->cart->display_prices_including_tax())
                         <span class="includes-tax">({{ __('Includes', 'woocommerce') }} <strong>{!! wc_price(WC()->cart->get_total_tax()) !!}</strong> {{ __('VAT', 'woocommerce') }})</span>
-                      @endif                      
+                      @endif
                     </div>
                     <strong>{!! WC()->cart->get_total() !!}</strong>
                   </div>
@@ -242,7 +242,7 @@
                 @endif
               @endif
 
-              <div class="place-order">
+              <div class="place-order custom-place-order--from-template--override">
                 @php
                   do_action('woocommerce_review_order_before_submit');
                   wc_get_template('checkout/terms.php');
