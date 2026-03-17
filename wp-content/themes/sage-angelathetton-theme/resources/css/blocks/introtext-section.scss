@@ -6,8 +6,9 @@
     h1,h2{
       &.intro-section__heading{
         font-family: $fonts-niveau-grotesk-small-caps;
-        font-weight: $font-weight-500;
+        font-weight: $font-weight-300;
         margin-bottom: 25px;
+        text-transform: uppercase;
       }
     }
 
@@ -15,14 +16,13 @@
       &.intro-section__heading{
         font-family: $fonts-niveau;
         font-weight: $font-weight-300;
-        font-style: $font-style-normal;
+        text-transform: uppercase;
         margin-bottom: 25px;
       }
     }
     .intro-section__content{
       font-family: $fonts-helvetica-lt-pro;
       font-weight: $font-weight-300;
-      font-style: $font-style-normal;
       margin-bottom: 25px;
 
       @media (max-width: $screen-md-min) {
@@ -52,4 +52,19 @@
         font-weight: $font-weight-700;
       }
     }
+}
+.home{
+  .intro-section{
+    .intro-section__content{
+      font-size: 32px;
+      line-height: 38px;
+      font-family: $fonts-niveau;
+      p{
+        font-size: 32px;
+        line-height: 38px;
+        font-family: $fonts-niveau;
+        font-weight: $font-weight-300;
+      }
+    }
+  }
 }

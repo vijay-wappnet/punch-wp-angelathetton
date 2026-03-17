@@ -6,7 +6,65 @@ $header-transparent: rgba(255, 255, 255, 0.15);
 body.no-scroll {
   overflow: hidden !important;
 }
+.home{
+  .site-header{
+    &.header-scrolled {
+      .menu-icon-black {
+        display: inline;
+      }
+      .menu-icon-white {
+        display: none;
+      }
+      .header-top-nav{
+        .menu-item{
+          a {
+            color: $black-off-color;
+            &:hover {
+              color: $brown-color;
+            }
+            &:active{
+              color: $brown-color;
+            }
+            &:focus{
+              color: $brown-color;
+            }
+          }
+        }
+      }
+      .logo-wrapper{
+        .brand-logo-black{
+          display: block !important;
+        }
+        .brand-logo-white{
+          display: none !important;
+        }
+      }
+    }
 
+    .logo-wrapper{
+      .brand-logo-black{
+        display: none !important;
+      }
+      .brand-logo-white{
+        display: block !important;
+      }
+    }
+
+    .menu-icon-black {
+      display: none;
+    }
+    .menu-icon-white {
+      display: inline;
+    }
+    .header-top-nav{
+      .menu-item{
+        a {
+          color: $white-color;
+        }
+      }
+    }
+  }
+}
 .site-header {
   position: fixed;
   top: 0;
@@ -24,7 +82,12 @@ body.no-scroll {
     background: $white-color;
     backdrop-filter: none;
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-
+    .menu-icon-black {
+      display: inline;
+    }
+    .menu-icon-white {
+      display: none;
+    }
     .logo-wrapper{
       .brand-logo {
         &:active{
@@ -37,8 +100,25 @@ body.no-scroll {
         }
       }
     }
-
   }
+  .logo-wrapper{
+    .brand-logo-black{
+      display: block !important;
+    }
+    .brand-logo-white{
+      display: none !important;
+    }
+  }
+  .menu-icon-white {
+    display: none;
+  }
+  // .brand-logo-black{
+  //   display: block;
+  // }
+  // .brand-logo-white{
+  //   display: none ;
+  // }
+
 
   .header-inner {
     position: relative;
@@ -59,32 +139,32 @@ body.no-scroll {
     justify-content: center;
 
     .hamburger {
-      display: inline-block;
-      width: 24px;
-      height: 18px;
+      display: block;
+      width: 35px;
       position: relative;
-
       .bar {
-        display: block;
-        height: 2px;
-        background: currentColor;
-        margin: 4px 0;
+        width: 100%;
         transition: transform 0.3s ease;
+        img{
+          width: 100%;
+          height: auto;
+          transition: filter 0.3s ease;
+        }
       }
 
       &:hover {
-        .bar {
-          background: $brown-color;
+        .img {
+
         }
       }
       &:active {
-        .bar {
-          background: $brown-color;
+        .img {
+
         }
       }
       &:focus {
-        .bar {
-          background: $brown-color;
+        .img {
+
         }
       }
     }
@@ -120,6 +200,7 @@ body.no-scroll {
       padding: 0;
 
       a {
+        color: $black-off-color;
         text-decoration: none;
         text-transform: uppercase;
         &:hover {
@@ -168,13 +249,17 @@ body.no-scroll {
     .close-btn {
       background: none;
       border: none;
-      font-size: 2rem;
       cursor: pointer;
       position: relative;
       z-index: auto;
       top: auto;
       left: auto;
       flex-shrink: 0;
+      .close-icon{
+        width: 30px;
+        height: 30px;
+        display: block;
+      }
     }
 
     .menu-header-logo {
@@ -326,7 +411,7 @@ body.no-scroll {
     .hfsm-btn{
       color: $white-color;
       border: 1px solid;
-      border-color: #957567;
+      border-color: $white-color;
       border-radius: 0;
       padding: 0.5rem 8rem;
       overflow: hidden; // for aimated shine effect
@@ -365,6 +450,15 @@ body.no-scroll {
         transform: skewX(20deg);
         transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
         pointer-events: none;
+      }
+      .hfsm-btn-fullscreen-arrow-icon{
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        @media (max-width: #{$screen-lg-min - 1}) {
+          position: relative;
+          display: none;
+        }
       }
     }
   }
@@ -489,7 +583,6 @@ body.no-scroll {
 
       .hfsm-btn {
         padding: 0.5rem 1rem;
-        text-transform: uppercase;
         border-color: $white-color;
       }
     }

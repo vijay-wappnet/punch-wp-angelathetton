@@ -2,18 +2,28 @@
   <div class="header-inner container-fluid">
     <!-- hamburger / menu toggle -->
     <button class="menu-toggle" aria-expanded="false" aria-controls="fullscreen-menu" aria-label="Open menu">
-      <span class="hamburger">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </span>
+      <div class="hamburger">
+        <span class="bar">
+            <img src="{{ Vite::asset('resources/images/menu-icon-white.svg') }}" alt="menu" class="icon menu-icon-white" />
+            <img src="{{ Vite::asset('resources/images/menu-icon-black.svg') }}" alt="menu" class="icon menu-icon-black" />
+        </span>
+      </div>
     </button>
 
     <!-- logo centered -->
     <div class="logo-wrapper">
       @php
           // logo image from options
-          $header_logo = get_field('header_logo', 'option');
+          $header_logo_black = get_field('header_logo', 'option');
+          $header_logo_white = get_field('header_logo_white', 'option');
+          if ($header_logo_white) {
+              $header_logo_white_url = esc_url($header_logo_white['url']);
+              $header_logo_white_alt = esc_attr($header_logo_white['alt']);
+          }
+          if($header_logo_black) {
+              $header_logo_black_url = esc_url($header_logo_black['url']);
+              $header_logo_black_alt = esc_attr($header_logo_black['alt']);
+          }
           // group for link settings
           $logo_link_group = get_field('header_logo_link', 'option');
           $siteName = get_bloginfo('name');
@@ -62,20 +72,28 @@
           }
         @endphp
 
-        @if ($header_logo)
+        @if ($header_logo_white || $header_logo_black)
             @if ($link_url)
-                <a href="{{ esc_url($link_url) }}" class="brand-logo"
+                <a href="{{ esc_url($link_url) }}" class="brand-logo brand-logo-black"
                    aria-label="{{ esc_attr($aria_label) }}"
                    {!! $link_target ? 'target="'.esc_attr($link_target).'"' : '' !!}
                    {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}>
-                    <img src="{{ esc_url($header_logo['url']) }}"
-                         alt="{{ esc_attr($header_logo['alt']) }}"
+                    <img src="{{ esc_url($header_logo_black['url']) }}"
+                         alt="{{ esc_attr($header_logo_black['alt']) }}"
+                         class="img-fluid">
+                </a>
+                <a href="{{ esc_url($link_url) }}" class="brand-logo brand-logo-white"
+                   aria-label="{{ esc_attr($aria_label) }}"
+                   {!! $link_target ? 'target="'.esc_attr($link_target).'"' : '' !!}
+                   {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}>
+                    <img src="{{ esc_url($header_logo_white['url']) }}"
+                         alt="{{ esc_attr($header_logo_white  ['alt']) }}"
                          class="img-fluid">
                 </a>
             @else
                 <span class="brand-logo" aria-label="{{ esc_attr($aria_label) }}">
-                    <img src="{{ esc_url($header_logo['url']) }}"
-                         alt="{{ esc_attr($header_logo['alt']) }}"
+                    <img src="{{ esc_url($header_logo_black['url']) }}"
+                         alt="{{ esc_attr($header_logo_black['alt']) }}"
                          class="img-fluid">
                 </span>
             @endif

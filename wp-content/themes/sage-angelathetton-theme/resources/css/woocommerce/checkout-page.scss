@@ -353,6 +353,10 @@
       font-size: 18px;
       line-height: 1;
       border: 0;
+      background: transparent;
+      &:hover {
+        color: rgba($black-off-color, 1);
+      }
     }
 
     .order-summary-totals {

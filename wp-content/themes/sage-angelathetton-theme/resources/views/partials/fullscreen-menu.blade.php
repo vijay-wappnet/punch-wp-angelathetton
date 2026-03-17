@@ -18,7 +18,9 @@
   <!-- menu header with logo and close button -->
   <div class="menu-header">
     <button class="close-btn" aria-label="Close menu">
-      <span class="close-icon">&times;</span>
+      <span class="close-icon">
+        <img src="{{ Vite::asset('resources/images/full-menu-close-icon.svg') }}" alt="Close menu" class="fullscreen-close-icon img-fluid" />
+      </span>
     </button>
 
     @if ($header_logo)
@@ -103,7 +105,7 @@
         }
 
         if ($link_url) {
-          $buttons_html .= '<a href="'.esc_url($link_url).'" class="btn hfsm-btn '.$btn_class.'" aria-label="'.esc_attr($aria_label).'"'.($link_target ? ' target="'.esc_attr($link_target).'"' : '').($ga_label ? ' data-event="'.esc_attr($ga_label).'"' : '').'>' . esc_html($button_title) . '</a>';
+          $buttons_html .= '<a href="'.esc_url($link_url).'" class="btn hfsm-btn '.$btn_class.'" aria-label="'.esc_attr($aria_label).'"'.($link_target ? ' target="'.esc_attr($link_target).'"' : '').($ga_label ? ' data-event="'.esc_attr($ga_label).'"' : '').'>' . esc_html($button_title) . ' <img src="'.Vite::asset('resources/images/white-right-arrow.svg').'" alt="Arrow" class="hfsm-btn-fullscreen-arrow-icon img-fluid" /></a>';
         } else {
           $buttons_html .= '<span class="btn btn-reserve-table-room" aria-label="'.esc_attr($aria_label).'">' . esc_html($button_title) . '</span>';
         }
