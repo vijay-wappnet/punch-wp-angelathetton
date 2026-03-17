@@ -9,7 +9,7 @@
       <div class="hamburger">
         <span class="bar">
             <img src="{{ Vite::asset('resources/images/menu-icon-white.svg') }}" alt="menu" class="icon menu-icon-white" />
-            <img src="{{ Vite::asset('resources/images/menu-icon-black.svg') }}" alt="menu" class="icon menu-icon-black" />
+            <img src="{{ Vite::asset('resources/images/menu-Icon-black.svg') }}" alt="menu" class="icon menu-icon-black" />
         </span>
       </div>
     </button>
