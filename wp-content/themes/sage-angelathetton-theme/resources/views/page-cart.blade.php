@@ -264,7 +264,7 @@
                     //do_action('woocommerce_proceed_to_checkout');
                   @endphp
 
-                  <a href="{{ wc_get_checkout_url() }}" class="btn checkout-button proceed-to-checkout">
+                  <a href="{{ wc_get_checkout_url() }}" class="btn checkout-button proceed-to-checkout" aria-label="{{ __('Proceed to Checkout', 'woocommerce') }}" aria-describedby="proceed-to-checkout-desc" role="button">
                     {{ __('Proceed to Checkout', 'woocommerce') }}
                   </a>
 
@@ -297,6 +297,12 @@
       @endphp
 
     </div>
+  </div>
+
+  <div class="e-content">
+    @php
+      (the_content());
+    @endphp
   </div>
 
   @php

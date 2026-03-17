@@ -39,7 +39,7 @@
         overflow: hidden; // for aimated shine effect
         transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
         position: relative; // for aimated shine effect
-        
+
         &:hover {
           background-color: $brown-light-color !important;
           border-color: rgba($brown-light-color, 0.1) !important;
@@ -89,7 +89,7 @@
       gap: 0;
       margin-bottom: 16px;
 
-      @media (max-width: 767px) {
+      @media (max-width: $screen-md-min) {
         flex-direction: column;
         gap: 8px;
       }
@@ -97,14 +97,14 @@
       .checkout-tabs__button {
         flex: 1;
         border: 1px solid rgba($black-off-color, 0.15);
-        background: $white-off-color;
+        background: $white-color;
         padding: 12px;
         color: $black-off-color;
         font-size: 18px;
         font-family: $fonts-helvetica-lt-pro;
 
         &.active {
-          background: $white-color;
+          background: $gray-light-color;
         }
       }
     }
@@ -130,6 +130,21 @@
           min-height: 42px;
           padding: 8px 12px;
           background: $white-color;
+        }
+        .select2-container{
+          width: 47%;
+          @media (max-width: $screen-md-min) {
+            width: 100%;
+          }
+          .select2-selection{
+            border: 1px solid rgba($black-off-color, 0.2) !important;
+            min-height: 45px !important;
+            padding: 8px 12px !important;
+            background: $white-color !important;
+            .select2-selection__arrow{
+              height: 45px !important;
+            }
+          }
         }
       }
     }
@@ -178,7 +193,7 @@
         &.is-active {
           pointer-events: auto;
         }
-      }      
+      }
 
       .checkout-loader__spinner {
         width: 48px;
@@ -204,6 +219,9 @@
         padding: 14px 16px;
         text-transform: uppercase;
         color: $black-off-color;
+        font-size: 32px;
+        font-family: $fonts-niveau-grotesk-small-caps;
+        font-weight: $font-weight-300;
 
         .icon {
           width: 20px;
@@ -332,8 +350,8 @@
         }
       }
     }
-    
-    #payment {   
+
+    #payment {
       margin-top: 20px;
 
       .wc_payment_methods {
@@ -349,10 +367,22 @@
 
           label {
             margin-left: 8px;
+            font-size: 32px;
+            line-height: 38px;
+            font-family: $fonts-niveau;
+            font-weight: $font-weight-300;
+            text-transform: uppercase;
           }
 
           .payment_box {
             margin-top: 10px;
+            background-color: $brown-light-color;
+            &::before {
+              border: 1em solid $brown-light-color;
+              border-right-color: transparent;
+              border-left-color: transparent;
+              border-top-color: transparent;
+          }
           }
         }
       }
@@ -425,7 +455,7 @@
             flex: 0 0 18px;
           }
         }
-        
+
         #place_order {
           width: 100%;
           min-height: 44px;
@@ -440,7 +470,7 @@
             filter: grayscale(15%);
           }
         }
-      }      
+      }
     }
   }
 }
@@ -454,7 +484,7 @@
   border-top-color: $brown-color;
   a {
     color: $brown-color;
-  }  
+  }
 }
 .woocommerce-info {
   &::before {

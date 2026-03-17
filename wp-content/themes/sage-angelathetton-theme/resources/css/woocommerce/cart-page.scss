@@ -5,7 +5,7 @@
 // Cart Page Styles
 .cart-page {
   padding-top: 120px;
-  padding-bottom: 60px;  
+  padding-bottom: 60px;
 
   @media (max-width: $screen-md-min) {
     padding-top: 100px;
@@ -19,36 +19,36 @@
     .cart-layout{
       justify-content: space-between;
       .basket-column{
-        padding-right: 100px;  
+        padding-right: 100px;
         @media (max-width: $screen-lg-min) {
           padding-right: 15px;
           margin-bottom: 40px;
         }
         .basket-title {
+          font-family: $fonts-niveau-grotesk-small-caps;
           font-weight: $font-weight-300;
           color: $black-off-color;
           text-transform: uppercase;
-        }      
+          margin-bottom: 40px;
+        }
         // Cart Items List
         .cart-items-list {
-          border-top: 1px solid rgba($black-off-color, 0.1);
           .cart-item {
             display: flex;
             align-items: flex-start;
             gap: 20px;
-            padding: 25px 0;
-            border-bottom: 1px solid rgba($black-off-color, 0.1);
+            padding-bottom: 30px;
 
             @media (max-width: $screen-sm-min) {
               flex-wrap: nowrap;
               gap: 15px;
             }
             @media (max-width: $screen-mobile-min-400) {
-              flex-wrap: wrap;    
-              justify-content: center;         
+              flex-wrap: wrap;
+              justify-content: center;
             }
             // Product Image
-            &__image{ 
+            &__image{
               flex: 0 0 100px;
               width: 100px;
               height: 100px;
@@ -72,7 +72,7 @@
             // Product Details
             &__details {
               display: block;
-              width: 100%;      
+              width: 100%;
             }
             &__info {
               flex: 1;
@@ -95,11 +95,11 @@
               }
             }
             &__price {
-              font-weight: 300;
+              font-weight: $font-weight-300;
               color: $black-off-color;
               margin-bottom: 0;
               .woocommerce-Price-amount {
-                font-weight: 400;
+                font-weight: $font-weight-300;
               }
               .regular-price {
                 text-decoration: line-through;
@@ -108,10 +108,10 @@
               }
               .sale-price {
                 color: $black-off-color;
-                font-weight: 300;
+                font-weight: $font-weight-300;
               }
             }
-            
+
             // Quantity Controls
             &__quantity {
               flex-direction: column;
@@ -204,7 +204,7 @@
             }
 
           }
-        }  
+        }
         // Coupon Section
         .coupon-section {
           margin-top: 30px;
@@ -214,11 +214,11 @@
           }
           .coupon-form {
             display: flex;
-            gap: 15px;
+            gap: 25px;
 
             @media (max-width: $screen-sm-min) {
               flex-direction: row;
-              gap: 10px;
+              gap: 15px;
             }
             @media (max-width: $screen-mobile-min-400) {
               flex-direction: column;
@@ -226,7 +226,7 @@
             }
             .coupon-input {
               flex: 1;
-              max-width: 250px;
+              max-width: 350px;
               height: 45px;
               padding: 0 15px;
               border: 1px solid rgba($black-off-color, 0.2);
@@ -234,7 +234,7 @@
               color: $black-off-color;
               background: transparent;
               text-align: center;
-              
+
               &::placeholder {
                 color: rgba($black-off-color, 0.5);
               }
@@ -249,7 +249,7 @@
                 flex: 1;
               }
               @media (max-width: $screen-mobile-min-400) {
-                flex: none;                
+                flex: none;
               }
             }
             .apply-coupon-btn {
@@ -263,7 +263,7 @@
               overflow: hidden; // for aimated shine effect
               transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
               position: relative; // for aimated shine effect
-              
+
               &:hover {
                 background-color: $brown-light-color !important;
                 border-color: rgba($brown-light-color, 0.1) !important;
@@ -310,7 +310,7 @@
           display: none !important;
         }
       }
-      .order-summary-column{        
+      .order-summary-column{
         .order-summary {
           background-color: $white-off-color;
           padding: 30px;
@@ -324,7 +324,7 @@
             color: $black-off-color;
             margin: 0 0 35px 0;
             text-transform: uppercase;
-          }        
+          }
           // Order Summary Details
           .order-summary__details {
             margin-bottom: 30px;
@@ -333,7 +333,7 @@
               justify-content: space-between;
               align-items: flex-start;
               padding: 12px 0;
-              
+
               &:first-child {
                 padding-top: 0;
               }
@@ -377,6 +377,9 @@
 
                 strong {
                   font-weight: $font-weight-500;
+                  .woocommerce-Price-amount{
+                    font-weight: $font-weight-700;
+                  }
                 }
               }
               .total-value {
@@ -409,7 +412,7 @@
               overflow: hidden; // for aimated shine effect
               transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
               position: relative; // for aimated shine effect
-              
+
               &:hover {
                 background-color: $black-off-color !important;
                 border-color: rgba($black-off-color, 0.1) !important;
@@ -467,7 +470,7 @@
               }
             }
           }
-        }        
+        }
       }
     }
   }
@@ -492,7 +495,7 @@
 // WooCommerce default shipping override
 .woocommerce-shipping-totals {
   .summary-label {
-    font-weight: normal;
+    font-weight: $font-weight-300;
   }
 
   td {
