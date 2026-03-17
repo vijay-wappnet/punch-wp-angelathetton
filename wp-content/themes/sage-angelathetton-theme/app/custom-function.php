@@ -61,6 +61,14 @@ function allow_svg_upload($mimes) {
 }
 add_filter('upload_mimes', 'allow_svg_upload');
 
+/* ACF Google Map API Key */
+function my_acf_google_map_api( $api ){
+    $api['key'] = 'AIzaSyBEkxLojEGrnzxLgNUA5LlcHyRsGXPmXpE';
+    return $api;
+}
+add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
+
+
 /**
  * Generate responsive CSS for ACF dimension fields (margin/padding)
  *
@@ -337,7 +345,7 @@ function handle_load_more_career_posts() {
     $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 4;
     $orderby = isset($_POST['orderby']) ? sanitize_text_field($_POST['orderby']) : 'date';
     $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
-    
+
     // Support offset parameter (preferred) or paged for backwards compatibility
     $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
@@ -596,7 +604,7 @@ function handle_gallery_filter() {
     // Get gallery images from ACF options or current post
     // First try to get from the referring post
     $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
-    
+
     if (!$post_id) {
         // Try to get from referer
         $referer = wp_get_referer();
@@ -607,7 +615,7 @@ function handle_gallery_filter() {
 
     // Get gallery images
     $gallery_images = [];
-    
+
     if ($post_id) {
         // Get all blocks from the post content
         $post = get_post($post_id);
@@ -632,7 +640,7 @@ function handle_gallery_filter() {
 
     // Build HTML output
     ob_start();
-    
+
     if (!empty($gallery_images)) {
         $total_images = count($gallery_images);
         $image_index = 0;
@@ -641,9 +649,9 @@ function handle_gallery_filter() {
         while ($image_index < $total_images) {
             $row_type = ($row_number % 2 === 0) ? 'A' : 'B';
             $row_number++;
-            
+
             echo '<div class="gallery-grid-filter-section__row gallery-grid-filter-section__row--type-' . strtolower($row_type) . '">';
-            
+
             if ($row_type === 'A') {
                 // Row Type A: Large image on left, 4 small images on right
                 // Large Image
@@ -656,7 +664,7 @@ function handle_gallery_filter() {
                     $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
                     $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
                     $image_index++;
-                    
+
                     echo '<div class="gallery-grid-filter-section__large" data-category="' . esc_attr($item_category) . '">';
                     echo '<div class="gallery-grid-filter-section__item" data-full-image="' . esc_url($image_full) . '">';
                     if ($image_url) {
@@ -666,7 +674,7 @@ function handle_gallery_filter() {
                     echo '<img src="' . esc_url(get_theme_file_uri('resources/images/plus_icon.svg')) . '" alt="plus" class="gallery-grid-filter-section__icon">';
                     echo '</div></div></div>';
                 }
-                
+
                 // Small Grid (4 images)
                 echo '<div class="gallery-grid-filter-section__small-grid">';
                 for ($i = 0; $i < 4; $i++) {
@@ -679,7 +687,7 @@ function handle_gallery_filter() {
                         $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
                         $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
                         $image_index++;
-                        
+
                         echo '<div class="gallery-grid-filter-section__small-item" data-category="' . esc_attr($item_category) . '">';
                         echo '<div class="gallery-grid-filter-section__item" data-full-image="' . esc_url($image_full) . '">';
                         if ($image_url) {
@@ -691,7 +699,7 @@ function handle_gallery_filter() {
                     }
                 }
                 echo '</div>';
-                
+
             } else {
                 // Row Type B: 4 small images on left, Large image on right
                 // Small Grid (4 images)
@@ -706,7 +714,7 @@ function handle_gallery_filter() {
                         $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
                         $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
                         $image_index++;
-                        
+
                         echo '<div class="gallery-grid-filter-section__small-item" data-category="' . esc_attr($item_category) . '">';
                         echo '<div class="gallery-grid-filter-section__item" data-full-image="' . esc_url($image_full) . '">';
                         if ($image_url) {
@@ -718,7 +726,7 @@ function handle_gallery_filter() {
                     }
                 }
                 echo '</div>';
-                
+
                 // Large Image
                 if (isset($gallery_images[$image_index])) {
                     $item = $gallery_images[$image_index];
@@ -729,7 +737,7 @@ function handle_gallery_filter() {
                     $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
                     $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
                     $image_index++;
-                    
+
                     echo '<div class="gallery-grid-filter-section__large" data-category="' . esc_attr($item_category) . '">';
                     echo '<div class="gallery-grid-filter-section__item" data-full-image="' . esc_url($image_full) . '">';
                     if ($image_url) {
@@ -740,7 +748,7 @@ function handle_gallery_filter() {
                     echo '</div></div></div>';
                 }
             }
-            
+
             echo '</div>';
         }
     } else {
@@ -763,7 +771,7 @@ function handle_gallery_filter() {
  */
 function find_gallery_images_in_blocks($blocks) {
     $gallery_images = [];
-    
+
     foreach ($blocks as $block) {
         // Check if this is our gallery block
         if ($block['blockName'] === 'acf/gallery-grid-filter-section') {
@@ -781,13 +789,13 @@ function find_gallery_images_in_blocks($blocks) {
                 }
             }
         }
-        
+
         // Check inner blocks recursively
         if (!empty($block['innerBlocks'])) {
             $inner_images = find_gallery_images_in_blocks($block['innerBlocks']);
             $gallery_images = array_merge($gallery_images, $inner_images);
         }
     }
-    
+
     return $gallery_images;
 }
