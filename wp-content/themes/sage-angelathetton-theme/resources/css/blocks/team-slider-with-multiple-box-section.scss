@@ -1,0 +1,358 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+@use "../components/buttons" as *;
+
+
+
+
+
+.team-slider-with-multiple-box-section {
+  background-color: $white-color;
+  width: 100%;
+  padding-bottom: 50px;
+  overflow: hidden; // ✅ prevents page horizontal scroll
+
+  .smb-item__wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .smb-item__slider {
+    position: relative;
+  }
+
+  .smb-item__slide {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+    height: 60vh;
+    overflow: hidden;
+    outline: none; // Remove default outline, custom focus styles applied below
+
+    // Hide reveal buttons after overlay is shown on mobile
+    &.is-overlay-visible .smb-item__reveal-btns {
+      @media (max-width: $screen-md-min) {
+        display: none !important;
+      }
+    }
+
+    // Desktop: hover/focus shows overlay
+    @media (min-width: $screen-md-min + 1) {
+      &:hover,
+      &:focus,
+      &:focus-visible,
+      &:focus-within {
+        .smb-item__overlay {
+          background: $brown-light-color-1;
+        }
+        .smb-item__heading {
+          color: $black-off-color;
+        }
+        .smb-item__hover-content {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+      }
+      &:focus-visible {
+        outline: 2px solid $black-off-color;
+        outline-offset: -2px;
+      }
+    }
+
+    // Mobile: overlay hidden by default, shown only after button click (handled by JS via .is-overlay-visible)
+    @media (max-width: $screen-md-min) {
+      .smb-item__overlay {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+      }
+      &.is-overlay-visible .smb-item__overlay {
+        opacity: 1;
+        pointer-events: auto;
+        background: $brown-light-color-1;
+      }
+      .smb-item__hover-content {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      min-height: 500px;
+    }
+
+
+    .smb-item__hover-content {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+      pointer-events: none;
+
+      @media (max-width: $screen-md-min) {
+        opacity: 1;
+        .smb-item__subheading,
+        .smb-item__description {
+          display: none;
+        }
+        .tswmbs-btn {
+          background-color: transparent;
+          color: $white-color;
+          border-color: $white-color;
+        }
+      }
+    }
+  }
+
+  .smb-item__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .smb-item__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    z-index: 2;
+    transition: background 0.4s ease;
+  }
+
+  .smb-item__content {
+    text-align: center;
+    color: $white-color;
+    max-width: 500px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: $screen-md-min) {
+      padding: 30px 15px;
+      max-width: 90%;
+    }
+
+    .smb-item__heading-wrap {
+      text-align: center;
+      width: 100%;
+    }
+
+  }
+
+  .smb-item__subheading {
+    font-family: $fonts-niveau-grotesk-small-caps;
+    font-weight: $font-weight-300;
+    color: $black-off-color;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+
+    @media (max-width: $screen-md-min) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .smb-item__heading {
+    font-family: $fonts-niveau-grotesk-small-caps;
+    font-weight: $font-weight-300;
+    color: $white-color;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    line-height: 1.2;
+    border-bottom: 1px solid;
+  }
+
+  .smb-item__description {
+    font-size: 16px;
+    font-family: $fonts-helvetica-lt-pro;
+    font-weight: $font-weight-300;
+    color: $black-off-color;
+    line-height: 25px;
+    margin-bottom: 25px;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 14px;
+      margin-bottom: 20px;
+      display: block !important;
+    }
+  }
+
+  .smb-item__buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    display: none !important; // Hidden button on Desktop by default
+
+    &.smb-item__reveal-btns{
+      @media (max-width: $screen-md-min) {
+        display: flex !important;
+        align-items: start;
+        justify-content: space-between !important;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        gap: 0;
+        height: 100%;
+        width: 100%;
+        padding: 30px 30px;
+      }
+      .smb-item__heading-wrap{
+        @media (max-width: $screen-md-min) {
+          position: relative;
+          width: 100%;
+        }
+        .smb-item__heading{
+          @media (max-width: $screen-md-min) {
+            padding-top: 0px;
+          }
+        }
+      }
+      .tswmbs-btn{
+        @media (max-width: $screen-md-min) {
+          color: $white-color;
+          background-color: transparent;
+          border: 1px solid $white-color;
+          padding: 0.5rem 1.5rem;
+          margin: 0px auto;
+        }
+      }
+    }
+  }
+
+  .tswmbs-btn {
+    color: $black-off-color;
+    background-color: transparent;
+    border: 1px solid $black-off-color;
+    overflow: hidden; // for aimated shine effect
+    transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+    position: relative; // for aimated shine effect
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $white-color;
+      color: $black-off-color;
+      border-color: $white-color;
+      &:after{
+        left: 140%; // for aimated shine effect
+      }
+    }
+    &:after{
+      // for aimated shine effect
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -130%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(
+        -115deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.25) 35%,
+        rgba(255, 255, 255, 0.7) 50%,
+        rgba(255, 255, 255, 0.25) 65%,
+        transparent 100%
+      );
+      transform: skewX(20deg);
+      transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+  }
+
+  // Slick slider overrides
+  .slick-slide {
+    outline: none;
+    padding: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+
+  .slick-list {
+    margin: 0;
+    padding: 0;
+    overflow: visible; // IMPORTANT for half slides
+  }
+
+  .slick-track {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  // Navigation arrows
+  .slick-prev,
+  .slick-next {
+    position: absolute;
+    bottom: -40px;
+    width: auto;
+    height: auto;
+    background: transparent;
+    border: none;
+    color: $black-off-color;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+
+    @media (max-width: $screen-md-min) {
+      padding: 8px;
+      font-size: 20px;
+    }
+
+    &:before {
+      font-family: slick;
+      font-size: 24px;
+    }
+
+    // Hover and focus states
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      transform: translateY(-3px);
+    }
+
+    &:focus-visible {
+      opacity: 0.6;
+    }
+  }
+
+  .slick-prev {
+    left: 50%;
+    margin-left: -50px;
+
+    @media (max-width: $screen-md-min) {
+      margin-left: -45px;
+    }
+  }
+
+  .slick-next {
+    right: auto;
+    left: 50%;
+    margin-left: 30px;
+
+    @media (max-width: $screen-md-min) {
+      margin-left: 25px;
+    }
+  }
+
+  // Disabled states
+  .slick-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: transparent;
+      color: $black-off-color;
+      border-color: $black-off-color;
+    }
+  }
+}
