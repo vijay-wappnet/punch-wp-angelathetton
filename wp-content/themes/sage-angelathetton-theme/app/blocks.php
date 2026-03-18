@@ -86,6 +86,23 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+        // Register the Team Slider With Multiple Box Section Block
+        acf_register_block_type([
+            'name'            => 'team-slider-with-multiple-box-section',
+            'title'           => __('Team Slider With Multiple Box Section', 'sage'),
+            'description'     => __('A team slider section with multiple boxes', 'sage'),
+            'render_callback' => ['App\Blocks\TeamSliderWithMultipleBoxSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'columns',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
 
         // Register the Full Width Banner Image Section Block
         acf_register_block_type([
