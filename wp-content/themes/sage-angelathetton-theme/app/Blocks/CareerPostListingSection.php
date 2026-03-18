@@ -58,6 +58,8 @@ class CareerPostListingSection
         $maxNumPages = (int) $postsQuery->max_num_pages;
         $currentPage = (int) max(1, $paged);
 
+        $careerEmail = get_field('career_email_for_job_applications', 'option');
+
         echo view('blocks.career-post-listing-section', [
             'block'           => $block,
             'blockId'         => $blockId,
@@ -75,7 +77,8 @@ class CareerPostListingSection
             'prevPageUrl'     => $currentPage > 1 ? get_pagenum_link($currentPage - 1) : '',
             'nextPageUrl'     => $currentPage < $maxNumPages ? get_pagenum_link($currentPage + 1) : '',
             'isPreview'       => $is_preview,
-            'email'           => self::getAdminEmail(), // added
+            //'email'         => self::getAdminEmail(), // added
+            'email'           => is_email($careerEmail) ? sanitize_email($careerEmail) : '',
         ]);
 
         wp_reset_postdata();
