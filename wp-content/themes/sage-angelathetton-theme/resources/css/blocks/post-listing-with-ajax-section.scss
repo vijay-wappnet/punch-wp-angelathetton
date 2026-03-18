@@ -136,7 +136,6 @@
   margin-top: auto;
 
   @media (max-width: $screen-mobile-min) {
-    width: 100%;
     text-align: center;
   }
 }
@@ -158,6 +157,10 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+
+  @media (max-width: $screen-sm-min) {
+    width: 100%;
+  }
 
   &:disabled {
     opacity: 0.6;

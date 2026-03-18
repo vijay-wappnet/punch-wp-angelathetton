@@ -5,10 +5,10 @@
 
   <div class="container">
     <div class="row align-items-center">
-      
+
       <div class="col-12 border-top-initialize"></div>
 
-      <div class="col-12 {{ $button ? 'col-md-10' : 'col-md-12' }} introtext-with-right-cta-section__content-wrapper" style="text-align: {{ esc_attr($content_alignment) }};">
+      <div class="col-12 {{ $button ? 'col-md-9 col-lg-10' : 'col-lg-12' }} introtext-with-right-cta-section__content-wrapper" style="text-align: {{ esc_attr($content_alignment) }};">
 
         {{-- Heading --}}
         @if($heading_text)
@@ -28,7 +28,7 @@
 
       {{-- Button --}}
       @if($button)
-        <div class="col-12 col-md-2 introtext-with-right-cta-section__button-wrapper">
+        <div class="col-12 col-md-3 col-lg-2 introtext-with-right-cta-section__button-wrapper">
           @php
             $link = $button['button_link'] ?? [];
             $url = is_array($link) ? ($link['url'] ?? '#') : $link;

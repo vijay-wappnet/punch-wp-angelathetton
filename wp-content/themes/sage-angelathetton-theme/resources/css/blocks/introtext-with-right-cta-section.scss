@@ -3,7 +3,7 @@
 @use "../components/buttons" as *;
 
 .introtext-with-right-cta-section {
-  
+
   .border-top-initialize{
     width: 98%;
     display: block;
@@ -75,6 +75,12 @@
 
     @media (max-width: $screen-md-min) {
       text-align: left;
+    }
+    .itwrctas-btn{
+      width: 100%;
+      @media (max-width: $screen-md-min) {
+        width: 200px;
+      }
     }
   }
 }
