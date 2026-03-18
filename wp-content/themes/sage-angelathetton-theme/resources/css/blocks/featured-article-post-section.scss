@@ -14,13 +14,13 @@
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
 
     @media (max-width: $screen-md-min) {
-      height: 450px;
+      height: 550px;
     }
     @media (max-width: $screen-sm-min) {
-      height: 350px;
+      height: 500px;
     }
   }
 
@@ -41,7 +41,7 @@
   &__content {
     position: relative;
     z-index: 1;
-    padding: 40px;
+    padding: 30px;
     max-width: 600px;
 
     @media (max-width: $screen-md-min) {
@@ -56,35 +56,36 @@
 
   &__date {
     display: block;
-    font-family: $fonts-niveau;
-    font-size: 14px;
-    font-weight: $font-weight-400;
-    line-height: 1.4;
+    font-family: $fonts-helvetica-lt-pro;
+    font-size: 18px;
+    font-weight: $font-weight-300;
+    line-height: 25px;
     color: $white-color;
     margin-bottom: 10px;
     letter-spacing: 0.5px;
 
     @media (max-width: $screen-sm-min) {
-      font-size: 12px;
+      font-size: 22px;
+      line-height: 26px;
     }
   }
 
   &__title {
     font-family: $fonts-niveau-grotesk-small-caps;
-    font-size: 48px;
-    font-weight: $font-weight-400;
-    line-height: 1.1;
+    font-size: 50px;
+    font-weight: $font-weight-300;
+    line-height: 55px;
     color: $white-color;
     margin: 0 0 25px 0;
     text-transform: uppercase;
     letter-spacing: 1px;
 
     @media (max-width: $screen-md-min) {
-      font-size: 36px;
+      font-size: 50px;
       margin-bottom: 20px;
     }
     @media (max-width: $screen-sm-min) {
-      font-size: 28px;
+      font-size: 50px;
       margin-bottom: 15px;
     }
   }
