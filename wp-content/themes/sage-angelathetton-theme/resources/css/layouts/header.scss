@@ -75,6 +75,18 @@ body.no-scroll {
       }
     }
   }
+
+  .hamburger {
+    p {
+      font-size: 23px;
+      color: $white-color;
+      font-weight: 300;
+
+      @media (max-width: $screen-lg-min) {
+        display: none;
+      }
+    }
+  }
 }
 
 .site-header {
@@ -169,7 +181,6 @@ body.no-scroll {
 
     .hamburger {
       display: block;
-      width: 35px;
       position: relative;
 
       .bar {
@@ -194,6 +205,8 @@ body.no-scroll {
       &:focus {
         .img {}
       }
+
+
     }
   }
 
@@ -267,13 +280,16 @@ body.no-scroll {
     height: 80px; // Reduced height
 
     .logo-wrapper {
-      .logo-link-first {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
+
+      .brand-logo-black,
+      .brand-logo-white.logo-link-first {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
       }
 
-      .logo-link-second {
+      .brand-logo-white.logo-link-second {
+        display: block !important;
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto;

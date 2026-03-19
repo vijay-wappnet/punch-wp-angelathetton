@@ -7,10 +7,13 @@
     <!-- hamburger / menu toggle -->
     <button class="menu-toggle" aria-expanded="false" aria-controls="fullscreen-menu" aria-label="Open menu">
       <div class="hamburger">
-        <span class="bar">
-            <img src="{{ Vite::asset('resources/images/menu-icon-white.svg') }}" alt="menu" class="icon menu-icon-white" />
-            <img src="{{ Vite::asset('resources/images/menu-Icon-black.svg') }}" alt="menu" class="icon menu-icon-black" />
-        </span>
+        <div class="d-flex align-items-center gap-4">
+            <span class="bar">
+                <img src="{{ Vite::asset('resources/images/menu-icon-white.svg') }}" alt="menu" class="icon menu-icon-white" />
+                <img src="{{ Vite::asset('resources/images/menu-Icon-black.svg') }}" alt="menu" class="icon menu-icon-black" />
+            </span>
+            <p class="mb-0 pb-0">MENU</p>
+        </div>
       </div>
     </button>
 
