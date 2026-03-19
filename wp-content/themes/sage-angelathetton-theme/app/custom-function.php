@@ -61,9 +61,9 @@ function allow_svg_upload($mimes) {
 }
 add_filter('upload_mimes', 'allow_svg_upload');
 
-/* ACF Google Map API Key */
+/* ACF Google Map API Key from wp-config.php */
 function my_acf_google_map_api( $api ){
-    $api['key'] = 'AIzaSyBEkxLojEGrnzxLgNUA5LlcHyRsGXPmXpE';
+    $api['key'] = WP_GOOGLE_MAPS_API_KEY;
     return $api;
 }
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');

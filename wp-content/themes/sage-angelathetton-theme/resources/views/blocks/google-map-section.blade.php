@@ -21,7 +21,7 @@
                         @if($map_url)
                             <iframe
                                 class="gms__iframe"
-                                src="{{ esc_url($map_url) }}"
+                                src="{{ $map_url }}"
                                 loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"
                                 allowfullscreen=""
