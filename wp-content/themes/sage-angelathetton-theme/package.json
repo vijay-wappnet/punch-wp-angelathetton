@@ -25,6 +25,7 @@
     "@accessible360/accessible-slick": "^1.0.1",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.7",
+    "gsap": "^3.14.2",
     "jquery-match-height": "^0.7.2"
   }
 }

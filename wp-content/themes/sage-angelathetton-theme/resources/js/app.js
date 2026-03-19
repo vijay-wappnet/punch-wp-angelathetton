@@ -3,6 +3,9 @@ import.meta.glob([
   '../fonts/**',
 ]);
 
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
+
 /* ==========================================
    BLOCK SCRIPTS
 ========================================== */
@@ -17,6 +20,9 @@ import './blocks/career-post-listing-section.js';
 import './blocks/faqs-accordion-section.js';
 import './blocks/article-post-listing-with-ajax-section.js';
 import './blocks/gallery-grid-filter-section.js';
+import './accessibility-modal.js';
+import './gsap-animations.js';
+
 
 /* ==========================================
    HEADER + FULLSCREEN MENU BEHAVIOUR
