@@ -121,6 +121,23 @@ add_action('init', function () {
                 'align_text'      => false,
             ],
         ]);
+        // Register the Full Width Title Banner Image Section Block
+        acf_register_block_type([
+            'name'            => 'full-width-title-banner-image-section',
+            'title'           => __('Full Width Title Banner Image Section', 'sage'),
+            'description'     => __('A full-width title banner image section with customizable background color - Use for the smaller header like display banner and title from next section', 'sage'),
+            'render_callback' => ['App\Blocks\FullWidthTitleBannerImageSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
 
         // Register the Banner Image Section Block
         acf_register_block_type([

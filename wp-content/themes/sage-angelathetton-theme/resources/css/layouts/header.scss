@@ -6,46 +6,55 @@ $header-transparent: rgba(255, 255, 255, 0.15);
 body.no-scroll {
   overflow: hidden !important;
 }
-.home{
-  .site-header{
+
+.home {
+  .site-header {
     &.header-scrolled {
       .menu-icon-black {
         display: inline;
       }
+
       .menu-icon-white {
         display: none;
       }
-      .header-top-nav{
-        .menu-item{
+
+      .header-top-nav {
+        .menu-item {
           a {
             color: $black-off-color;
+
             &:hover {
               color: $brown-color;
             }
-            &:active{
+
+            &:active {
               color: $brown-color;
             }
-            &:focus{
+
+            &:focus {
               color: $brown-color;
             }
           }
         }
       }
-      .logo-wrapper{
-        .brand-logo-black{
+
+      .logo-wrapper {
+        .brand-logo-black {
           display: block !important;
         }
-        .brand-logo-white{
+
+        .brand-logo-white {
           display: none !important;
         }
       }
     }
 
-    .logo-wrapper{
-      .brand-logo-black{
+    .logo-wrapper {
+      .brand-logo-black {
         display: none !important;
       }
-      .brand-logo-white{
+
+      .brand-logo-white {
         display: block !important;
       }
     }
@@ -53,11 +62,13 @@ body.no-scroll {
     .menu-icon-black {
       display: none;
     }
+
     .menu-icon-white {
       display: inline;
     }
-    .header-top-nav{
-      .menu-item{
+
+    .header-top-nav {
+      .menu-item {
         a {
           color: $white-color;
         }
@@ -65,7 +76,9 @@ body.no-scroll {
     }
   }
 }
+
 .site-header {
+  transition: all 0.4s ease;
   position: fixed;
   top: 0;
   left: 0;
@@ -75,43 +88,51 @@ body.no-scroll {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid $white-color;
-  transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease;
+  transition: background 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease, height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
 
   &.header-scrolled {
     background: $white-color;
     backdrop-filter: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+
     .menu-icon-black {
       display: inline;
     }
+
     .menu-icon-white {
       display: none;
     }
-    .logo-wrapper{
+
+    .logo-wrapper {
       .brand-logo {
-        &:active{
+        &:active {
           //-webkit-filter: invert(1) brightness(0);
           //filter: invert(1) brightness(0);
         }
-        &:focus{
+
+        &:focus {
           //-webkit-filter: invert(1) brightness(0);
           //filter: invert(1) brightness(0);
         }
       }
     }
   }
-  .logo-wrapper{
-    .brand-logo-black{
+
+  .logo-wrapper {
+    .brand-logo-black {
       display: block !important;
     }
-    .brand-logo-white{
+
+    .brand-logo-white {
       display: none !important;
     }
   }
+
   .menu-icon-white {
     display: none;
   }
+
   // .brand-logo-black{
   //   display: block;
   // }
@@ -126,7 +147,15 @@ body.no-scroll {
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    padding: 0 1rem;
+    padding: 0 80px;
+
+    @media (max-width: $screen-md-min) {
+      padding: 0 36px;
+    }
+
+    @media (max-width: $screen-mobile-min) {
+      padding: 0 15px;
+    }
   }
 
   .menu-toggle {
@@ -142,10 +171,12 @@ body.no-scroll {
       display: block;
       width: 35px;
       position: relative;
+
       .bar {
         width: 100%;
         transition: transform 0.3s ease;
-        img{
+
+        img {
           width: 100%;
           height: auto;
           transition: filter 0.3s ease;
@@ -153,19 +184,15 @@ body.no-scroll {
       }
 
       &:hover {
-        .img {
-
-        }
+        .img {}
       }
+
       &:active {
-        .img {
-
-        }
+        .img {}
       }
-      &:focus {
-        .img {
 
-        }
+      &:focus {
+        .img {}
       }
     }
   }
@@ -173,18 +200,23 @@ body.no-scroll {
   .logo-wrapper {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
     top: 50%;
     transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
 
     .brand-logo {
+      grid-area: 1 / 1;
       display: inline-block;
       text-decoration: none;
-      &:active{
+      transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, filter 0.5s ease;
+
+      &:active {
         //-webkit-filter: invert(1) brightness(2);
         //filter: invert(1) brightness(2);
       }
-      &:focus{
+
+      &:focus {
         //-webkit-filter: invert(1) brightness(2);
         //filter: invert(1) brightness(2);
       }
@@ -203,15 +235,48 @@ body.no-scroll {
         color: $black-off-color;
         text-decoration: none;
         text-transform: uppercase;
+
         &:hover {
-        color: $brown-color;
+          color: $brown-color;
+        }
+
+        &:active {
+          color: $brown-color;
+        }
+
+        &:focus {
+          color: $brown-color;
+        }
       }
-        &:active{
-          color: $brown-color;
-        }
-        &:focus{
-          color: $brown-color;
-        }
+    }
+  }
+
+  .shrink {
+    height: 70px;
+  }
+
+  .logo-wrapper {
+    .logo-link-second {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none; // Avoid clicking while hidden
+    }
+  }
+
+  &.logo-switched {
+    height: 80px; // Reduced height
+
+    .logo-wrapper {
+      .logo-link-first {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .logo-link-second {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto;
       }
     }
   }
@@ -255,7 +320,8 @@ body.no-scroll {
       top: auto;
       left: auto;
       flex-shrink: 0;
-      .close-icon{
+
+      .close-icon {
         width: 30px;
         height: 30px;
         display: block;
@@ -300,17 +366,21 @@ body.no-scroll {
 
         .menu-item {
           margin-bottom: 12px;
-          > a {
+
+          >a {
             font-size: 32px;
             text-decoration: none;
             color: inherit;
             text-transform: uppercase;
+
             &:hover {
               color: $brown-color;
             }
+
             &:active {
               color: $brown-color;
             }
+
             &:focus {
               color: $brown-color;
             }
@@ -341,23 +411,28 @@ body.no-scroll {
           transition: transform 0.4s ease, opacity 0.3s ease;
           transform: translateX(100%);
           opacity: 1;
-            li {
-              margin-bottom: 0px;
-              a {
-                font-size: 18px;
-                text-decoration: none;
-                &:hover {
-                  color: $brown-color;
-                }
-                &:active {
-                  color: $brown-color;
-                }
-                &:focus {
-                  color: $brown-color;
-                }
+
+          li {
+            margin-bottom: 0px;
+
+            a {
+              font-size: 18px;
+              text-decoration: none;
+
+              &:hover {
+                color: $brown-color;
               }
+
+              &:active {
+                color: $brown-color;
+              }
+
+              &:focus {
+                color: $brown-color;
+              }
+            }
+          }
         }
-      }
 
       }
 
@@ -409,14 +484,14 @@ body.no-scroll {
       flex-direction: column;
     }
 
-    .hfsm-btn{
+    .hfsm-btn {
       color: $white-color;
       border: 1px solid;
       border-color: $white-color;
       border-radius: 0;
       padding: 0.5rem 8rem;
       overflow: hidden; // for aimated shine effect
-      transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+      transition: color 0.5s ease, background 0.5s ease; // for aimated shine effect
       position: relative; // for aimated shine effect
 
       @media (max-width: $screen-mobile-min-400) {
@@ -428,14 +503,17 @@ body.no-scroll {
         background-color: $white-color;
         border-color: $white-color;
         color: $black-off-color;
-        &:after{
+
+        &:after {
           left: 140%; // for aimated shine effect
         }
-        .hfsm-btn-fullscreen-arrow-icon{
+
+        .hfsm-btn-fullscreen-arrow-icon {
           filter: invert(1) brightness(0);
         }
       }
-      &:after{
+
+      &:after {
         // for aimated shine effect
         content: "";
         position: absolute;
@@ -443,22 +521,22 @@ body.no-scroll {
         left: -130%;
         width: 80%;
         height: 100%;
-        background: linear-gradient(
-          -115deg,
-          transparent 0%,
-          rgba(255, 255, 255, 0.25) 35%,
-          rgba(255, 255, 255, 0.7) 50%,
-          rgba(255, 255, 255, 0.25) 65%,
-          transparent 100%
-        );
+        background: linear-gradient(-115deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.25) 35%,
+            rgba(255, 255, 255, 0.7) 50%,
+            rgba(255, 255, 255, 0.25) 65%,
+            transparent 100%);
         transform: skewX(20deg);
         transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
         pointer-events: none;
       }
-      .hfsm-btn-fullscreen-arrow-icon{
+
+      .hfsm-btn-fullscreen-arrow-icon {
         position: absolute;
         right: 15px;
         top: 15px;
+
         @media (max-width: #{$screen-lg-min - 1}) {
           position: relative;
           display: none;
@@ -511,16 +589,18 @@ body.no-scroll {
           padding: 0;
 
           /* parent menu items */
-          > .menu-item {
+          >.menu-item {
             border-top: 1px solid $black-off-color;
             padding-top: 12px;
             margin-bottom: 12px;
-            &.mobile-submenu-open{
-              > a{
+
+            &.mobile-submenu-open {
+              >a {
                 padding-bottom: 30px;
               }
             }
-            > a {
+
+            >a {
               font-size: 24px;
               padding: 0;
               text-transform: uppercase;
@@ -555,7 +635,7 @@ body.no-scroll {
           }
 
           /* shown when JS toggles class on parent li */
-          .mobile-submenu-open > .sub-menu {
+          .mobile-submenu-open>.sub-menu {
             display: block;
           }
 
@@ -596,6 +676,7 @@ body.no-scroll {
 // Desktop tweaks (lg-width and above)
 @media (min-width: #{$screen-lg-min}) {
   .fullscreen-menu {
+
     // Reposition menu-header for desktop (show close button at top-left)
     .menu-header {
       display: flex;

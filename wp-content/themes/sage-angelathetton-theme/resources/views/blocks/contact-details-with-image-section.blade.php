@@ -1,95 +1,98 @@
 @if(!empty($responsiveCss))
 <style>{{ $responsiveCss }}</style>
 @endif
+@php
+    // Get contact details repeater field
+    $contact_details = get_field('contact_details', 'option');
+    // Get social media details repeater field
+    $social_media_title = get_field('social_media_title', 'option');
+    $social_media_details = get_field('social_media_details', 'option');
+@endphp
+
 <section id="{{ $blockId }}" class="contact-details-with-image-section" @if(!empty($backgroundStyle)) style="{{ $backgroundStyle }}" @endif>
   <div class="container">
     <div class="row cdwis-row">
-      {{-- Address Column (col-md-4) --}}
-      <div class="col-12 col-md-4">
-        <div class="contact-details-with-image-section__address">
-          {{-- Address Heading --}}
-          @if($addressHeadingText)
-            <{{ $addressHeadingLevel }} class="contact-details-with-image-section__heading">
-              {{ $addressHeadingText }}
-            </{{ $addressHeadingLevel }}>
-          @endif
+      {{-- Address Column (col-lg-4) --}}
+      @if ($contact_details)
+        <div class="col-12 col-lg-4 footer-contact">
+          <div class="contact-details-with-image-section__address">
+            {{-- Address Heading --}}
+            @if($addressHeadingText)
+              <{{ $addressHeadingLevel }} class="contact-details-with-image-section__heading">
+                {{ $addressHeadingText }}
+              </{{ $addressHeadingLevel }}>
+            @endif
 
-          {{-- Address Contact Details Repeater --}}
-          @if(is_array($addressContactDetails) && count($addressContactDetails) > 0)
-            <ul class="contact-details-with-image-section__list">
-              @foreach($addressContactDetails as $index => $contact)
-                @php
-                  $icon = $contact['icon'] ?? '';
-                  $title = $contact['title'] ?? '';
-                  $link = $contact['link'] ?? '';
-                  $linkTargetNewTab = $contact['link_target_new_tab'] ?? false;
-                  $ariaLabel = $contact['aria_label'] ?? '';
-                  $dataEventLabel = $contact['data_event_label'] ?? '';
+            {{-- Contact Details List --}}
+            <ul>
+                @foreach ($contact_details as $contact)
+                    @php
+                        $icon = $contact['icon'] ?? '';
+                        $title = $contact['title'] ?? '';
+                        $link = $contact['link'] ?? '';
+                        $link_target_new_tab = $contact['link_target_new_tab'] ?? false;
+                        $data_event_label = $contact['data_event_label'] ?? '';
+                        $aria_label = $contact['aria_label'] ?? '';
 
-                  $linkUrl = '';
-                  $linkTarget = '';
+                        $link_url = $link['url'] ?? '';
+                        $link_target = $link_target_new_tab ? '_blank' : '';
+                    @endphp
 
-                  if (is_array($link)) {
-                    $linkUrl = $link['url'] ?? '';
-                  } elseif (is_string($link)) {
-                    $linkUrl = $link;
-                  }
-
-                  if ($linkTargetNewTab) {
-                    $linkTarget = '_blank';
-                  }
-
-                  // Get icon URL
-                  $iconUrl = '';
-                  $iconAlt = '';
-                  if ($icon) {
-                    $iconId = is_array($icon) ? $icon['ID'] : $icon;
-                    $iconUrl = wp_get_attachment_image_url($iconId, 'thumbnail');
-                    $iconAlt = is_array($icon) ? ($icon['alt'] ?? '') : get_post_meta($iconId, '_wp_attachment_image_alt', true);
-                  }
-                @endphp
-
-                <li class="contact-details-with-image-section__list-item {{ $loop->first ? 'cdwis-location-item' : '' }}">
-                  @if($linkUrl)
-                    <a href="{{ esc_url($linkUrl) }}"
-                       class="contact-details-with-image-section__link"
-                       @if($linkTarget) target="{{ esc_attr($linkTarget) }}" rel="noopener noreferrer" @endif
-                       @if($ariaLabel) aria-label="{{ esc_attr($ariaLabel) }}" @endif
-                       @if($dataEventLabel) data-event="{{ esc_attr($dataEventLabel) }}" @endif>
-                      @if($iconUrl)
-                        <span class="contact-details-with-image-section__icon">
-                          <img src="{{ esc_url($iconUrl) }}" alt="{{ esc_attr($iconAlt) }}" loading="lazy">
-                        </span>
-                      @endif
-                      @if($title)
-                        <span class="contact-details-with-image-section__title">{!! $title !!}</span>
-                      @endif
-                    </a>
-                  @else
-                    <div class="contact-details-with-image-section__item-content">
-                      @if($iconUrl)
-                        <span class="contact-details-with-image-section__icon">
-                          <img src="{{ esc_url($iconUrl) }}" alt="{{ esc_attr($iconAlt) }}" loading="lazy">
-                        </span>
-                      @endif
-                      @if($title)
-                        <span class="contact-details-with-image-section__title">{!! $title !!}</span>
-                      @endif
-                    </div>
-                  @endif
-                </li>
-              @endforeach
+                    <li class="fc-items {{ $loop->first ? 'fc-location-item' : '' }}">
+                        @if ($link_url)
+                            <a href="{{ esc_url($link_url) }}" target="{{ esc_attr($link_target) }}"
+                                aria-label="{{ esc_attr($aria_label) }}"
+                                data-event="{{ esc_attr($data_event_label) }}">
+                                @if ($icon)
+                                    <img src="{{ esc_url($icon['url']) }}"
+                                        alt="{{ esc_attr($icon['alt']) }}" class="icon">
+                                @endif
+                                <div>{!! $title !!}</div>
+                            </a>
+                        @else
+                            <span>
+                                @if ($icon)
+                                    <img src="{{ esc_url($icon['url']) }}"
+                                        alt="{{ esc_attr($icon['alt']) }}" class="icon">
+                                @endif
+                                <div>{!! $title !!}</div>
+                            </span>
+                        @endif
+                    </li>
+                @endforeach
             </ul>
-          @else
-            <div class="contact-details-with-image-section__placeholder">
-              <p>{{ __('No contact details added', 'sage') }}</p>
-            </div>
-          @endif
-        </div>
-      </div>
 
-      {{-- Opening Times Column (col-md-5) --}}
-      <div class="col-12 col-md-5">
+            @if ($social_media_details)
+                <div class="footer-social-icon-box">
+                    @foreach ($social_media_details as $social)
+                        @php
+                            $icon = $social['icon'] ?? '';
+                            $title = $social['title'] ?? '';
+                            $link = $social['link'] ?? '';
+                            $data_event_label = $social['data_event_label'] ?? '';
+                            $aria_label = $social['aria_label'] ?? '';
+
+                            $link_url = $link['url'] ?? '';
+                            $link_target = $link['target'] ?? '_self';
+                        @endphp
+
+                        @if ($link_url && $icon)
+                            <a href="{{ esc_url($link_url) }}" target="{{ esc_attr($link_target) }}"
+                                aria-label="{{ esc_attr($aria_label) }}"
+                                data-event="{{ esc_attr($data_event_label) }}">
+                                <img src="{{ esc_url($icon['url']) }}" alt="{{ esc_attr($icon['alt']) }}"
+                                    class="footer-social-icon">
+                            </a>
+                        @endif
+                    @endforeach
+                </div>
+            @endif
+          </div>
+        </div>
+    @endif
+
+      {{-- Opening Times Column (col-lg-5) --}}
+      <div class="col-12 col-lg-5">
         <div class="contact-details-with-image-section__opening">
           {{-- Opening Heading --}}
           @if($openingHeadingText)
@@ -111,8 +114,8 @@
         </div>
       </div>
 
-      {{-- Image Column (col-md-3) --}}
-      <div class="col-12 col-md-3 {{ !$showContactImageInMobile ? 'd-none d-md-block' : '' }}">
+      {{-- Image Column (col-lg-3) --}}
+      <div class="col-12 col-lg-3 {{ !$showContactImageInMobile ? 'd-none d-md-block' : '' }}">
         <div class="contact-details-with-image-section__image">
           @if($contactImage)
             @php
