@@ -4,12 +4,12 @@
 
 .accessibility-modal {
   .modal-dialog {
-    max-width: 550px;
+    max-width: 635px;
     margin: 1.75rem auto;
   }
 
   .modal-content {
-    border-radius: 8px;
+    border-radius: 0;
     border: none;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 
@@ -21,13 +21,15 @@
 
   .modal-header {
     border-bottom: none;
-    padding: 20px 20px 0;
+    padding: 30px 30px 0;
 
     .accessibility-title {
-      font-weight: 600;
-      font-size: 24px;
+      font-family: $fonts-niveau-grotesk-small-caps !important;
+      font-family: $fonts-dyslexie !important;
+      font-weight: 300;
+      font-size: 32px;
+      line-height: 34px;
       color: $black-off-color !important;
-      font-family: $fonts-niveau !important;
     }
 
     .btn-close {
@@ -70,7 +72,7 @@
   }
 
   .modal-body {
-    padding: 20px;
+    padding: 30px;
 
     .accessibility-option {
       margin-bottom: 20px;
@@ -89,8 +91,10 @@
         display: block;
         margin-bottom: 12px;
         color: $black-off-color !important;
-        font-size: 18px;
         font-family: $fonts-niveau !important;
+        font-weight: $font-weight-400 !important;
+        font-size: 20px !important;
+        line-height: 26px !important;
         width: 160px;
       }
 
@@ -112,7 +116,9 @@
           color: $black-off-color !important;
           padding: 10px 15px;
           text-align: center;
-          font-size: 18px;
+          font-family: $fonts-niveau !important;
+          font-size: 18px !important;
+          line-height: 25px !important;
           cursor: pointer;
           transition: all 0.2s ease;
 
