@@ -75,6 +75,10 @@
           background-color: transparent;
           color: $white-color;
           border-color: $white-color;
+
+          @media (max-width: $screen-md-min) {
+            font-size: 22px;
+          }
         }
       }
     }
@@ -129,7 +133,7 @@
     font-family: $fonts-niveau-grotesk-small-caps;
     font-weight: $font-weight-300;
     color: $black-off-color;
-    color : $black-off-color;
+    color: $black-off-color;
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -179,7 +183,7 @@
     background-color: transparent;
     border: 1px solid $black-off-color;
     overflow: hidden; // for aimated shine effect
-    transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+    transition: color 0.5s ease, background 0.5s ease; // for aimated shine effect
     position: relative; // for aimated shine effect
 
     &:hover,
@@ -188,11 +192,13 @@
       background-color: $white-color;
       color: $black-off-color;
       border-color: $white-color;
-      &:after{
+
+      &:after {
         left: 140%; // for aimated shine effect
       }
     }
-    &:after{
+
+    &:after {
       // for aimated shine effect
       content: "";
       position: absolute;
@@ -200,14 +206,12 @@
       left: -130%;
       width: 80%;
       height: 100%;
-      background: linear-gradient(
-        -115deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.25) 35%,
-        rgba(255, 255, 255, 0.7) 50%,
-        rgba(255, 255, 255, 0.25) 65%,
-        transparent 100%
-      );
+      background: linear-gradient(-115deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.25) 35%,
+          rgba(255, 255, 255, 0.7) 50%,
+          rgba(255, 255, 255, 0.25) 65%,
+          transparent 100%);
       transform: skewX(20deg);
       transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
       pointer-events: none;
@@ -275,7 +279,7 @@
     margin-left: -50px;
 
     @media (max-width: $screen-md-min) {
-      margin-left: -45px;
+      margin-left: -100px;
     }
   }
 
@@ -285,7 +289,7 @@
     margin-left: 30px;
 
     @media (max-width: $screen-md-min) {
-      margin-left: 25px;
+      margin-left: 0px;
     }
   }
 
