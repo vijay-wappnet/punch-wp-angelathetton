@@ -1,6 +1,8 @@
 /node_modules
 /vendor
-/public/*
+public/*
+!public/fonts/
+!public/fonts/**
 !/public/.gitkeep
 .env
 npm-debug.log
