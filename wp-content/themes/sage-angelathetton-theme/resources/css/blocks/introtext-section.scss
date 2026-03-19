@@ -52,6 +52,12 @@
         font-weight: $font-weight-700;
       }
     }
+    .intro-section__buttons{
+      .its-btn{
+        min-width: 217px;
+      }
+
+    }
 }
 .home{
   .intro-section{

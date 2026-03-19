@@ -13,7 +13,7 @@
   position: relative;
 
   // Mobile: relative positioning for image-based layout
-  @media (max-width: $screen-md-min-767) {
+  @media (max-width: $screen-md-min) {
     display: block;
     min-height: auto;
   }
@@ -22,7 +22,7 @@
     position: relative;
     z-index: 2;
 
-    @media (max-width: $screen-md-min-767) {
+    @media (max-width: $screen-md-min) {
       position: absolute;
       bottom: 0;
       left: 0;
@@ -43,6 +43,10 @@
     height: auto;
     display: block;
     object-fit: cover;
+    @media (max-width: $screen-md-min) {
+      min-height: calc(100vh - 67px);
+      height: calc(100vh - 67px);
+    }
   }
 
   // Content wrapper
@@ -51,11 +55,13 @@
   }
 
   &__heading {
-    font-family: $fonts-niveau;
+    font-family: $fonts-niveau-grotesk-small-caps;
+    font-weight: $font-weight-300;
     font-size: 42px;
     line-height: 50px;
     text-transform: uppercase;
     color: $white-color;
+    letter-spacing: 1px;
     @media (max-width: $screen-md-min) {
       font-size: 32px;
       line-height: 34px;
@@ -66,24 +72,22 @@
     margin-top: 20px;
     margin-bottom: 40px;
 
-    @media (max-width: $screen-md-min-767) {
+    @media (max-width: $screen-md-min) {
       margin-top: 0;
       margin-bottom: 0;
     }
   }
 
   .return-home-btn {
-    font-size: 14px;
-    font-weight: $font-weight-400;
-    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: $font-weight-300;
     color: $white-color;
     background-color: transparent;
     border: 1px solid $white-color;
-    border-radius: 0;
-    text-decoration: none;
     overflow: hidden; // for aimated shine effect
     transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
     position: relative; // for aimated shine effect
+    min-width: 217px;
     &:hover{
       background-color: $white-color;
       color: $black-off-color;

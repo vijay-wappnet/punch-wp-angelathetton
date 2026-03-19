@@ -26,9 +26,9 @@
     }
 
     // Hide desktop background on mobile
-    $responsiveBgCss .= '@media (max-width: 767px) { ';
+    $responsiveBgCss .= '@media (max-width: 768px) { ';
     $responsiveBgCss .= '#' . $sectionId . ' { ';
-    $responsiveBgCss .= 'background-image: none;padding-top:50px; ';
+    $responsiveBgCss .= 'background-image: none;padding-top:50px;margin-bottom: 50px; min-height: calc(100vh - 67px);height: calc(100vh - 67px);';
     $responsiveBgCss .= '} ';
     $responsiveBgCss .= '} ';
 

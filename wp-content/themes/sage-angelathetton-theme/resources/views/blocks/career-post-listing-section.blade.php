@@ -24,7 +24,7 @@
           @endphp
 
           <div class="career-item row">
-            <div class="col-12 col-md-10">
+            <div class="col-12 col-lg-9">
               <h2 class="career-title">{{ $post_title }}</h2>
 
               <h4 class="career-meta">
@@ -37,11 +37,11 @@
               @endif
             </div>
 
-            <div class="col-12 col-md-2 text-md-end">
+            <div class="col-12 col-lg-3 text-lg-end">
               <a
                  {{-- href="{{ esc_url($post_link) }}" --}}
                  href="{{ !empty($email) ? 'mailto:' . esc_attr($email) : '#' }}"
-                 class="btn trans-black-btn career-btn"
+                 class="btn trans-black-btn cpls-btn"
                  aria-label="{{ esc_attr('Get in touch about ' . $post_title) }}"
                  data-event-label="Get in touch">
                 {{ __('Get in touch', 'sage') }}

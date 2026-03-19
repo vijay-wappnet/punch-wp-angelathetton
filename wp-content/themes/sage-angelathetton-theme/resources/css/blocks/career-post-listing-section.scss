@@ -27,7 +27,7 @@
 
   .career-title {
     text-transform: uppercase;
-    color: $black-off-color;
+    margin-bottom: 15px;;
   }
 
   .career-meta {
@@ -36,24 +36,39 @@
     color: $black-off-color;
     display: flex;
     gap: 15px;
-    @media (max-width: $screen-md-min) {
+    margin-bottom: 15px;
+
+    @media (max-width: $screen-xl-min) {
       flex-direction: column;
-      gap: 15px;
-      margin-bottom: 15px;
+      gap: 10px;
       span{
         display: none;
       }
     }
+    span{
+      margin-left: 10px;
+      position: relative;
+      top: -2px;
+    }
+    // @media (max-width: $screen-md-min) {
+    //   flex-direction: column;
+    //   gap: 15px;
+    //   margin-bottom: 15px;
+    //   span{
+    //     display: none;
+    //   }
+    // }
   }
 
   .career-description {
     color: $black-off-color;
   }
 
-  .career-btn {
-    min-width: 160px;
-    border: 1px solid #d9d9d9;
+  .cpls-btn {
+    min-width: 217px;
+    border: 1px solid rgba($black-off-color, 0.2);
     @media (max-width: $screen-sm-min) {
+      min-width: 100%;
       width: 100%;
     }
   }

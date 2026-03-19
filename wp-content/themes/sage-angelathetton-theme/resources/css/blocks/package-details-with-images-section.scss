@@ -46,5 +46,8 @@
   }
   &__content-button {
     margin-top: 30px;
+    .pdwis-btn{
+      min-width: 217px;
+    }
   }
 }
