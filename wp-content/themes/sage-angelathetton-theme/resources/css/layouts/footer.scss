@@ -8,7 +8,12 @@
   .footer-top {
     background: $white-off-color;
     padding: 36px 0;
-
+    .instagram-feed-container{
+      padding: 0 80px;
+      @media (max-width: $screen-md-min) {
+        padding: 0 36px;
+      }
+    }
     .follow-and-social {
       display: flex;
       align-items: center;

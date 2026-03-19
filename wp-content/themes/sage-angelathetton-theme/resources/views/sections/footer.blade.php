@@ -7,60 +7,20 @@
         // Get contact details repeater field
         $contact_details = get_field('contact_details', 'option');
         // Get social media details repeater field
-        $social_media_title = get_field('social_media_title', 'option');
+        //$social_media_title = get_field('social_media_title', 'option');
         $social_media_details = get_field('social_media_details', 'option');
     @endphp
 
     <div class="footer-top">
-        <div class="container">
+        <div class="container-fluid instagram-feed-container">
             <div class="row justify-content-between">
-                @php
-                    // Get social media title and details
-                    $social_media_title = get_field('social_media_title', 'option');
-                    $social_media_details = get_field('social_media_details', 'option');
-                @endphp
-
-                <div class="col-12 col-md-4 follow-and-social">
-                    @if ($social_media_title)
-                        <h3 class="follow-title mb-0">{{ esc_html($social_media_title) }}</h3>
-                    @endif
-
-                    @if ($social_media_details)
-                        <div class="social-icons">
-                            @foreach ($social_media_details as $social)
-                                @php
-                                    $icon = $social['icon'] ?? '';
-                                    $title = $social['title'] ?? '';
-                                    $link = $social['link'] ?? '';
-                                    $data_event_label = $social['data_event_label'] ?? '';
-                                    $aria_label = $social['aria_label'] ?? '';
-
-                                    $link_url = $link['url'] ?? '';
-                                    $link_target = $link['target'] ?? '_self';
-                                @endphp
-
-                                @if ($link_url && $title)
-                                    <a href="{{ esc_url($link_url) }}" target="{{ esc_attr($link_target) }}"
-                                        aria-label="{{ esc_attr($aria_label) }}"
-                                        data-event="{{ esc_attr($data_event_label) }}" class="social-link">
-                                        @if ($icon)
-                                            <img src="{{ esc_url($icon['url']) }}" alt="{{ esc_attr($icon['alt']) }}"
-                                                class="social-icon img-fluid">
-                                        @endif
-                                    </a>
-                                @endif
-                            @endforeach
-                        </div>
-                    @endif
-                </div>
-
                 @php
                     // Get social media images repeater field
                     $social_media_images = get_field('social_media_images_temporary', 'option');
                 @endphp
 
                 @if ($social_media_images)
-                    <div class="col-12 col-md-8 footer-gallery">
+                    <div class="col-12 col-md-12 col-lg-12 footer-gallery">
                         <ul>
                             @foreach ($social_media_images as $item)
                                 @php
