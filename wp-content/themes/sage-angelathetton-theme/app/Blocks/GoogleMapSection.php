@@ -24,6 +24,13 @@ class GoogleMapSection
         $margin = get_field('margin');
         $padding = get_field('padding');
 
+        // Debug: Log values for troubleshooting
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log('GoogleMapSection Debug:');
+            error_log('google_map: ' . print_r($google_map, true));
+            error_log('map_address: ' . print_r($map_address, true));
+        }
+
         // Generate unique block ID
         $blockId = 'gms-' . ($block['id'] ?? uniqid());
 
@@ -32,17 +39,28 @@ class GoogleMapSection
 
         // Build map URL - Priority: lat/lng coordinates, then address text field
         $map_url = '';
-        
-        // Option 1: Use coordinates if available (requires API key for ACF Google Map field)
-        if (!empty($google_map['lat']) && !empty($google_map['lng'])) {
+        $has_coords = !empty($google_map) && isset($google_map['lat']) && isset($google_map['lng']) && $google_map['lat'] !== '' && $google_map['lng'] !== '';
+        $has_address = !empty($map_address) && trim($map_address) !== '';
+
+        $q = '';
+        if ($has_coords) {
             $lat = floatval($google_map['lat']);
             $lng = floatval($google_map['lng']);
-            $map_url = "https://maps.google.com/maps?q={$lat},{$lng}&z=15&output=embed";
+            $q = $lat . ',' . $lng;
+        } elseif ($has_address) {
+            $q = trim($map_address);
         }
-        // Option 2: Use address text field (NO API key needed)
-        elseif (!empty($map_address)) {
-            $encoded_address = urlencode($map_address);
-            $map_url = "https://maps.google.com/maps?q={$encoded_address}&z=15&output=embed";
+
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log('has_coords: ' . ($has_coords ? 'true' : 'false'));
+            error_log('has_address: ' . ($has_address ? 'true' : 'false'));
+            error_log('q: ' . $q);
+        }
+
+        if (!empty($q)) {
+            $map_url = "https://www.google.com/maps/embed/v1/place?key=" . WP_GOOGLE_MAPS_API_KEY . "&q=" . urlencode($q) . "&zoom=15";
+        } else {
+            $map_url = '';
         }
 
         // Render the Blade template with data using view helper
