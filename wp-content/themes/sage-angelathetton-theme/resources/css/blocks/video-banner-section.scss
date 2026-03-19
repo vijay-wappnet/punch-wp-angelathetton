@@ -60,15 +60,16 @@
     margin: 0 auto;
     color: $white-color;
     font-family: $fonts-niveau-grotesk-small-caps;
-    font-weight: $font-weight-500;
+    font-weight: $font-weight-300;
     font-style: $font-style-normal;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     word-wrap: break-word;
     overflow-wrap: break-word;
+    font-size: 50px;
 
     @media (max-width: $screen-md-min) {
-      font-size: 32px;
-      line-height: 38px;
+      font-size: 44px;
+      line-height: 55px;
     }
   }
 
@@ -102,10 +103,12 @@
   }
 
   @keyframes bounce {
+
     0%,
     100% {
       transform: translateX(-50%) translateY(0);
     }
+
     50% {
       transform: translateX(-50%) translateY(-10px);
     }

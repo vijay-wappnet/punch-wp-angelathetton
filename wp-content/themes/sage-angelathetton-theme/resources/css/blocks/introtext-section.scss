@@ -2,70 +2,83 @@
 @use "../common/variables" as *;
 @use "../components/buttons" as *;
 
-.intro-section{
-    h1,h2{
-      &.intro-section__heading{
-        font-family: $fonts-niveau-grotesk-small-caps;
-        font-weight: $font-weight-300;
-        margin-bottom: 25px;
-        text-transform: uppercase;
-      }
-    }
+.intro-section {
 
-    h3,h4,h5,h6{
-      &.intro-section__heading{
-        font-family: $fonts-niveau;
-        font-weight: $font-weight-300;
-        text-transform: uppercase;
-        margin-bottom: 25px;
-      }
-    }
-    .intro-section__content{
-      font-family: $fonts-helvetica-lt-pro;
+  h1,
+  h2 {
+    &.intro-section__heading {
+      font-family: $fonts-niveau-grotesk-small-caps;
       font-weight: $font-weight-300;
       margin-bottom: 25px;
+      text-transform: uppercase;
+    }
+  }
 
-      @media (max-width: $screen-md-min) {
-        font-size: 22px;
+  h3,
+  h4,
+  h5,
+  h6 {
+    &.intro-section__heading {
+      font-family: $fonts-niveau;
+      font-weight: $font-weight-300;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+  }
+
+  .intro-section__content {
+    font-family: $fonts-helvetica-lt-pro;
+    font-weight: $font-weight-300;
+    margin-bottom: 25px;
+
+    @media (max-width: $screen-md-min) {
+      font-size: 22px;
+    }
+
+    ul {
+      padding-left: 30px;
+      margin-bottom: 20px;
+
+      li {
+        display: list-item;
+        padding-bottom: 5px;
       }
 
-      ul{
-        padding-left: 30px;
-        margin-bottom: 20px;
-        li{
-          display: list-item;
-          padding-bottom: 5px;
-        }
-        &.split-ul {
-          margin-top: 40px;
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 0 20px;
-          @media (max-width: $screen-md-min) {
-            grid-template-columns: 1fr;
-            gap: 0;
-          }
-        }
-      }
+      &.split-ul {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0 20px;
 
-      strong,b{
-        font-weight: $font-weight-700;
+        @media (max-width: $screen-md-min) {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
       }
     }
-    .intro-section__buttons{
-      .its-btn{
-        min-width: 217px;
-      }
 
+    strong,
+    b {
+      font-weight: $font-weight-700;
     }
+  }
+
+  .intro-section__buttons {
+    .its-btn {
+      min-width: 217px;
+    }
+
+  }
 }
-.home{
-  .intro-section{
-    .intro-section__content{
+
+.home {
+  .intro-section {
+    .intro-section__content {
       font-size: 32px;
       line-height: 38px;
       font-family: $fonts-niveau;
-      p{
+
+      p {
         font-size: 32px;
         line-height: 38px;
         font-family: $fonts-niveau;

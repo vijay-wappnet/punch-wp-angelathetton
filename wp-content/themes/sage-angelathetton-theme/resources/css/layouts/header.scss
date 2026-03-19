@@ -21,6 +21,7 @@ body.no-scroll {
       .header-top-nav {
         .menu-item {
           a {
+
             color: $black-off-color;
 
             &:hover {
@@ -70,6 +71,7 @@ body.no-scroll {
     .header-top-nav {
       .menu-item {
         a {
+          font-size: 24px;
           color: $white-color;
         }
       }
@@ -78,7 +80,7 @@ body.no-scroll {
 
   .hamburger {
     p {
-      font-size: 23px;
+      font-size: 24px;
       color: $white-color;
       font-weight: 300;
 
