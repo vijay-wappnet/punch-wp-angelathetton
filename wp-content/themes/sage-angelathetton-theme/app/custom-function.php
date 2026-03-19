@@ -68,6 +68,44 @@ function my_acf_google_map_api( $api ){
 }
 add_filter('acf/fields/google_map/api', 'my_acf_google_map_api');
 
+/* ============================================================
+   GSAP — Body class based on ACF Options field 'enable_animations'
+   ============================================================ */
+add_filter('body_class', function (array $classes): array {
+    // Only modify on the frontend
+    if (is_admin()) {
+        return $classes;
+    }
+
+    // Read ACF options field (falls back to false if ACF is inactive or field missing)
+    $animations_enabled = function_exists('get_field')
+        ? get_field('enable_animations', 'option')
+        : false;
+
+    if ($animations_enabled) {
+        $classes[] = 'animations-enabled';
+    } else {
+        $classes[] = 'animations-disabled';
+    }
+
+    return $classes;
+});
+
+/* Add data attributes to menu items in footer for accessibility modal */
+add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {
+    // Check for the correct menu location and class
+    if (
+        isset($args->theme_location) && $args->theme_location === 'footer_main_navigation' &&
+        isset($item->classes) && is_array($item->classes) &&
+        in_array('site-accessibility', $item->classes)
+    ) {
+        $atts['data-toggle'] = 'modal';
+        $atts['data-target'] = '#accessibilityModal';
+        $atts['aria-label'] = 'Accessibility settings';
+    }
+    return $atts;
+}, 10, 3);
+
 
 /**
  * Generate responsive CSS for ACF dimension fields (margin/padding)
