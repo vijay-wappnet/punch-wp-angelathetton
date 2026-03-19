@@ -20,6 +20,7 @@
           // logo image from options
           $header_logo_black = get_field('header_logo', 'option');
           $header_logo_white = get_field('header_logo_white', 'option');
+          $header_logo_for_transition = get_field('header_logo_for_transition', 'option');
           if ($header_logo_white) {
               $header_logo_white_url = esc_url($header_logo_white['url']);
               $header_logo_white_alt = esc_attr($header_logo_white['alt']);
@@ -86,13 +87,21 @@
                          alt="{{ esc_attr($header_logo_black['alt']) }}"
                          class="img-fluid">
                 </a>
-                <a href="{{ esc_url($link_url) }}" class="brand-logo brand-logo-white"
+                <a href="{{ esc_url($link_url) }}" class="brand-logo brand-logo-white logo-link-first"
                    aria-label="{{ esc_attr($aria_label) }}"
                    {!! $link_target ? 'target="'.esc_attr($link_target).'"' : '' !!}
                    {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}>
                     <img src="{{ esc_url($header_logo_white['url']) }}"
-                         alt="{{ esc_attr($header_logo_white  ['alt']) }}"
-                         class="img-fluid">
+                         alt="{{ esc_attr($header_logo_white['alt']) }}"
+                         class="img-fluid brand-logo-first">
+                </a>
+                   <a href="{{ esc_url($link_url) }}" class="brand-logo brand-logo-white logo-link-second"
+                   aria-label="{{ esc_attr($aria_label) }}"
+                   {!! $link_target ? 'target="'.esc_attr($link_target).'"' : '' !!}
+                   {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}>
+                    <img src="{{ esc_url($header_logo_for_transition['url']) }}"
+                         alt="{{ esc_attr($header_logo_for_transition['alt']) }}"
+                         class="img-fluid brand-logo-second">
                 </a>
             @else
                 <span class="brand-logo" aria-label="{{ esc_attr($aria_label) }}">

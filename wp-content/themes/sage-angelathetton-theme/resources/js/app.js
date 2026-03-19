@@ -329,4 +329,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initPanelNavigation();
   initImageHover();
+
+  // Logo Switcher Logic
+  const logoLinkFirst = document.querySelector('.logo-link-first');
+  const logoLinkSecond = document.querySelector('.logo-link-second');
+
+  if (header && logoLinkFirst && logoLinkSecond) {
+    logoLinkFirst.addEventListener('click', (e) => {
+      e.preventDefault();
+      header.classList.add('logo-switched');
+    });
+
+    logoLinkSecond.addEventListener('click', (e) => {
+      e.preventDefault();
+      header.classList.remove('logo-switched');
+    });
+  }
+});
+
+
+// header smoth transition
+
+const toggleBtn = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.fullscreen-menu');
+//const closeBtn = document.querySelector('.close-btn');
+
+toggleBtn.addEventListener('click', () => {
+  menu.classList.add('active');
+});
+
+closeBtn.addEventListener('click', () => {
+  menu.classList.remove('active');
 });
