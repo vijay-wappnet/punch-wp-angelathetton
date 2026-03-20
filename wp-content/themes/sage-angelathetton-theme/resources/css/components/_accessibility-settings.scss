@@ -302,7 +302,7 @@ body.text-medium {
       }
     }
 
-    .btn-floating-arrow,
+    .site-footer,
     .nav-link,
     .btn,
     body,
@@ -320,7 +320,10 @@ body.text-medium {
     input[type="text"],
     input[type="email"],
     input[type="tel"],
-    textarea {
+    textarea,
+    .tciwcs__description,
+    .tcicwmss__description,
+    .slider-room-fs__feature-title {
       font-size: 20px !important;
 
       @media (max-width: $screen-md-min) {
@@ -328,77 +331,175 @@ body.text-medium {
       }
     }
 
-    .faq-accordion-block {
-      .accordion-button {
-        font-size: 32px !important;
-      }
-
-      @media (max-width: $screen-md-min) {
-        font-size: 20px !important;
-      }
-
-      .accordion-body {
-        font-size: 20px !important;
-      }
-
-      @media (max-width: $screen-md-min) {
-        font-size: 18px !important;
+    .fullscreen-menu{
+      .fullscreen-menu-list{
+        .menu-item > a {
+          font-size: 40px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 36px !important;
+          }
+          span{
+            font-size: 40px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 36px !important;
+            }
+          }
+        }
+        .sub-menu{
+          .menu-item > a {
+            font-size: 40px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 36px !important;
+            }
+            span{
+              font-size: 22px !important;
+              @media (max-width: $screen-md-min) {
+                font-size: 20px !important;
+              }
+            }
+          }
+        }
+        .menu-back{
+          font-size: 36px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 30px !important;
+          }
+        }
       }
     }
 
-    .sb-number {
-      font-size: 80px !important;
+    .site-header{
+      .hamburger{
+        p{
+          font-size: 30px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 24px !important;
+          }
+        }
+      }
+      .header-top-nav{
+        .menu-item{
+          a{
+            font-size: 30px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 24px !important;
+            }
+          }
+        }
+      }
+    }
 
-      @media (max-width: $screen-md-min) {
+    .site-footer{
+      .footer-contact{
+        font-size: 20px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 18px !important;
+        }
+        .fc-items{
+          a{
+            font-size: 20px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 18px !important;
+            }
+            div{
+              font-size: 20px !important;
+              @media (max-width: $screen-md-min) {
+                font-size: 18px !important;
+              }
+            }
+          }
+          span{
+            font-size: 20px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 18px !important;
+            }
+            div{
+              font-size: 20px !important;
+              @media (max-width: $screen-md-min) {
+                font-size: 18px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .introtext-with-right-cta-section__content {
+      p {
         font-size: 36px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 30px !important;
+        }
       }
     }
 
     h1 {
       font-size: 80px !important;
-
+      line-height: 88px !important;
       @media (max-width: $screen-md-min) {
         font-size: 36px !important;
+        line-height: 44px !important;
       }
     }
 
     h2 {
       font-size: 50px !important;
+      line-height: 60px !important;
 
       @media (max-width: $screen-md-min) {
         font-size: 30px !important;
+        line-height: 36px !important;
       }
     }
 
     h3 {
       font-size: 40px !important;
+      line-height: 48px !important;
 
       @media (max-width: $screen-md-min) {
         font-size: 24px !important;
+        line-height: 32px !important;
       }
     }
 
     h4 {
       font-size: 32px !important;
+      line-height: 40px !important;
+
 
       @media (max-width: $screen-md-min) {
         font-size: 20px !important;
+        line-height: 28px !important;
       }
     }
 
     h5 {
       font-size: 26px !important;
-
+      line-height: 34px !important;
       @media (max-width: $screen-md-min) {
         font-size: 18px !important;
+        line-height: 26px !important;
       }
     }
 
     h6 {
       font-size: 22px !important;
+      line-height: 30px !important;
 
       @media (max-width: $screen-md-min) {
         font-size: 16px !important;
+        line-height: 24px !important;
+      }
+    }
+  }
+
+  &.home{
+    .intro-section{
+      .intro-section__content{
+        p {
+          font-size: 40px !important;
+          line-height: 48px !important;
+        }
       }
     }
   }
@@ -444,7 +545,10 @@ body.text-large {
     input[type="text"],
     input[type="email"],
     input[type="tel"],
-    textarea {
+    textarea,
+    .tciwcs__description,
+    .tcicwmss__description,
+    .slider-room-fs__feature-title {
       font-size: 22px !important;
 
       @media (max-width: $screen-md-min) {
@@ -452,77 +556,186 @@ body.text-large {
       }
     }
 
-    .faq-accordion-block {
-      .accordion-button {
-        font-size: 36px !important;
-      }
-
-      @media (max-width: $screen-md-min) {
-        font-size: 22px !important;
-      }
-
-      .accordion-body {
-        font-size: 22px !important;
-      }
-
-      @media (max-width: $screen-md-min) {
-        font-size: 18px !important;
+    .fullscreen-menu{
+      .fullscreen-menu-list{
+        .menu-item > a {
+          font-size: 50px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 40px !important;
+          }
+          span{
+            font-size: 50px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 40px !important;
+            }
+          }
+        }
+        .sub-menu{
+          .menu-item > a {
+            font-size: 50px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 40px !important;
+            }
+            span{
+              font-size: 24px !important;
+              @media (max-width: $screen-md-min) {
+                font-size: 22px !important;
+              }
+            }
+          }
+        }
+        .menu-back{
+          font-size: 42px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 36px !important;
+          }
+        }
       }
     }
 
-    .sb-number {
-      font-size: 90px !important;
-
-      @media (max-width: $screen-md-min) {
-        font-size: 40px !important;
+    .site-header{
+      .hamburger{
+        p{
+          font-size: 36px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 30px !important;
+          }
+        }
+      }
+      .header-top-nav{
+        .menu-item{
+          a{
+            font-size: 36px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 30px !important;
+            }
+          }
+        }
       }
     }
+
+    .site-footer{
+      .footer-contact{
+        font-size: 22px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 18px !important;
+        }
+        .fc-items{
+          a{
+            font-size: 22px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 18px !important;
+            }
+            div{
+              font-size: 22px !important;
+              @media (max-width: $screen-md-min) {
+                font-size: 18px !important;
+              }
+            }
+          }
+          span{
+            font-size: 22px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 18px !important;
+            }
+            div{
+              font-size: 22px !important;
+              @media (max-width: $screen-md-min) {
+                font-size: 18px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    .introtext-with-right-cta-section__content {
+      p {
+        font-size: 42px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 36px !important;
+        }
+      }
+    }
+    // .faq-accordion-block {
+    //   .accordion-button {
+    //     font-size: 36px !important;
+    //   }
+
+    //   @media (max-width: $screen-md-min) {
+    //     font-size: 22px !important;
+    //   }
+
+    //   .accordion-body {
+    //     font-size: 22px !important;
+    //   }
+
+    //   @media (max-width: $screen-md-min) {
+    //     font-size: 18px !important;
+    //   }
+    // }
 
     h1 {
       font-size: 90px !important;
-
+      line-height: 100px !important;
       @media (max-width: $screen-md-min) {
         font-size: 40px !important;
+        line-height: 44px !important;
       }
     }
 
     h2 {
       font-size: 60px !important;
-
+      line-height: 70px !important;
       @media (max-width: $screen-md-min) {
         font-size: 32px !important;
+        line-height: 40px !important;
       }
     }
 
     h3 {
       font-size: 50px !important;
-
+      line-height: 60px !important;
       @media (max-width: $screen-md-min) {
         font-size: 26px !important;
+        line-height: 34px !important;
       }
     }
 
     h4 {
       font-size: 40px !important;
-
+      line-height: 50px !important;
       @media (max-width: $screen-md-min) {
         font-size: 22px !important;
+        line-height: 30px !important;
       }
     }
 
     h5 {
       font-size: 32px !important;
-
+      line-height: 40px !important;
       @media (max-width: $screen-md-min) {
         font-size: 20px !important;
+        line-height: 28px !important;
       }
     }
 
     h6 {
       font-size: 26px !important;
-
+      line-height: 34px !important;
       @media (max-width: $screen-md-min) {
         font-size: 16px !important;
+        line-height: 24px !important;
+      }
+    }
+  }
+
+  &.home{
+    .intro-section{
+      .intro-section__content{
+        p {
+          font-size: 50px !important;
+          line-height: 60px !important;
+        }
       }
     }
   }
@@ -549,9 +762,32 @@ body.font-adapted {
       word-spacing: 0.16em !important;
     }
     .accessibility-modal{
-      .modal-title,
-      .accessibility-title {
+      .modal-title {
         font-family: $fonts-niveau-grotesk-small-caps !important;
+      }
+    }
+    .site-footer{
+      .footer-contact{
+        .fc-items{
+          a{
+            div{
+              word-break: break-word !important;
+              overflow-wrap: break-word !important;
+            }
+          }
+        }
+      }
+    }
+    .cdwis-row{
+      .footer-contact{
+        .fc-items{
+          a{
+            div{
+              word-break: break-word !important;
+              overflow-wrap: break-word !important;
+            }
+          }
+        }
       }
     }
   }
