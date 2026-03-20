@@ -243,6 +243,19 @@ body.text-medium {
         font-size: 18px !important;
       }
     }
+    .modal-header {
+      .btn-close{
+        svg{
+          background-color: transparent !important;
+            width: 49px !important;
+            height: 49px !important;
+          path{
+            background-color: transparent !important;
+          }
+        }
+      }
+    }
+
     #payment {
       .payment_box{
         padding: 15px !important;
@@ -611,8 +624,8 @@ body.text-large {
       .btn-close{
         svg{
           background-color: transparent !important;
-            width: 41px !important;
-            height: 38px !important;
+            width: 32px !important;
+            height: 33px !important;
           path{
             background-color: transparent !important;
           }
@@ -1100,8 +1113,8 @@ body.justify-text .accessibility-modal {
     .btn-close{
       svg{
         background-color: transparent !important;
-          width: 41px !important;
-          height: 38px !important;
+          width: 32px !important;
+          height: 33px !important;
         path{
           background-color: transparent !important;
         }
