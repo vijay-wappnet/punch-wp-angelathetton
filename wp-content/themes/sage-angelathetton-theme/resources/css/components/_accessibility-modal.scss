@@ -34,12 +34,12 @@
     .btn-close {
       &.custom-close {
         position: relative;
-        padding: 0.5rem;
-        margin: -0.5rem -0.5rem -0.5rem auto;
+        padding: 8px;
+        margin: -8px -8px -8px auto;
         background: none;
         border: 0;
         float: right;
-        font-size: 1.5rem;
+        font-size: 30px !important;
         font-weight: 700;
         line-height: 1;
         color: #000;
