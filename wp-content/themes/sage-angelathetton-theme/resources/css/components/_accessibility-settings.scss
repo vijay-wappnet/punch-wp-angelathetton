@@ -606,6 +606,23 @@ body.text-large {
         font-size: 18px !important;
       }
     }
+
+    .modal-header {
+      .btn-close{
+        svg{
+          background-color: transparent !important;
+            width: 41px !important;
+            height: 38px !important;
+          path{
+            background-color: transparent !important;
+          }
+        }
+      }
+    }
+    .accessibility-modal .modal-header .btn-close.custom-close {
+      font-size: 15px !important;
+    }
+
     .woocommerce-checkout{
       label, select{
         font-size: 20px !important;
