@@ -530,7 +530,6 @@ body.text-large {
 
 /* Font Settings */
 body.font-adapted {
-  // font-family: "Open Sans", "Arial", sans-serif !important;
   font-family: $fonts-dyslexie !important;
   letter-spacing: 0.12em !important;
   word-spacing: 0.16em !important;
@@ -562,7 +561,7 @@ body.line-spacing-adapted {
     p,
     li,
     td,
-    th {
+    th{
       line-height: 1.7 !important;
       margin-bottom: 1.5em !important;
     }
@@ -575,6 +574,42 @@ body.line-spacing-adapted {
     h6 {
       line-height: 1.7 !important;
       margin-bottom: 0.8em !important;
+    }
+    #site-header{
+      .hamburger{
+        .bar{
+          img{
+            line-height: 1.7 !important;
+            margin-bottom: 1.5em !important;
+          }
+        }
+      }
+    }
+    .faq-answer{
+      .faq-answer-content{
+        line-height: 1.7 !important;
+        margin-bottom: 1.5em !important;
+      }
+    }
+    .site-footer{
+      .footer-bottom{
+        .footer-bottom-inner{
+          .newsletter{
+            .newsletter-title-desktop{
+              line-height: 1.7 !important;
+              margin-bottom: 1.5em !important;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    .accessibility-modal{
+      .modal-title{
+        line-height: inherit !important;
+        margin-bottom: inherit !important;
+      }
     }
   }
 }
