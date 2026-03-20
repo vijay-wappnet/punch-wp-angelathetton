@@ -170,6 +170,11 @@ function initPanelNavigation() {
         /* ── desktop: panel-slide navigation ── */
         const currentPanel = this.closest('ul');
 
+        // Ensure no other submenus are active within the current panel context
+        currentPanel.querySelectorAll(':scope > .menu-item > .sub-menu').forEach(submenu => {
+          submenu.classList.remove('menu-panel-active');
+        });
+
         currentPanel.classList.add('menu-panel-hidden');
         childMenu.classList.add('menu-panel-active');
 
@@ -209,7 +214,7 @@ function insertBackButton(panel, previousPanel) {
 
     setTimeout(() => {
       backBtn.remove();
-    }, 300);
+    }, 10); // Minimal delay or immediate removal as class reset handles hiding
   });
 }
 
@@ -358,16 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// header smoth transition
-
-const toggleBtn = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.fullscreen-menu');
-//const closeBtn = document.querySelector('.close-btn');
-
-toggleBtn.addEventListener('click', () => {
-  menu.classList.add('active');
-});
-
-closeBtn.addEventListener('click', () => {
-  menu.classList.remove('active');
-});
+/* ==========================================
+   LOGO TRANSITION HANDLING (OPTIONAL)
+========================================== */
+// Header smooth transition is already handled via 'logo-switched' class above.
