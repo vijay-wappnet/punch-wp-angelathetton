@@ -99,6 +99,9 @@ body.contrast-inverted {
     .slider-room-features-section .slider-room-fs__arrows-wrapper .slick-arrow img{
       filter: contrast(0) grayscale(0) invert(1) brightness(2);
     }
+    .slider-room-features-section .slider-room-fs__toggle img{
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
     .slider-room-features-section .slick-dots li button{
       filter: contrast(0) grayscale(0) invert(1) brightness(2);
     }
