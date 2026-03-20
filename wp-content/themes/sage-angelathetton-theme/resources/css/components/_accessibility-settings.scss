@@ -264,6 +264,15 @@ body.text-medium {
         }
       }
     }
+    .slider-room-features-section{
+      .slick-dots{
+        li{
+          span{
+            font-size: 0px !important;
+          }
+        }
+      }
+    }
 
     #payment {
       .payment_box{
@@ -637,6 +646,15 @@ body.text-large {
           height: 33px !important;
           path{
             background-color: transparent !important;
+          }
+        }
+      }
+    }
+    .slider-room-features-section{
+      .slick-dots{
+        li{
+          span{
+            font-size: 0px !important;
           }
         }
       }
