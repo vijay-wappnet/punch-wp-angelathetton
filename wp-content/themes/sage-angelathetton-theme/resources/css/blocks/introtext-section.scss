@@ -33,6 +33,8 @@
 
     @media (max-width: $screen-md-min) {
       font-size: 22px;
+      margin-bottom: 35px;
+
     }
 
     ul {
@@ -67,7 +69,6 @@
     .its-btn {
       min-width: 217px;
     }
-
   }
 }
 
@@ -78,6 +79,7 @@
       line-height: 38px;
       font-family: $fonts-niveau;
       font-weight: $font-weight-300;
+
       p {
         font-size: 32px;
         line-height: 38px;

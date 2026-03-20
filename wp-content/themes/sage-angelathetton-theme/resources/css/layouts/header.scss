@@ -48,6 +48,7 @@ body.no-scroll {
           display: none !important;
         }
       }
+
       .hamburger {
         p {
           font-size: 24px;
@@ -212,6 +213,9 @@ body.no-scroll {
         .img {}
       }
 
+      p {
+        font-size: 24px;
+      }
 
     }
   }
@@ -254,6 +258,7 @@ body.no-scroll {
         color: $black-off-color;
         text-decoration: none;
         text-transform: uppercase;
+        font-size: 24px;
 
         &:hover {
           color: $brown-color;
@@ -581,8 +586,9 @@ body.no-scroll {
   .site-header .header-top-nav {
     display: none;
   }
+
   .hamburger {
-    p{
+    p {
       display: none;
     }
   }
