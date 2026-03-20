@@ -323,11 +323,124 @@ body.text-medium {
     textarea,
     .tciwcs__description,
     .tcicwmss__description,
-    .slider-room-fs__feature-title {
+    .slider-room-fs__feature-title,
+    .gallery-grid-filter-section__refresh,
+    .woocommerce-message,
+    .woocommerce-info,
+    .checkout-tabs__button,
+    #place_order {
       font-size: 20px !important;
 
       @media (max-width: $screen-md-min) {
         font-size: 18px !important;
+      }
+    }
+    #payment {
+      .payment_box{
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+      }
+    }
+    .checkout-page #payment .wc_payment_methods .wc_payment_method .payment_box::before {
+      border: 0;
+    }
+    .woocommerce-checkout{
+      label, select{
+        font-size: 20px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 18px !important;
+        }
+      }
+    }
+
+    .cart .quantity {
+      .qty {
+        font-size: 18px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 16px !important;
+        }
+      }
+    }
+    .quantity-wrapper{
+      .qty {
+        font-size: 18px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 16px !important;
+        }
+      }
+    }
+    .quantity-wrapper{
+      .qty {
+        font-size: 18px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 16px !important;
+        }
+      }
+    }
+    .quantity-input{
+      .qty {
+        font-size: 18px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 16px !important;
+        }
+      }
+      .quantity-input__btn {
+        font-size: 18px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 16px !important;
+        }
+      }
+    }
+    .custom-price-stock-wrapper {
+      .custom-price {
+        .woocommerce-Price-amount {
+          font-size: 46px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 22px !important;
+          }
+          span {
+            font-size: 36px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 22px !important;
+            }
+          }
+          bdi {
+            font-size: 36px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 22px !important;
+            }
+          }
+        }
+      }
+      .custom-stock-status {
+        font-size: 36px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 22px !important;
+        }
+      }
+    }
+    .woocommerce-Price-amount {
+      font-size: 46px !important;
+      @media (max-width: $screen-md-min) {
+        font-size: 22px !important;
+      }
+      span {
+        font-size: 36px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 22px !important;
+        }
+      }
+      bdi {
+        font-size: 36px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 22px !important;
+        }
+        span {
+          font-size: 36px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 22px !important;
+          }
+        }
       }
     }
 
@@ -389,46 +502,71 @@ body.text-medium {
       }
     }
 
-    .site-footer{
-      .footer-contact{
-        font-size: 20px !important;
-        @media (max-width: $screen-md-min) {
-          font-size: 18px !important;
-        }
-        .fc-items{
-          a{
+
+    .footer-contact{
+      font-size: 20px !important;
+      @media (max-width: $screen-md-min) {
+        font-size: 18px !important;
+      }
+      .fc-items{
+        a{
+          font-size: 20px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 18px !important;
+          }
+          div{
             font-size: 20px !important;
             @media (max-width: $screen-md-min) {
               font-size: 18px !important;
-            }
-            div{
-              font-size: 20px !important;
-              @media (max-width: $screen-md-min) {
-                font-size: 18px !important;
-              }
             }
           }
-          span{
+        }
+        span{
+          font-size: 20px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 18px !important;
+          }
+          div{
             font-size: 20px !important;
             @media (max-width: $screen-md-min) {
               font-size: 18px !important;
-            }
-            div{
-              font-size: 20px !important;
-              @media (max-width: $screen-md-min) {
-                font-size: 18px !important;
-              }
             }
           }
         }
       }
     }
 
+
     .introtext-with-right-cta-section__content {
       p {
         font-size: 36px !important;
         @media (max-width: $screen-md-min) {
           font-size: 30px !important;
+        }
+      }
+    }
+    .career-meta{
+      div{
+        font-size: 26px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 24px !important;
+        }
+      }
+    }
+    .faq-question{
+      span.faq-question-text{
+        font-size: 36px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 30px !important;
+        }
+      }
+    }
+
+    .faq-answer{
+      .faq-answer-content{
+        font-size: 24px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 22px !important;
         }
       }
     }
@@ -548,11 +686,116 @@ body.text-large {
     textarea,
     .tciwcs__description,
     .tcicwmss__description,
-    .slider-room-fs__feature-title {
+    .slider-room-fs__feature-title,
+    .gallery-grid-filter-section__refresh,
+    .woocommerce-message,
+    .woocommerce-info,
+    .checkout-tabs__button,
+    #place_order {
       font-size: 22px !important;
 
       @media (max-width: $screen-md-min) {
         font-size: 18px !important;
+      }
+    }
+    .woocommerce-checkout{
+      label, select{
+        font-size: 20px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 18px !important;
+        }
+      }
+    }
+    #payment {
+      .payment_box{
+        padding: 15px !important;
+        margin-bottom: 15px !important;
+      }
+    }
+    .checkout-page #payment .wc_payment_methods .wc_payment_method .payment_box::before {
+      border: 0;
+    }
+
+    .cart .quantity {
+      .qty {
+        font-size: 18px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 16px !important;
+        }
+      }
+    }
+    .quantity-wrapper{
+      .qty {
+        font-size: 18px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 16px !important;
+        }
+      }
+    }
+    .quantity-input{
+      .qty {
+        font-size: 18px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 16px !important;
+        }
+      }
+      .quantity-input__btn {
+        font-size: 18px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 16px !important;
+        }
+      }
+    }
+    .custom-price-stock-wrapper {
+      .custom-price {
+        .woocommerce-Price-amount {
+          font-size: 40px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 24px !important;
+          }
+          span {
+            font-size: 40px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 24px !important;
+            }
+          }
+          bdi {
+            font-size: 40px !important;
+            @media (max-width: $screen-md-min) {
+              font-size: 24px !important;
+            }
+          }
+        }
+      }
+      .custom-stock-status{
+        font-size: 40px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 24px !important;
+        }
+      }
+    }
+    .woocommerce-Price-amount{
+      font-size: 40px !important;
+      @media (max-width: $screen-md-min) {
+        font-size: 24px !important;
+      }
+      span{
+        font-size: 40px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 24px !important;
+        }
+      }
+      bdi{
+        font-size: 40px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 24px !important;
+        }
+        span{
+          font-size: 40px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 24px !important;
+          }
+        }
       }
     }
 
@@ -614,40 +857,40 @@ body.text-large {
       }
     }
 
-    .site-footer{
-      .footer-contact{
-        font-size: 22px !important;
-        @media (max-width: $screen-md-min) {
-          font-size: 18px !important;
-        }
-        .fc-items{
-          a{
+
+    .footer-contact{
+      font-size: 22px !important;
+      @media (max-width: $screen-md-min) {
+        font-size: 18px !important;
+      }
+      .fc-items{
+        a{
+          font-size: 22px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 18px !important;
+          }
+          div{
             font-size: 22px !important;
             @media (max-width: $screen-md-min) {
               font-size: 18px !important;
-            }
-            div{
-              font-size: 22px !important;
-              @media (max-width: $screen-md-min) {
-                font-size: 18px !important;
-              }
             }
           }
-          span{
+        }
+        span{
+          font-size: 22px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 18px !important;
+          }
+          div{
             font-size: 22px !important;
             @media (max-width: $screen-md-min) {
               font-size: 18px !important;
-            }
-            div{
-              font-size: 22px !important;
-              @media (max-width: $screen-md-min) {
-                font-size: 18px !important;
-              }
             }
           }
         }
       }
     }
+
     .introtext-with-right-cta-section__content {
       p {
         font-size: 42px !important;
@@ -656,6 +899,31 @@ body.text-large {
         }
       }
     }
+    .career-meta{
+      div{
+        font-size: 30px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 24px !important;
+        }
+      }
+    }
+    .faq-question{
+      span.faq-question-text{
+        font-size: 42px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 36px !important;
+        }
+      }
+    }
+    .faq-answer{
+      .faq-answer-content{
+        font-size: 30px !important;
+        @media (max-width: $screen-md-min) {
+          font-size: 24px !important;
+        }
+      }
+    }
+
     // .faq-accordion-block {
     //   .accordion-button {
     //     font-size: 36px !important;
@@ -766,14 +1034,12 @@ body.font-adapted {
         font-family: $fonts-niveau-grotesk-small-caps !important;
       }
     }
-    .site-footer{
-      .footer-contact{
-        .fc-items{
-          a{
-            div{
-              word-break: break-word !important;
-              overflow-wrap: break-word !important;
-            }
+    .footer-contact{
+      .fc-items{
+        a{
+          div{
+            word-break: break-word !important;
+            overflow-wrap: break-word !important;
           }
         }
       }
