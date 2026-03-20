@@ -48,6 +48,13 @@ body.no-scroll {
           display: none !important;
         }
       }
+      .hamburger {
+        p {
+          font-size: 24px;
+          color: $black-off-color;
+          font-weight: 300;
+        }
+      }
     }
 
     .logo-wrapper {
@@ -84,9 +91,6 @@ body.no-scroll {
       color: $white-color;
       font-weight: 300;
 
-      @media (max-width: $screen-lg-min) {
-        display: none;
-      }
     }
   }
 }
@@ -570,6 +574,11 @@ body.no-scroll {
   /* ── header bar ── */
   .site-header .header-top-nav {
     display: none;
+  }
+  .hamburger {
+    p{
+      display: none;
+    }
   }
 
   /* ── fullscreen overlay on mobile ── */
