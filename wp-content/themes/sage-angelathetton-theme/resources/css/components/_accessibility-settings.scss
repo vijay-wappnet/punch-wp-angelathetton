@@ -548,6 +548,12 @@ body.font-adapted {
       letter-spacing: 0.12em !important;
       word-spacing: 0.16em !important;
     }
+    .accessibility-modal{
+      .modal-title,
+      .accessibility-title {
+        font-family: $fonts-niveau-grotesk-small-caps !important;
+      }
+    }
   }
 }
 
