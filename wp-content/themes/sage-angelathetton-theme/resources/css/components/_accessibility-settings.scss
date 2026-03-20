@@ -53,6 +53,15 @@ body.contrast-inverted {
       filter: brightness(1);
       background-color: transparent !important;
     }
+    .modal-header {
+      .btn-close{
+        svg{
+          line{
+            color: #000 !important;
+          }
+        }
+      }
+    }
     .accessibility-modal{
         background-color: transparent !important;
     }
@@ -623,9 +632,9 @@ body.text-large {
     .modal-header {
       .btn-close{
         svg{
-          background-color: transparent !important;
-            width: 32px !important;
-            height: 33px !important;
+          //background-color: transparent !important;
+          width: 32px !important;
+          height: 33px !important;
           path{
             background-color: transparent !important;
           }
