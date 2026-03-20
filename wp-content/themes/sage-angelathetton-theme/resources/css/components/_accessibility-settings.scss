@@ -37,137 +37,6 @@ These styles are separated to avoid specificity conflicts
   }
 }
 
-/* ========================================
-    ACCESSIBILITY MODAL STYLES - PROTECTED
-    These styles will override any accessibility classes
-    ======================================== */
-body .accessibility-modal,
-body.contrast-higher .accessibility-modal,
-body.contrast-inverted .accessibility-modal,
-body.text-medium .accessibility-modal,
-body.text-large .accessibility-modal,
-body.font-adapted .accessibility-modal,
-body.line-spacing-adapted .accessibility-modal,
-body.justify-text .accessibility-modal {
-  /* Reset all modal base properties */
-  font-size: 16px !important;
-  font-family: $fonts-niveau !important;
-  color: $black-off-color !important;
-  line-height: 1.5 !important;
-  text-align: left !important;
-  letter-spacing: normal !important;
-  word-spacing: normal !important;
-
-  /* Modal content */
-  .modal-content {
-    background-color: $white-color !important;
-    color: $black-off-color !important;
-    border: 1px solid rgba(0, 0, 0, 0.2) !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
-  }
-
-  /* Modal header */
-  .modal-header {
-    background-color: $white-color !important;
-    border-bottom: none !important;
-  }
-
-  /* Modal title */
-  .modal-title,
-  .accessibility-title {
-    letter-spacing: normal !important;
-    word-spacing: normal !important;
-    text-align: left !important;
-  }
-
-  /* Close button styles moved to the top in a flat structure */
-
-  /* Modal body */
-  .modal-body {
-    background-color: $white-color !important;
-
-    .setting-label {
-      color: $black-off-color !important;
-      font-family: $fonts-niveau !important;
-      font-weight: $font-weight-400 !important;
-      font-size: 20px !important;
-      line-height: 26px !important;
-      margin-bottom: 12px !important;
-      text-align: left !important;
-      letter-spacing: normal !important;
-      word-spacing: normal !important;
-    }
-
-    .accessibility-option {
-      margin-bottom: 20px !important;
-      background-color: $white-color !important;
-    }
-  }
-
-  /* Button styles */
-  .button-group {
-    background-color: $white-color !important;
-  }
-
-  .btn-setting {
-    font-family: $fonts-niveau !important;
-    font-size: 18px !important;
-    line-height: 25px !important;
-    letter-spacing: normal !important;
-    word-spacing: normal !important;
-    padding: 10px 15px !important;
-    text-align: center !important;
-
-    &:not(.active) {
-      background-color: $white-color !important;
-      color: #333 !important;
-      border-color: #ddd !important;
-    }
-
-    &.active {
-      background-color: #2c3e50 !important;
-      color: $white-color !important;
-      border-color: #2c3e50 !important;
-    }
-
-    &:hover:not(.active) {
-      background-color: #f5f5f5 !important;
-    }
-  }
-
-  /* Search input */
-  .accessibility-search {
-    background-color: $white-color !important;
-
-    .input-group {
-      background-color: $white-color !important;
-      border-color: #ddd !important;
-
-      .input-group-text {
-        background-color: $white-color !important;
-        border: none !important;
-        color: $black-off-color !important;
-
-        svg {
-          color: #777 !important;
-        }
-      }
-
-      .form-control {
-        background-color: $white-color !important;
-        color: $black-off-color !important;
-        border: none !important;
-        line-height: 25px !important;
-        font-size: 18px !important;
-        font-family: $fonts-niveau !important;
-
-        &::placeholder {
-          color: #aaa !important;
-        }
-      }
-    }
-  }
-}
 
 /* ========================================
     BODY ACCESSIBILITY STYLES
@@ -184,7 +53,18 @@ body.contrast-inverted {
       filter: brightness(1);
       background-color: transparent !important;
     }
-
+    .modal-header {
+      .btn-close{
+        svg{
+          line{
+            color: #000 !important;
+          }
+        }
+      }
+    }
+    .accessibility-modal{
+        background-color: transparent !important;
+    }
     .accessibility-icon img {
       filter: contrast(0) grayscale(0) invert(1) brightness(2);
     }
@@ -204,6 +84,43 @@ body.contrast-inverted {
     .mobile-menu .navbar-nav .nav-link::after {
       filter: invert(100%) brightness(200%) contrast(100%);
     }
+    .site-header .menu-toggle .hamburger .bar img {
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .logo-wrapper img {
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .site-footer .footer-main img{
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .contact-details-with-image-section__address img{
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .site-footer .footer-bottom .roses li img:first-child {
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    #fullscreen-menu .menu-header .close-btn .close-icon img{
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .slick-initialized.slick-slider .slick-arrow img{
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .slider-room-features-section .slider-room-fs__arrows-wrapper .slick-arrow img{
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .slider-room-features-section .slider-room-fs__toggle img{
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .slider-room-features-section .slick-dots li button{
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .video-banner-section .video-banner-section__arrow img{
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .coupon-form .coupon-input::placeholder{
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+
 
     .project-grid-arrow-btn,
     .blog-posts-arrow-btn,
@@ -335,6 +252,28 @@ body.text-medium {
         font-size: 18px !important;
       }
     }
+    .modal-header {
+      .btn-close{
+        svg{
+          background-color: transparent !important;
+            width: 49px !important;
+            height: 49px !important;
+          path{
+            background-color: transparent !important;
+          }
+        }
+      }
+    }
+    .slider-room-features-section{
+      .slick-dots{
+        li{
+          span{
+            font-size: 0px !important;
+          }
+        }
+      }
+    }
+
     #payment {
       .payment_box{
         padding: 15px !important;
@@ -698,6 +637,32 @@ body.text-large {
         font-size: 18px !important;
       }
     }
+
+    .modal-header {
+      .btn-close{
+        svg{
+          //background-color: transparent !important;
+          width: 32px !important;
+          height: 33px !important;
+          path{
+            background-color: transparent !important;
+          }
+        }
+      }
+    }
+    .slider-room-features-section{
+      .slick-dots{
+        li{
+          span{
+            font-size: 0px !important;
+          }
+        }
+      }
+    }
+    .accessibility-modal .modal-header .btn-close.custom-close {
+      font-size: 15px !important;
+    }
+
     .woocommerce-checkout{
       label, select{
         font-size: 20px !important;
@@ -1136,4 +1101,153 @@ body.justify-text {
       text-align: left !important;
     }
   }
+}
+
+
+/* ========================================
+    ACCESSIBILITY MODAL STYLES - PROTECTED
+    These styles will override any accessibility classes
+    ======================================== */
+body .accessibility-modal,
+body.contrast-higher .accessibility-modal,
+body.contrast-inverted .accessibility-modal,
+body.text-medium .accessibility-modal,
+body.text-large .accessibility-modal,
+body.font-adapted .accessibility-modal,
+body.line-spacing-adapted .accessibility-modal,
+body.justify-text .accessibility-modal {
+  /* Reset all modal base properties */
+  font-size: 16px !important;
+  font-family: $fonts-niveau !important;
+  color: $black-off-color !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  background-color: $white-color !important;
+  /* Modal content */
+  .modal-content {
+    background-color: $white-color !important;
+    color: $black-off-color !important;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  /* Modal header */
+  .modal-header {
+    background-color: $white-color !important;
+    border-bottom: none !important;
+    .btn-close{
+      svg{
+        background-color: transparent !important;
+          width: 32px !important;
+          height: 33px !important;
+        path{
+          background-color: transparent !important;
+        }
+      }
+    }
+  }
+  /* Modal title */
+  .modal-title,
+  .accessibility-title {
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    text-align: left !important;
+    background-color: $white-color !important;
+    color: $black-off-color !important;
+  }
+
+  /* Close button styles moved to the top in a flat structure */
+
+  /* Modal body */
+  .modal-body {
+    background-color: $white-color !important;
+
+    .setting-label {
+      color: $black-off-color !important;
+      font-family: $fonts-niveau !important;
+      font-weight: $font-weight-400 !important;
+      font-size: 20px !important;
+      line-height: 26px !important;
+      margin-bottom: 12px !important;
+      text-align: left !important;
+      letter-spacing: normal !important;
+      word-spacing: normal !important;
+      background-color: transparent !important;
+    }
+
+    .accessibility-option {
+      margin-bottom: 20px !important;
+      background-color: $white-color !important;
+    }
+  }
+
+  /* Button styles */
+  .button-group {
+    background-color: $white-color !important;
+  }
+
+  .btn-setting {
+    font-family: $fonts-niveau !important;
+    font-size: 18px !important;
+    line-height: 25px !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+    padding: 10px 15px !important;
+    text-align: center !important;
+
+    &:not(.active) {
+      background-color: $white-color !important;
+      color: #333 !important;
+      border-color: #ddd !important;
+    }
+
+    &.active {
+      background-color: #2c3e50 !important;
+      color: $white-color !important;
+      border-color: #2c3e50 !important;
+    }
+
+    &:hover:not(.active) {
+      background-color: #f5f5f5 !important;
+    }
+  }
+
+  /* Search input */
+  .accessibility-search {
+    background-color: $white-color !important;
+
+    .input-group {
+      background-color: $white-color !important;
+      border-color: #ddd !important;
+
+      .input-group-text {
+        background-color: $white-color !important;
+        border: none !important;
+        color: $black-off-color !important;
+
+        svg {
+          color: #777 !important;
+          path{
+            background-color: transparent !important;
+          }
+        }
+      }
+
+      .form-control {
+        background-color: $white-color !important;
+        color: $black-off-color !important;
+        border: none !important;
+        line-height: 25px !important;
+        font-size: 18px !important;
+        font-family: $fonts-niveau !important;
+
+        &::placeholder {
+          color: #aaa !important;
+        }
+      }
+    }
+  }
+
 }
