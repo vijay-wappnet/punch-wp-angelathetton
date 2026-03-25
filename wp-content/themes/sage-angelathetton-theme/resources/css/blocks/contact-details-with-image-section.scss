@@ -18,7 +18,7 @@
   &__heading {
     margin-bottom: 1.5rem;
     font-family: $fonts-niveau-grotesk-small-caps;
-    font-weight: $font-weight-400;
+    font-weight: $font-weight-300;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: $black-off-color;
@@ -38,6 +38,11 @@
       border-bottom: 1px solid rgba($black-off-color, 0.2);
       padding-bottom: 3rem;
     }
+
+    @media (max-width: $screen-xl-min) {
+      margin-right: -25px
+    }
+
   }
 
   // Contact List
@@ -72,6 +77,7 @@
   }
 
   &__link {
+
     &:hover,
     &:focus,
     &:active,
@@ -114,6 +120,7 @@
   &__opening-content {
     font-family: $fonts-helvetica-lt-pro;
     color: $black-off-color;
+
     p {
       font-size: 18px;
       margin-bottom: 15px;
@@ -192,26 +199,30 @@
   }
 }
 
-.contact-details-with-image-section{
+.contact-details-with-image-section {
   .footer-contact {
     ul {
       list-style: none;
       padding: 0;
       margin: 0;
+
       li {
         margin-bottom: 15px;
-        &.fc-items{
-          span{
+
+        &.fc-items {
+          span {
             display: flex;
             align-items: flex-start;
             gap: 25px;
           }
+
           a {
             display: flex;
             align-items: center;
             gap: 25px;
           }
         }
+
         a {
           color: inherit;
           text-decoration: none;
@@ -220,31 +231,38 @@
           &:hover {
             color: $brown-color;
           }
+
           &:focus {
             color: $brown-color;
           }
+
           &:active {
             color: $brown-color;
           }
         }
       }
     }
+
     .footer-social-icon-box {
       display: flex;
       gap: 15px;
       align-items: center;
+
       a {
         transition: all 0.3s ease;
 
         &:hover {
           transform: translateY(-3px);
         }
+
         &:focus {
           transform: translateY(-3px);
         }
+
         &:active {
           transform: translateY(-3px);
         }
+
         img {
           width: 25px;
           height: 25px;
