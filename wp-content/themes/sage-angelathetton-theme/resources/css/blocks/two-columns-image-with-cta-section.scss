@@ -1,6 +1,6 @@
-@use "../common/fonts" as *;
-@use "../common/variables" as *;
-@use "../components/buttons" as *;
+@use '../common/fonts' as *;
+@use '../common/variables' as *;
+@use '../components/buttons' as *;
 
 .two-columns-image-with-cta-section {
   padding: 0;
@@ -104,7 +104,6 @@
         }
       }
     }
-
   }
 
   .tciwcs__content {
@@ -118,15 +117,12 @@
     }
   }
 
-
-
   .tciwcs__heading {
     margin-bottom: 17px;
     margin-top: 0;
     font-size: 58px;
 
     &.tciwcs__heading {
-
       h1,
       h2 {
         font-family: $fonts-niveau-grotesk-small-caps;
@@ -175,8 +171,9 @@
     }
 
     @media (max-width: $screen-md-min) {
-      font-size: 18px;
+      font-size: 22px;
       margin-bottom: 27px;
+      line-height: 26px;
     }
   }
 
@@ -191,6 +188,10 @@
 
       &:hover {
         text-decoration: none;
+      }
+      @media (max-width: $screen-md-min) {
+        font-size: 22px;
+        line-height: 26px;
       }
     }
 

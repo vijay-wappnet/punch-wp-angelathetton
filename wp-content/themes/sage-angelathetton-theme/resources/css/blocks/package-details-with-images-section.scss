@@ -1,13 +1,16 @@
-@use "../common/fonts" as *;
-@use "../common/variables" as *;
-@use "../components/buttons" as *;
+@use '../common/fonts' as *;
+@use '../common/variables' as *;
+@use '../components/buttons' as *;
 
 .package-details-with-images-section {
   &__main-heading {
     margin-bottom: 50px;
+    font-size: 58px;
+    line-height: 60px;
 
     @media (max-width: $screen-md-min) {
       margin-bottom: 30px;
+      font-size: 50px;
     }
   }
 
@@ -38,7 +41,7 @@
     margin-bottom: 20px;
   }
   &__content-description {
-    p{
+    p {
       &:last-child {
         margin-bottom: 0;
       }
@@ -46,7 +49,7 @@
   }
   &__content-button {
     margin-top: 30px;
-    .pdwis-btn{
+    .pdwis-btn {
       min-width: 217px;
     }
   }
