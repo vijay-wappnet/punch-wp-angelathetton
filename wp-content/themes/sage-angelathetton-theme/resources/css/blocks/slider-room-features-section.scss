@@ -1,6 +1,6 @@
-@use "../common/fonts" as *;
-@use "../common/variables" as *;
-@use "../components/buttons" as *;
+@use '../common/fonts' as *;
+@use '../common/variables' as *;
+@use '../components/buttons' as *;
 
 .slider-room-fs {
   &-section {
@@ -189,11 +189,12 @@
   }
 
   &__heading {
-    font-size: 28px;
+    font-size: 32px;
     margin-bottom: 20px;
+    line-height: 38px;
   }
 
-  &__features-wrapper{
+  &__features-wrapper {
     border-top: 1px solid rgba(43, 46, 52, 0.2);
     border-bottom: 1px solid rgba(43, 46, 52, 0.2);
     margin-bottom: 30px;
@@ -223,6 +224,10 @@
       .slider-room-fs__toggle .icon {
         transform: rotate(180deg);
       }
+    }
+    @media (max-width: $screen-md-min) {
+      font-size: 22px;
+      line-height: 26px;
     }
   }
 
@@ -263,6 +268,10 @@
   &__feature-item {
     margin-bottom: 6px;
     display: list-item;
+    @media (max-width: $screen-md-min) {
+      font-size: 22px;
+      line-height: 26px;
+    }
   }
 
   .srfs-btn {

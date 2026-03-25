@@ -1,6 +1,6 @@
-@use "../common/fonts" as *;
-@use "../common/variables" as *;
-@use "../components/buttons" as *;
+@use '../common/fonts' as *;
+@use '../common/variables' as *;
+@use '../components/buttons' as *;
 
 .two-columns-image-cta-with-mobile-slider-section {
   padding: 0;
@@ -12,6 +12,11 @@
     @media (max-width: $screen-md-min) {
       display: block;
       padding-top: 40px;
+    }
+    .main-title-heading {
+      @media (max-width: $screen-md-min) {
+        font-size: 50px;
+      }
     }
   }
 
@@ -114,7 +119,6 @@
         }
       }
     }
-
   }
 
   .tcicwmss__content {
@@ -128,14 +132,11 @@
     }
   }
 
-
-
   .tcicwmss__heading {
     margin-bottom: 17px;
     margin-top: 0;
 
     &.tcicwmss__heading {
-
       h1,
       h2 {
         font-family: $fonts-niveau-grotesk-small-caps;
@@ -182,8 +183,9 @@
     }
 
     @media (max-width: $screen-md-min) {
-      font-size: 18px;
+      font-size: 22px;
       margin-bottom: 35px;
+      line-height: 26px;
     }
   }
 
@@ -222,7 +224,7 @@
     .slick-slide {
       height: auto;
 
-      >div {
+      > div {
         height: 100%;
       }
     }
@@ -234,7 +236,6 @@
         max-width: 100%;
         padding: 25px 15px;
       }
-
     }
 
     // Slick arrows

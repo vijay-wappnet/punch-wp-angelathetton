@@ -1,8 +1,8 @@
-@use "../common/fonts" as *;
-@use "../common/variables" as *;
+@use '../common/fonts' as *;
+@use '../common/variables' as *;
 
 // ----------- Star button components list
-.btn{
+.btn {
   display: inline-block;
   padding: 0.5rem 2.5rem;
   font-family: $fonts-helvetica-lt-pro;
@@ -14,35 +14,41 @@
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  @media (max-width: $screen-md-min) {
+    font-size: 22px;
+    line-height: 26px;
+  }
 }
 
-.black-trans-btn{
+.black-trans-btn {
   background-color: $black-off-color;
   color: $white-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
   overflow: hidden; // for aimated shine effect
-  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  transition:
+    color 0.5s ease,
+    background 0.5s ease; // for aimated shine effect
   position: relative; // for aimated shine effect
 
   &:hover {
-    background-color: transparent;;
+    background-color: transparent;
     border: 1px solid rgba(14, 14, 15, 0.2);
     color: $black-off-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
   &:focus {
-    background-color: transparent;;
+    background-color: transparent;
     border: 1px solid rgba(14, 14, 15, 0.2);
     color: $black-off-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
-  &:after{
+  &:after {
     // for aimated shine effect
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: -130%;
@@ -60,21 +66,28 @@
     transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: none;
   }
+
+  @media (max-width: $screen-md-min) {
+    font-size: 22px;
+    line-height: 26px;
+  }
 }
 
-.trans-black-btn{
+.trans-black-btn {
   background-color: transparent;
   color: $black-off-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
   overflow: hidden; // for aimated shine effect
-  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  transition:
+    color 0.5s ease,
+    background 0.5s ease; // for aimated shine effect
   position: relative; // for aimated shine effect
 
   &:hover {
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
@@ -82,13 +95,13 @@
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
-  &:after{
+  &:after {
     // for aimated shine effect
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: -130%;
@@ -108,19 +121,21 @@
   }
 }
 
-.shiny-btn{
+.shiny-btn {
   background-color: $white-color;
   color: $black-off-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
   overflow: hidden; // for aimated shine effect
-  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  transition:
+    color 0.5s ease,
+    background 0.5s ease; // for aimated shine effect
   position: relative; // for aimated shine effect
   display: inline-block; // for aimated shine effect
   &:hover {
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
@@ -128,13 +143,13 @@
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
-  &:after{
+  &:after {
     // for aimated shine effect
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: -130%;
@@ -153,18 +168,20 @@
     pointer-events: none;
   }
 }
-.shiny-trans-btn{
+.shiny-trans-btn {
   background-color: transparent;
   color: $black-off-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
   overflow: hidden; // for aimated shine effect
-  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  transition:
+    color 0.5s ease,
+    background 0.5s ease; // for aimated shine effect
   position: relative; // for aimated shine effect
   &:hover {
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
@@ -172,13 +189,13 @@
     background-color: $black-off-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
-  &:after{
+  &:after {
     // for aimated shine effect
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: -130%;
@@ -197,32 +214,34 @@
     pointer-events: none;
   }
 }
-.shiny-reverse-btn{
+.shiny-reverse-btn {
   background-color: $black-off-color;
   color: $white-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
   overflow: hidden; // for aimated shine effect
-  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  transition:
+    color 0.5s ease,
+    background 0.5s ease; // for aimated shine effect
   position: relative; // for aimated shine effect
   &:hover {
     background-color: $white-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $black-off-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
-  &:focus{
+  &:focus {
     background-color: $white-color;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $black-off-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
-  &:after{
+  &:after {
     // for aimated shine effect
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: -130%;
@@ -241,32 +260,34 @@
     pointer-events: none;
   }
 }
-.shiny-reverse-trans-btn{
+.shiny-reverse-trans-btn {
   background-color: $white-color;
   color: $black-off-color;
   border: 1px solid rgba(43, 46, 52, 0.2);
   overflow: hidden; // for aimated shine effect
-  transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+  transition:
+    color 0.5s ease,
+    background 0.5s ease; // for aimated shine effect
   position: relative; // for aimated shine effect
   &:hover {
     background-color: transparent;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
-  &:focus{
+  &:focus {
     background-color: transparent;
     border: 1px solid rgba(43, 46, 52, 0.2);
     color: $white-color;
-    &:after{
+    &:after {
       left: 140%; // for aimated shine effect
     }
   }
-  &:after{
+  &:after {
     // for aimated shine effect
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: -130%;
@@ -285,5 +306,3 @@
     pointer-events: none;
   }
 }
-
-

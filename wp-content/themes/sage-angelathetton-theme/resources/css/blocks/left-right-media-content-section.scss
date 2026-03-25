@@ -1,6 +1,6 @@
-@use "../common/fonts" as *;
-@use "../common/variables" as *;
-@use "../components/buttons" as *;
+@use '../common/fonts' as *;
+@use '../common/variables' as *;
+@use '../components/buttons' as *;
 
 .left-right-media-content-section {
   background-size: cover;
@@ -24,7 +24,6 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-
 
   img {
     display: block;
@@ -54,13 +53,20 @@
   @media (max-width: $screen-lg-min) {
     gap: 1rem;
   }
+  .left-right-media-content-section__title {
+    font-size: 58px;
+    line-height: 60px;
+    @media (max-width: $screen-md-min) {
+      font-size: 42px;
+    }
+  }
 }
 
 .left-right-media-content-section__body {
   display: flex;
   flex-direction: column;
 
-  >* {
+  > * {
     margin-top: 0;
     margin-bottom: 1rem;
 
@@ -105,7 +111,6 @@
   }
 
   .left-right-media-content-section {
-
     .row {
       gap: 1.5rem;
     }

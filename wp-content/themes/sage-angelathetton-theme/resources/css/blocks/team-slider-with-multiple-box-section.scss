@@ -1,10 +1,6 @@
-@use "../common/fonts" as *;
-@use "../common/variables" as *;
-@use "../components/buttons" as *;
-
-
-
-
+@use '../common/fonts' as *;
+@use '../common/variables' as *;
+@use '../components/buttons' as *;
 
 .team-slider-with-multiple-box-section {
   background-color: $white-color;
@@ -82,7 +78,6 @@
       min-height: 500px;
     }
 
-
     .smb-item__hover-content {
       opacity: 0;
       transform: translateY(20px);
@@ -146,7 +141,6 @@
       text-align: center;
       width: 100%;
     }
-
   }
 
   .smb-item__subheading {
@@ -170,6 +164,7 @@
     margin-bottom: 10px;
     line-height: 1.2;
     border-bottom: 1px solid;
+    font-size: 32px;
   }
 
   .smb-item__description {
@@ -194,7 +189,7 @@
     flex-wrap: wrap;
     display: none !important; // Hidden button on Desktop by default
 
-    &.smb-item__reveal-btns{
+    &.smb-item__reveal-btns {
       @media (max-width: $screen-md-min) {
         display: flex !important;
         align-items: start;
@@ -206,18 +201,18 @@
         width: 100%;
         padding: 30px 30px;
       }
-      .smb-item__heading-wrap{
+      .smb-item__heading-wrap {
         @media (max-width: $screen-md-min) {
           position: relative;
           width: 100%;
         }
-        .smb-item__heading{
+        .smb-item__heading {
           @media (max-width: $screen-md-min) {
             padding-top: 0px;
           }
         }
       }
-      .tswmbs-btn{
+      .tswmbs-btn {
         @media (max-width: $screen-md-min) {
           color: $white-color;
           background-color: transparent;
@@ -234,7 +229,9 @@
     background-color: transparent;
     border: 1px solid $black-off-color;
     overflow: hidden; // for aimated shine effect
-    transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+    transition:
+      color 0.5s ease,
+      background 0.5s ease; // for aimated shine effect
     position: relative; // for aimated shine effect
 
     &:hover,
@@ -243,13 +240,13 @@
       background-color: $white-color;
       color: $black-off-color;
       border-color: $white-color;
-      &:after{
+      &:after {
         left: 140%; // for aimated shine effect
       }
     }
-    &:after{
+    &:after {
       // for aimated shine effect
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: -130%;
@@ -273,7 +270,9 @@
   .slick-slide {
     outline: none;
     padding: 0;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
   }
 
   .slick-list {
@@ -354,5 +353,13 @@
       color: $black-off-color;
       border-color: $black-off-color;
     }
+  }
+}
+
+.intro-section__heading {
+  font-size: 58px;
+  line-height: 60px;
+  @media (max-width: $screen-md-min) {
+    font-size: 50px;
   }
 }
