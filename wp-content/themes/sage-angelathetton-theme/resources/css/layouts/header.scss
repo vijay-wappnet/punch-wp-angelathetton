@@ -265,6 +265,7 @@ body.no-scroll {
         font-size: 24px;
         font-family: $fonts-niveau-grotesk-small-caps;
         font-weight: $font-weight-300;
+
         &:hover {
           color: $brown-color;
         }
@@ -330,6 +331,7 @@ body.no-scroll {
     opacity: 1;
     visibility: visible;
     height: 100vh;
+    height: 100dvh;
   }
 
   // Menu header with logo and close button
@@ -617,10 +619,13 @@ body.no-scroll {
     }
 
     .fullscreen-nav {
+      background: #e9e4dc;
       flex-direction: column;
       flex: 1;
       min-height: 0;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
 
       /* hide right-side image panel */
       .menu-right {
@@ -629,14 +634,13 @@ body.no-scroll {
 
       /* full-width centred menu */
       .menu-left {
-        flex: 1;
+        flex: 0 0 auto;
         width: 100%;
-        padding: 20px 20px 150px 20px;
+        padding: 20px 20px 40px 20px;
         text-align: center;
-        overflow-y: auto;
-        overflow-x: hidden;
-        min-height: 0;
+        overflow: visible;
         align-items: inherit;
+        height: auto;
 
         .fullscreen-menu-list {
           position: relative;
@@ -685,6 +689,8 @@ body.no-scroll {
               a {
                 font-size: 22px;
                 padding: 0.35rem 0;
+                line-height: 26px;
+
               }
             }
           }
@@ -719,6 +725,8 @@ body.no-scroll {
       padding-top: 20px;
       padding-bottom: 20px;
       flex-shrink: 0;
+      position: relative;
+      bottom: auto;
 
       .hfsm-btn {
         padding: 0.5rem 1rem;
