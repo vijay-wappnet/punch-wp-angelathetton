@@ -19,6 +19,11 @@
   @media (max-width: $screen-md-min) {
     margin-bottom: 30px;
   }
+  @media (max-width: $screen-mobile-min-400) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
 }
 
 .lals__title {
