@@ -17,12 +17,16 @@
   &__title {
     font-family: $fonts-niveau-grotesk-small-caps;
     font-weight: $font-weight-500;
+    font-size: 58px;
+    line-height: 60px;
     margin-bottom: 15px;
     margin-top: 0;
     text-transform: uppercase;
 
     @media (max-width: $screen-md-min) {
       margin-bottom: 10px;
+      font-size: 50px;
+      line-height: 60px;
     }
   }
 
@@ -59,7 +63,7 @@
     margin-bottom: 0;
 
     @media (max-width: $screen-md-min) {
-      font-size: 22px;
+      font-size: 18px;
     }
   }
 
@@ -182,6 +186,7 @@
   &__card-title {
     font-family: $fonts-niveau;
     font-size: 24px;
+    line-height: 40px;
     color: $black-off-color;
     text-transform: uppercase;
     margin: 0;
@@ -214,6 +219,7 @@
 
     @media (max-width: $screen-md-min) {
       font-size: 22px;
+      margin-bottom: 15px;
     }
   }
 

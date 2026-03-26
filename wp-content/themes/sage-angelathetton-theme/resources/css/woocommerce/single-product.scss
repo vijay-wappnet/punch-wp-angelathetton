@@ -134,6 +134,14 @@
           padding-top: 17px !important;
           padding-bottom: 17px !important;
           overflow: hidden;
+          font-family: $fonts-helvetica-lt-pro;
+          font-size: 18px !important;
+          @media (max-width: $screen-md-min) {
+            font-size: 22px !important;
+          }
+          @media (max-width: $screen-mobile-min) {
+            font-size: 18px !important;
+          }
         }
       }
     }
@@ -184,6 +192,17 @@
       margin-bottom: 0;
     }
   }
+  & h4 {
+    font-family: $fonts-niveau-grotesk-small-caps;
+    font-size: 24px;
+    font-weight: $font-weight-300;
+    line-height: 40px;
+    color: $black-off-color;
+    text-transform: inherit;
+    strong,b{
+      font-weight: $font-weight-300;
+    }
+  }
 }
 
 // Price with stock status wrapper
@@ -217,7 +236,6 @@
     line-height: 40px;
     font-weight: 300;
     color: $black-off-color;
-    text-transform: uppercase;
 
     &.in-stock {
       color: $black-off-color;
@@ -231,6 +249,9 @@
 
 // Custom quantity and add to cart wrapper
 .single_add_to_cart_button {
+  font-family: $fonts-helvetica-lt-pro;
+  font-size: 18px;
+  line-height: 25px;
   background-color: $brown-color !important;
   color: $white-color !important;
   border: 1px solid $brown-color !important;

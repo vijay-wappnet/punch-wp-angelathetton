@@ -2,6 +2,14 @@
 @use "../common/variables" as *;
 @use "../components/buttons" as *;
 
+.page-id-200{
+  .intro-section {
+    .intro-section__heading{
+      font-size: 32px;
+      line-height: 38px;
+    }
+  }
+}
 .intro-section {
 
   h1,
@@ -9,7 +17,7 @@
     &.intro-section__heading {
       font-family: $fonts-niveau-grotesk-small-caps;
       font-weight: $font-weight-300;
-      margin-bottom: 25px;
+      //margin-bottom: 25px;
       text-transform: uppercase;
     }
   }

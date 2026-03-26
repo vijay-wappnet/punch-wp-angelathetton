@@ -101,6 +101,7 @@
 .post-card__title {
   font-family: $fonts-niveau;
   font-size: 32px;
+  line-height: 38px;
   color: $black-off-color;
   text-transform: uppercase;
   margin: 0;
@@ -122,12 +123,14 @@
 
 .post-card__description {
   font-size: 18px;
+  line-height: 25px;
   color: $black-off-color;
   margin: 0;
   flex-grow: 1;
 
   @media (max-width: $screen-md-min) {
     font-size: 22px;
+    margin-bottom: 15px;
   }
 }
 

@@ -516,5 +516,23 @@ add_action('init', function () {
             ],
         ]);
 
+        // Register the Latest Article List Section Block
+        acf_register_block_type([
+            'name'            => 'latest-article-list-section',
+            'title'           => __('Latest Article List Section', 'sage'),
+            'description'     => __('A section with latest article list', 'sage'),
+            'render_callback' => ['App\Blocks\LatestArticleListSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
+
     }
 });

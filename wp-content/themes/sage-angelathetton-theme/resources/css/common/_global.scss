@@ -80,7 +80,6 @@ h3 {
   text-transform: uppercase;
   @media (max-width: $screen-md-min) {
     font-size: 32px;
-    line-height: 34px;
   }
 }
 
@@ -121,12 +120,13 @@ p {
   font-size: 18px;
   font-family: $fonts-helvetica-lt-pro;
   line-height: 25px;
-  font-weight: normal;
+  font-weight: $font-weight-300;
   margin-top: 0;
   margin-bottom: 0.5rem;
 
   @media (max-width: $screen-md-min) {
     font-size: 22px;
+    line-height: 26px;
   }
 }
 

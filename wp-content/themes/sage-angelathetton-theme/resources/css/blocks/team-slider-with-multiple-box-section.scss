@@ -159,16 +159,16 @@
   .smb-item__heading {
     font-family: $fonts-niveau-grotesk-small-caps;
     font-weight: $font-weight-300;
+    font-size: 32px;
+    line-height: 38px;
     color: $white-color;
     text-transform: uppercase;
     margin-bottom: 10px;
-    line-height: 1.2;
     border-bottom: 1px solid;
-    font-size: 32px;
   }
 
   .smb-item__description {
-    font-size: 16px;
+    font-size: 18px;
     font-family: $fonts-helvetica-lt-pro;
     font-weight: $font-weight-300;
     color: $black-off-color;

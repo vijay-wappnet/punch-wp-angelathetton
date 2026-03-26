@@ -51,6 +51,7 @@
 @use "blocks/article-post-listing-with-ajax-section";
 @use "blocks/featured-article-post-section";
 @use "blocks/gallery-grid-filter-section";
+@use "blocks/latest-article-list-section";
 
 /** Import WooCommerce styles */
 @use 'woocommerce/single-product';

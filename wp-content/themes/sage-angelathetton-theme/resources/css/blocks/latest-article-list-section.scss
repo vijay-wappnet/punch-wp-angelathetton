@@ -2,7 +2,7 @@
 @use "../common/variables" as *;
 @use "../components/buttons" as *;
 
-.related-post-listing-section {
+.latest-article-list-section {
   background-size: cover;
   background-position: center;
   background-attachment: scroll;
@@ -10,15 +10,18 @@
 }
 
 // Section Header
-.rpls__header {
+.lals__header {
   margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   @media (max-width: $screen-md-min) {
     margin-bottom: 30px;
   }
 }
 
-.rpls__title {
+.lals__title {
   font-family: $fonts-niveau;
   font-size: 58px;
   line-height: 60px;
@@ -29,11 +32,25 @@
   @media (max-width: $screen-md-min) {
     font-size: 50px;
     line-height: 60px;
+
   }
+}
+.lals__see-all-button{
+  font-size: 18px;
+  @media (max-width: $screen-md-min) {
+    font-size: 22px;
+  }
+}
+.lals__card-date{
+  font-family: $fonts-helvetica-lt-pro;
+  font-size: 18px;
+  line-height: 25px;
+  color: $brown-color;
+  margin-bottom: 8px;
 }
 
 // Posts Grid
-.rpls__grid {
+.lals__grid {
   gap: 40px 0;
 
   @media (max-width: $screen-lg-min) {
@@ -46,7 +63,7 @@
 }
 
 // Post Card Styles
-.rpls__card {
+.lals__card {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -54,7 +71,7 @@
   overflow: hidden;
 }
 
-.rpls__card-image {
+.lals__card-image {
   position: relative;
   overflow: hidden;
   height: 369px;
@@ -100,7 +117,7 @@
   }
 }
 
-.rpls__card-body {
+.lals__card-body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -118,7 +135,7 @@
   }
 }
 
-.rpls__card-title {
+.lals__card-title {
   font-family: $fonts-niveau;
   font-size: 32px;
   color: $black-off-color;
@@ -140,7 +157,7 @@
   }
 }
 
-.rpls__card-description {
+.lals__card-description {
   font-size: 18px;
   line-height: 25px;
   color: $black-off-color;
@@ -154,7 +171,7 @@
   }
 }
 
-.rpls__card-button {
+.lals__card-button {
   align-self: flex-start;
   margin-top: auto;
 
@@ -165,7 +182,7 @@
 }
 
 // No posts message
-.rpls__no-posts {
+.lals__no-posts {
   text-align: center;
   font-size: 18px;
   color: $black-off-color;
