@@ -67,6 +67,7 @@ if (!document.body.classList.contains('animations-enabled')) {
       '.woocommerce-checkout .checkout-page .checkout-title',
       '.woocommerce-checkout .checkout-page .checkout-layout .checkout-customer-column',
       '.woocommerce-checkout .checkout-page .checkout-layout .order-summary-column',
+      '.woocommerce-checkout .woocommerce-form-coupon-toggle',
     ];
 
 
