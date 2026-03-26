@@ -1,4 +1,6 @@
-@use "../common/variables" as *;
+@use '../common/fonts' as *;
+@use '../common/variables' as *;
+@use '../components/buttons' as *;
 
 // Footer layout styles
 .site-footer {
