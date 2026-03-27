@@ -245,7 +245,8 @@ body.text-medium {
     .woocommerce-message,
     .woocommerce-info,
     .checkout-tabs__button,
-    #place_order {
+    #place_order,
+    .search-results-section .result-title {
       font-size: 20px !important;
 
       @media (max-width: $screen-md-min) {
@@ -651,7 +652,8 @@ body.text-large {
     .woocommerce-message,
     .woocommerce-info,
     .checkout-tabs__button,
-    #place_order {
+    #place_order,
+    .search-results-section .result-title {
       font-size: 22px !important;
 
       @media (max-width: $screen-md-min) {
