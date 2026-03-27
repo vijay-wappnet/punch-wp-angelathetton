@@ -534,5 +534,22 @@ add_action('init', function () {
             ],
         ]);
 
+        // Register the Search Results Section Block
+        acf_register_block_type([
+            'name'            => 'search-results-section',
+            'title'           => __('Search Results Section', 'sage'),
+            'description'     => __('A section with search results', 'sage'),
+            'render_callback' => ['App\Blocks\SearchResultsSection', 'render'],
+            'category'        => 'common',
+            'icon'            => 'format-image',
+            'mode'            => 'preview',
+            'align'           => 'full',
+            'supports'        => [
+                'align'           => false,
+                'mode'            => true,
+                'jsx'             => true,
+                'align_text'      => false,
+            ],
+        ]);
     }
 });

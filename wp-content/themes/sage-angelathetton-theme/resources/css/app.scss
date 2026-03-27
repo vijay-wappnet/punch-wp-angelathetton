@@ -52,6 +52,7 @@
 @use "blocks/featured-article-post-section";
 @use "blocks/gallery-grid-filter-section";
 @use "blocks/latest-article-list-section";
+@use "blocks/search-results-section";
 
 /** Import WooCommerce styles */
 @use 'woocommerce/single-product';

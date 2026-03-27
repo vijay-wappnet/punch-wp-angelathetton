@@ -1,0 +1,186 @@
+@use "../common/fonts" as *;
+@use "../common/variables" as *;
+@use "../components/buttons" as *;
+
+.search-results-section {
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+
+  .search-results-title {
+    font-family: $fonts-niveau-grotesk-small-caps;
+    font-size: 58px;
+    line-height: 60px;
+    color: $black-off-color;
+    margin-bottom: 35px;
+    @media (max-width: $screen-md-min) {
+      font-size: 50px;
+      margin-bottom: 25px;
+    }
+  }
+
+  .search-results-form {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    @media (max-width: $screen-md-min) {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+    }
+    .search-icon-holder {
+      position: relative;
+      flex: 1 1 auto;
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        background: url('../../images/search-icon.svg') no-repeat center center;
+        background-size: contain;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+      input.form-control {
+        width: 100%;
+        padding: 10px 12px 10px 40px;
+        font-size: 18px;
+        border: 1px solid rgba($black-off-color, 0.5);
+        border-radius: 24px;
+        outline: none;
+        transition: border-color 0.2s;
+        &:focus {
+          border-color: $black-off-color;
+          box-shadow: none;
+        }
+      }
+    }
+    .srs-btn {
+      min-width: 120px;
+      padding: 10px 24px;
+      font-size: 18px;
+      border-radius: 24px;
+      background-color: rgba($black-off-color, 1);
+      &:hover{
+        background-color: rgba($back-color, 1);
+        color: $white-color;
+      }
+      @media (max-width: $screen-md-min) {
+        width: 100%;
+      }
+    }
+  }
+
+  .search-results-meta {
+    font-family: $fonts-niveau;
+    font-size: 32px;
+    line-height: 38px;
+    font-weight: $font-weight-300;
+    color: $black-off-color;
+    strong {
+      color: $brown-color;
+    }
+  }
+
+  .search-results-list {
+    margin-bottom: 32px;
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba($black-off-color, 0.2);
+      @media (max-width: $screen-md-min) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .result-title {
+        font-size: 18px;
+        line-height: 25px;
+        font-weight: $font-weight-300;
+        color: $black-off-color;
+        a {
+          color: $black-off-color;
+          text-decoration: none;
+          transition: color 0.3s;
+          &:hover,
+          &:focus {
+            color: $brown-color;
+          }
+        }
+        @media (max-width: $screen-md-min) {
+          font-size: 22px;
+          line-height: 26px;
+        }
+      }
+      .find-out-more-btn {
+        min-width: 160px;
+        font-size: 18px;
+        border: 1px solid $black-off-color;
+        @media (max-width: $screen-md-min) {
+          font-size: 22px;
+          width: 100%;
+        }
+      }
+      hr {
+        display: none;
+      }
+    }
+  }
+
+  .no-posts-message {
+    text-align: center;
+    font-size: 18px;
+    color: $black-off-color;
+    padding: 40px 0;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    ul {
+      display: flex;
+      gap: 4px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    li {
+      display: inline-block;
+      margin: 0 2px;
+      a,
+      span {
+        display: inline-block;
+        padding: 3px 5px;
+        font-size: 18px;
+        color: $black-off-color;
+        border-radius: 50%;
+        text-decoration: none;
+        background: transparent;
+        transition: background 0.2s, color 0.2s;
+      }
+      &.current span,
+      a.current,
+      span.current span {
+        //background: $brown-color;
+        //color: $white-color;
+        text-decoration: underline;
+      }
+      a:hover span,
+      a:focus span {
+        //background: $brown-color;
+        //color: $white-color;
+        text-decoration: underline;
+      }
+    }
+  }
+}
