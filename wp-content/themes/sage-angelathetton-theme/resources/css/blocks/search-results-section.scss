@@ -33,16 +33,12 @@
     .search-icon-holder {
       position: relative;
       flex: 1 1 auto;
-      &::before {
-        content: "";
-        display: block;
+      img{
         position: absolute;
-        left: 12px;
+        left: 7px;
         top: 50%;
-        width: 20px;
-        height: 20px;
-        background: url('../../images/search-icon.svg') no-repeat center center;
-        background-size: contain;
+        width: 30px;
+        height: 30px;
         transform: translateY(-50%);
         pointer-events: none;
       }

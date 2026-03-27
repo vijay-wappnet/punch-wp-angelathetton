@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Vite;
+@endphp
+
 @if (!empty($responsiveCss))
     <style>
         {{ $responsiveCss }}
@@ -14,6 +18,7 @@
                 <form class="search-results-form" method="GET"
                     action="@php echo esc_url(home_url('/search-results/')); @endphp">
                     <div class="search-icon-holder">
+                      <img src="{{ Vite::asset('resources/images/search-icon.svg') }}" alt="search icon" class="search-icon">
                         <input type="text" name="search-field" class="form-control"
                             placeholder="{{ $searchPlaceholder }}" value="{{ $searchTerm ?? '' }}">
                     </div>

@@ -72,6 +72,12 @@ body.contrast-inverted {
     .logo img {
       filter: contrast(0) grayscale(0) invert(1) brightness(2);
     }
+    .search-icon-holder img {
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
+    .search-icon-holder .form-control::placeholder {
+      filter: contrast(0) grayscale(0) invert(1) brightness(2);
+    }
 
     .logos-section img {
       filter: invert(100%) brightness(200%) contrast(100%);
