@@ -45,8 +45,10 @@ function updateScrollState() {
   if (!header) return;
   if (window.scrollY > 80) {
     header.classList.add('header-scrolled');
+    header.classList.add('logo-switched');
   } else {
     header.classList.remove('header-scrolled');
+    header.classList.remove('logo-switched');
   }
 }
 
@@ -340,26 +342,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initPanelNavigation();
   initImageHover();
-
-  // Logo Switcher Logic
-  const logoLinkBlack = document.querySelector('.brand-logo-black');
-  const logoLinkFirst = document.querySelector('.logo-link-first');
-  const logoLinkSecond = document.querySelector('.logo-link-second');
-
-  if (header && (logoLinkFirst || logoLinkBlack) && logoLinkSecond) {
-    const switchToSecond = (e) => {
-      e.preventDefault();
-      header.classList.add('logo-switched');
-    };
-
-    if (logoLinkFirst) logoLinkFirst.addEventListener('click', switchToSecond);
-    if (logoLinkBlack) logoLinkBlack.addEventListener('click', switchToSecond);
-
-    logoLinkSecond.addEventListener('click', (e) => {
-      e.preventDefault();
-      header.classList.remove('logo-switched');
-    });
-  }
 });
 
 
