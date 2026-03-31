@@ -68,6 +68,116 @@
     }
   }
 
+  .wpcf7-form{
+    p{
+      text-align: left;
+
+       &:has(input[type="submit"]) {
+        text-align: center;
+      }
+    }
+    label{
+      text-align: left;
+      width: 100%;
+    }
+    .wpcf7-form-control-wrap {
+      display: inline-block;
+      padding-bottom: 10px;
+      padding-top: 5px;
+      width: 100%;
+
+    }
+    input[type="text"],
+    input[type="url"],
+    input[type="email"],
+    input[type="tel"] {
+      height: 44px;
+      padding-left: 10px;
+      background-color: transparent; // Change this color as needed
+      font-size: 18px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+    input[type="text"]:focus,
+    input[type="url"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus {
+        outline: none;
+        border-color: #986851;
+    }
+    input[type="text"]::placeholder,
+    input[type="url"]::placeholder,
+    input[type="email"]::placeholder,
+    input[type="tel"]::placeholder {
+      color: $black-off-color; // Change this color as needed
+    }
+    .wpcf7-spinner{
+      display: block ;
+      margin: 0 auto;
+    }
+    .newslettermodal-btn {
+      margin-top: 25px;
+      display: inline-block;
+      text-transform: uppercase;
+      border: 1px solid $black-off-color;
+      background: transparent;
+      color: $black-off-color;
+      cursor: pointer;
+      text-decoration: none;
+      overflow: hidden; // for aimated shine effect
+      transition:color 0.5s ease, background 0.5s ease; // for aimated shine effect
+      position: relative; // for aimated shine effect
+
+      // &:hover,
+      // &:focus {
+      //   background: $black-off-color;
+      //   color: $white-color;
+      // }
+
+      // &:active {
+      //   background: $brown-color;
+      //   border-color: $brown-color;
+      //   color: $white-color;
+      // }
+      &:hover {
+        background-color: $black-off-color;
+        border: 1px solid rgba(43, 46, 52, 0.2);
+        color: $white-color;
+        &:after{
+          left: 140%; // for aimated shine effect
+        }
+      }
+      &:focus {
+        background-color: $black-off-color;
+        border: 1px solid rgba(43, 46, 52, 0.2);
+        color: $white-color;
+        &:after{
+          left: 140%; // for aimated shine effect
+        }
+      }
+      &:after{
+        // for aimated shine effect
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -130%;
+        width: 80%;
+        height: 100%;
+        background: linear-gradient(
+          -115deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.25) 35%,
+          rgba(255, 255, 255, 0.7) 50%,
+          rgba(255, 255, 255, 0.25) 65%,
+          transparent 100%
+        );
+        transform: skewX(20deg);
+        transition: left 2s cubic-bezier(0.22, 1, 0.36, 1);
+        pointer-events: none;
+      }
+    }
+  }
+
   // Image section (desktop only)
   &__image {
     display: none;
@@ -175,7 +285,7 @@
     margin: 0 0 25px;
     line-height: 1.5;
 
-    @media (max-width: $screen-md-min) {      
+    @media (max-width: $screen-md-min) {
       margin-bottom: 20px;
     }
   }
@@ -196,6 +306,7 @@
 
   // Label
   &__label {
+    float: left;
     display: block;
     font-size: 18px;
     color: $black-off-color;
@@ -299,5 +410,4 @@
       pointer-events: none;
     }
   }
-
 }

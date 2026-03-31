@@ -7,13 +7,14 @@
         $title = $newsletter_section['newsletter_title'] ?? '';
         $title_mobile = $newsletter_section['newsletter_title_mobile'] ?? '';
         $description = $newsletter_section['newsletter_description'] ?? '';
-        $name_label = $newsletter_section['name_field_title'] ?? 'Name';
-        $email_label = $newsletter_section['email_address_field_title'] ?? 'Email Address';
-        $button_title = $newsletter_section['newsletter_button_title'] ?? 'Subscribe';
-        $button_link = $newsletter_section['newsletter_button_link'] ?? '';
+        $contact_form_7 = $newsletter_section['newsletter_contact_form_shortcode'] ?? '';
+        //$name_label = $newsletter_section['name_field_title'] ?? 'Name';
+        //$email_label = $newsletter_section['email_address_field_title'] ?? 'Email Address';
+        //$button_title = $newsletter_section['newsletter_button_title'] ?? 'Subscribe';
+        //$button_link = $newsletter_section['newsletter_button_link'] ?? '';
 
-        $button_url = is_array($button_link) ? ($button_link['url'] ?? '#') : ($button_link ?: '#');
-        $button_target = is_array($button_link) ? ($button_link['target'] ?? '_self') : '_self';
+        //$button_url = is_array($button_link) ? ($button_link['url'] ?? '#') : ($button_link ?: '#');
+        //$button_target = is_array($button_link) ? ($button_link['target'] ?? '_self') : '_self';
 
         $newsletter_image = $newsletter_section['newsletter_image'] ?? null;
     @endphp
@@ -50,8 +51,14 @@
                     </p>
                 @endif
 
+                @if ($contact_form_7)
+                    <div class="newsletter-modal__form-wrapper" id="newsletter-form">
+                        {!! do_shortcode($contact_form_7) !!}
+                    </div>
+                @endif
+
                 <form class="newsletter-modal__form" id="newsletter-form">
-                    <div class="newsletter-modal__field">
+                    {{-- <div class="newsletter-modal__field">
                         <label for="newsletter-name" class="newsletter-modal__label">
                             {{ esc_html($name_label) }}
                         </label>
@@ -63,9 +70,9 @@
                             required
                             autocomplete="name"
                         >
-                    </div>
+                    </div> --}}
 
-                    <div class="newsletter-modal__field">
+                    {{-- <div class="newsletter-modal__field">
                         <label for="newsletter-email" class="newsletter-modal__label">
                             {{ esc_html($email_label) }}
                         </label>
@@ -77,9 +84,9 @@
                             required
                             autocomplete="email"
                         >
-                    </div>
+                    </div> --}}
 
-                    <div class="newsletter-modal__actions">
+                    {{-- <div class="newsletter-modal__actions">
                         @if ($button_url && $button_url !== '#')
                             <a
                                 href="{{ esc_url($button_url) }}"
@@ -94,7 +101,7 @@
                                 {{ esc_html($button_title) }}
                             </button>
                         @endif
-                    </div>
+                    </div> --}}
                 </form>
             </div>
 
