@@ -22,6 +22,9 @@
                 @if ($heading_text)
                     <<?= $heading_level ?> class="slider-room-fs__heading">{{ $heading_text }}</<?= $heading_level ?>>
                 @endif
+                @if ($short_description)
+                    <p class="slider-room-fs__short_description">{{ $short_description }}</p>
+                @endif
                 @if ($feature_title)
                   <div class="slider-room-fs__features-wrapper">
                     <div class="slider-room-fs__feature-title">
