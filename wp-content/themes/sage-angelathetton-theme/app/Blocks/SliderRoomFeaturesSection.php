@@ -9,6 +9,7 @@ class SliderRoomFeaturesSection
         $slider_images = get_field('slider_images') ?: [];
         $heading_text = get_field('heading_text') ?: '';
         $heading_level = get_field('heading_level') ?: 'h2';
+        $short_description = get_field('short_description') ?: '';
         $feature_title = get_field('feature_title') ?: '';
         $feature_contents = get_field('feature_contents') ?: [];
         $button = get_field('button') ?: [];
@@ -45,6 +46,7 @@ class SliderRoomFeaturesSection
             'slider_images' => $slider_images,
             'heading_text' => $heading_text,
             'heading_level' => $heading_level,
+            'short_description' => $short_description,
             'feature_title' => $feature_title,
             'feature_contents' => $feature_contents,
             'button' => $button,
