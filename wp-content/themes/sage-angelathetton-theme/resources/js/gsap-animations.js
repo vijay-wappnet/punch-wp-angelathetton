@@ -29,7 +29,6 @@ if (!document.body.classList.contains('animations-enabled')) {
       '.career-list .career-item',
       '.contact-details-with-image-section .cdwis-row',
       '.google-map-section',
-      '.banner-image-section',
       '.faqs-accordion .faq-item',
       '.gallery-grid-filter-section__grid',
       '.featured-article-post-section__wrapper',
