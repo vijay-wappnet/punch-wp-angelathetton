@@ -19,7 +19,7 @@
     "@roots/vite-plugin": "^1.0.2",
     "laravel-vite-plugin": "^1.2.0",
     "sass": "^1.97.3",
-    "vite": "^6.2.0"
+    "vite": "^6.4.2"
   },
   "dependencies": {
     "@accessible360/accessible-slick": "^1.0.1",
