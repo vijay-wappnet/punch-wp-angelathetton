@@ -19,5 +19,3 @@ wp-content/backup-db/
 wp-content/advanced-cache.php
 wp-content/mu-plugins/
 #wp-content/uploads/
-temp_auto_push.bat
-temp_interactive_push.bat

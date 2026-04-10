@@ -267,12 +267,12 @@ function initImageHover() {
     // Don't change image if we're inside a submenu
     if (isInSubMenu) return;
 
-    previewImage.style.opacity = 0;
+    previewImage.style.opacity = 1;
 
     setTimeout(() => {
       previewImage.src = newSrc;
       previewImage.style.opacity = 1;
-    }, 300); // half of transition time
+    }); // half of transition time
   };
 
   items.forEach((li) => {
