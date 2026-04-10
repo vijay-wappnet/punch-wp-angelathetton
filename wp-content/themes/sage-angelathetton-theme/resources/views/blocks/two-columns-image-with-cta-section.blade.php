@@ -17,7 +17,33 @@
                   $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
                 @endphp
                 @if($image_url)
-                  <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy">
+                  @foreach($column['buttons'] as $button)
+                    @php
+                      $link = $button['button_link'] ?? [];
+                      $url = is_array($link) ? ($link['url'] ?? '#') : $link;
+                      $target = is_array($link) ? ($link['target'] ?? '') : '';
+                      $link_title = is_array($link) ? ($link['title'] ?? 'Button') : 'Button';
+                      $button_aria = $button['aria_label'] ?? '';
+                      $event_label = $button['button_google_event_label'] ?? '';
+                      $button_class = $button['button_class'] ?? '';
+                      $target_attr = $target ? 'target="' . esc_attr($target) . '"' : '';
+                    @endphp
+                    <a href="{{ esc_url($url) }}"
+                      @if($target_attr)
+                        {{ $target_attr }}
+                      @endif
+                      @if($button_aria)
+                        aria-label="{{ esc_attr($button_aria) }}"
+                      @endif
+                      @if($event_label)
+                        data-ga-event-label="{{ esc_attr($event_label) }}"
+                      @endif
+                      class="{{ esc_attr($button_class) }}"
+                    >
+                      <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy">
+                    </a>
+                    @break
+                  @endforeach
                 @endif
 
                 {{-- Icon (Optional) --}}

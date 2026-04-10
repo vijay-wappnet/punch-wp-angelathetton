@@ -44,7 +44,17 @@
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
+        .smb-item__subheading,
+        .smb-item__description {
+          display: block;
+        }
+        .swmbs-btn {
+          background-color: transparent;
+          color: $black-off-color;
+          border-color: $black-off-color;
+        }
       }
+
     }
 
     // Visible focus indicator for keyboard navigation
