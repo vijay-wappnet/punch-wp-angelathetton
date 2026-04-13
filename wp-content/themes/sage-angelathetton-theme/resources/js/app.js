@@ -3,6 +3,8 @@ import.meta.glob([
   '../fonts/**',
 ]);
 
+import leftArrow from '../images/left_arrow.svg';
+
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
 
@@ -199,7 +201,7 @@ function insertBackButton(panel, previousPanel) {
 
   const backBtn = document.createElement('div');
   backBtn.className = 'menu-back';
-  backBtn.innerHTML = '← BACK';
+  backBtn.innerHTML = `<img src="${leftArrow}" alt="Back" class="back-arrow"> BACK`;
 
   panel.prepend(backBtn);
 

@@ -33,12 +33,13 @@ document.addEventListener('DOMContentLoaded', function () {
       while (nextElement && (nextElement.tagName === 'STYLE' || nextElement.tagName === 'SCRIPT')) {
         nextElement = nextElement.nextElementSibling;
       }
-      
+
       if (nextElement) {
-        nextElement.scrollIntoView({ behavior: 'smooth' });
+        const elementPosition = nextElement.getBoundingClientRect().top + window.scrollY - 75;
+        window.scrollTo({ top: elementPosition, behavior: 'smooth' });
       } else {
-        // Scroll to bottom of page if no next element
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        // Scroll to bottom of page if no next element, with -75px offset
+        window.scrollTo({ top: document.body.scrollHeight - 75, behavior: 'smooth' });
       }
     }
   }

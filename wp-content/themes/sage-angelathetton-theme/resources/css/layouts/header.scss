@@ -399,7 +399,7 @@ body.no-scroll {
         transform: translateX(0);
 
         .menu-item {
-          margin-bottom: 12px;
+          // margin-bottom: 12px;
 
           >a {
             font-family: $fonts-niveau-grotesk-small-caps;
@@ -438,6 +438,9 @@ body.no-scroll {
           margin-bottom: 2rem;
           cursor: pointer;
           display: inline-block;
+          img{
+            width: 27px;
+          }
         }
 
         .sub-menu {
@@ -746,7 +749,7 @@ body.no-scroll {
       display: flex;
       position: absolute;
       top: 1rem;
-      left: 1rem;
+      left: 60px;
       z-index: 999;
       background: transparent;
       border: none;
