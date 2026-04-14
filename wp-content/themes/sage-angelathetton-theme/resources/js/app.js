@@ -3,7 +3,7 @@ import.meta.glob([
   '../fonts/**',
 ]);
 
-import leftArrow from '../images/left_arrow.svg';
+import leftArrow from '/resources/images/left_arrow.svg';
 
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;

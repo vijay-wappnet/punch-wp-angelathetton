@@ -9,7 +9,8 @@ if (!document.body.classList.contains('animations-enabled')) {
   document.addEventListener('DOMContentLoaded', () => {
     // Add CSS selectors here to animate matching elements on scroll.
     const animatedElements = [
-      '.intro-section__content-wrapper',
+      '.intro-section__content-wrapper .intro-section__content',
+      '.intro-section__content-wrapper .intro-section__buttons',
       '.introtext-with-right-cta-section .row',
       '.container-width-banner-image-section img',
       '.container-width-two-column-image-section .row',
@@ -31,11 +32,8 @@ if (!document.body.classList.contains('animations-enabled')) {
       '.google-map-section',
       '.faqs-accordion .faq-item',
       '.gallery-grid-filter-section__grid',
-      '.featured-article-post-section__wrapper',
       '.article-post-card .article-post-card__image',
       '.article-post-card .article-post-card__body',
-      '.article-single-banner-image-section',
-      '.article-read-time-author-details-section',
       '.latest-article-list-section .lals__header',
       '.latest-article-list-section .lals__grid .lals__card .lals__card-image',
       '.latest-article-list-section .lals__grid .lals__card .lals__card-body',
@@ -51,11 +49,6 @@ if (!document.body.classList.contains('animations-enabled')) {
       '.package-details-with-images-section .pdwis-row img',
       '.package-details-with-images-section .pdwis-row .package-details-with-images-section__contents',
       '.error-404-page',
-      '.error-404-page .error-404-page__heading',
-      '.error-404-page .error-404-page__button-wrapper',
-      '.single-product .single-product-container__product_title',
-      '.single-product .woocommerce-product-gallery__wrapper',
-      '.single-product .entry-summary',
       '.woo-single-product-delivery-section .woo-single-product-delivery-section__title',
       '.woo-single-product-delivery-section .woo-single-product-delivery-section__description',
       '.woo-single-related-products-section .woo-single-related-products-section__header',
