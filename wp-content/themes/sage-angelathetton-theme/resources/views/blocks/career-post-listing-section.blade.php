@@ -20,6 +20,7 @@
             $post_link = get_permalink($post_id);
             $department_type = get_field('department_type', $post_id);
             $employment_type = get_field('employment_type', $post_id);
+            $salary = get_field('salary', $post_id);
             $post_description = get_field('short_description', $post_id);
           @endphp
 
@@ -28,8 +29,15 @@
               <h2 class="career-title">{{ $post_title }}</h2>
 
               <h4 class="career-meta">
-                <div>DEPARTMENT - {{ esc_html($department_type ?: 'N/A') }} <span>|</span> </div>
-                <div>EMPLOYMENT - {{ esc_html($employment_type ?: 'N/A') }} </div>
+                @if($department_type)
+                  <div>{{ esc_html($department_type ?: 'N/A') }} <span>|</span> </div>
+                @endif
+                @if($salary)
+                  <div>{{ esc_html($salary ?: 'N/A') }} <span>|</span> </div>
+                @endif
+                @if($employment_type)
+                  <div>{{ esc_html($employment_type ?: 'N/A') }} </div>
+                @endif
               </h4>
 
               @if($post_description)

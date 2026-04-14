@@ -239,6 +239,7 @@
 
     &.in-stock {
       color: $black-off-color;
+      text-transform: uppercase;
     }
 
     &.out-of-stock {

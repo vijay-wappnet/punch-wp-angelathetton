@@ -48,7 +48,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.5rem;
 
   @media (max-width: $screen-lg-min) {
     gap: 1rem;
@@ -107,10 +106,6 @@
 }
 
 @media (max-width: $screen-md-min) {
-  .left-right-media-content-section__content {
-    gap: 1rem;
-  }
-
   .left-right-media-content-section {
     .row {
       gap: 1.5rem;
@@ -123,9 +118,5 @@
     &--placeholder {
       min-height: 250px;
     }
-  }
-
-  .left-right-media-content-section__content {
-    gap: 1rem;
   }
 }

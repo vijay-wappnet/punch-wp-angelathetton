@@ -21,11 +21,16 @@
   // Override Bootstrap ratio if needed for custom aspect ratio
   &.ratio-21x9 {
     --bs-aspect-ratio: calc(9 / 21 * 100%);
-  }
 
-  @media (max-width: $screen-md-min) {
-    // Taller aspect ratio on mobile for better visibility
-    --bs-aspect-ratio: calc(3 / 4 * 100%);
+     @media (max-width: $screen-md-min) {
+      // Taller aspect ratio on mobile for better visibility
+      --bs-aspect-ratio: calc(3 / 4 * 100%);
+    }
+    @media (max-width: $screen-sm-min) {
+      // Taller aspect ratio on mobile for better visibility
+      --bs-aspect-ratio: calc(3 / 3 * 100%);
+    }
+
   }
 }
 
