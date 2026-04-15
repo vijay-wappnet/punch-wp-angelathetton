@@ -348,6 +348,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ==========================================
-   LOGO TRANSITION HANDLING (OPTIONAL)
+   Cart Count Cleanup (removes non-numeric characters added by WooCommerce)
 ========================================== */
-// Header smooth transition is already handled via 'logo-switched' class above.
+document.addEventListener("DOMContentLoaded", function () {
+  function updateCartCount() {
+    document.querySelectorAll(".cart-menu-count").forEach(function (el) {
+      el.textContent = el.textContent.replace(/\D/g, "");
+    });
+  }
+
+  updateCartCount();
+
+  // Re-run when WooCommerce updates cart fragments
+  document.body.addEventListener("wc_fragments_refreshed", updateCartCount);
+  document.body.addEventListener("added_to_cart", updateCartCount);
+});

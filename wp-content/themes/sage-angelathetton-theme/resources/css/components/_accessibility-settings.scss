@@ -159,7 +159,10 @@ body.contrast-higher {
       filter: brightness(4) invert(0);
       background-color: transparent !important;
     }
-
+    .header-top-nav .menu-item a.main-cart-items .cart-menu-image {
+    width: 32px;
+        filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(57deg) brightness(106%) contrast(101%);
+    }
     .say-hello-wrapper .btn-say-hello-btn::after {
       filter: brightness(4);
     }
@@ -191,7 +194,10 @@ body.contrast-inverted {
       filter: brightness(4);
       background-color: transparent !important;
     }
-
+    .header-top-nav .menu-item a.main-cart-items .cart-menu-image {
+    width: 32px;
+        filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(57deg) brightness(106%) contrast(101%);
+    }
     .say-hello-wrapper .btn-say-hello-btn::after {
       filter: brightness(4);
     }
@@ -608,6 +614,12 @@ body.text-medium {
       }
     }
   }
+  .header-top-nav .menu-item a.main-cart-items .cart-menu-count{
+    font-size: 18px !important;
+    @media (max-width: $screen-md-min) {
+      font-size: 16px !important;
+    }
+  }
 }
 
 body.text-large {
@@ -1022,6 +1034,13 @@ body.text-large {
       }
     }
   }
+  .header-top-nav .menu-item a.main-cart-items .cart-menu-count{
+    font-size: 22px !important;
+    @media (max-width: $screen-md-min) {
+      font-size: 18px !important;
+    }
+  }
+
 }
 
 /* Font Settings */

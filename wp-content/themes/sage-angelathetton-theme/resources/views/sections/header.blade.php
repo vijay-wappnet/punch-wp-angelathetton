@@ -126,13 +126,13 @@
         @endif
     </div>
 
-    <!-- top navigation on right -->
     @if (has_nav_menu('header_top_navigation'))
       <nav class="header-top-nav" aria-label="{{ wp_get_nav_menu_name('header_top_navigation') }}">
         {!! wp_nav_menu([
           'theme_location' => 'header_top_navigation',
           'menu_class'     => 'header-top-menu nav',
           'echo'           => false,
+          'walker'         => app(\App\HeaderTopMenuWalker::class),
         ]) !!}
       </nav>
     @endif

@@ -38,6 +38,15 @@ body.no-scroll {
             &:focus {
               color: $brown-color;
             }
+            &.main-cart-items-zero{
+              display: none;
+            }
+            &.main-cart-items{
+              .cart-menu-image{
+                width: 32px;
+                filter: invert(1) brightness(0);
+              }
+            }
           }
         }
       }
@@ -84,6 +93,15 @@ body.no-scroll {
         a {
           font-size: 24px;
           color: $white-color;
+          &.main-cart-items-zero{
+            display: none;
+          }
+          &.main-cart-items{
+            .cart-menu-image{
+              width: 32px;
+              filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(57deg) brightness(106%) contrast(101%);
+            }
+          }
         }
       }
     }
@@ -251,6 +269,7 @@ body.no-scroll {
   }
 
   .header-top-nav {
+    position: relative;
     .nav {
       display: flex;
       gap: 1.5rem;
@@ -277,6 +296,30 @@ body.no-scroll {
         &:focus {
           color: $brown-color;
         }
+        &.main-cart-items-zero{
+          display: none;
+        }
+        &.main-cart-items{
+          position: relative;
+          .cart-menu-image{
+            width: 32px;
+            filter: invert(1) brightness(0);
+          }
+          .cart-menu-count{
+            background: $brown-color;
+            color: $white-color;
+            padding: 0px 7px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -10px;
+            right: -12px;
+            font-size: 12px;
+          }
+        }
+
       }
     }
   }
@@ -604,7 +647,15 @@ body.no-scroll {
 
   /* ── header bar ── */
   .site-header .header-top-nav {
-    display: none;
+    .header-top-menu{
+      .regular-menu-li{
+        display: none;
+      }
+      .main-cart-li{
+        left: -15px;
+        position: relative;
+      }
+    }
   }
 
   .hamburger {
