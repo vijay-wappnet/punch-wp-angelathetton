@@ -9,6 +9,7 @@
         // Get social media details repeater field
         //$social_media_title = get_field('social_media_title', 'option');
         $social_media_details = get_field('social_media_details', 'option');
+        $footer_rose_media_details = get_field('footer_rose_media_details', 'option');
     @endphp
 
     <div class="footer-top">
@@ -207,12 +208,18 @@ if (!$aria_label) {
         <div class="container footer-bottom-inner">
             <ul class="roses">
                 <li>
-                    <img src="{{ Vite::asset('resources/images/flower-black.svg') }}" alt="flower" class="icon">
-                    <img src="{{ Vite::asset('resources/images/flower-red.svg') }}" alt="flower" class="icon">
-                    <img src="{{ Vite::asset('resources/images/flower-red.svg') }}" alt="flower" class="icon">
-                    <img src="{{ Vite::asset('resources/images/flower-red.svg') }}" alt="flower" class="icon">
-                    <img src="{{ Vite::asset('resources/images/flower-red.svg') }}" alt="flower" class="icon">
-                    <img src="{{ Vite::asset('resources/images/flower-red.svg') }}" alt="flower" class="icon">
+                  @if ($footer_rose_media_details)
+                    @foreach ($footer_rose_media_details as $rose)
+                        @php
+                            $icon = $rose['icon_image']['url'] ?? '';
+                            $alt_text = $rose['icon_image']['alt'] ?? '';
+                        @endphp
+
+                        @if ($icon && $alt_text)
+                            <img src="{{ esc_url($icon) }}" alt="{{ esc_attr($alt_text) }}" class="icon">
+                        @endif
+                    @endforeach
+                  @endif
                 </li>
             </ul>
             <div class="footer-bottom-menu-col">

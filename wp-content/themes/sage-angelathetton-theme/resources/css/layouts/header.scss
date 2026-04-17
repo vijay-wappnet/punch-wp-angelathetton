@@ -632,6 +632,19 @@ body.no-scroll {
           filter: invert(1) brightness(0);
         }
       }
+      &:focus {
+        background-color: $white-color;
+        border-color: $white-color;
+        color: $black-off-color;
+
+        &:after {
+          left: 140%; // for aimated shine effect
+        }
+
+        .hfsm-btn-fullscreen-arrow-icon {
+          filter: invert(1) brightness(0);
+        }
+      }
 
       &:after {
         // for aimated shine effect
