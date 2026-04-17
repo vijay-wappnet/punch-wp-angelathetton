@@ -38,8 +38,7 @@
                       @if($event_label)
                         data-ga-event-label="{{ esc_attr($event_label) }}"
                       @endif
-                      class="{{ esc_attr($button_class) }}"
-                    >
+                      class="tciwcs__image-link">
                       <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy">
                     </a>
                     @break

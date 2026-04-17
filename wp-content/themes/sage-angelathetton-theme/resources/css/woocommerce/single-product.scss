@@ -200,7 +200,9 @@
     color: $black-off-color;
     text-transform: inherit;
     strong,b{
+      font-family: $fonts-niveau;
       font-weight: $font-weight-300;
+      text-transform: uppercase;
     }
   }
 }

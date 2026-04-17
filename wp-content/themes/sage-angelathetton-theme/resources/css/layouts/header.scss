@@ -9,9 +9,33 @@ $header-transparent: rgba(255, 255, 255, 0.15);
 body.no-scroll {
   overflow: hidden !important;
 }
-
+.site-header {
+  &.header-scrolled {
+    .menu-toggle{
+      .hamburger {
+        p {
+          font-size: 24px;
+          color: $black-off-color;
+          font-family: $fonts-niveau-grotesk-small-caps;
+          font-weight: $font-weight-300;
+        }
+      }
+    }
+  }
+}
 .home {
   .site-header {
+    .menu-toggle{
+      .hamburger {
+        p {
+          font-size: 24px;
+          color: $white-color;
+          font-weight: 300;
+        }
+      }
+    }
+
+
     &.header-scrolled {
       .menu-icon-black {
         display: inline;
@@ -105,15 +129,14 @@ body.no-scroll {
         }
       }
     }
-  }
-
-  .hamburger {
-    p {
-      font-size: 24px;
-      color: $white-color;
-      font-weight: 300;
-      font-family: $fonts-niveau-grotesk-small-caps;
-      font-weight: $font-weight-300;
+    .hamburger {
+      p {
+        font-size: 24px;
+        color: $white-color;
+        font-weight: 300;
+        font-family: $fonts-niveau-grotesk-small-caps;
+        font-weight: $font-weight-300;
+      }
     }
   }
 }
@@ -211,6 +234,12 @@ body.no-scroll {
     .hamburger {
       display: block;
       position: relative;
+      p {
+        font-size: 24px;
+        color: $black-off-color;
+        font-family: $fonts-niveau-grotesk-small-caps;
+        font-weight: $font-weight-300;
+      }
 
       .bar {
         width: 100%;
@@ -234,11 +263,6 @@ body.no-scroll {
       &:focus {
         .img {}
       }
-
-      p {
-        font-size: 24px;
-      }
-
     }
   }
 
