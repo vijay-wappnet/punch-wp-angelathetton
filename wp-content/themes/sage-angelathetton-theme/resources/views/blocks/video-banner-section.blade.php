@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Vite;
         muted
         loop
         playsinline
-        preload="auto">
+        preload="auto"
+        aria-hidden="true"
+        tabindex="-1"
+        role="presentation">
         <source src="{{ esc_url($video_file) }}" type="video/mp4">
         @if($video_image)
           <img src="{{ esc_url($video_image) }}" alt="banner" class="video-banner-section__fallback-image">
@@ -41,8 +44,6 @@ use Illuminate\Support\Facades\Vite;
   @endif
 
   <div class="video-banner-section__arrow" role="button" tabindex="0" aria-label="Scroll to next section">
-
-
     <img src="{{ Vite::asset('resources/images/arrow-down.svg') }}" alt="flower" class="icon">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2V20M12 20L5 13M12 20L19 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
