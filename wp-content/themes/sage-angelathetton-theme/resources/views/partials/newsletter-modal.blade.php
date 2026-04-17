@@ -29,7 +29,7 @@
             </button>
 
             <div class="newsletter-modal__content">
-                {{-- @if ($title)
+                @if ($title)
                     <h2 class="newsletter-modal__title newsletter-modal__title--desktop" id="newsletter-modal-title">
                         {{ esc_html($title) }}
                     </h2>
@@ -43,7 +43,7 @@
                     <h2 class="newsletter-modal__title newsletter-modal__title--mobile" id="newsletter-modal-title-mobile">
                         {{ esc_html($title) }}
                     </h2>
-                @endif --}}
+                @endif
 
                 @if ($description)
                     <p class="newsletter-modal__description">

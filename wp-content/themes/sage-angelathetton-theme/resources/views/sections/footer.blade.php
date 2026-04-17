@@ -244,7 +244,7 @@ if (!$aria_label) {
                 $newsletter_link_title_mobile = $newsletter_section['newsletter_title_mobile'] ?? 'Newsletter';
               @endphp
               <div class="newsletter">
-                <a href="#" class="newsletter-sign-up" aria-label="{{ esc_attr($newsletter_link_title) }}" data-event="Sign Up Newsletter">
+                <a href="#" class="newsletter-sign-up" aria-label="{{ esc_attr($newsletter_link_title) }}" aria-expanded="false" aria-controls="newsletter-modal" data-event="Sign Up Newsletter">
                   <span class="newsletter-title-desktop">{{ esc_html($newsletter_link_title) }}</span>
                   <span class="newsletter-title-mobile">{{ esc_html($newsletter_link_title_mobile) }}</span>
                 </a>

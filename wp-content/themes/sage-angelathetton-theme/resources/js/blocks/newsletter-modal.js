@@ -21,6 +21,11 @@ function initNewsletterModal() {
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('no-scroll');
 
+    // Update aria-expanded on trigger elements
+    openTriggers.forEach((trigger) => {
+      trigger.setAttribute('aria-expanded', 'true');
+    });
+
     // Set up focus trap
     modalFocusableElements = modal.querySelectorAll(
       'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
@@ -39,6 +44,11 @@ function initNewsletterModal() {
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('no-scroll');
+
+    // Update aria-expanded on trigger elements
+    openTriggers.forEach((trigger) => {
+      trigger.setAttribute('aria-expanded', 'false');
+    });
 
     document.removeEventListener('keydown', handleModalKeydown);
 

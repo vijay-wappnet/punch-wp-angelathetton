@@ -218,16 +218,22 @@
       @media (min-width: $screen-lg-min) {
         color: $white-color;
 
-        &:hover,
-        &:focus {
-          color: $brown-light-color;
-        }
+        // &:hover,
+        // &:focus {
+        //   color: $brown-light-color;
+        // }
       }
     }
 
-    &:hover,
+    &:hover {
+      color: $brown-color;
+    }
+
     &:focus {
       color: $brown-color;
+      outline: 2px solid $brown-color;
+      outline-offset: 2px;
+      border-radius: 2px;
     }
 
     svg {
