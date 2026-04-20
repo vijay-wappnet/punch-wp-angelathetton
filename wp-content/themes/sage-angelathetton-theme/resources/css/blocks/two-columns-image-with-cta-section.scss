@@ -80,13 +80,14 @@
       object-fit: cover;
     }
 
-    .tciwcs__image-link {
+    a.tciwcs__image-link {
       display: block;
       width: 100%;
       height: 100%;
 
+      &:focus-visible,
       &:focus {
-        outline: 3px solid $brown-color;
+        outline: 3px solid $brown-color !important;
         outline-offset: -3px;
       }
     }
