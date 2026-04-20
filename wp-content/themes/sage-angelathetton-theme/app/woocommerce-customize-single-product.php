@@ -57,7 +57,7 @@ function custom_display_full_product_description() {
 
     if ($description) {
         echo '<div class="woocommerce-product-details__full-description">';
-        echo '<h3 class="woocommerce-product-details__description-title">' . esc_html__('Description', 'woocommerce') . '</h3>';
+        echo '<h2 class="woocommerce-product-details__description-title">' . esc_html__('Description', 'woocommerce') . '</h2>';
         echo wp_kses_post(wpautop($description));
         echo '</div>';
     }
