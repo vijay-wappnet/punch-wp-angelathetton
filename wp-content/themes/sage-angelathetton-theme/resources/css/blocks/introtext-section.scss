@@ -2,14 +2,6 @@
 @use "../common/variables" as *;
 @use "../components/buttons" as *;
 
-.page-id-200{
-  .intro-section {
-    .intro-section__heading{
-      font-size: 32px;
-      line-height: 38px;
-    }
-  }
-}
 .intro-section {
 
   h1,
