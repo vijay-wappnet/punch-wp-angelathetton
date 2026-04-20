@@ -285,32 +285,30 @@ function handle_load_more_posts() {
         $post_description = get_post_listing_description($post_id);
         ?>
         <div class="col-lg-4 col-md-6 col-12 post-listing-item">
-            <div class="post-card">
-                <div class="post-card__image">
-                    <?php if ($featured_image) : ?>
-                        <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>">
+            <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>" data-event-label="<?php echo esc_attr($post_title ?? ''); ?>" class="post-card-link">
+                <div class="post-card">
+                    <div class="post-card__image">
+                        <?php if ($featured_image) : ?>
                             <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
-                        </a>
-                    <?php else : ?>
-                        <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>">
+                        <?php else : ?>
                             <div class="post-card__image--placeholder">
                                 <span><?php esc_html_e('No Image', 'sage'); ?></span>
                             </div>
-                        </a>
-                    <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                    <div class="post-card__body">
+                        <h3 class="post-card__title">
+                            <?php echo esc_html($post_title); ?>
+                        </h3>
+                        <?php if ($post_description) : ?>
+                            <p class="post-card__description"><?php echo esc_html($post_description); ?></p>
+                        <?php endif; ?>
+                        <span class="btn trans-black-btn post-card__button plwas-btn">
+                            <?php esc_html_e('Discover More', 'sage'); ?>
+                        </span>
+                    </div>
                 </div>
-                <div class="post-card__body">
-                    <h3 class="post-card__title">
-                        <a href="<?php echo esc_url($post_link); ?>"><?php echo esc_html($post_title); ?></a>
-                    </h3>
-                    <?php if ($post_description) : ?>
-                        <p class="post-card__description"><?php echo esc_html($post_description); ?></p>
-                    <?php endif; ?>
-                    <a href="<?php echo esc_url($post_link); ?>" class="btn trans-black-btn post-card__button plwas-btn">
-                        <?php esc_html_e('Discover More', 'sage'); ?>
-                    </a>
-                </div>
-            </div>
+            </a>
         </div>
         <?php
     }
@@ -542,21 +540,17 @@ function handle_load_more_article_posts() {
             <div class="article-post-card">
                 <div class="article-post-card__image">
                     <?php if ($featured_image) : ?>
-                        <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>">
-                            <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
-                        </a>
+                        <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
                     <?php else : ?>
-                        <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>">
-                            <div class="article-post-card__image--placeholder">
-                                <span><?php esc_html_e('No Image', 'sage'); ?></span>
-                            </div>
-                        </a>
+                        <div class="article-post-card__image--placeholder">
+                            <span><?php esc_html_e('No Image', 'sage'); ?></span>
+                        </div>
                     <?php endif; ?>
                 </div>
                 <div class="article-post-card__body">
                     <span class="article-post-card__date"><?php echo esc_html($post_date); ?></span>
                     <h3 class="article-post-card__title">
-                        <a href="<?php echo esc_url($post_link); ?>"><?php echo esc_html($post_title); ?></a>
+                        <?php echo esc_html($post_title); ?>
                     </h3>
                     <a href="<?php echo esc_url($post_link); ?>" class="btn trans-black-btn article-post-card__button aplwas-btn">
                         <?php esc_html_e('Discover More', 'sage'); ?>
