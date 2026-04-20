@@ -89,6 +89,10 @@
           &:hover {
             background: rgba(255, 255, 255, 0.8);
           }
+          &:focus,
+          &:focus-visible {
+            background: rgba(152, 104, 81, 1) !important;
+          }
         }
 
         &.slick-active button {
@@ -141,7 +145,7 @@
       &:hover,
       &:focus,
       &:focus-visible {
-        opacity: 0.7;
+        opacity: 0.5;
       }
     }
   }
@@ -219,7 +223,7 @@
     &:hover,
     &:focus,
     &:focus-visible {
-      opacity: 0.7;
+      opacity: 0.5;
     }
 
     &.is-open {
