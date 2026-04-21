@@ -62,6 +62,45 @@ body.contrast-inverted {
         }
       }
     }
+    .slider-with-multiple-box-section {
+      .smb-item__wrapper,
+      .smb-item__slider,
+      .slick-list,
+      .slick-track,
+      .slick-slide,
+      .slick-slide div,
+      .smb-item__slider-item,
+      .smb-item__slider-item img {
+        background-color: transparent !important;
+      }
+    }
+    .gallery-grid-filter-section {
+      background-color: transparent !important;
+      .container{
+        background-color: transparent !important;
+      }
+      .gallery-grid-filter-section__grid{
+        background-color: transparent !important;
+      }
+      .gallery-grid-filter-section__row{
+        background-color: transparent !important;
+      }
+      .gallery-grid-filter-section__large{
+        background-color: transparent !important;
+      }
+      .gallery-grid-filter-section__item{
+        background-color: transparent !important;
+      }
+      .gallery-grid-filter-section__overlay{
+        background-color: transparent !important;
+      }
+      .gallery-grid-filter-section__icon{
+        background-color: $brown-color !important;
+      }
+      img {
+        background-color: transparent !important;
+      }
+    }
     .accessibility-modal{
         background-color: transparent !important;
     }

@@ -186,6 +186,7 @@
 
     let currentIndex = 0;
     let galleryImages = [];
+    let triggerElement = null;
 
     // Store lightbox data on section
     section._lightbox = {
@@ -193,8 +194,10 @@
       image: imageEl,
       prevBtn,
       nextBtn,
+      closeBtn,
       currentIndex: 0,
-      images: []
+      images: [],
+      triggerElement: null
     };
 
     // Close button
@@ -218,6 +221,9 @@
           break;
         case 'ArrowRight':
           navigateLightbox(section, 1);
+          break;
+        case 'Tab':
+          handleTabInLightbox(section, e);
           break;
       }
     });
@@ -267,10 +273,18 @@
     // Update nav buttons
     updateNavButtons(lightbox);
 
+    // Store the element that triggered the modal for focus return
+    lightbox.triggerElement = document.activeElement;
+
     // Open lightbox
     lightbox.element.classList.add('is-open');
     lightbox.element.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    // Move focus to close button (first focusable element in modal)
+    setTimeout(() => {
+      lightbox.closeBtn?.focus();
+    }, 0);
   }
 
   /**
@@ -283,6 +297,13 @@
     lightbox.element.classList.remove('is-open');
     lightbox.element.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+
+    // Return focus to the element that triggered the modal
+    if (lightbox.triggerElement && typeof lightbox.triggerElement.focus === 'function') {
+      setTimeout(() => {
+        lightbox.triggerElement.focus();
+      }, 0);
+    }
   }
 
   /**
@@ -309,6 +330,39 @@
 
     lightbox.prevBtn.disabled = lightbox.currentIndex <= 0;
     lightbox.nextBtn.disabled = lightbox.currentIndex >= lightbox.images.length - 1;
+  }
+
+  /**
+   * Handle Tab key to trap focus within lightbox
+   */
+  function handleTabInLightbox(section, e) {
+    const lightbox = section._lightbox;
+    if (!lightbox || !lightbox.element.classList.contains('is-open')) return;
+
+    // Get all focusable elements in the lightbox
+    const focusableElements = lightbox.element.querySelectorAll(
+      'button:not(:disabled), [tabindex]:not([tabindex="-1"])'
+    );
+
+    if (focusableElements.length === 0) return;
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    const activeElement = document.activeElement;
+
+    // If Shift+Tab on first element, move to last
+    if (e.shiftKey && activeElement === firstElement) {
+      e.preventDefault();
+      lastElement.focus();
+      return;
+    }
+
+    // If Tab on last element, move to first
+    if (!e.shiftKey && activeElement === lastElement) {
+      e.preventDefault();
+      firstElement.focus();
+      return;
+    }
   }
 
   // Initialize on DOM ready
