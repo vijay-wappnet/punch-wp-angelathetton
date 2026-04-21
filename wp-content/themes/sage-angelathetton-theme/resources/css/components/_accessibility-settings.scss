@@ -155,7 +155,8 @@ body.contrast-higher {
 
     .top-nav img,
     .logo-container img,
-    .footer-logo-wrapper img {
+    .footer-logo-wrapper img,
+    .menu-back img {
       filter: brightness(4) invert(0);
       background-color: transparent !important;
     }
@@ -190,7 +191,8 @@ body.contrast-inverted {
 
     .top-nav img,
     .logo-container img,
-    .footer-logo-wrapper img {
+    .footer-logo-wrapper img,
+    .menu-back img {
       filter: brightness(4);
       background-color: transparent !important;
     }

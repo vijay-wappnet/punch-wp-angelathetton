@@ -274,15 +274,26 @@
   overflow: hidden;
   cursor: pointer;
   aspect-ratio: 4 / 3;
-
+  &:focus {
+    .gallery-grid-filter-section__overlay {
+      border: 3px solid rgba(0, 0, 0, 1);
+    }
+  }
   &:hover,
   &:focus {
     .gallery-grid-filter-section__overlay {
       opacity: 1;
+      background: rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
     }
-
+    .gallery-grid-filter-section__icon {
+      width: 30px;
+      height: 30px;
+      transition: width .5s ease-in-out,height .5s ease-in-out,background-size .5s ease-in-out
+    }
     .gallery-grid-filter-section__image {
       transform: scale(1.05);
+      transition: transform 0.3s ease-in-out;
     }
   }
 }
@@ -320,7 +331,7 @@
   padding: 0rem;
   background: transparent;
   opacity: 1;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .gallery-grid-filter-section__icon {
@@ -329,7 +340,7 @@
   padding: 5px;
   box-sizing: content-box;
   background-color: $brown-color;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease-in-out;
 
   @media (max-width: $screen-md-min) {
     width: 20px;
@@ -407,6 +418,9 @@
   &:hover {
     color: $brown-color;
   }
+  &:focus {
+    color: $brown-color;
+  }
 
   svg {
     width: 32px;
@@ -434,6 +448,10 @@
   transition: background-color 0.2s ease, color 0.2s ease;
 
   &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: $brown-color;
+  }
+  &:focus {
     background: rgba(255, 255, 255, 0.2);
     color: $brown-color;
   }

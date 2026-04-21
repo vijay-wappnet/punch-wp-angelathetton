@@ -28,7 +28,7 @@
             <div class="col-12 col-lg-9">
               <h2 class="career-title">{{ $post_title }}</h2>
 
-              <h4 class="career-meta">
+              <h3 class="career-meta">
                 @if($department_type)
                   <div>{{ esc_html($department_type ?: 'N/A') }} <span>|</span> </div>
                 @endif
@@ -38,7 +38,7 @@
                 @if($employment_type)
                   <div>{{ esc_html($employment_type ?: 'N/A') }} </div>
                 @endif
-              </h4>
+              </h3>
 
               @if($post_description)
                 <p class="career-description">{{ $post_description }}</p>
