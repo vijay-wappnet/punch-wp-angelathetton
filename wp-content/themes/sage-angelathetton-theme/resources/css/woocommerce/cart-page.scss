@@ -139,6 +139,9 @@
                 &:hover {
                   color: $black-off-color;
                 }
+                &:focus {
+                  color: $black-off-color;
+                }
 
                 svg {
                   width: 16px;
@@ -189,6 +192,9 @@
                 transition: background-color 0.3s ease;
 
                 &:hover {
+                  background-color: rgba($black-off-color, 0.05);
+                }
+                &:focus {
                   background-color: rgba($black-off-color, 0.05);
                 }
 
