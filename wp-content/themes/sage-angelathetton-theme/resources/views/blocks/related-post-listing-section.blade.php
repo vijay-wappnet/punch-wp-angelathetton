@@ -1,6 +1,9 @@
 @if(!empty($responsiveCss))
 <style>{{ $responsiveCss }}</style>
 @endif
+@php
+    use Illuminate\Support\Facades\Vite;
+@endphp
 <section id="{{ $blockId }}" class="related-post-listing-section" @if(!empty($backgroundStyle)) style="{{ $backgroundStyle }}" @endif>
     <div class="container">
         {{-- Section Heading --}}
@@ -24,32 +27,30 @@
                         $post_description = \App\Blocks\RelatedPostListingSection::getPostDescription($post_id);
                     @endphp
                     <div class="col-lg-4 col-md-6 col-12 rpls__item">
+                      <a href="{{ esc_url($post_link) }}" aria-label="{{ esc_attr($post_title) }}">
                         <div class="rpls__card">
-                            <div class="rpls__card-image">
-                                @if($featured_image)
-                                    <a href="{{ esc_url($post_link) }}" aria-label="{{ esc_attr($post_title) }}">
-                                        <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($post_title) }}" loading="lazy">
-                                    </a>
-                                @else
-                                    <a href="{{ esc_url($post_link) }}" aria-label="{{ esc_attr($post_title) }}">
-                                        <div class="rpls__card-image--placeholder">
-                                            <span>{{ __('No Image', 'sage') }}</span>
-                                        </div>
-                                    </a>
-                                @endif
-                            </div>
-                            <div class="rpls__card-body">
-                                <h3 class="rpls__card-title">
-                                    <a href="{{ esc_url($post_link) }}">{{ $post_title }}</a>
-                                </h3>
-                                @if($post_description)
-                                    <p class="rpls__card-description">{{ $post_description }}</p>
-                                @endif
-                                <a href="{{ esc_url($post_link) }}" class="btn trans-black-btn rpls__card-button">
-                                    {{ __('Discover More', 'sage') }}
-                                </a>
-                            </div>
+                          <div class="rpls__card-image">
+                              @if($featured_image)
+                                  <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($post_title) }}" loading="lazy">
+                              @else
+                                <div class="rpls__card-image--placeholder">
+                                    <img src="{{ Vite::asset('resources/images/package-placeholder-image.webp') }}" alt="{{ esc_attr($post_title) }}" loading="lazy" />
+                                </div>
+                              @endif
+                          </div>
+                          <div class="rpls__card-body">
+                              <h3 class="rpls__card-title">
+                                  {{ $post_title }}
+                              </h3>
+                              @if($post_description)
+                                  <p class="rpls__card-description">{{ $post_description }}</p>
+                              @endif
+                              <span class="btn trans-black-btn rpls__card-button">
+                                  {{ __('Discover More', 'sage') }}
+                              </span>
+                          </div>
                         </div>
+                      </a>
                     </div>
                 @endforeach
             @else

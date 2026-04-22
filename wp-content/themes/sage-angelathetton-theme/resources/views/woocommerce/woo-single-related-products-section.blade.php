@@ -4,6 +4,8 @@ Reusable partial for displaying related products
 --}}
 
 @php
+    use Illuminate\Support\Facades\Vite;
+
   // Get ACF fields
   $title = get_field('related_product_title');
   $heading_level = get_field('related_product_title_heading_level') ?: 'h2';
@@ -88,35 +90,32 @@ Reusable partial for displaying related products
               $mobileHiddenClass = ($index >= $mobileLimit) ? 'mobile-hidden' : '';
             @endphp
             <div class="col-lg-3 col-md-6 col-12 woo-single-related-products-section__item {{ $mobileHiddenClass }}">
-              <div class="woo-single-related-products-section__card">
-                <div class="woo-single-related-products-section__image">
-                  @if($featured_image)
-                    <a href="{{ esc_url($product_link) }}" aria-label="{{ esc_attr($product_title) }}">
-                      <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($product_title) }}" loading="lazy">
-                    </a>
-                  @else
-                    <a href="{{ esc_url($product_link) }}" aria-label="{{ esc_attr($product_title) }}">
-                      <div class="woo-single-related-products-section__image--placeholder">
-                        <span>{{ __('No Image', 'sage') }}</span>
-                      </div>
-                    </a>
-                  @endif
-                </div>
-                <div class="woo-single-related-products-section__content">
-                  <h3 class="woo-single-related-products-section__card-title">
-                    <a href="{{ esc_url($product_link) }}">{{ $product_title }}</a>
-                  </h3>
-                  @if($product_description)
-                    <p class="woo-single-related-products-section__card-description">{{ $product_description }}</p>
-                  @endif
-                  <a href="{{ esc_url($product_link) }}"
-                     class="btn trans-black-btn wsrps-btn"
-                     aria-label="{{ esc_attr($product_title) }}"
-                     data-event-label="related-product">
-                    {{ __('Discover More', 'sage') }}
-                  </a>
-                </div>
-              </div>
+              <a href="{{ esc_url($product_link) }}"
+                aria-label="{{ esc_attr($product_title) }}"
+                data-event-label="related-product">
+                  <div class="woo-single-related-products-section__card">
+                    <div class="woo-single-related-products-section__image">
+                      @if($featured_image)
+                          <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($product_title) }}" loading="lazy">
+                      @else
+                          <div class="woo-single-related-products-section__image--placeholder">
+                            <img src="{{ Vite::asset('resources/images/product-placeholder-image.webp') }}" alt="{{ esc_attr($product_title) }}" loading="lazy" />
+                          </div>
+                      @endif
+                    </div>
+                    <div class="woo-single-related-products-section__content">
+                      <h3 class="woo-single-related-products-section__card-title">
+                        {{ $product_title }}
+                      </h3>
+                      @if($product_description)
+                        <p class="woo-single-related-products-section__card-description">{{ $product_description }}</p>
+                      @endif
+                      <span class="btn trans-black-btn wsrps-btn">
+                        {{ __('Discover More', 'sage') }}
+                      </span>
+                    </div>
+                  </div>
+              </a>
             </div>
           @endforeach
         </div>

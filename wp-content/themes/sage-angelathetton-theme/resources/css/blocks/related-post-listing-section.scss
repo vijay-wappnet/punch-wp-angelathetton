@@ -43,16 +43,57 @@
   @media (max-width: $screen-md-min) {
     gap: 50px 0;
   }
+
+  .rpls__item{
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    &.is-loading {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    &.is-loaded {
+      animation: postFadeInUp 0.4s ease forwards;
+    }
+    // Hide posts on mobile that exceed mobile limit
+    &.mobile-hidden {
+      display: none;
+    }
+    a{
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      height: 100%;
+      &:focus img,
+      &:hover img {
+        transform: scale(1.05);
+      }
+      &:hover .rpls__card-title,
+      &:focus .rpls__card-title {
+        color: $brown-color;
+      }
+      &:hover .trans-black-btn,
+      &:focus .trans-black-btn{
+        background-color: $black-off-color;
+        border: 1px solid rgba(43, 46, 52, 0.2);
+        color: $white-color;
+        &:after {
+          left: 140%; // for aimated shine effect
+        }
+      }
+      // Post Card Styles
+      .rpls__card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background-color: transparent;
+        overflow: hidden;
+      }
+    }
+  }
 }
 
-// Post Card Styles
-.rpls__card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background-color: transparent;
-  overflow: hidden;
-}
+
 
 .rpls__card-image {
   position: relative;
@@ -64,14 +105,7 @@
     aspect-ratio: auto;
   }
 
-  a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    &:focus img {
-      transform: scale(1.05);
-    }
-  }
+
 
   img {
     width: 100%;
