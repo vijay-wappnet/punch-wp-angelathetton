@@ -1,9 +1,8 @@
 <?php
 /*
-    * Remove default blocks.
-    *
-    * @package Sage\AngelathettonTheme
-    */
+* Remove default blocks.
+*
+* @package Sage\AngelathettonTheme
 */
 add_filter('allowed_block_types_all', function ($allowed_blocks, $editor_context) {
 
