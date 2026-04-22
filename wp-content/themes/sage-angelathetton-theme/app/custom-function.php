@@ -509,6 +509,18 @@ function handle_load_more_article_posts() {
         'orderby'        => $orderby,
         'order'          => $order,
         'post_status'    => 'publish',
+        'meta_query'     => [
+            'relation' => 'OR',
+            [
+                'key'     => 'is_featured_article',
+                'compare' => 'NOT EXISTS', // include posts without this meta key
+            ],
+            [
+                'key'     => 'is_featured_article',
+                'value'   => '1',
+                'compare' => '!=', // exclude where value = 1
+            ],
+        ],
     ];
 
     // Use offset if provided, otherwise use paged

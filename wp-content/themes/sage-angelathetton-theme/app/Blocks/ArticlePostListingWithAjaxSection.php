@@ -61,6 +61,18 @@ class ArticlePostListingWithAjaxSection
             'orderby' => $orderby,
             'order' => $order,
             'post_status' => 'publish',
+            'meta_query'     => [
+                'relation' => 'OR',
+                [
+                    'key'     => 'is_featured_article',
+                    'compare' => 'NOT EXISTS', // include posts without this meta key
+                ],
+                [
+                    'key'     => 'is_featured_article',
+                    'value'   => '1',
+                    'compare' => '!=', // exclude where value = 1
+                ],
+            ],
         ];
 
         $posts_query = new \WP_Query($args);
