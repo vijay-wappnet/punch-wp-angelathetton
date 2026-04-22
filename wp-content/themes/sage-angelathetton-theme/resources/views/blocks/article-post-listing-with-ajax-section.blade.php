@@ -22,30 +22,28 @@
                         $post_date = \App\Blocks\ArticlePostListingWithAjaxSection::getFormattedDate($post_id);
                     @endphp
                     <div class="col-lg-4 col-md-6 col-12 article-post-listing-item">
+                      <a href="{{ esc_url($post_link) }}" aria-label="{{ esc_attr($post_title) }}">
                         <div class="article-post-card">
                             <div class="article-post-card__image">
                                 @if($featured_image)
-                                    <a href="{{ esc_url($post_link) }}" aria-label="{{ esc_attr($post_title) }}">
-                                        <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($post_title) }}" loading="lazy">
-                                    </a>
+                                  <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($post_title) }}" loading="lazy">
                                 @else
-                                    <a href="{{ esc_url($post_link) }}" aria-label="{{ esc_attr($post_title) }}">
-                                        <div class="article-post-card__image--placeholder">
-                                            <span>{{ __('No Image', 'sage') }}</span>
-                                        </div>
-                                    </a>
+                                  <div class="article-post-card__image--placeholder">
+                                      <span>{{ __('No Image', 'sage') }}</span>
+                                  </div>
                                 @endif
                             </div>
                             <div class="article-post-card__body">
                                 <span class="article-post-card__date">{{ $post_date }}</span>
                                 <h3 class="article-post-card__title">
-                                    <a href="{{ esc_url($post_link) }}">{{ $post_title }}</a>
+                                    {{ $post_title }}
                                 </h3>
-                                <a href="{{ esc_url($post_link) }}" class="btn trans-black-btn article-post-card__button aplwas-btn">
+                                <span class="btn trans-black-btn article-post-card__button aplwas-btn">
                                     {{ __('Discover More', 'sage') }}
-                                </a>
+                                </span>
                             </div>
                         </div>
+                      </a>
                     </div>
                 @endforeach
             @else

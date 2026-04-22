@@ -549,26 +549,29 @@ function handle_load_more_article_posts() {
         $post_date = get_the_date('d/m/y', $post_id);
         ?>
         <div class="col-lg-4 col-md-6 col-12 article-post-listing-item">
-            <div class="article-post-card">
-                <div class="article-post-card__image">
-                    <?php if ($featured_image) : ?>
-                        <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
-                    <?php else : ?>
-                        <div class="article-post-card__image--placeholder">
-                            <span><?php esc_html_e('No Image', 'sage'); ?></span>
-                        </div>
-                    <?php endif; ?>
+            <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>" data-event-label="<?php echo esc_attr($post_title ?? ''); ?>" class="article-post-card-link">
+                <div class="article-post-card">
+                    <div class="article-post-card__image">
+                        <?php if ($featured_image) : ?>
+                            <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
+                        <?php else : ?>
+                            <div class="article-post-card__image--placeholder">
+                                <span><?php esc_html_e('No Image', 'sage'); ?></span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="article-post-card__body">
+                        <span class="article-post-card__date"><?php echo esc_html($post_date); ?></span>
+                        <h3 class="article-post-card__title">
+                            <?php echo esc_html($post_title); ?>
+                        </h3>
+                        <span class="btn trans-black-btn article-post-card__button aplwas-btn">
+                            <?php esc_html_e('Discover More', 'sage'); ?>
+                        </span>
+                    </div>
                 </div>
-                <div class="article-post-card__body">
-                    <span class="article-post-card__date"><?php echo esc_html($post_date); ?></span>
-                    <h3 class="article-post-card__title">
-                        <?php echo esc_html($post_title); ?>
-                    </h3>
-                    <a href="<?php echo esc_url($post_link); ?>" class="btn trans-black-btn article-post-card__button aplwas-btn">
-                        <?php esc_html_e('Discover More', 'sage'); ?>
-                    </a>
-                </div>
-            </div>
+            </a>
+
         </div>
         <?php
     }
