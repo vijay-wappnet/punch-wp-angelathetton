@@ -1,8 +1,12 @@
 @php
+    use Illuminate\Support\Facades\Vite;
+@endphp
+@php
     $wrapper_style = $section_bg ? "background-color: " . esc_attr($section_bg) . ";" : '';
     $has_post = !empty($featured_post);
     $has_image = $has_post && !empty($featured_post->featured_image);
-    $image_url = $has_image ? $featured_post->featured_image : '';
+    $default_image = Vite::asset('resources/images/featured-article-placeholder.webp');
+    $image_url = $has_image ? $featured_post->featured_image : $default_image;
 
     // Button data (use ?: to handle empty strings from ACF)
     $button_text = !empty($button['button_text']) ? $button['button_text'] : __('Discover More', 'sage');
@@ -18,7 +22,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="featured-article-post-section__wrapper" @if($has_image) style="background-image: url('{{ esc_url($image_url) }}');" @endif>
+                <div class="featured-article-post-section__wrapper" @if($image_url) style="background-image: url('{{ esc_url($image_url) }}');" @endif>
                     {{-- Overlay for better text readability --}}
                     <div class="featured-article-post-section__overlay"></div>
 

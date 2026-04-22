@@ -1,4 +1,5 @@
 <?php
+
 if( function_exists ( 'acf_add_options_page' ) ) {
 // Punch Theme General Settings
     $general_settings = array (
@@ -292,7 +293,7 @@ function handle_load_more_posts() {
                             <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
                         <?php else : ?>
                             <div class="post-card__image--placeholder">
-                                <span><?php esc_html_e('No Image', 'sage'); ?></span>
+                                <img src="<?php echo get_theme_file_uri().'/resources/images/post-placeholder-image.webp'; ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy" />
                             </div>
                         <?php endif; ?>
                     </div>
@@ -556,7 +557,7 @@ function handle_load_more_article_posts() {
                             <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
                         <?php else : ?>
                             <div class="article-post-card__image--placeholder">
-                                <span><?php esc_html_e('No Image', 'sage'); ?></span>
+                                <img src="<?php echo get_theme_file_uri().'/resources/images/article-placeholder-image.webp'; ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy" />
                             </div>
                         <?php endif; ?>
                     </div>

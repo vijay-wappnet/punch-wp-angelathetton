@@ -1,6 +1,9 @@
 @if(!empty($responsiveCss))
 <style>{{ $responsiveCss }}</style>
 @endif
+@php
+    use Illuminate\Support\Facades\Vite;
+@endphp
 <section id="{{ $blockId }}" class="article-post-listing-with-ajax-section" @if(!empty($backgroundStyle)) style="{{ $backgroundStyle }}" @endif
     data-post-type="{{ esc_attr($selectPostType) }}"
     data-posts-per-page="{{ esc_attr($postsPerPage) }}"
@@ -29,7 +32,7 @@
                                   <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($post_title) }}" loading="lazy">
                                 @else
                                   <div class="article-post-card__image--placeholder">
-                                      <span>{{ __('No Image', 'sage') }}</span>
+                                      <img src="{{ Vite::asset('resources/images/article-placeholder-image.webp') }}" alt="{{ esc_attr($post_title) }}" loading="lazy" />
                                   </div>
                                 @endif
                             </div>
