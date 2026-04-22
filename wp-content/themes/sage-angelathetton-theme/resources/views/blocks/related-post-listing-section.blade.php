@@ -27,7 +27,7 @@
                         $post_description = \App\Blocks\RelatedPostListingSection::getPostDescription($post_id);
                     @endphp
                     <div class="col-lg-4 col-md-6 col-12 rpls__item">
-                      <a href="{{ esc_url($post_link) }}" aria-label="{{ esc_attr($post_title) }}">
+                      <a href="{{ esc_url($post_link) }}" aria-label="{{ esc_attr($post_title) }}" data-event-label="Related package">
                         <div class="rpls__card">
                           <div class="rpls__card-image">
                               @if($featured_image)
