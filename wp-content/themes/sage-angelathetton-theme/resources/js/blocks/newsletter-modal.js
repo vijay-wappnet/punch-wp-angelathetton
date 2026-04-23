@@ -2,6 +2,8 @@
    NEWSLETTER MODAL
 ========================================== */
 
+import jQuery from 'jquery';
+
 function initNewsletterModal() {
   const modal = document.getElementById('newsletter-modal');
   const openTriggers = document.querySelectorAll('.newsletter-sign-up');
@@ -98,35 +100,35 @@ function initNewsletterModal() {
 // Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', initNewsletterModal);
 
-if($('.wpcf7-form')[0]) {
-    $('.wpcf7-form').each(function() {
-        var answer = $(this).find('.cf7ic_instructions span').text();
-        var id = $(this).attr('id');
+if(jQuery('.wpcf7-form')[0]) {
+    jQuery('.wpcf7-form').each(function() {
+        var answer = jQuery(this).find('.cf7ic_instructions span').text();
+        var id = jQuery(this).attr('id');
         var i = 1;
 
-        $(this).find('.captcha-image label').each(function() {
-            $(this).find('input[value="bot"]').each(function() {
-                $(this).parent().append('<div class="visually-hidden">This is not the '+answer+' icon.</div>');
-                $(this).parent().attr('for', 'bot-'+id+'-'+i);
-                $(this).parent().prop('for', 'bot-'+id+'-'+i);
-                $(this).attr('id', 'bot-'+id+'-'+i);
-                $(this).prop('id', 'bot-'+id+'-'+i);
+        jQuery(this).find('.captcha-image label').each(function() {
+            jQuery(this).find('input[value="bot"]').each(function() {
+                jQuery(this).parent().append('<div class="visually-hidden">This is not the '+answer+' icon.</div>');
+                jQuery(this).parent().attr('for', 'bot-'+id+'-'+i);
+                jQuery(this).parent().prop('for', 'bot-'+id+'-'+i);
+                jQuery(this).attr('id', 'bot-'+id+'-'+i);
+                jQuery(this).prop('id', 'bot-'+id+'-'+i);
                 i++;
             });
 
-            if($(this).find('input[value="kc_human"]')[0]) {
-                $(this).find('input[value="kc_human"]').parent().append('<div class="visually-hidden">'+answer+' icon.</div>');
-                $(this).find('input[value="kc_human"]').parent().attr('for', 'bot-'+id+'-3');
-                $(this).find('input[value="kc_human"]').parent().prop('for', 'bot-'+id+'-3');
-                $(this).find('input[value="kc_human"]').attr('id', 'bot-'+id+'-3');
-                $(this).find('input[value="kc_human"]').prop('id', 'bot-'+id+'-3');
+            if(jQuery(this).find('input[value="kc_human"]')[0]) {
+                jQuery(this).find('input[value="kc_human"]').parent().append('<div class="visually-hidden">'+answer+' icon.</div>');
+                jQuery(this).find('input[value="kc_human"]').parent().attr('for', 'bot-'+id+'-3');
+                jQuery(this).find('input[value="kc_human"]').parent().prop('for', 'bot-'+id+'-3');
+                jQuery(this).find('input[value="kc_human"]').attr('id', 'bot-'+id+'-3');
+                jQuery(this).find('input[value="kc_human"]').prop('id', 'bot-'+id+'-3');
             }
         });
 
-        $(this).find('input[name="kc_honeypot"]').attr('tabindex', -1);
-        $(this).find('input[name="kc_honeypot"]').prop('tabindex', -1);
-        $(this).find('input[name="kc_honeypot"]').attr('id', 'kc_honeypot-'+id);
-        $(this).find('input[name="kc_honeypot"]').prop('id', 'kc_honeypot-'+id);
-        $(this).find('input[name="kc_honeypot"]').wrap('<label for="kc_honeypot-'+id+'"></label>');
+        jQuery(this).find('input[name="kc_honeypot"]').attr('tabindex', -1);
+        jQuery(this).find('input[name="kc_honeypot"]').prop('tabindex', -1);
+        jQuery(this).find('input[name="kc_honeypot"]').attr('id', 'kc_honeypot-'+id);
+        jQuery(this).find('input[name="kc_honeypot"]').prop('id', 'kc_honeypot-'+id);
+        jQuery(this).find('input[name="kc_honeypot"]').wrap('<label for="kc_honeypot-'+id+'"></label>');
     });
 }

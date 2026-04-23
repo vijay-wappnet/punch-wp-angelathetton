@@ -49,6 +49,10 @@ class MenuWalker extends Walker_Nav_Menu
         $atts['href']   = ! empty($item->url) ? $item->url : '';
         $atts           = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
 
+        $atts['class'] = 'header-btn';
+        $atts['data-event'] = $item->title;
+        $atts['aria-label'] = $item->title;
+
         $attributes = '';
         foreach ($atts as $attr => $value) {
             if (! empty($value)) {

@@ -195,6 +195,7 @@ if (!$aria_label) {
                                     'theme_location' => 'footer_main_navigation',
                                     'menu_class' => 'footer-main-menu nav',
                                     'echo' => false,
+                                    'walker'         => app(\App\FooterBottomMenuWalker::class),
                                 ]) !!}
                             </nav>
                         @endif
