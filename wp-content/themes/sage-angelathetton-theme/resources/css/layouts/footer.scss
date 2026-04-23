@@ -206,6 +206,7 @@
 
             &:hover {
               color: $brown-color;
+              font-weight: $font-weight-300;
             }
 
             &:focus {
@@ -215,6 +216,7 @@
 
             &:active {
               color: $brown-color;
+              font-weight: $font-weight-300;
             }
           }
         }

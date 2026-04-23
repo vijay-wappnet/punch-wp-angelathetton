@@ -82,30 +82,43 @@
 
         @if ($header_logo_white || $header_logo_black)
             @if ($link_url)
+              @if(!is_front_page())
                 <a href="{{ esc_url($link_url) }}" class="brand-logo brand-logo-black"
                    aria-label="{{ esc_attr($aria_label) }}"
                    {!! $link_target ? 'target="'.esc_attr($link_target).'"' : '' !!}
-                   {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}>
+                   {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}
+                   aria-hidden=""
+                   >
                     <img src="{{ esc_url($header_logo_black['url']) }}"
                          alt="{{ esc_attr($header_logo_black['alt']) }}"
                          class="img-fluid">
                 </a>
-                <a href="{{ esc_url($link_url) }}" class="brand-logo brand-logo-white logo-link-first"
-                   aria-label="{{ esc_attr($aria_label) }}"
-                   {!! $link_target ? 'target="'.esc_attr($link_target).'"' : '' !!}
-                   {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}>
+              @endif
+
+              @if(is_front_page())
+                <a href="{{ esc_url($link_url) }}" class="brand-logo brand-logo-white logo-link-first only-home-logo"
+                  aria-label="{{ esc_attr($aria_label) }}"
+                  {!! $link_target ? 'target="'.esc_attr($link_target).'"' : '' !!}
+                  {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}
+                  aria-hidden=""
+                  >
                     <img src="{{ esc_url($header_logo_white['url']) }}"
-                         alt="{{ esc_attr($header_logo_white['alt']) }}"
-                         class="img-fluid brand-logo-first">
+                        alt="{{ esc_attr($header_logo_white['alt']) }}"
+                        class="img-fluid brand-logo-first">
                 </a>
-                   <a href="{{ esc_url($link_url) }}" class="brand-logo brand-logo-white logo-link-second"
-                   aria-label="{{ esc_attr($aria_label) }}"
-                   {!! $link_target ? 'target="'.esc_attr($link_target).'"' : '' !!}
-                   {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}>
-                    <img src="{{ esc_url($header_logo_for_transition['url']) }}"
-                         alt="{{ esc_attr($header_logo_for_transition['alt']) }}"
-                         class="img-fluid brand-logo-second">
-                </a>
+              @endif
+
+              <a href="{{ esc_url($link_url) }}" class="brand-logo brand-logo-white logo-link-second"
+              aria-label="{{ esc_attr($aria_label) }}"
+              {!! $link_target ? 'target="'.esc_attr($link_target).'"' : '' !!}
+              {!! $ga_label ? 'data-event="'.esc_attr($ga_label).'"' : '' !!}
+              aria-hidden=""
+              >
+              <img src="{{ esc_url($header_logo_for_transition['url']) }}"
+                    alt="{{ esc_attr($header_logo_for_transition['alt']) }}"
+                    class="img-fluid brand-logo-second">
+              </a>
+
             @else
                 <span class="brand-logo" aria-label="{{ esc_attr($aria_label) }}">
                     <img src="{{ esc_url($header_logo_black['url']) }}"

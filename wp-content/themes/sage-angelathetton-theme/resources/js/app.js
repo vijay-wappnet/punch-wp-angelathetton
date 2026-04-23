@@ -45,12 +45,35 @@ let lastFocusable = null;
 
 function updateScrollState() {
   if (!header) return;
+
+  // Select logo elements
+  const blackLogo = header.querySelector('.brand-logo-black');
+  const whiteLogoFirstOnlyHome = header.querySelector('.brand-logo-white.logo-link-first.only-home-logo');
+  const whiteLogoSecond = header.querySelector('.brand-logo-white.logo-link-second');
+
   if (window.scrollY > 80) {
     header.classList.add('header-scrolled');
     header.classList.add('logo-switched');
+
+
+    // On scroll: show white logo, hide black logo
+    if (blackLogo) blackLogo.setAttribute('aria-hidden', 'true');
+    if (whiteLogoSecond) whiteLogoSecond.setAttribute('aria-hidden', 'true');
+
+    if (whiteLogoSecond) whiteLogoSecond.setAttribute('aria-hidden', 'false');
+    if (whiteLogoFirstOnlyHome) whiteLogoFirstOnlyHome.setAttribute('aria-hidden', 'true');
+
+
   } else {
     header.classList.remove('header-scrolled');
     header.classList.remove('logo-switched');
+
+    // At top: show black logo, hide white logo
+    if (blackLogo) blackLogo.setAttribute('aria-hidden', 'false');
+    if (whiteLogoSecond) whiteLogoSecond.setAttribute('aria-hidden', 'false');
+
+    if (whiteLogoSecond) whiteLogoSecond.setAttribute('aria-hidden', 'true');
+    if (whiteLogoFirstOnlyHome) whiteLogoFirstOnlyHome.setAttribute('aria-hidden', 'false');
   }
 }
 
