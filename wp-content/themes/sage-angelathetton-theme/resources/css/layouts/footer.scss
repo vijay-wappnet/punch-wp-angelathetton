@@ -95,13 +95,16 @@
         }
 
         &:active {
-          -webkit-filter: invert(1) brightness(0);
-          filter: invert(1) brightness(0);
+          -webkit-filter: invert(1) brightness(1);
+          filter: invert(1) brightness(1);
         }
-
+        &:hover {
+          -webkit-filter: invert(1) brightness(1);
+          filter: invert(1) brightness(1);
+        }
         &:focus {
-          -webkit-filter: invert(1) brightness(0);
-          filter: invert(1) brightness(0);
+          -webkit-filter: invert(1) brightness(1);
+          filter: invert(1) brightness(1);
         }
       }
 
@@ -145,6 +148,7 @@
 
             &:focus {
               color: $brown-color;
+              font-weight: $font-weight-700;
             }
 
             &:active {
@@ -206,6 +210,7 @@
 
             &:focus {
               color: $brown-color;
+              font-weight: $font-weight-700;
             }
 
             &:active {
@@ -445,6 +450,7 @@
 
         &:focus {
           color: $brown-color;
+          font-weight: $font-weight-700;
         }
 
         &:active {

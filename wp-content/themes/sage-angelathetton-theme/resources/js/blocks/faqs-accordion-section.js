@@ -45,18 +45,17 @@
     const questionBtn = item.querySelector('.faq-question');
     const answer = item.querySelector('.faq-answer');
 
-    // Optional: Close other items (accordion behavior)
-    // Uncomment the following lines if you want only one item open at a time
-    // const allItems = section.querySelectorAll('.faq-item');
-    // allItems.forEach(otherItem => {
-    //   if (otherItem !== item) {
-    //     otherItem.classList.remove('is-active');
-    //     const otherBtn = otherItem.querySelector('.faq-question');
-    //     const otherAnswer = otherItem.querySelector('.faq-answer');
-    //     if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
-    //     if (otherAnswer) otherAnswer.setAttribute('aria-hidden', 'true');
-    //   }
-    // });
+    // Close other items (accordion behavior)
+    const allItems = section.querySelectorAll('.faq-item');
+    allItems.forEach(otherItem => {
+      if (otherItem !== item) {
+        otherItem.classList.remove('is-active');
+        const otherBtn = otherItem.querySelector('.faq-question');
+        const otherAnswer = otherItem.querySelector('.faq-answer');
+        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        if (otherAnswer) otherAnswer.setAttribute('aria-hidden', 'true');
+      }
+    });
 
     // Toggle current item
     if (isActive) {
@@ -67,6 +66,18 @@
       item.classList.add('is-active');
       if (questionBtn) questionBtn.setAttribute('aria-expanded', 'true');
       if (answer) answer.setAttribute('aria-hidden', 'false');
+
+      // Scroll to the opened item with offset after transition
+      setTimeout(() => {
+        var offset = 400; // Offset in pixels from the top
+        var elementPosition = item.getBoundingClientRect().top + window.pageYOffset;
+        var offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }, 350);
     }
   }
 
