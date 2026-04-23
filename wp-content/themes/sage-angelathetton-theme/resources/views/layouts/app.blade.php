@@ -9,7 +9,10 @@
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
   </head>
 
-  <body @php(body_class())>
+  <body
+    @php(body_class())
+    @if(get_the_title()) data-title="{{ get_the_title() }}" @endif
+    >
     @php(wp_body_open())
 
     <div id="app">
