@@ -78,10 +78,18 @@ body.no-scroll {
       .logo-wrapper {
         .brand-logo-black {
           display: block !important;
+          &:focus {
+            -webkit-filter: invert(0) brightness(0);
+            filter: invert(0) brightness(0);
+          }
         }
 
         .brand-logo-white {
           display: none !important;
+          &:focus {
+          -webkit-filter: invert(1) brightness(1);
+            filter: invert(1) brightness(1);
+          }
         }
       }
 
@@ -95,13 +103,16 @@ body.no-scroll {
     }
 
     .logo-wrapper {
-      .brand-logo-black {
-        display: none !important;
+      .brand-logo{
+        &.brand-logo-black {
+          display: none !important;
+        }
+
+        &.brand-logo-white {
+          display: block !important;
+        }
       }
 
-      .brand-logo-white {
-        display: block !important;
-      }
     }
 
     .menu-icon-black {
@@ -197,13 +208,6 @@ body.no-scroll {
     display: none;
   }
 
-  // .brand-logo-black{
-  //   display: block;
-  // }
-  // .brand-logo-white{
-  //   display: none ;
-  // }
-
 
   .header-inner {
     position: relative;
@@ -239,6 +243,9 @@ body.no-scroll {
         color: $black-off-color;
         font-family: $fonts-niveau-grotesk-small-caps;
         font-weight: $font-weight-300;
+        &:hover {
+          color: $brown-color;
+        }
       }
 
       .bar {
@@ -250,18 +257,21 @@ body.no-scroll {
           height: auto;
           transition: filter 0.3s ease;
         }
-      }
 
-      &:hover {
-        .img {}
+        &:hover {
+          img {
+            filter: brightness(0) saturate(100%) invert(42%) sepia(61%) saturate(290%) hue-rotate(335deg) brightness(93%) contrast(93%);
+          }
+        }
       }
+    }
 
-      &:active {
-        .img {}
+    &:focus {
+      .hamburger p {
+        color: $brown-color;
       }
-
-      &:focus {
-        .img {}
+      .hamburger .bar img {
+        filter: brightness(0) saturate(100%) invert(42%) sepia(61%) saturate(290%) hue-rotate(335deg) brightness(93%) contrast(93%);
       }
     }
   }
@@ -280,14 +290,9 @@ body.no-scroll {
       text-decoration: none;
       transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, filter 0.5s ease;
 
-      &:active {
-        //-webkit-filter: invert(1) brightness(2);
-        //filter: invert(1) brightness(2);
-      }
-
       &:focus {
-        //-webkit-filter: invert(1) brightness(2);
-        //filter: invert(1) brightness(2);
+        -webkit-filter: invert(1) brightness(2);
+        filter: invert(1) brightness(2);
       }
     }
   }
@@ -370,6 +375,12 @@ body.no-scroll {
         display: none !important;
         opacity: 0 !important;
         visibility: hidden !important;
+
+        &:focus {
+          -webkit-filter: invert(0) brightness(0);
+          filter: invert(0) brightness(0);
+        }
+
       }
 
       .brand-logo-white.logo-link-second {
@@ -377,6 +388,12 @@ body.no-scroll {
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto;
+
+        &:focus {
+          -webkit-filter: invert(0) brightness(0);
+          filter: invert(0) brightness(0);
+        }
+
       }
     }
   }
