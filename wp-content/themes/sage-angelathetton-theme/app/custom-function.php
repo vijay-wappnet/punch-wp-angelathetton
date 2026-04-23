@@ -108,6 +108,26 @@ add_filter('nav_menu_link_attributes', function ($atts, $item, $args) {
 }, 10, 3);
 
 
+/*
+// add cf7 name field
+Add hidden field with contact form name
+This will add a hidden field containing the name of the form as the first input field in the form.
+*/
+add_filter('wpcf7_form_elements', function ($form) {
+    // Get the current contact form object
+    $contact_form = WPCF7_ContactForm::get_current();
+    if ($contact_form) {
+        $title = esc_attr($contact_form->title());
+        // Create the hidden input HTML
+        $hidden_field = '<input type="hidden" name="contact_form_name" value="' . $title . '" />';
+        // Insert it right after the opening form tag (you can also append/prepend to $form)
+        $form = $hidden_field . $form;
+    }
+    return $form;
+});
+
+
+
 /**
  * Generate responsive CSS for ACF dimension fields (margin/padding)
  *
