@@ -50,6 +50,11 @@
 
   // Handle visibility of posts based on viewport
   function handleVisibility(section) {
+    // 🚫 Stop re-hiding after load more clicked
+    if (section.classList.contains('load-more-clicked')) {
+      return;
+    }
+    
     const postsPerPageMobile = parseInt(section.dataset.postsPerPageMobile) || 3;
     const items = section.querySelectorAll('.post-listing-item');
     const isMobile = isMobileViewport();
@@ -96,6 +101,7 @@
 
   // Handle load more click
   async function handleLoadMore(section, button) {
+    section.classList.add('load-more-clicked');  
     // Get data attributes
     const postType = section.dataset.postType || 'post';
     const postsPerPageDesktop = parseInt(section.dataset.postsPerPage) || 9;
