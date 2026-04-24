@@ -190,12 +190,14 @@
                 color: $black-off-color;
                 padding: 0;
                 transition: background-color 0.3s ease;
-
+                
                 &:hover {
-                  background-color: rgba($black-off-color, 0.05);
+                  background-color: $brown-color;
+                  color: $white-color;
                 }
                 &:focus {
-                  background-color: rgba($black-off-color, 0.05);
+                  background-color: $brown-color;
+                  color: $white-color;
                 }
 
                 &:disabled {
