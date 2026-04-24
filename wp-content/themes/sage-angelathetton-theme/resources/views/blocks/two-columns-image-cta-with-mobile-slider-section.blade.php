@@ -36,7 +36,8 @@
                   $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
                 @endphp
                 @if($image_url)
-                  <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy">
+                  <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}"
+                  loading="lazy" width="" height="">
                 @endif
               </div>
 

@@ -39,7 +39,7 @@
                         data-ga-event-label="{{ esc_attr($event_label) }}"
                       @endif
                       class="tciwcs__image-link">
-                      <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy">
+                      <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy" width="{{ $column['image']['width'] }}" height="{{ $column['image']['height'] }}" >
                     </a>
                     @break
                   @endforeach
@@ -50,11 +50,30 @@
                   <div class="tciwcs__icon">
                     @php
                       $icon_id = is_array($column['image_icon']) ? $column['image_icon']['ID'] : $column['image_icon'];
+                                            
                       $icon_url = wp_get_attachment_image_url($icon_id, 'full');
                       $icon_alt = get_post_meta($icon_id, '_wp_attachment_image_alt', true);
+                                          
+                      $width = '';
+                      $height = '';
+                      // Try metadata first
+                      $metadata = wp_get_attachment_metadata($icon_id);
+                      if (!empty($metadata)) {
+                          $width = $metadata['width'] ?? '';
+                          $height = $metadata['height'] ?? '';
+                      }
+
+                      // Fallback: get image size from URL
+                      if (empty($width) || empty($height)) {
+                          $image_src = wp_get_attachment_image_src($icon_id, 'full');
+                          if (!empty($image_src)) {
+                              $width = $image_src[1] ?? '';
+                              $height = $image_src[2] ?? '';
+                          }
+                      }
                     @endphp
                     @if($icon_url)
-                      <img src="{{ esc_url($icon_url) }}" alt="{{ esc_attr($icon_alt) }}" loading="lazy">
+                      <img src="{{ esc_url($icon_url) }}" alt="{{ esc_attr($icon_alt) }}" loading="lazy" width="{{ $width }}" height="{{ $height }}" >
                     @endif
                   </div>
                 @endif

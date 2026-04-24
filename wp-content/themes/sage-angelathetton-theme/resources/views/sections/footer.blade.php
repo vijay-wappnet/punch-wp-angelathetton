@@ -28,10 +28,12 @@
                                     $image = $item['image'] ?? '';
                                     $image_url = $image['url'] ?? '';
                                     $image_alt = $image['alt'] ?? '';
+                                    $img_width =$image['width'] ?? '';
+                                    $img_height =$image['height'] ?? '';
                                 @endphp
 
                                 @if ($image_url)
-                                    <li><img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}"></li>
+                                    <li><img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" width="{{ $img_width }}" height="{{ $img_height }}"></li>
                                 @endif
                             @endforeach
                         </ul>

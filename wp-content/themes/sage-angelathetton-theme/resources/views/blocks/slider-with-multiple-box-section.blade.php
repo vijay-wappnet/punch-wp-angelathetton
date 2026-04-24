@@ -15,7 +15,7 @@
               $image_url = is_array($slide['image']) ? ($slide['image']['url'] ?? '') : wp_get_attachment_image_url($slide['image'], 'full');
             @endphp
             @if($image_url)
-              <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($slide['heading_text'] ?? 'Slide') }}" class="smb-item__image" />
+              <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($slide['heading_text'] ?? 'Slide') }}" class="smb-item__image" width="{{ $slide['image']['width'] }}" height="{{ $slide['image']['height'] }}" />
             @endif
           @endif
 
