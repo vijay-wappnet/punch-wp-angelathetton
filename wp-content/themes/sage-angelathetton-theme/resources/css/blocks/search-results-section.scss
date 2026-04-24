@@ -51,7 +51,9 @@
         outline: none;
         transition: border-color 0.2s;
         &:focus {
-          border-color: $black-off-color;
+          border-color: 2px solid $brown-color;
+          outline: 2px solid $brown-color !important;
+          outline-offset: 0px !important;
           box-shadow: none;
         }
       }

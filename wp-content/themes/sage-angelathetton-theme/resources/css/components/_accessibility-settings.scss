@@ -62,6 +62,9 @@ body.contrast-inverted {
         }
       }
     }
+    .search-results-form {
+      background-color: transparent !important;
+    }
     .slider-with-multiple-box-section {
       .smb-item__wrapper,
       .smb-item__slider,
@@ -103,6 +106,9 @@ body.contrast-inverted {
     }
     .accessibility-modal{
         background-color: transparent !important;
+    }
+    #accessibilityModal .accessibility-search .input-group-text svg path{
+      filter: invert(0) brightness(0);
     }
     .accessibility-icon img {
       filter: contrast(0) grayscale(0) invert(1) brightness(2);

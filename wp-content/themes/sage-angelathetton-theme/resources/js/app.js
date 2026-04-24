@@ -24,7 +24,7 @@ import './blocks/article-post-listing-with-ajax-section.js';
 import './blocks/gallery-grid-filter-section.js';
 import './accessibility-modal.js';
 import './gsap-animations.js';
-
+import './dataLayer-script.js';
 
 /* ==========================================
    HEADER + FULLSCREEN MENU BEHAVIOUR
@@ -386,34 +386,3 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.addEventListener("wc_fragments_refreshed", updateCartCount);
   document.body.addEventListener("added_to_cart", updateCartCount);
 });
-
-
-/*
-    Accessibility Panel Tracking (pushes changes to dataLayer for analytics)
-*/
-document.querySelectorAll('.btn-setting').forEach(button => {
-  button.addEventListener('click', function () {
-
-    const setting = this.getAttribute('data-setting');
-    const value = this.getAttribute('data-value');
-
-    // Format like: "Contrast: Higher"
-    const formattedStatus =
-      setting.charAt(0).toUpperCase() + setting.slice(1) +
-      ': ' +
-      value.charAt(0).toUpperCase() + value.slice(1);
-
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'accessibilityPanel',
-      ap_status: formattedStatus
-    });
-
-    console.log('dataLayer push:', formattedStatus); // debug
-  });
-});
-
-
-/*
-  Search dataLayer Event
-*/
