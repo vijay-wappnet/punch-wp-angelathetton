@@ -3,7 +3,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-if (!document.body.classList.contains('animations-enabled')) {
+// ACF Options field 'enable_animations'
+const animationsEnabled = document.body.classList.contains('animations-enabled');
+// System setting animation (prefers-reduced-motion).
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!animationsEnabled || prefersReducedMotion) {
   // Animations disabled via ACF Options — exit silently.
 } else {
   document.addEventListener('DOMContentLoaded', () => {
