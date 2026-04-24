@@ -791,6 +791,7 @@ body.no-scroll {
             opacity: 1 !important;
             display: none;
             visibility: visible;
+            pointer-events: auto !important;
 
             li {
               margin-bottom: 0;

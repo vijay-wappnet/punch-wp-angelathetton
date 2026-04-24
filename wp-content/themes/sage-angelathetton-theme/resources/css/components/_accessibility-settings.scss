@@ -105,7 +105,10 @@ body.contrast-inverted {
       }
     }
     .accessibility-modal{
-        background-color: transparent !important;
+      background-color: transparent !important;
+    }
+    #accessibilityModal .accessibility-search .input-group-text svg{
+      background-color: transparent !important;
     }
     #accessibilityModal .accessibility-search .input-group-text svg path{
       filter: invert(0) brightness(0);

@@ -57,7 +57,5 @@ class HeaderTopMenuWalker extends Walker_Nav_Menu {
             // fallback to text
             $output .= '<a ' . $atts . ' class="' . implode(' ', $menu_classes) . '" href="' . esc_url($url) . '">' . esc_html($title) . '</a>';
         }
-
-        $output .= '</li>';
     }
 }
