@@ -7,7 +7,7 @@
     <!-- hamburger / menu toggle -->
     <button class="menu-toggle" aria-expanded="false" aria-controls="fullscreen-menu" aria-label="Open menu">
       <div class="hamburger">
-        <div class="d-flex align-items-center gap-4">
+        <div class="d-flex align-items-center gap-4 menu-toggle-content">
             <span class="bar">
                 <img src="{{ Vite::asset('resources/images/menu-icon-white.svg') }}" alt="menu" class="icon menu-icon-white" />
                 <img src="{{ Vite::asset('resources/images/menu-Icon-black.svg') }}" alt="menu" class="icon menu-icon-black" />

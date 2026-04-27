@@ -21,42 +21,40 @@ class MenuWalker extends Walker_Nav_Menu
      */
     public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
     {
-        // classes that WordPress generated for the <li>
         $classes = empty($item->classes) ? [] : (array) $item->classes;
 
-        // add our own "has-children" class if the item has sub-items
-        // 11111111111 if (!empty($args->has_children)) {
-        //     $classes[] = 'has-children';
-        // }
+        $has_children = in_array('menu-item-has-children', $classes);
 
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args, $depth));
         $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
-        // attempt to fetch image attached to this menu item via ACF
+        // ACF image
         $image_attr = '';
-        $image     = get_field('menu_items_images', $item);
+        $image = get_field('menu_items_images', $item);
         if ($image && is_array($image) && ! empty($image['url'])) {
             $image_attr = ' data-menu-image="' . esc_url($image['url']) . '"';
         }
 
         $output .= '<li' . $class_names . $image_attr . '>';
 
-        // build the <a> tag attributes
+        // Link attributes
         $atts = [];
-        $atts['title']  = ! empty($item->attr_title) ? $item->attr_title : '';
-        $atts['target'] = ! empty($item->target) ? $item->target : '';
-        $atts['rel']    = ! empty($item->xfn) ? $item->xfn : '';
-        $atts['href']   = ! empty($item->url) ? $item->url : '';
-        $atts           = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
-
+        $atts['href'] = ! empty($item->url) ? $item->url : '#';
         $atts['class'] = 'header-btn';
         $atts['data-event'] = $item->title;
         $atts['aria-label'] = $item->title;
 
+        // ✅ Accessibility improvements
+        if ($has_children) {
+            $atts['aria-haspopup'] = 'true';
+            $atts['aria-expanded'] = 'false';
+            $atts['aria-controls'] = 'submenu-' . $item->ID;
+        }
+
         $attributes = '';
         foreach ($atts as $attr => $value) {
             if (! empty($value)) {
-                $value = ('href' === $attr) ? esc_url($value) : esc_attr($value);
+                $value = ($attr === 'href') ? esc_url($value) : esc_attr($value);
                 $attributes .= ' ' . $attr . '="' . $value . '"';
             }
         }
@@ -64,9 +62,12 @@ class MenuWalker extends Walker_Nav_Menu
         $title = apply_filters('the_title', $item->title, $item->ID);
 
         $item_output  = $args->before;
-        $item_output .= '<a' . $attributes . '>';
-        $item_output .= $args->link_before . $title . $args->link_after;
+
+        // ✅ role applied correctly
+        $item_output .= '<a role="menuitem"' . $attributes . '>';
+        $item_output .= $title;
         $item_output .= '</a>';
+
         $item_output .= $args->after;
 
         $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
@@ -82,6 +83,8 @@ class MenuWalker extends Walker_Nav_Menu
     public function start_lvl(&$output, $depth = 0, $args = [])
     {
         $indent  = str_repeat("\t", $depth);
-        $output .= "\n{$indent}<ul class=\"sub-menu\">\n";
+        // Get parent item ID safely
+        $parent_id = isset($this->current_item) ? $this->current_item->ID : uniqid();
+        $output .= "\n{$indent}<ul class=\"sub-menu\" id=\"submenu-{$parent_id}\" role=\"menu\">\n";
     }
 }

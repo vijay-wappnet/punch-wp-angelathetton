@@ -119,11 +119,19 @@ function openMenu() {
   lockBodyScroll();
 
   focusableElements = fullscreenMenu.querySelectorAll(
-    'a, button, input, [tabindex]:not([tabindex="-1"])',
+    //'a, button, input, [tabindex]:not([tabindex="-1"])',
+    'a:not([tabindex="-1"]), button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
   );
 
-  firstFocusable = focusableElements[0];
+  //firstFocusable = focusableElements[0];
+  firstFocusable = closeBtn || focusableElements[0];
   lastFocusable = focusableElements[focusableElements.length - 1];
+
+  firstFocusable?.focus();
+
+  document.querySelectorAll('body > *:not(#fullscreen-menu)').forEach(el => {
+    el.setAttribute('aria-hidden', 'true');
+  });
 
   document.addEventListener('keydown', trapFocus);
 }
@@ -138,6 +146,10 @@ function closeMenu() {
 
   document.removeEventListener('keydown', trapFocus);
   menuToggle.focus();
+
+  document.querySelectorAll('body > *:not(#fullscreen-menu)').forEach(el => {
+    el.removeAttribute('aria-hidden');
+  });
 
   // Reset panels to root when closing
   resetMenuPanels();
@@ -219,14 +231,36 @@ function initPanelNavigation() {
     });
 }
 
+function updateFocusableElements() {
+  focusableElements = fullscreenMenu.querySelectorAll(
+    'a:not([tabindex="-1"]), button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  );
+
+  firstFocusable = closeBtn || focusableElements[0];
+  lastFocusable = focusableElements[focusableElements.length - 1];
+}
+
 function insertBackButton(panel, previousPanel) {
   if (panel.querySelector('.menu-back')) return;
 
-  const backBtn = document.createElement('div');
+  const backBtn = document.createElement('button');
   backBtn.className = 'menu-back';
+  backBtn.setAttribute('type', 'button');
+  backBtn.setAttribute('aria-label', 'Go back to previous menu');
   backBtn.innerHTML = `<img src="${leftArrow}" alt="Back" class="back-arrow"> BACK`;
 
   panel.prepend(backBtn);
+  updateFocusableElements();
+  setTimeout(() => {
+    backBtn.focus();
+  }, 0);
+
+  backBtn.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      backBtn.click();
+    }
+  });
 
   backBtn.addEventListener('click', function () {
     panel.classList.remove('menu-panel-active');
@@ -239,10 +273,16 @@ function insertBackButton(panel, previousPanel) {
       previewImage.src = currentSubMenuParentImage;
     }
 
+    // move focus back
+    const parentLink = previousPanel.querySelector('.menu-item > a');
+    parentLink?.focus();
+
     setTimeout(() => {
       backBtn.remove();
+      updateFocusableElements();
     }, 10); // Minimal delay or immediate removal as class reset handles hiding
   });
+
 }
 
 function resetMenuPanels() {

@@ -21,7 +21,7 @@
 
   <!-- menu header with logo and close button -->
   <div class="menu-header">
-    <button class="close-btn" aria-label="Close menu">
+    <button class="close-btn" aria-label="Close Menu" aria-controls="fullscreen-menu">
       <span class="close-icon">
         <img src="{{ Vite::asset('resources/images/full-menu-close-icon.svg') }}" alt="Close menu" class="fullscreen-close-icon img-fluid" />
       </span>

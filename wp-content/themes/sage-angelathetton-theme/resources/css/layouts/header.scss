@@ -61,6 +61,8 @@ body.no-scroll {
 
             &:focus {
               color: $brown-color;
+              outline: 2px solid $brown-color;
+              outline-offset: 4px;
             }
             &.main-cart-items-zero{
               display: none;
@@ -79,16 +81,20 @@ body.no-scroll {
         .brand-logo-black {
           display: block !important;
           &:focus {
-            -webkit-filter: invert(0) brightness(0);
-            filter: invert(0) brightness(0);
+            outline: 2px solid $brown-color;
+            outline-offset: 4px;
+            // -webkit-filter: invert(0) brightness(0);
+            // filter: invert(0) brightness(0);
           }
         }
 
         .brand-logo-white {
           display: none !important;
           &:focus {
-          -webkit-filter: invert(1) brightness(1);
-            filter: invert(1) brightness(1);
+            outline: 2px solid $brown-color;
+            outline-offset: 4px;
+            // -webkit-filter: invert(1) brightness(1);
+            // filter: invert(1) brightness(1);
           }
         }
       }
@@ -267,6 +273,10 @@ body.no-scroll {
     }
 
     &:focus {
+      .menu-toggle-content{
+        outline: 2px solid $brown-color;
+        outline-offset: 4px;
+      }
       .hamburger p {
         color: $brown-color;
       }
@@ -291,8 +301,10 @@ body.no-scroll {
       transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, filter 0.5s ease;
 
       &:focus {
-        -webkit-filter: invert(1) brightness(2);
-        filter: invert(1) brightness(2);
+        // -webkit-filter: invert(1) brightness(2);
+        // filter: invert(1) brightness(2);
+        outline: 2px solid $brown-color;
+        outline-offset: 4px;
       }
     }
   }
@@ -377,8 +389,10 @@ body.no-scroll {
         visibility: hidden !important;
 
         &:focus {
-          -webkit-filter: invert(0) brightness(0);
-          filter: invert(0) brightness(0);
+          // -webkit-filter: invert(0) brightness(0);
+          // filter: invert(0) brightness(0);
+          outline: 2px solid $brown-color;
+          outline-offset: 4px;
         }
 
       }
@@ -390,8 +404,8 @@ body.no-scroll {
         pointer-events: auto;
 
         &:focus {
-          -webkit-filter: invert(0) brightness(0);
-          filter: invert(0) brightness(0);
+          // -webkit-filter: invert(0) brightness(0);
+          // filter: invert(0) brightness(0);
         }
 
       }
@@ -439,11 +453,19 @@ body.no-scroll {
       left: auto;
       flex-shrink: 0;
 
+      &:focus,
+      &:hover {
+        outline: 2px solid $brown-color;
+        outline-offset: 4px;
+        border-radius: 4px;
+      }
+
       .close-icon {
         width: 30px;
         height: 30px;
         display: block;
       }
+
     }
 
     .menu-header-logo {
@@ -483,7 +505,7 @@ body.no-scroll {
         transform: translateX(0);
 
         .menu-item {
-          // margin-bottom: 12px;
+          max-width: 75%;
 
           >a {
             font-family: $fonts-niveau-grotesk-small-caps;
@@ -504,6 +526,8 @@ body.no-scroll {
 
             &:focus {
               color: $brown-color;
+              outline: 2px solid $brown-color;
+              outline-offset: 4px;
             }
           }
         }
@@ -522,6 +546,12 @@ body.no-scroll {
           margin-bottom: 2rem;
           cursor: pointer;
           display: inline-block;
+          background: transparent;
+          border: none;
+          &:focus {
+            outline: 2px solid $brown-color;
+            outline-offset: 4px;
+          }
           img{
             width: 27px;
           }
@@ -760,7 +790,7 @@ body.no-scroll {
             border-top: 1px solid $black-off-color;
             padding-top: 12px;
             margin-bottom: 12px;
-
+            max-width: 100%;
             &.mobile-submenu-open {
               >a {
                 padding-bottom: 30px;
@@ -795,7 +825,7 @@ body.no-scroll {
 
             li {
               margin-bottom: 0;
-
+              max-width: 100%;
               a {
                 font-size: 22px;
                 padding: 0.35rem 0;
