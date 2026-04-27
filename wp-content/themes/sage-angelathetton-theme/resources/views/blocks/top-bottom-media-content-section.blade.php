@@ -11,9 +11,15 @@
             $image_id = is_array($mediaImage) ? $mediaImage['ID'] : $mediaImage;
             $image_url = wp_get_attachment_image_url($image_id, 'full');
             $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
+
+            // Get image data (url, width, height)
+            $imageData = $image_id ? wp_get_attachment_image_src($image_id, 'full') : null;
+            $image_width  = $imageData[1] ?? '';
+            $image_height = $imageData[2] ?? '';
+
           @endphp
           @if($image_url)
-            <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy">
+            <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy" width="{{ esc_attr($image_width) }}" height="{{ esc_attr($image_height) }}">
           @endif
         @else
           <div class="tbmc__media--placeholder">
