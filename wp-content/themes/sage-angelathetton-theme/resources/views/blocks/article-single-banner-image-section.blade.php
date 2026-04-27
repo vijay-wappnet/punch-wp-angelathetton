@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-12">
           <div class="article-single-banner-image-section__wrapper">
-            <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" class="article-single-banner-image-section__img" />
+            <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" class="article-single-banner-image-section__img" width="{{ $banner_image['width'] }}" height="{{ $banner_image['height'] }}"/>
           </div>
         </div>
       </div>

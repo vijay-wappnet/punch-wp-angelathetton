@@ -19,7 +19,7 @@
                                         {{ esc_html($question) }}
                                     </span>
                                     <span class="faq-icon">
-                                        <img src="{{ Vite::asset('resources/images/bottom_arrow.svg') }}" alt="{{ esc_attr__('Toggle answer', 'sage') }}" class="icon">
+                                        <img src="{{ Vite::asset('resources/images/bottom_arrow.svg') }}" alt="{{ esc_attr__('Toggle answer', 'sage') }}" class="icon" width="20" height="20">
                                     </span>
                                 </button>
                                 <div class="faq-answer" id="faq-answer-{{ $blockId }}-{{ $index }}" aria-hidden="true">

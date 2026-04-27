@@ -37,7 +37,7 @@
                 @endphp
                 @if($image_url)
                   <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}"
-                  loading="lazy" width="" height="">
+                  loading="lazy" width="{{ $column['image']['width'] }}" height="{{ $column['image']['height'] }}">
                 @endif
               </div>
 

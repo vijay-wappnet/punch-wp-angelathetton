@@ -1,8 +1,11 @@
 @if(!empty($responsiveCss))
-<style>{{ $responsiveCss }}</style>
+  <style>
+    {{ $responsiveCss }}
+  </style>
 @endif
 <div id="{{ $blockId }}" class="full-width-title-banner-image-section" style="background-color: {{ $section_bg }};">
   @if ($banner_image)
-    <img class="full-width-title-banner-img" src="{{ $banner_image['url'] }}" alt="{{ $banner_image['alt'] }}">
+    <img class="full-width-title-banner-img" src="{{ $banner_image['url'] }}" alt="{{ $banner_image['alt'] }}"
+      width="{{ $banner_image['width'] }}" height="{{ $banner_image['height'] }}">
   @endif
 </div>

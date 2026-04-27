@@ -1,15 +1,14 @@
 @if(!empty($responsiveCss))
-<style>{{ $responsiveCss }}</style>
+  <style>
+    {{ $responsiveCss }}
+  </style>
 @endif
 
-<section id="{{ $blockId }}" class="career-post-listing-section" @if(!empty($backgroundStyle)) style="{{ $backgroundStyle }}" @endif
-    data-post-type="{{ esc_attr($selectPostType) }}"
-    data-posts-per-page="{{ esc_attr($postsPerPage) }}"
-    data-posts-per-page-mobile="{{ esc_attr($postsPerPageMobile) }}"
-    data-orderby="{{ esc_attr($orderby) }}"
-    data-order="{{ esc_attr($order) }}"
-    data-paged="{{ esc_attr($currentPage) }}"
-    data-total-posts="{{ esc_attr($totalPosts) }}">
+<section id="{{ $blockId }}" class="career-post-listing-section" @if(!empty($backgroundStyle))
+style="{{ $backgroundStyle }}" @endif data-post-type="{{ esc_attr($selectPostType) }}"
+  data-posts-per-page="{{ esc_attr($postsPerPage) }}" data-posts-per-page-mobile="{{ esc_attr($postsPerPageMobile) }}"
+  data-orderby="{{ esc_attr($orderby) }}" data-order="{{ esc_attr($order) }}" data-paged="{{ esc_attr($currentPage) }}"
+  data-total-posts="{{ esc_attr($totalPosts) }}">
   <div class="container">
     <div class="career-list">
       @if(!empty($posts))
@@ -46,12 +45,9 @@
             </div>
 
             <div class="col-12 col-lg-3 text-lg-end">
-              <a
-                 {{-- href="{{ esc_url($post_link) }}" --}}
-                 href="{{ !empty($email) ? 'mailto:' . esc_attr($email) : '#' }}"
-                 class="btn trans-black-btn cpls-btn"
-                 aria-label="{{ esc_attr('Get in touch about ' . $post_title) }}"
-                 data-event-label="Get in touch">
+              <a {{-- href="{{ esc_url($post_link) }}" --}} href="{{ !empty($email) ? 'mailto:' . esc_attr($email) : '#' }}"
+                class="btn trans-black-btn cpls-btn" aria-label="{{ esc_attr('Get in touch about ' . $post_title) }}"
+                data-event-label="Get in touch">
                 {{ __('Get in touch', 'sage') }}
               </a>
             </div>
@@ -67,11 +63,12 @@
       <div class="career-pagination d-none d-md-flex">
         @if(!empty($prevPageUrl))
           <a href="{{ esc_url($prevPageUrl) }}" class="prev" aria-label="{{ esc_attr__('Previous page', 'sage') }}">
-            <img src="{{ Vite::asset('resources/images/left_arrow.svg') }}" alt="{{ esc_attr__('Previous', 'sage') }}">
+            <img src="{{ Vite::asset('resources/images/left_arrow.svg') }}" alt="{{ esc_attr__('Previous', 'sage') }}"
+              width="36" height="10">
           </a>
         @else
           <span class="prev is-disabled" aria-hidden="true">
-            <img src="{{ Vite::asset('resources/images/left_arrow.svg') }}" alt="">
+            <img src="{{ Vite::asset('resources/images/left_arrow.svg') }}" alt="Previous Arrow" width="36" height="10">
           </span>
         @endif
 
@@ -79,11 +76,12 @@
 
         @if(!empty($nextPageUrl))
           <a href="{{ esc_url($nextPageUrl) }}" class="next" aria-label="{{ esc_attr__('Next page', 'sage') }}">
-            <img src="{{ Vite::asset('resources/images/right-arrow.svg') }}" alt="{{ esc_attr__('Next', 'sage') }}">
+            <img src="{{ Vite::asset('resources/images/right-arrow.svg') }}" alt="{{ esc_attr__('Next', 'sage') }}"
+              width="36" height="10">
           </a>
         @else
           <span class="next is-disabled" aria-hidden="true">
-            <img src="{{ Vite::asset('resources/images/right-arrow.svg') }}" alt="">
+            <img src="{{ Vite::asset('resources/images/right-arrow.svg') }}" alt="Next Arrow" width="36" height="10">
           </span>
         @endif
       </div>
@@ -92,18 +90,15 @@
     {{-- Mobile Load More Button --}}
     @if($totalPosts > $postsPerPage)
       <div class="load-more-button-wrapper d-md-none">
-        <button type="button"
-            class="btn trans-black-btn load-more-btn"
-            data-block-id="{{ $blockId }}"
-            aria-label="{{ esc_attr__('Load more careers', 'sage') }}"
-            data-event-label="Load more">
-            <span class="btn-text">{{ __('Load more', 'sage') }}</span>
-            <span class="btn-loading" style="display: none;">
-                <svg class="spinner" width="20" height="20" viewBox="0 0 50 50">
-                    <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
-                </svg>
-                {{ __('Loading...', 'sage') }}
-            </span>
+        <button type="button" class="btn trans-black-btn load-more-btn" data-block-id="{{ $blockId }}"
+          aria-label="{{ esc_attr__('Load more careers', 'sage') }}" data-event-label="Load more">
+          <span class="btn-text">{{ __('Load more', 'sage') }}</span>
+          <span class="btn-loading" style="display: none;">
+            <svg class="spinner" width="20" height="20" viewBox="0 0 50 50">
+              <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+            {{ __('Loading...', 'sage') }}
+          </span>
         </button>
       </div>
     @endif

@@ -50,6 +50,12 @@
               $first_image_url = wp_get_attachment_image_url($first_image_id, 'full');
               $first_image_alt = get_post_meta($first_image_id, '_wp_attachment_image_alt', true);
 
+              // Get image data (url, width, height)
+              $imageData = $first_image_id ? wp_get_attachment_image_src($first_image_id, 'full') : null;
+
+              $first_image_width  = $imageData[1] ?? '';
+              $first_image_height = $imageData[2] ?? '';
+
               // Build classes for first image visibility
               $firstImageClasses = ['package-details-with-images-section__image', 'package-details-with-images-section__image--first'];
 
@@ -67,7 +73,7 @@
             @endphp
             @if($first_image_url)
               <div class="{{ implode(' ', $firstImageClasses) }}">
-                <img src="{{ esc_url($first_image_url) }}" alt="{{ esc_attr($first_image_alt) }}" loading="lazy">
+                <img src="{{ esc_url($first_image_url) }}" alt="{{ esc_attr($first_image_alt) }}" loading="lazy" width="{{ esc_attr($first_image_width) }}"  height="{{ esc_attr($first_image_height) }}">
               </div>
             @endif
           @else
@@ -82,6 +88,12 @@
               $second_image_id = is_array($secondImage) ? $secondImage['ID'] : $secondImage;
               $second_image_url = wp_get_attachment_image_url($second_image_id, 'full');
               $second_image_alt = get_post_meta($second_image_id, '_wp_attachment_image_alt', true);
+
+              // Get image data (url, width, height)
+              $imageData = $second_image_id ? wp_get_attachment_image_src($second_image_id, 'full') : null;
+
+              $second_image_width  = $imageData[1] ?? '';
+              $second_image_height = $imageData[2] ?? '';
 
               // Build classes for second image visibility
               $secondImageClasses = ['package-details-with-images-section__image', 'package-details-with-images-section__image--second'];
@@ -100,7 +112,7 @@
             @endphp
             @if($second_image_url)
               <div class="{{ implode(' ', $secondImageClasses) }}">
-                <img src="{{ esc_url($second_image_url) }}" alt="{{ esc_attr($second_image_alt) }}" loading="lazy">
+                <img src="{{ esc_url($second_image_url) }}" alt="{{ esc_attr($second_image_alt) }}" loading="lazy"  width="{{ esc_attr($second_image_width) }}"  height="{{ esc_attr($second_image_height) }}">
               </div>
             @endif
           @else

@@ -12,7 +12,7 @@
                     <div class="slider-room-fs__slider-wrapper">
                         @foreach ($slider_images as $slide)
                             <div class="slider-room-fs__slide">
-                                <img class="slider-room-fs__image" src="{{ $slide['image']['url'] }}" alt="{{ $slide['image']['alt'] }}">
+                                <img class="slider-room-fs__image" src="{{ $slide['image']['url'] }}" alt="{{ $slide['image']['alt'] }}" width="{{ $slide['image']['width'] }}" height="{{ $slide['image']['height'] }}">
                             </div>
                         @endforeach
                     </div>
@@ -30,7 +30,7 @@
                     <div class="slider-room-fs__feature-title">
                         {{ $feature_title }}
                         <span class="slider-room-fs__toggle">
-                          <img src="{{ Vite::asset('resources/images/bottom_arrow.svg') }}" alt="arrow" class="icon">
+                          <img src="{{ Vite::asset('resources/images/bottom_arrow.svg') }}" alt="arrow" class="icon" width="20" height="10">
                         </span>
                     </div>
                     <ul class="slider-room-fs__features">

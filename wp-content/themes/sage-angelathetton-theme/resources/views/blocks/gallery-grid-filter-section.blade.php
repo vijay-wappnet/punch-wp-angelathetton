@@ -1,20 +1,26 @@
 @if(!empty($responsiveCss))
-<style>{{ $responsiveCss }}</style>
+  <style>
+    {{ $responsiveCss }}
+  </style>
 @endif
-<div id="{{ $blockId }}" class="gallery-grid-filter-section" @if(!empty($backgroundStyle)) style="{{ $backgroundStyle }}" @endif data-block-id="{{ $blockId }}">
+<div id="{{ $blockId }}" class="gallery-grid-filter-section" @if(!empty($backgroundStyle))
+style="{{ $backgroundStyle }}" @endif data-block-id="{{ $blockId }}">
   <div class="container">
     {{-- Header with Filter and Refresh --}}
     <div class="gallery-grid-filter-section__header">
       <div class="gallery-grid-filter-section__filter">
         <span class="gallery-grid-filter-section__filter-label">{{ esc_html($filterByTitle) }} : </span>
         <div class="gallery-grid-filter-section__dropdown">
-          <button type="button" class="gallery-grid-filter-section__dropdown-toggle" aria-expanded="false" aria-haspopup="listbox">
+          <button type="button" class="gallery-grid-filter-section__dropdown-toggle" aria-expanded="false"
+            aria-haspopup="listbox">
             <span class="gallery-grid-filter-section__dropdown-text">All</span>
-            <img src="{{ Vite::asset('resources/images/bottom_black_arrow.svg') }}" alt="arrow-down" class="gallery-grid-filter-section__dropdown-icon">
+            <img src="{{ Vite::asset('resources/images/bottom_black_arrow.svg') }}" alt="arrow-down"
+              class="gallery-grid-filter-section__dropdown-icon" width="24" height="24">
           </button>
           <ul class="gallery-grid-filter-section__dropdown-menu" role="listbox">
             @foreach($categories as $value => $label)
-              <li role="option" data-value="{{ $value }}" @if($value === 'all') aria-selected="true" class="is-selected" @endif>
+              <li role="option" data-value="{{ $value }}" @if($value === 'all') aria-selected="true" class="is-selected"
+              @endif>
                 {{ $label }}
               </li>
             @endforeach
@@ -23,7 +29,9 @@
       </div>
       <button type="button" class="gallery-grid-filter-section__refresh" aria-label="{{ esc_attr($refreshTitle) }}">
         {{ esc_html($refreshTitle) }}
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="gallery-grid-filter-section__refresh-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="gallery-grid-filter-section__refresh-icon">
           <path d="M21 2v6h-6"></path>
           <path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
           <path d="M3 22v-6h6"></path>
@@ -61,18 +69,28 @@
                   $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
                   $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
                   $imageIndex++;
+
+                  // Get image data (url, width, height)
+                  $imageData = $image_id ? wp_get_attachment_image_src($image_id, 'large') : null;
+
+                  $image_url = $imageData[0] ?? '';
+                  $image_width = $imageData[1] ?? '';
+                  $image_height = $imageData[2] ?? '';
+
                 @endphp
                 <div class="gallery-grid-filter-section__large" data-category="{{ esc_attr($category) }}">
                   <div class="gallery-grid-filter-section__item" data-full-image="{{ esc_url($image_full) }}">
                     @if($image_url)
-                      <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" class="gallery-grid-filter-section__image" loading="lazy">
+                      <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}"
+                        class="gallery-grid-filter-section__image" loading="lazy" width="{{ esc_attr($image_width) }}" height="{{ esc_attr($image_height) }}">
                     @else
                       <div class="gallery-grid-filter-section__placeholder">
                         <p>{{ __('No image', 'sage') }}</p>
                       </div>
                     @endif
                     <div class="gallery-grid-filter-section__overlay">
-                      <img src="{{ Vite::asset('resources/images/plus_icon.svg') }}" alt="plus" class="gallery-grid-filter-section__icon">
+                      <img src="{{ Vite::asset('resources/images/plus_icon.svg') }}" alt="plus"
+                        class="gallery-grid-filter-section__icon" width="24" height="24">
                     </div>
                   </div>
                 </div>
@@ -91,18 +109,28 @@
                       $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
                       $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
                       $imageIndex++;
+
+                      // Get image data (url, width, height)
+                      $imageData = $image_id ? wp_get_attachment_image_src($image_id, 'large') : null;
+
+                      $image_url = $imageData[0] ?? '';
+                      $image_width = $imageData[1] ?? '';
+                      $image_height = $imageData[2] ?? '';
+                      
                     @endphp
                     <div class="gallery-grid-filter-section__small-item" data-category="{{ esc_attr($category) }}">
                       <div class="gallery-grid-filter-section__item" data-full-image="{{ esc_url($image_full) }}">
                         @if($image_url)
-                          <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" class="gallery-grid-filter-section__image" loading="lazy">
+                          <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}"
+                            class="gallery-grid-filter-section__image" loading="lazy" width="{{ esc_attr($image_width) }}" height="{{ esc_attr($image_height) }}">
                         @else
                           <div class="gallery-grid-filter-section__placeholder">
                             <p>{{ __('No image', 'sage') }}</p>
                           </div>
                         @endif
                         <div class="gallery-grid-filter-section__overlay">
-                          <img src="{{ Vite::asset('resources/images/plus_icon.svg') }}" alt="plus" class="gallery-grid-filter-section__icon">
+                          <img src="{{ Vite::asset('resources/images/plus_icon.svg') }}" alt="plus"
+                            class="gallery-grid-filter-section__icon" width="24" height="24">
                         </div>
                       </div>
                     </div>
@@ -125,18 +153,28 @@
                       $image_full = $image_id ? wp_get_attachment_image_url($image_id, 'full') : '';
                       $image_alt = $image_id ? get_post_meta($image_id, '_wp_attachment_image_alt', true) : '';
                       $imageIndex++;
+
+                      // Get image data (url, width, height)
+                      $imageData = $image_id ? wp_get_attachment_image_src($image_id, 'large') : null;
+
+                      $image_url = $imageData[0] ?? '';
+                      $image_width = $imageData[1] ?? '';
+                      $image_height = $imageData[2] ?? '';
+                      
                     @endphp
                     <div class="gallery-grid-filter-section__small-item" data-category="{{ esc_attr($category) }}">
                       <div class="gallery-grid-filter-section__item" data-full-image="{{ esc_url($image_full) }}">
                         @if($image_url)
-                          <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" class="gallery-grid-filter-section__image" loading="lazy">
+                          <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}"
+                            class="gallery-grid-filter-section__image" loading="lazy" width="{{ esc_attr($image_width) }}" height="{{ esc_attr($image_height) }}">
                         @else
                           <div class="gallery-grid-filter-section__placeholder">
                             <p>{{ __('No image', 'sage') }}</p>
                           </div>
                         @endif
                         <div class="gallery-grid-filter-section__overlay">
-                          <img src="{{ Vite::asset('resources/images/plus_icon.svg') }}" alt="plus" class="gallery-grid-filter-section__icon">
+                          <img src="{{ Vite::asset('resources/images/plus_icon.svg') }}" alt="plus"
+                            class="gallery-grid-filter-section__icon" width="24" height="24">
                         </div>
                       </div>
                     </div>
@@ -159,14 +197,16 @@
                 <div class="gallery-grid-filter-section__large" data-category="{{ esc_attr($category) }}">
                   <div class="gallery-grid-filter-section__item" data-full-image="{{ esc_url($image_full) }}">
                     @if($image_url)
-                      <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" class="gallery-grid-filter-section__image" loading="lazy">
+                      <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}"
+                        class="gallery-grid-filter-section__image" loading="lazy">
                     @else
                       <div class="gallery-grid-filter-section__placeholder">
                         <p>{{ __('No image', 'sage') }}</p>
                       </div>
                     @endif
                     <div class="gallery-grid-filter-section__overlay">
-                      <img src="{{ Vite::asset('resources/images/plus_icon.svg') }}" alt="plus" class="gallery-grid-filter-section__icon">
+                      <img src="{{ Vite::asset('resources/images/plus_icon.svg') }}" alt="plus"
+                        class="gallery-grid-filter-section__icon" width="24" height="24">
                     </div>
                   </div>
                 </div>
@@ -185,22 +225,28 @@
     <div class="gallery-grid-filter-section__lightbox" aria-hidden="true" role="dialog" aria-modal="true">
       <div class="gallery-grid-filter-section__lightbox-overlay"></div>
       <div class="gallery-grid-filter-section__lightbox-content">
-        <button type="button" class="gallery-grid-filter-section__lightbox-close" aria-label="{{ __('Close lightbox', 'sage') }}">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button type="button" class="gallery-grid-filter-section__lightbox-close"
+          aria-label="{{ __('Close lightbox', 'sage') }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        <button type="button" class="gallery-grid-filter-section__lightbox-prev" aria-label="{{ __('Previous image', 'sage') }}">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button type="button" class="gallery-grid-filter-section__lightbox-prev"
+          aria-label="{{ __('Previous image', 'sage') }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </button>
         <div class="gallery-grid-filter-section__lightbox-image-wrapper">
           <img src="" alt="" class="gallery-grid-filter-section__lightbox-image">
         </div>
-        <button type="button" class="gallery-grid-filter-section__lightbox-next" aria-label="{{ __('Next image', 'sage') }}">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <button type="button" class="gallery-grid-filter-section__lightbox-next"
+          aria-label="{{ __('Next image', 'sage') }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>

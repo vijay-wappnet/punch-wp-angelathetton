@@ -20,6 +20,14 @@
                     @php
                         $post_id = $post->ID;
                         $featured_image = get_the_post_thumbnail_url($post_id, 'large');
+                        
+                        $image_id = get_post_thumbnail_id($post_id);
+                        $image_url = wp_get_attachment_url($image_id);
+                        $image_size = 'large';
+                        $image_attributes = wp_get_attachment_image_src($image_id, $image_size);
+                        $post_image_width = !empty($image_attributes[1]) ? $image_attributes[1] : '';
+                        $post_image_height = !empty($image_attributes[2]) ? $image_attributes[2] : '';
+
                         $post_title = html_entity_decode(get_the_title($post_id), ENT_QUOTES, 'UTF-8');
                         $post_link = get_permalink($post_id);
                         $post_date = \App\Blocks\ArticlePostListingWithAjaxSection::getFormattedDate($post_id);
@@ -29,10 +37,10 @@
                         <div class="article-post-card">
                             <div class="article-post-card__image">
                                 @if($featured_image)
-                                  <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($post_title) }}" loading="lazy">
+                                  <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($post_title) }}" loading="lazy" width="{{ $post_image_width }}" height="{{ $post_image_height }}">
                                 @else
                                   <div class="article-post-card__image--placeholder">
-                                      <img src="{{ Vite::asset('resources/images/article-placeholder-image.webp') }}" alt="{{ esc_attr($post_title) }}" loading="lazy" />
+                                      <img src="{{ Vite::asset('resources/images/article-placeholder-image.webp') }}" alt="{{ esc_attr($post_title) }}" loading="lazy" width="369" height="402" />
                                   </div>
                                 @endif
                             </div>

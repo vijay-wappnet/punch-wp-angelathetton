@@ -4,7 +4,7 @@ Reusable partial for displaying related products
 --}}
 
 @php
-    use Illuminate\Support\Facades\Vite;
+  use Illuminate\Support\Facades\Vite;
 
   // Get ACF fields
   $title = get_field('related_product_title');
@@ -29,15 +29,13 @@ Reusable partial for displaying related products
 
 @if($title || $description || !empty($related_products))
   @if(!empty($responsiveCss))
-    <style>{{ $responsiveCss }}</style>
+    <style>
+      {{ $responsiveCss }}
+    </style>
   @endif
 
-  <section
-    id="{{ $sectionId }}"
-    class="woo-single-related-products-section"
-    @if($bg_color) style="background-color: {{ esc_attr($bg_color) }};" @endif
-    data-mobile-limit="{{ $mobileLimit }}"
-  >
+  <section id="{{ $sectionId }}" class="woo-single-related-products-section" @if($bg_color)
+  style="background-color: {{ esc_attr($bg_color) }};" @endif data-mobile-limit="{{ $mobileLimit }}">
     <div class="container">
       {{-- Header Row --}}
       @if($title || $description)
@@ -68,6 +66,14 @@ Reusable partial for displaying related products
               $product_id = $product->ID;
               $product_obj = wc_get_product($product_id);
               $featured_image = get_the_post_thumbnail_url($product_id, 'large');
+
+              $image_id = get_post_thumbnail_id($product_id);
+              $image_url = wp_get_attachment_url($image_id);
+              $image_size = 'large';
+              $image_attributes = wp_get_attachment_image_src($image_id, $image_size);
+              $post_image_width = !empty($image_attributes[1]) ? $image_attributes[1] : '';
+              $post_image_height = !empty($image_attributes[2]) ? $image_attributes[2] : '';
+
               $product_title = html_entity_decode(get_the_title($product_id), ENT_QUOTES, 'UTF-8');
               $product_link = get_permalink($product_id);
 
@@ -90,31 +96,32 @@ Reusable partial for displaying related products
               $mobileHiddenClass = ($index >= $mobileLimit) ? 'mobile-hidden' : '';
             @endphp
             <div class="col-lg-3 col-md-6 col-12 woo-single-related-products-section__item {{ $mobileHiddenClass }}">
-              <a href="{{ esc_url($product_link) }}"
-                aria-label="{{ esc_attr($product_title) }}"
+              <a href="{{ esc_url($product_link) }}" aria-label="{{ esc_attr($product_title) }}"
                 data-event-label="related-product">
-                  <div class="woo-single-related-products-section__card">
-                    <div class="woo-single-related-products-section__image">
-                      @if($featured_image)
-                          <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($product_title) }}" loading="lazy">
-                      @else
-                          <div class="woo-single-related-products-section__image--placeholder">
-                            <img src="{{ Vite::asset('resources/images/product-placeholder-image.webp') }}" alt="{{ esc_attr($product_title) }}" loading="lazy" />
-                          </div>
-                      @endif
-                    </div>
-                    <div class="woo-single-related-products-section__content">
-                      <h3 class="woo-single-related-products-section__card-title">
-                        {{ $product_title }}
-                      </h3>
-                      @if($product_description)
-                        <p class="woo-single-related-products-section__card-description">{{ $product_description }}</p>
-                      @endif
-                      <span class="btn trans-black-btn wsrps-btn">
-                        {{ __('Discover More', 'sage') }}
-                      </span>
-                    </div>
+                <div class="woo-single-related-products-section__card">
+                  <div class="woo-single-related-products-section__image">
+                    @if($featured_image)
+                      <img src="{{ esc_url($featured_image) }}" alt="{{ esc_attr($product_title) }}" loading="lazy"
+                        width="{{ $post_image_width }}" height="{{ $post_image_height }}">
+                    @else
+                      <div class="woo-single-related-products-section__image--placeholder">
+                        <img src="{{ Vite::asset('resources/images/product-placeholder-image.webp') }}"
+                          alt="{{ esc_attr($product_title) }}" loading="lazy" width="369" height="402" />
+                      </div>
+                    @endif
                   </div>
+                  <div class="woo-single-related-products-section__content">
+                    <h3 class="woo-single-related-products-section__card-title">
+                      {{ $product_title }}
+                    </h3>
+                    @if($product_description)
+                      <p class="woo-single-related-products-section__card-description">{{ $product_description }}</p>
+                    @endif
+                    <span class="btn trans-black-btn wsrps-btn">
+                      {{ __('Discover More', 'sage') }}
+                    </span>
+                  </div>
+                </div>
               </a>
             </div>
           @endforeach
@@ -124,10 +131,8 @@ Reusable partial for displaying related products
         @if($hasMoreProducts)
           <div class="row">
             <div class="col-12 woo-single-related-products-section__load-more-wrapper">
-              <button type="button"
-                class="btn trans-black-btn woo-single-related-products-section__load-more"
-                data-section-id="{{ $sectionId }}"
-                aria-label="{{ __('Load more related products', 'sage') }}"
+              <button type="button" class="btn trans-black-btn woo-single-related-products-section__load-more"
+                data-section-id="{{ $sectionId }}" aria-label="{{ __('Load more related products', 'sage') }}"
                 data-event-label="load-more-related-products">
                 <span class="btn-text">{{ __('Load More', 'sage') }}</span>
                 <span class="btn-loading" style="display: none;">
@@ -147,15 +152,15 @@ Reusable partial for displaying related products
   {{-- Load More Script --}}
   @if($hasMoreProducts)
     <script>
-      (function() {
-        document.addEventListener('DOMContentLoaded', function() {
+      (function () {
+        document.addEventListener('DOMContentLoaded', function () {
           var section = document.getElementById('{{ $sectionId }}');
           if (!section) return;
 
           var loadMoreBtn = section.querySelector('.woo-single-related-products-section__load-more');
           if (!loadMoreBtn) return;
 
-          loadMoreBtn.addEventListener('click', function() {
+          loadMoreBtn.addEventListener('click', function () {
             var btn = this;
             var btnText = btn.querySelector('.btn-text');
             var btnLoading = btn.querySelector('.btn-loading');
@@ -166,15 +171,15 @@ Reusable partial for displaying related products
             btn.disabled = true;
 
             // Simulate loading delay for UX
-            setTimeout(function() {
+            setTimeout(function () {
               // Show all hidden products
               var hiddenItems = section.querySelectorAll('.woo-single-related-products-section__item.mobile-hidden');
-              hiddenItems.forEach(function(item, index) {
+              hiddenItems.forEach(function (item, index) {
                 item.classList.remove('mobile-hidden');
                 item.classList.add('is-loading');
 
                 // Stagger animation
-                setTimeout(function() {
+                setTimeout(function () {
                   item.classList.remove('is-loading');
                   item.classList.add('is-loaded');
                 }, index * 100);

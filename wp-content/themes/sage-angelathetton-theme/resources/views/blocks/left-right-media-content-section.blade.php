@@ -14,7 +14,7 @@
               $image_alt = get_post_meta($image_id, '_wp_attachment_image_alt', true);
             @endphp
             @if($image_url)
-              <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy">
+              <img src="{{ esc_url($image_url) }}" alt="{{ esc_attr($image_alt) }}" loading="lazy" width="{{ $mediaImage['width'] }}" height="{{ $mediaImage['height'] }}">
             @endif
           @else
             <div class="left-right-media-content-section__image--placeholder">

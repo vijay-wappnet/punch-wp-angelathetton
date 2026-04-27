@@ -1,20 +1,21 @@
 <?php
 
-if( function_exists ( 'acf_add_options_page' ) ) {
-// Punch Theme General Settings
-    $general_settings = array (
-        'page_title' => __ ( 'Global Website Options', 'punch_theme' ),
-        'menu_title' => __ ( 'Website Options', 'punch_theme' ),
-        'menu_slug'  => 'punch_theme-general-settings',
+if (function_exists('acf_add_options_page')) {
+    // Punch Theme General Settings
+    $general_settings = array(
+        'page_title' => __('Global Website Options', 'punch_theme'),
+        'menu_title' => __('Website Options', 'punch_theme'),
+        'menu_slug' => 'punch_theme-general-settings',
         'capability' => 'edit_posts',
-        'redirect'   => false,
-        'icon_url'   => 'dashicons-admin-customizer'
+        'redirect' => false,
+        'icon_url' => 'dashicons-admin-customizer'
     );
-    acf_add_options_page ( $general_settings );
+    acf_add_options_page($general_settings);
 }
 
 // added dynamic
-function add_dynamic_id_to_menu_links($atts, $item, $args, $depth) {
+function add_dynamic_id_to_menu_links($atts, $item, $args, $depth)
+{
     // Apply only to the 'primary_navigation' menu
     if (in_array('menu-item-has-children', $item->classes)) {
         $atts['id'] = 'menu-item-' . esc_attr($item->ID);
@@ -25,12 +26,14 @@ add_filter('nav_menu_link_attributes', 'add_dynamic_id_to_menu_links', 10, 4);
 
 
 /* ====== Remove WordPress Version from Source Code ====== */
-function remove_wp_version() {
+function remove_wp_version()
+{
     return '';
 }
 add_filter('the_generator', 'remove_wp_version');
 
-function remove_wp_version_from_rss() {
+function remove_wp_version_from_rss()
+{
     return '';
 }
 add_filter('the_generator', 'remove_wp_version_from_rss');
@@ -39,31 +42,34 @@ add_filter('the_generator', 'remove_wp_version_from_rss');
 /**
  * Prevent update notification for plugin
  */
-function disable_plugin_updates( $value ) {
+function disable_plugin_updates($value)
+{
     $pluginsToDisable = [
         'advanced-custom-fields-pro/acf.php'
     ];
-    if ( isset($value) && is_object($value) ) {
+    if (isset($value) && is_object($value)) {
         foreach ($pluginsToDisable as $plugin) {
-            if ( isset( $value->response[$plugin] ) ) {
-                unset( $value->response[$plugin] );
+            if (isset($value->response[$plugin])) {
+                unset($value->response[$plugin]);
             }
         }
     }
     return $value;
 }
-add_filter( 'site_transient_update_plugins', 'disable_plugin_updates' );
+add_filter('site_transient_update_plugins', 'disable_plugin_updates');
 
 // Secure SVG /Webp Uploads (Sanitize SVG Content)
-function allow_svg_upload($mimes) {
-    $mimes['svg']  = 'image/svg+xml';
+function allow_svg_upload($mimes)
+{
+    $mimes['svg'] = 'image/svg+xml';
     $mimes['webp'] = 'image/webp'; //
     return $mimes;
 }
 add_filter('upload_mimes', 'allow_svg_upload');
 
 /* ACF Google Map API Key from wp-config.php */
-function my_acf_google_map_api( $api ){
+function my_acf_google_map_api($api)
+{
     $api['key'] = WP_GOOGLE_MAPS_API_KEY;
     return $api;
 }
@@ -136,17 +142,20 @@ add_filter('wpcf7_form_elements', function ($form) {
  * @param string $blockId The unique block ID for CSS selector
  * @return string The generated responsive CSS
  */
-function custom_acf_dimensions($margin, $padding, $blockId) {
+function custom_acf_dimensions($margin, $padding, $blockId)
+{
     // Helper function to format dimension values
-    $formatDimension = function($values) {
-        if (!is_array($values)) return '';
+    $formatDimension = function ($values) {
+        if (!is_array($values))
+            return '';
         $unit = $values['unit'] ?? 'px';
         $top = $values['top'] !== '' ? $values['top'] : null;
         $right = $values['right'] !== '' ? $values['right'] : null;
         $bottom = $values['bottom'] !== '' ? $values['bottom'] : null;
         $left = $values['left'] !== '' ? $values['left'] : null;
         // Only return if at least one value is set
-        if ($top === null && $right === null && $bottom === null && $left === null) return '';
+        if ($top === null && $right === null && $bottom === null && $left === null)
+            return '';
         return ($top ?? 0) . $unit . ' ' . ($right ?? 0) . $unit . ' ' . ($bottom ?? 0) . $unit . ' ' . ($left ?? 0) . $unit;
     };
 
@@ -167,24 +176,30 @@ function custom_acf_dimensions($margin, $padding, $blockId) {
 
     // Desktop (base styles)
     $desktopRules = [];
-    if (!empty($desktopMargin)) $desktopRules[] = 'margin: ' . $desktopMargin;
-    if (!empty($desktopPadding)) $desktopRules[] = 'padding: ' . $desktopPadding;
+    if (!empty($desktopMargin))
+        $desktopRules[] = 'margin: ' . $desktopMargin;
+    if (!empty($desktopPadding))
+        $desktopRules[] = 'padding: ' . $desktopPadding;
     if (!empty($desktopRules)) {
         $responsiveCss .= '#' . $blockId . ' { ' . implode('; ', $desktopRules) . '; }';
     }
 
     // Tablet
     $tabletRules = [];
-    if (!empty($tabletMargin)) $tabletRules[] = 'margin: ' . $tabletMargin;
-    if (!empty($tabletPadding)) $tabletRules[] = 'padding: ' . $tabletPadding;
+    if (!empty($tabletMargin))
+        $tabletRules[] = 'margin: ' . $tabletMargin;
+    if (!empty($tabletPadding))
+        $tabletRules[] = 'padding: ' . $tabletPadding;
     if (!empty($tabletRules)) {
         $responsiveCss .= ' @media (max-width: 991px) { #' . $blockId . ' { ' . implode('; ', $tabletRules) . '; } }';
     }
 
     // Mobile
     $mobileRules = [];
-    if (!empty($mobileMargin)) $mobileRules[] = 'margin: ' . $mobileMargin;
-    if (!empty($mobilePadding)) $mobileRules[] = 'padding: ' . $mobilePadding;
+    if (!empty($mobileMargin))
+        $mobileRules[] = 'margin: ' . $mobileMargin;
+    if (!empty($mobilePadding))
+        $mobileRules[] = 'padding: ' . $mobilePadding;
     if (!empty($mobileRules)) {
         $responsiveCss .= ' @media (max-width: 767px) { #' . $blockId . ' { ' . implode('; ', $mobileRules) . '; } }';
     }
@@ -195,12 +210,12 @@ function custom_acf_dimensions($margin, $padding, $blockId) {
 /**
  * Enqueue Post Listing AJAX Scripts
  */
-add_action('wp_enqueue_scripts', function() {
+add_action('wp_enqueue_scripts', function () {
     // Only enqueue if Vite is available
     if (class_exists('Illuminate\Support\Facades\Vite')) {
         wp_localize_script('sage/app', 'postListingAjax', [
             'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce'   => wp_create_nonce('post_listing_ajax_nonce'),
+            'nonce' => wp_create_nonce('post_listing_ajax_nonce'),
         ]);
     }
 });
@@ -208,7 +223,7 @@ add_action('wp_enqueue_scripts', function() {
 /**
  * Add inline script for AJAX URL (fallback)
  */
-add_action('wp_head', function() {
+add_action('wp_head', function () {
     ?>
     <script>
         var postListingAjax = {
@@ -237,7 +252,8 @@ add_action('wp_head', function() {
 add_action('wp_ajax_load_more_posts', 'handle_load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'handle_load_more_posts');
 
-function handle_load_more_posts() {
+function handle_load_more_posts()
+{
     // Verify nonce
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'post_listing_ajax_nonce')) {
         wp_send_json_error(['message' => 'Invalid security token']);
@@ -273,11 +289,11 @@ function handle_load_more_posts() {
 
     // Query posts
     $args = [
-        'post_type'      => $post_type,
+        'post_type' => $post_type,
         'posts_per_page' => $posts_per_page,
-        'orderby'        => $orderby,
-        'order'          => $order,
-        'post_status'    => 'publish',
+        'orderby' => $orderby,
+        'order' => $order,
+        'post_status' => 'publish',
     ];
 
     // Use offset if provided, otherwise use paged
@@ -301,19 +317,32 @@ function handle_load_more_posts() {
         $query->the_post();
         $post_id = get_the_ID();
         $featured_image = get_the_post_thumbnail_url($post_id, 'large');
+
+        $image_id = get_post_thumbnail_id($post_id);
+        $image_url = wp_get_attachment_url($image_id);
+        $image_size = 'large';
+        $image_attributes = wp_get_attachment_image_src($image_id, $image_size);
+        $post_image_width = !empty($image_attributes[1]) ? $image_attributes[1] : '';
+        $post_image_height = !empty($image_attributes[2]) ? $image_attributes[2] : '';
+
+
+
         $post_title = html_entity_decode(get_the_title(), ENT_QUOTES, 'UTF-8');
         $post_link = get_permalink();
         $post_description = get_post_listing_description($post_id);
         ?>
         <div class="col-lg-4 col-md-6 col-12 post-listing-item">
-            <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>" data-event-label="<?php echo esc_attr($post_title ?? ''); ?>" class="post-card-link">
+            <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>"
+                data-event-label="<?php echo esc_attr($post_title ?? ''); ?>" class="post-card-link">
                 <div class="post-card">
                     <div class="post-card__image">
-                        <?php if ($featured_image) : ?>
-                            <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
-                        <?php else : ?>
+                        <?php if ($featured_image): ?>
+                            <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>"
+                                loading="lazy" width="<?php echo $post_image_width ?>" height="<?php echo $post_image_height ?>">
+                        <?php else: ?>
                             <div class="post-card__image--placeholder">
-                                <img src="<?php echo get_theme_file_uri().'/resources/images/post-placeholder-image.webp'; ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy" />
+                                <img src="<?php echo get_theme_file_uri() . '/resources/images/post-placeholder-image.webp'; ?>"
+                                    alt="<?php echo esc_attr($post_title); ?>" loading="lazy" width="369" height="402" />
                             </div>
                         <?php endif; ?>
                     </div>
@@ -321,7 +350,7 @@ function handle_load_more_posts() {
                         <h3 class="post-card__title">
                             <?php echo esc_html($post_title); ?>
                         </h3>
-                        <?php if ($post_description) : ?>
+                        <?php if ($post_description): ?>
                             <p class="post-card__description"><?php echo esc_html($post_description); ?></p>
                         <?php endif; ?>
                         <span class="btn trans-black-btn post-card__button plwas-btn">
@@ -338,7 +367,7 @@ function handle_load_more_posts() {
     wp_reset_postdata();
 
     wp_send_json_success([
-        'html'      => $html,
+        'html' => $html,
         'max_pages' => $query->max_num_pages,
     ]);
 }
@@ -349,7 +378,8 @@ function handle_load_more_posts() {
  * @param int $post_id The post ID
  * @return string The post description
  */
-function get_post_listing_description($post_id) {
+function get_post_listing_description($post_id)
+{
     // First try to get excerpt
     $excerpt = get_the_excerpt($post_id);
 
@@ -383,7 +413,8 @@ function get_post_listing_description($post_id) {
 add_action('wp_ajax_load_more_career_posts', 'handle_load_more_career_posts');
 add_action('wp_ajax_nopriv_load_more_career_posts', 'handle_load_more_career_posts');
 
-function handle_load_more_career_posts() {
+function handle_load_more_career_posts()
+{
     // Verify nonce
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'career_listing_ajax_nonce')) {
         wp_send_json_error(['message' => 'Invalid security token']);
@@ -416,11 +447,11 @@ function handle_load_more_career_posts() {
 
     // Query posts
     $args = [
-        'post_type'      => $post_type,
+        'post_type' => $post_type,
         'posts_per_page' => $posts_per_page,
-        'orderby'        => $orderby,
-        'order'          => $order,
-        'post_status'    => 'publish',
+        'orderby' => $orderby,
+        'order' => $order,
+        'post_status' => 'publish',
     ];
 
     // Use offset if provided, otherwise use paged
@@ -462,17 +493,15 @@ function handle_load_more_career_posts() {
                     <div>EMPLOYMENT - <?php echo esc_html($employment_type ?: 'N/A'); ?> </div>
                 </h4>
 
-                <?php if ($post_description) : ?>
+                <?php if ($post_description): ?>
                     <p class="career-description"><?php echo esc_html($post_description); ?></p>
                 <?php endif; ?>
             </div>
 
             <div class="col-12 col-md-2 text-md-end">
-                <a
-                   href="<?php echo !empty($email) ? 'mailto:' . esc_attr($email) : '#'; ?>"
-                   class="btn trans-black-btn career-btn"
-                   aria-label="<?php echo esc_attr('Get in touch about ' . $post_title); ?>"
-                   data-event-label="Get in touch">
+                <a href="<?php echo !empty($email) ? 'mailto:' . esc_attr($email) : '#'; ?>"
+                    class="btn trans-black-btn career-btn"
+                    aria-label="<?php echo esc_attr('Get in touch about ' . $post_title); ?>" data-event-label="Get in touch">
                     <?php esc_html_e('Get in touch', 'sage'); ?>
                 </a>
             </div>
@@ -484,7 +513,7 @@ function handle_load_more_career_posts() {
     wp_reset_postdata();
 
     wp_send_json_success([
-        'html'      => $html,
+        'html' => $html,
         'max_pages' => $query->max_num_pages,
     ]);
 }
@@ -495,7 +524,8 @@ function handle_load_more_career_posts() {
 add_action('wp_ajax_load_more_article_posts', 'handle_load_more_article_posts');
 add_action('wp_ajax_nopriv_load_more_article_posts', 'handle_load_more_article_posts');
 
-function handle_load_more_article_posts() {
+function handle_load_more_article_posts()
+{
     // Verify nonce
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'article_listing_ajax_nonce')) {
         wp_send_json_error(['message' => 'Invalid security token']);
@@ -525,20 +555,20 @@ function handle_load_more_article_posts() {
 
     // Query posts
     $args = [
-        'post_type'      => $post_type,
+        'post_type' => $post_type,
         'posts_per_page' => $posts_per_page,
-        'orderby'        => $orderby,
-        'order'          => $order,
-        'post_status'    => 'publish',
-        'meta_query'     => [
+        'orderby' => $orderby,
+        'order' => $order,
+        'post_status' => 'publish',
+        'meta_query' => [
             'relation' => 'OR',
             [
-                'key'     => 'is_featured_article',
+                'key' => 'is_featured_article',
                 'compare' => 'NOT EXISTS', // include posts without this meta key
             ],
             [
-                'key'     => 'is_featured_article',
-                'value'   => '1',
+                'key' => 'is_featured_article',
+                'value' => '1',
                 'compare' => '!=', // exclude where value = 1
             ],
         ],
@@ -570,14 +600,17 @@ function handle_load_more_article_posts() {
         $post_date = get_the_date('d/m/y', $post_id);
         ?>
         <div class="col-lg-4 col-md-6 col-12 article-post-listing-item">
-            <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>" data-event-label="<?php echo esc_attr($post_title ?? ''); ?>" class="article-post-card-link">
+            <a href="<?php echo esc_url($post_link); ?>" aria-label="<?php echo esc_attr($post_title); ?>"
+                data-event-label="<?php echo esc_attr($post_title ?? ''); ?>" class="article-post-card-link">
                 <div class="article-post-card">
                     <div class="article-post-card__image">
-                        <?php if ($featured_image) : ?>
-                            <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy">
-                        <?php else : ?>
+                        <?php if ($featured_image): ?>
+                            <img src="<?php echo esc_url($featured_image); ?>" alt="<?php echo esc_attr($post_title); ?>"
+                                loading="lazy">
+                        <?php else: ?>
                             <div class="article-post-card__image--placeholder">
-                                <img src="<?php echo get_theme_file_uri().'/resources/images/article-placeholder-image.webp'; ?>" alt="<?php echo esc_attr($post_title); ?>" loading="lazy" />
+                                <img src="<?php echo get_theme_file_uri() . '/resources/images/article-placeholder-image.webp'; ?>"
+                                    alt="<?php echo esc_attr($post_title); ?>" loading="lazy" />
                             </div>
                         <?php endif; ?>
                     </div>
@@ -601,7 +634,7 @@ function handle_load_more_article_posts() {
     wp_reset_postdata();
 
     wp_send_json_success([
-        'html'      => $html,
+        'html' => $html,
         'max_pages' => $query->max_num_pages,
     ]);
 }
@@ -612,7 +645,8 @@ function handle_load_more_article_posts() {
  */
 add_action('acf/save_post', 'handle_single_featured_article', 20);
 
-function handle_single_featured_article($post_id) {
+function handle_single_featured_article($post_id)
+{
     // Bail early if this is an autosave or revision
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return;
@@ -630,14 +664,14 @@ function handle_single_featured_article($post_id) {
     if ($is_featured) {
         // Find all other posts that are currently featured
         $args = [
-            'post_type'      => 'post',
+            'post_type' => 'post',
             'posts_per_page' => -1,
-            'post_status'    => 'any',
-            'post__not_in'   => [$post_id], // Exclude current post
-            'meta_query'     => [
+            'post_status' => 'any',
+            'post__not_in' => [$post_id], // Exclude current post
+            'meta_query' => [
                 [
-                    'key'     => 'is_featured_article',
-                    'value'   => '1',
+                    'key' => 'is_featured_article',
+                    'value' => '1',
                     'compare' => '=',
                 ],
             ],
@@ -658,7 +692,8 @@ function handle_single_featured_article($post_id) {
 add_action('wp_ajax_gallery_filter', 'handle_gallery_filter');
 add_action('wp_ajax_nopriv_gallery_filter', 'handle_gallery_filter');
 
-function handle_gallery_filter() {
+function handle_gallery_filter()
+{
     // Verify nonce
     if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'gallery_filter_ajax_nonce')) {
         wp_send_json_error(['message' => 'Invalid security token']);
@@ -700,7 +735,7 @@ function handle_gallery_filter() {
 
     // Filter images by category
     if ($category !== 'all' && !empty($gallery_images)) {
-        $gallery_images = array_filter($gallery_images, function($item) use ($category) {
+        $gallery_images = array_filter($gallery_images, function ($item) use ($category) {
             return isset($item['select_category']) && $item['select_category'] === $category;
         });
         $gallery_images = array_values($gallery_images); // Re-index array
@@ -828,8 +863,8 @@ function handle_gallery_filter() {
     $html = ob_get_clean();
 
     wp_send_json_success([
-        'html'     => $html,
-        'count'    => count($gallery_images),
+        'html' => $html,
+        'count' => count($gallery_images),
         'category' => $category,
     ]);
 }
@@ -837,7 +872,8 @@ function handle_gallery_filter() {
 /**
  * Helper function to find gallery images in parsed blocks
  */
-function find_gallery_images_in_blocks($blocks) {
+function find_gallery_images_in_blocks($blocks)
+{
     $gallery_images = [];
 
     foreach ($blocks as $block) {

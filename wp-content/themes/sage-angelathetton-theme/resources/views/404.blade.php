@@ -46,14 +46,18 @@
   @endphp
 
   @if(!empty($responsiveBgCss))
-    <style>{!! $responsiveBgCss !!}</style>
+    <style>
+      {!! $responsiveBgCss !!}
+    </style>
   @endif
 
   <section id="{{ $sectionId }}" class="error-404-page">
     {{-- Mobile Background Image (visible only on mobile) --}}
     @if(!empty($mobile_image_url))
       <div class="error-404-page__mobile-bg d-md-none">
-        <img src="{{ esc_url($mobile_image_url) }}" alt="{{ esc_attr($mobile_image_alt) }}" class="error-404-page__mobile-img">
+        <img src="{{ esc_url($mobile_image_url) }}" alt="{{ esc_attr($mobile_image_alt) }}"
+          class="error-404-page__mobile-img" width="{{ $background_image_mobile['width'] }}"
+          height="{{ $background_image_mobile['height'] }}">
       </div>
     @endif
 
@@ -71,11 +75,10 @@
             {{-- Return to Home Button --}}
             @if(!empty($button_url))
               <div class="error-404-page__button-wrapper">
-                <a href="{{ esc_url($button_url) }}"
-                   class="btn return-home-btn"
-                   @if($aria_label) aria-label="{{ esc_attr($aria_label) }}" @endif
-                   @if($event_label) data-event-label="{{ esc_attr($event_label) }}" @endif
-                   @if($button_target) target="{{ esc_attr($button_target) }}" @endif>
+                <a href="{{ esc_url($button_url) }}" class="btn return-home-btn" @if($aria_label)
+                aria-label="{{ esc_attr($aria_label) }}" @endif @if($event_label)
+                  data-event-label="{{ esc_attr($event_label) }}" @endif @if($button_target)
+                  target="{{ esc_attr($button_target) }}" @endif>
                   {{ esc_html($button_title) }}
                 </a>
               </div>
