@@ -47,8 +47,8 @@
           'container'      => false,
           'walker'         => new \App\MenuWalker(),
           'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menu">%3$s</ul>',
-          'link_before'    => '<span role="menuitem">',
-          'link_after'     => '</span>',
+          //'link_before'    => '<span role="menuitem">',
+          //'link_after'     => '</span>',
         ]) !!}
       </div>
 

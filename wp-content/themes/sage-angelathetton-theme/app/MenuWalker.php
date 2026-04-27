@@ -21,8 +21,8 @@ class MenuWalker extends Walker_Nav_Menu
      */
     public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
     {
+        $this->current_item = $item;
         $classes = empty($item->classes) ? [] : (array) $item->classes;
-
         $has_children = in_array('menu-item-has-children', $classes);
 
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args, $depth));
@@ -46,6 +46,7 @@ class MenuWalker extends Walker_Nav_Menu
 
         // ✅ Accessibility improvements
         if ($has_children) {
+            $atts['href'] = '#'; // prevent navigation
             $atts['aria-haspopup'] = 'true';
             $atts['aria-expanded'] = 'false';
             $atts['aria-controls'] = 'submenu-' . $item->ID;
@@ -85,6 +86,6 @@ class MenuWalker extends Walker_Nav_Menu
         $indent  = str_repeat("\t", $depth);
         // Get parent item ID safely
         $parent_id = isset($this->current_item) ? $this->current_item->ID : uniqid();
-        $output .= "\n{$indent}<ul class=\"sub-menu\" id=\"submenu-{$parent_id}\" role=\"menu\">\n";
+        $output .= "\n{$indent}<ul class=\"sub-menu\" id=\"submenu-{$parent_id}\" role=\"menu\" aria-hidden=\"true\">\n";
     }
 }

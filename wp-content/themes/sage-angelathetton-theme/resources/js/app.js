@@ -196,6 +196,10 @@ function initPanelNavigation() {
         const parentLi = this.parentElement;
         const childMenu = parentLi.querySelector(':scope > .sub-menu');
 
+        // OPEN submenu
+        this.setAttribute('aria-expanded', 'true');
+        childMenu.setAttribute('aria-hidden', 'false');
+
         if (!childMenu) return;
 
         e.preventDefault();
@@ -276,6 +280,13 @@ function insertBackButton(panel, previousPanel) {
     // move focus back
     const parentLink = previousPanel.querySelector('.menu-item > a');
     parentLink?.focus();
+
+    const parentTrigger = previousPanel
+      .closest('.menu-item-has-children')
+      ?.querySelector(':scope > a');
+
+    parentTrigger?.setAttribute('aria-expanded', 'false');
+    panel.setAttribute('aria-hidden', 'true');
 
     setTimeout(() => {
       backBtn.remove();
